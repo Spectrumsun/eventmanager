@@ -5,6 +5,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="./image/icon/event.png" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./styles/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Itim" rel="stylesheet">
 
 </head>
 <body class="thebody">
@@ -23,7 +24,7 @@
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Events Menu
+	          Events
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="addevent.html">Add New Events</a>
@@ -33,7 +34,7 @@
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Center Menu
+	          Center
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="addcenter.html">Add New Center</a>
@@ -58,35 +59,38 @@
 		
 	<div>
 		<div class="container">
-			<h1 class="shadow">Add Center</h1>
-				<form  action="centerinfo.html">
-				  <div class="form-row">
-				    <div class="form-group col-md-6">
-				      <label for="inputEmail4">Center Name</label>
-				      <input type="text" class="form-control" id="inputEmail4" placeholder="" required>
-				    </div>
-				  </div>
-				  <div class="form-row">
-				    <div class="form-group col-md-6">
-				      <label for="inputEmail4">Address</label>
-				      <input type="text" class="form-control" id="inputEmail4" required>
-				    </div>
-				  </div>
-				 <h2>Add Facilities</h2>
-				 <input type='text' class="form-control col-md-6" id='addFacility' placeholder="Add more Facilities" required/>
-				 <br>
-				 <input type='reset' value='add to list' id='add' class="btn btn-outline-success"/>
-				 <br>
-				 <br>
-				  <ul class="list-group col-md-3" id='list' >
-				    <li class="list-group-item list-group-item-success">Chairs</li>
-				    <li class="list-group-item list-group-item-danger">Car pack</li>
-				    <li class="list-group-item list-group-item-warning">Sound System</li>
-				  </ul>
-				  <br>
-				  <button type="submit" class="btn btn-outline-primary">Done</button>
-				</form>
+			<div class="card card w-50 loginCard">
+			  <div class="card-header">
+			    <h1>Add Center</h1>
+			  </div>
+			  <div class="card-body">
 
+			  	<form action="viewevent.html">
+			  	  <div class="form-row">
+			  	    <div class="form-group col-md-6">
+			  	      <label for="inputEmail4">Name</label>
+			  	      <input type="text" class="form-control"  placeholder required>
+			  	    </div>
+			  	    <div class="form-group col-md-6">
+			  	      <label for="inputPassword4">Address</label>
+			  	      <input type="text" class="form-control" required>
+			  	    </div>
+			  	  </div>
+			  	  <h5>Add Facilities</h5>
+			  	  <input type='text' class="form-control col-md-6" id='addFacility'/>
+			  	  <br>
+			  	  	<input type='reset' value='add' id='add' class="btn btn-outline-success"/>
+			  	  	<br>
+			  	  	<br>
+			  	   <ul class="list-group col-md-6" id='list' >
+			  	     <li class="list-group-item list-group-item-success">Chairs</li>
+			  	     <li class="list-group-item list-group-item-danger">Car pack</li>
+			  	     <li class="list-group-item list-group-item-warning">Sound System</li>
+			  	   </ul>
+			  	   <br>
+			  	   <button type="submit" class="btn btn-outline-primary">Done</button>
+			  </div>
+			</div>
 	</div>
 		<footer>
 			<p>Event Managment Copyright 2017</p>

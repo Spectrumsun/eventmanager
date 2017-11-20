@@ -5,7 +5,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="./image/icon/event.png" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./styles/style.css">
-
 </head>
 <body class="thebody">
 	<nav class="navbar navbar-expand-lg navbar navbar-dark fixed-top ">
@@ -23,7 +22,7 @@
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Events Menu
+	          Events
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="addevent.html">Add New Events</a>
@@ -33,7 +32,7 @@
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Center Menu
+	          Center
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="addcenter.html">Add New Center</a>
@@ -58,111 +57,165 @@
 		
 	<div>
 		<div class="container">
-			<h1 class="shadow">Add Event</h1>
-			<form action="viewevent.html">
-			  <div class="form-row">
-			    <div class="form-group col-md-6">
-			      <label for="inputEmail4">Event Name</label>
-			      <input type="text" class="form-control"  placeholder required>
-			    </div>
-			    <div class="form-group col-md-6">
-			      <label for="inputPassword4">Date</label>
-			      <input type="date" class="form-control short"  required>
-			       <small id="emailHelp" class="form-text text-muted">Center are always availiable unless they are booked</small>
-			    </div>
-			    <div class="form-group col-md-6 ">
-			      <label for="inputPassword4">From</label>
-			      <input type="time" class="form-control shorting"  required>
-			      <label for="inputPassword4">To</label>
-			      <input type="time" class="form-control shorting"  required>
-			    </div>
+			<div class="card card w-50 loginCard">
+			  <div class="card-header">
+			    <h1>Add Event</h1>
+			  </div>
+			  <div class="card-body">
+
+			  	<form action="viewevent.html">
+			  	  <div class="form-row">
+			  	    <div class="form-group col-md-6">
+			  	      <label for="inputEmail4">Event Name</label>
+			  	      <input type="text" class="form-control"  placeholder required>
+			  	    </div>
+			  	    <div class="form-group col-md-6">
+			  	      <label for="inputPassword4">Date</label>
+			  	      <input type="date" class="form-control" required>
+			  	    </div>
+			  	    <div class="form-group col-md-6 ">
+			  	      <label for="inputPassword4">From</label>
+			  	      <input type="time" class="form-control"  required>
+			  	    </div>
+			  	    <div class="form-group col-md-6 ">
+			  	      <label for="inputPassword4">To</label>
+			  	      <input type="time" class="form-control"  required>
+			  	    </div>
+
+			  	  </div>
+			  	  <div class="form-group">
+			  	      <label for="exampleFormControlTextarea1">Description</label>
+			  	      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tell people more about the event"></textarea>
+			  	  </div>
+			  	  <!-- Button trigger modal -->
+			  	  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
+			  	    Pick a center
+			  	  </button>
+			  	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  	    <div class="modal-dialog" role="document">
+			  	      <div class="modal-content">
+			  	        <div class="modal-header">
+			  	          <h5 class="modal-title" id="exampleModalLabel">List of centers</h5>
+			  	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  	            <span aria-hidden="true">&times;</span>
+			  	          </button>
+			  	        </div>
+			  	        <div class="modal-body">
+			  	         <h3>Havilah Event Centre</h3>
+			  	         <h5 class="center">No 33 Ignobi Street Lagos</h6>
+			  	         <h6 class="center">Facility Available</h6>
+			  	         	<ul class="list-group">
+			  	         	  <li class="list-group-item list-group-item-primary">Open Field</li>
+			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
+			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
+			  	         	  <li class="list-group-item list-group-item-warning">Swimming Pool</li>
+			  	         	</ul>
+			  	         	<br>
+			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	        </div>
+
+			  	         <div class="modal-body">
+			  	         <h3>Nikoms Event Center Yaba</h3>
+			  	         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
+			  	         <h6 class="center">Facility Available</h6>
+			  	         	<ul class="list-group">
+			  	         	  <li class="list-group-item list-group-item-primary">Projector</li>
+			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
+			  	         	  <li class="list-group-item list-group-item-success">8,000 capacity</li>
+			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
+			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
+			  	         	</ul>
+			  	         	<br>
+			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	        </div>
+
+			  	         <div class="modal-body">
+			  	         <h3>Panda Event Centre</h3>
+			  	         <h5 class="center">No 12 Oyediran Street Lagos</h6>
+			  	         <h6 class="center">Facility Available</h6>
+			  	         	<ul class="list-group">
+			  	         	  <li class="list-group-item list-group-item-primary">Banquet Hall</li>
+			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
+			  	         	  <li class="list-group-item list-group-item-success">4,000 capacity</li>
+			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
+			  	         	</ul>
+			  	         	<br>
+			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	        </div>
+
+			  	         <div class="modal-body">
+			  	         <h3>Yaba Center</h3>
+			  	         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
+			  	         <h6 class="center">Facility Available</h6>
+			  	         	<ul class="list-group">
+			  	         	  <li class="list-group-item list-group-item-primary">Projector</li>
+			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
+			  	         	  <li class="list-group-item list-group-item-success">2,000 capacity</li>
+			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
+			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
+			  	         	</ul>
+			  	         	<br>
+			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	        </div>
+			  	        <br>
+			  	      </div>
+			  	    </div>
+			  	  </div>
+			  	  <br>
+			  	  <br>
+			  	  <button type="submit" class="btn btn-outline-dark">Submit</button>
+			  	</form>
+			    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			  </div>
-			  <!-- Button trigger modal -->
-			  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
-			    Pick a center
-			  </button>
-			  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			    <div class="modal-dialog" role="document">
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <h5 class="modal-title" id="exampleModalLabel">List of centers</h5>
-			          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			            <span aria-hidden="true">&times;</span>
-			          </button>
-			        </div>
-			        <div class="modal-body">
-			         <h3>Havilah Event Centre</h3>
-			         <h5 class="center">No 33 Ignobi Street Lagos</h6>
-			         <h6 class="center">Facility Available</h6>
-			         	<ul class="list-group">
-			         	  <li class="list-group-item list-group-item-primary">Open Field</li>
-			         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
-			         	  <li class="list-group-item list-group-item-warning">Swimming Pool</li>
-			         	</ul>
-			         	<br>
-			         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
-			        </div>
+			</div>
 
-			         <div class="modal-body">
-			         <h3>Nikoms Event Center Yaba</h3>
-			         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
-			         <h6 class="center">Facility Available</h6>
-			         	<ul class="list-group">
-			         	  <li class="list-group-item list-group-item-primary">Projector</li>
-			         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			         	  <li class="list-group-item list-group-item-success">8,000 capacity</li>
-			         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
-			         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
-			         	</ul>
-			         	<br>
-			         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
-			        </div>
 
-			         <div class="modal-body">
-			         <h3>Panda Event Centre</h3>
-			         <h5 class="center">No 12 Oyediran Street Lagos</h6>
-			         <h6 class="center">Facility Available</h6>
-			         	<ul class="list-group">
-			         	  <li class="list-group-item list-group-item-primary">Banquet Hall</li>
-			         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			         	  <li class="list-group-item list-group-item-success">4,000 capacity</li>
-			         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
-			         	</ul>
-			         	<br>
-			         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
-			        </div>
 
-			         <div class="modal-body">
-			         <h3>Yaba Center</h3>
-			         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
-			         <h6 class="center">Facility Available</h6>
-			         	<ul class="list-group">
-			         	  <li class="list-group-item list-group-item-primary">Projector</li>
-			         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			         	  <li class="list-group-item list-group-item-success">2,000 capacity</li>
-			         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
-			         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
-			         	</ul>
-			         	<br>
-			         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
-			        </div>
-			        <br>
-			      </div>
-			    </div>
-			  </div>
-			  <br>
-			  <br>
-			  <div class="form-group">
-			      <label for="exampleFormControlTextarea1">Description</label>
-			      <textarea class="form-control short" id="exampleFormControlTextarea1" rows="3" placeholder="Tell people more about the event"></textarea>
-			  </div>
-			  <br>
-			  <button type="submit" class="btn btn-outline-dark">Submit</button>
-			</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
 		</div>
 	</div>
+
+
 	<footer class>
 		<p>Event Managment Copyright 2017</p>
 	</footer>

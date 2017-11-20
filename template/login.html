@@ -19,36 +19,43 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
 		      </li>
+		    </ul>
 		  </div>
+		   <ul class=" nav navbar-nav navbar-right">
+		  	  <li class="nav-item">
+		    	<a class="btn btn-outline-light"  href="signup.html">Sign up</a>
+		     </li>
+		   </ul>
 		</nav>
 	<div>
-		<div class='container '>
-			<h3>Login</h3>
-				<div class="cont">
-					<form action="viewevent.html" class="centerform">
-					  <div class="form-group">
-					    <label for="exampleInputEmail1">Email address</label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your-email@example.com" required>
-					    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputPassword1">Password</label>
-					    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-					    <br>
-					    <div >
-					    	<p class="con"><a href="passwordreset.html" class="btn btn-outline-dark btn-sm">Password Reset</a></p>
-					    	<a href="signup.html" class="btn btn-outline-dark btn-sm"> Sign Up </a>
-						</div>
-					    </div>
-					    </div>
-					   </div>
-						<div class="text-center">
-							<button type="submit" class="btn btn-outline-dark">Submit</button>
-						</div>
-					</form>
-				</div>
+		<div class='container'>
+				<div class="card loginCard" style="width: 20rem;">
+				  <div class="card-header">
+				    <h3>Login</h3>
+				  </div>
+				  <div class="card-body">
+				  			<div class="cont card-body">
+				  				<form action="viewevent.html" class="centerform">
+				  				  <div class="form-group">
+				  				    <label for="exampleInputEmail1">Email address</label>
+				  				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+				  				  </div>
+				  				  <div class="form-group">
+				  				    <label for="exampleInputPassword1">Password</label>
+				  				    <input type="password" class="form-control" id="exampleInputPassword1" placeholder required>
+				  				    <small ><a href="passwordreset.html" class="center-item">Password Reset</a></small>
+				  				    <br>
+				  				    </div>
+				  				    </div>
+				  					<div class="text-center">
+				  						<button type="submit" class="btn btn-outline-dark">Submit</button>
+				  					</div>
+				  				</form>
+				  			</div>
+				  	</div>
+				 </div>
+			</div>
 		</div>
-	</div>
 	<footer class="fixed-bottom">
 		Event Managment Copyright 2017
 	</footer>

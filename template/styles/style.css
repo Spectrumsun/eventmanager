@@ -9,16 +9,17 @@ body {
 }
 
 
-.caption {
+/*.caption {
 	color: white;
 	text-shadow: 2px 2px black; 
-}
+}*/
 
-.shadow {
+/*.shadow {
 	color: black;
 	text-shadow: 1px 2px 15px black;
 
-}
+}*/
+
 .navbar {
 	background-color: #0F0913;
 }

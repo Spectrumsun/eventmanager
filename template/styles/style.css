@@ -1,0 +1,107 @@
+body {
+	background-color: #f4f4f4;
+	font: 15px/1.5 Arial, Helvetica, sans-serif;
+}
+
+.thebody {
+
+    padding-top: 100px;
+}
+
+
+.caption {
+	color: white;
+	text-shadow: 2px 2px black; 
+}
+
+.shadow {
+	color: black;
+	text-shadow: 1px 2px 15px black;
+
+}
+.navbar {
+	background-color: #0F0913;
+}
+
+.shift{
+	margin-bottom: 70px;
+}
+
+.short {
+	width: 400px;
+}
+
+.shorting {
+	width: 100px;
+}
+
+.space {
+	margin-top: 100px;
+}
+
+.sp {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
+.center-item {
+	text-align: center;
+
+}
+
+div.cont {
+    display: block;
+    text-align: center;
+}
+
+.center {
+	text-align: center;
+}
+
+.form-actions{
+	text-align: center,
+}
+
+.centerform {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+
+#log {
+	margin-left: 20px;
+}
+
+.card {
+	margin-left: 30px;
+	margin-bottom: 30px;
+}
+
+
+a {
+	margin-right: 10px;
+}
+
+
+
+
+
+footer{
+	padding: 10px;
+	margin-top: 20px;
+	color: #ffffff;
+	background-color: #0F0913;
+	text-align: center; 
+}
+
+.con {
+	position:absolute;
+    transition: .5s ease;
+    top: 50%;
+    left: 50%;
+}

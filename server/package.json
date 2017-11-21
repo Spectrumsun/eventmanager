@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": " npm run dev:start",
-    "prod": "server"
-    "dev:start:" "nodemon --ignore lib --exec  babel-node server",
+    "start": "npm run dev:start",
+    "dev:start": "nodemon --ignore lib --exec  babel-node server",
     "test": "mocha --exit --compilers  js:babel-core/register",
     "lint": "eslint src"
   },

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run dev:start",
     "dev:start": "nodemon --ignore lib --exec  babel-node server",
+    "prod:start": "babel-node server",
     "test": "mocha --exit --compilers  js:babel-core/register",
     "lint": "eslint src"
   },

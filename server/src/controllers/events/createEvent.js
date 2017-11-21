@@ -19,4 +19,5 @@ class CreateEvent{
         })
     }
 }
+
 export default CreateEvent

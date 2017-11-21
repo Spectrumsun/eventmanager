@@ -1,11 +1,9 @@
 body {
-	background-color: ;
-	
+	background-color: #f4f4f4 ;
 	font-family: 'Mada', sans-serif;
 }
 
 .thebody {
-
     padding-top: 100px;
 }
 
@@ -20,6 +18,10 @@ body {
 	text-shadow: 1px 2px 15px black;
 
 }*/
+
+.color {
+	color: #007BFF;
+}
 
 .navbar {
 	background-color: #0F0913;

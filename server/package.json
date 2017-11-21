@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": " npm run dev:start",
+    "dev:start": "nodemon --ignore lib --exec  babel-node server",
+    "test": "mocha --exit --compilers  js:babel-core/register",
+    "lint": "eslint src"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

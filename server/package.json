@@ -2,16 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "taiwo sunday",
-  "license": "ISC"
-=======
     "start": " npm run dev:start",
-    "dev:start": "nodemon --ignore lib --exec  babel-node server",
+    "prod": "server"
+    "dev:start:" "nodemon --ignore lib --exec  babel-node server",
     "test": "mocha --exit --compilers  js:babel-core/register",
     "lint": "eslint src"
   },
@@ -26,7 +21,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "body-parser": "^1.18.2",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -40,5 +36,4 @@
     "eslint-plugin-react": "^7.5.1",
     "mocha": "^4.0.1"
   }
->>>>>>> setup
 }

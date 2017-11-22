@@ -8,7 +8,7 @@ import db from '../src/data/db'
 const expect = chai.expect;
 
 chai.use(chaiHttp);
-//import 'babel-polyfill'
+//import 'babel-polyfill
 
 
 describe('Event-Mananger', () => {

@@ -8,7 +8,7 @@
     "dev:start": "nodemon --ignore lib --exec  babel-node server",
     "prod:start": "babel-node server",
     "test": "mocha --exit --compilers  js:babel-core/register",
-    "lint": "eslint src"
+    "lint": "eslint --fix src"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

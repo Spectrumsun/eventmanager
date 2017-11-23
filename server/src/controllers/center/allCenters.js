@@ -1,12 +1,10 @@
-import dbc from '../../data/dbc'
+import dbc from '../../data/dbc.json'
 
-const data = dbc.center;
+const data = dbc.center
 
-class AllCenters{
-
-    static all(req, res){
-            res.status(200).send(data);
-        
-    }
+class AllCenters {
+  static all(req, res) {
+    res.status(200).send(data)
+  }
 }
-export default AllCenters;
+export default AllCenters

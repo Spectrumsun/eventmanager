@@ -2,5 +2,5 @@ language: node
 language: node_js
 node_js: node
 script: 
-      - cd server && npm install && npm prod:build 
+      - cd server && npm install && npm run prod:start
        

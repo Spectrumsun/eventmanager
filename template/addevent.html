@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="./styles/style.css">
 </head>
 <body class="thebody">
-	<nav class="navbar navbar-expand-lg navbar navbar-dark fixed-top ">
+	<nav class="navbar navbar-expand-lg navbar navbar-dark fixed-top bar" style="background-color: #35434a;">
 	  <a class="navbar-brand" href="index.html"><img src="./image/icon/event.png" width="30" height="30" alt=""></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -58,7 +58,7 @@
 	<div>
 		<div class="container">
 			<div class="card card w-50 loginCard">
-			  <div class="card-header">
+			  <div class="card-header dark">
 			    <h1 class="color">Add Event</h1>
 			  </div>
 			  <div class="card-body">
@@ -66,29 +66,28 @@
 			  	<form action="viewevent.html">
 			  	  <div class="form-row">
 			  	    <div class="form-group col-md-6">
-			  	      <label for="inputEmail4">Event Name</label>
+			  	      <h5><label for="inputEmail4">Event Name</label><h5>
 			  	      <input type="text" class="form-control form-control-lg"  placeholder required>
 			  	    </div>
 			  	    <div class="form-group col-md-6">
-			  	      <label for="inputPassword4">Date</label>
+			  	     <h5><label for="inputPassword4">Date</label></h5>
 			  	      <input type="date" class="form-control form-control-lg" required>
 			  	    </div>
-			  	    <div class="form-group col-md-6 ">
-			  	      <label for="inputPassword4">From</label>
-			  	      <input type="time" class="form-control form-control-lg"  required>
+			  	    <div class="form-group col-md-6">
+			  	     <h5><label for="inputPassword4">From</label></h5>
+			  	      <input type="time" class="form-control form-control-lg" required>
 			  	    </div>
-			  	    <div class="form-group col-md-6 ">
-			  	      <label for="inputPassword4 ">To</label>
-			  	      <input type="time" class="form-control form-control-lg"  required>
+			  	    <div class="form-group col-md-6">
+			  	     <h5><label for="inputPassword4">To</label></h5>
+			  	      <input type="time" class="form-control form-control-lg" required>
 			  	    </div>
-
 			  	  </div>
 			  	  <div class="form-group">
-			  	      <label for="exampleFormControlTextarea1">Description</label>
+			  	      <h5><label for="exampleFormControlTextarea1">Description</label><h5>
 			  	      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Tell people more about the event"></textarea>
 			  	  </div>
 			  	  <!-- Button trigger modal -->
-			  	  <button type="button" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+			  	  <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
 			  	    Pick center
 			  	  </button>
 			  	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

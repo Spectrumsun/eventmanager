@@ -5,6 +5,20 @@ body {
 
 .thebody {
     padding-top: 100px;
+
+}
+
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+.bar {
+	background-color: #35434a;
+	border-bottom: #e8491d 3px solid;
+
 }
 
 
@@ -20,7 +34,7 @@ body {
 }*/
 
 .color {
-	color: #007BFF;
+	color: white;
 }
 
 .navbar {
@@ -98,14 +112,25 @@ a {
 }
 
 
+.dark{
+	padding: 15px;
+	background: #35424a;
+}
 
+.left {
+	float: left;
+}
+
+.spaces {
+	margin-right: 80px;
+}
 
 footer{
-	padding: 10px;
+	padding: 20px;
 	margin-top: 20px;
 	color: #ffffff;
-	background-color: #0F0913;
-	text-align: center; 
+	background-color: #e8491d;
+	text-align: center;  
 }
 
 .con {

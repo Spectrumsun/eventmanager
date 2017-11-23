@@ -1,4 +1,0 @@
-language: node
-language: node_js
-node_js: node
-script: npm start && npm prod:build

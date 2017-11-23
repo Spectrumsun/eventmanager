@@ -1,8 +1,8 @@
-import centerRoute from './center';
+import centerRoute from './center'
 import eventRouter from './event'
 
-export{
-    centerRoute,
-    eventRouter
-    
+export {
+  centerRoute,
+  eventRouter
+
 }

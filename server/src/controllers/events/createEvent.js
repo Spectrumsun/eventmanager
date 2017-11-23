@@ -1,22 +1,21 @@
-import db from '../../data/db';
+import db from '../../data/db.json'
 
-const data = db.events;
+const data = db.events
 
-class CreateEvent{
-
-    static create(req, res){
-        data.push({
-            "id": req.body.id,
-            "name": req.body.name,
-            "date": req.body.date,
-            "center": req.body.center,
-            "time": req.body.time,
-            "purpose": req.body.purpose
-        })
-        res.status(200).send({
-            message: 'success',
-            data: data
-        })
-    }
+class CreateEvent {
+  static create(req, res) {
+    data.push({
+      id: req.body.id,
+      name: req.body.name,
+      date: req.body.date,
+      center: req.body.center,
+      time: req.body.time,
+      purpose: req.body.purpose
+    })
+    res.status(200).send({
+      message: 'success',
+      data
+    })
+  }
 }
 export default CreateEvent

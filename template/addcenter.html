@@ -9,7 +9,7 @@
 
 </head>
 <body class="thebody">
-	<nav class="navbar navbar-expand-lg navbar navbar-dark fixed-top ">
+	<nav class="navbar navbar-expand-lg navbar navbar-dark fixed-top bar" style="background-color: #35434a;">
 	  <a class="navbar-brand" href="index.html"><img src="./image/icon/event.png" width="30" height="30" alt=""></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -59,8 +59,8 @@
 		
 	<div>
 		<div class="container">
-			<div class="card card w-50 loginCard">
-			  <div class="card-header">
+			<div class="card card w-50 loginCard ">
+			  <div class="card-header dark">
 			    <h1 class="color">Add Center</h1>
 			  </div>
 			  <div class="card-body">
@@ -68,29 +68,37 @@
 			  	<form action="viewevent.html">
 			  	  <div class="form-row">
 			  	    <div class="form-group col-md-6">
-			  	      <label for="inputEmail4">Name</label>
+			  	      <h5><label for="inputEmail4">Name</label></h5>
 			  	      <input type="text" class="form-control form-control-lg"  placeholder required>
 			  	    </div>
 			  	    <div class="form-group col-md-6">
-			  	      <label for="inputPassword4">Address</label>
+			  	     <h5><label for="inputPassword4">Address</label></h5>
 			  	      <input type="text" class="form-control form-control-lg" required>
 			  	    </div>
 			  	  </div>
 			  	  <h5>Add Facilities</h5>
-			  	  <input type='text' class="form-control col-md-6 form-control-lg" id='addFacility'/>
-			  	  <br>
-			  	  	<input type='reset' value='add' id='add' class="btn btn-outline-success"/>
+			  	  <input type='text' class="form-control col-md-6 form-control-lg" id='addFacility' style="float: left" />
+			  	  	<input type='reset' value='add' id='add' class="btn btn-info btn-lg" style="margin-left: 20px" />
 			  	  	<br>
 			  	  	<br>
-			  	   <ul class="list-group col-md-6" id='list' >
-			  	     <li class="list-group-item list-group-item-success">Chairs</li>
-			  	     <li class="list-group-item list-group-item-danger">Car pack</li>
-			  	     <li class="list-group-item list-group-item-warning">Sound System</li>
+			  	   <ul class="list-group col-md-5" id='list' >
+			  	     <li class="list-group-item">Chairs</li>
+			  	     <li class="list-group-item ">Car pack</li>
+			  	     <li class="list-group-item">Sound System</li>
 			  	   </ul>
 			  	   <br>
-			  	   <button type="submit" class="btn btn-outline-primary">Done</button>
+			  	   <button type="submit" class="btn btn-primary btn-lg">Done</button>
+			  	   <br>
+			  	   <br>
 			  </div>
 			</div>
+
+
+
+
+
+
+
 	</div>
 		<footer>
 			<p>Event Managment Copyright 2017</p>

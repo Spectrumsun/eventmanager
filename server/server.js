@@ -22,7 +22,7 @@ app.use('/api/centers', centerRoute)
 
 app.get('/',  (req, res) => {
     res.status(200).send({
-        message: 'welcome to our events',
+        message: 'welcome to our Event Manager',
     });
 });
 

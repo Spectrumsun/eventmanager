@@ -25,7 +25,7 @@ or​ ​suggest​ ​an  available​ ​day 
 <table>
   <tr>
       <td>POST</td>
-      <td>/api/v1/events/</td>
+      <td>/api/events/</td>
   </tr>
   <tr>
       <td>PUT</td>

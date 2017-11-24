@@ -9,6 +9,7 @@ or suggest an  available day 
 
 
 <b>View backend here </b> https://sleepy-wave-51548.herokuapp.com/
+<b>View template ui </b> https://spectrumsun.github.io/eventmanager/
 
 <h3>TECHNOLOGIES USED</h3>
 <hr>

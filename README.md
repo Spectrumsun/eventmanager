@@ -1,11 +1,12 @@
+<
 [![Build Status](https://travis-ci.org/Spectrumsun/eventmanager.svg?branch=develop)](https://travis-ci.org/Spectrumsun/eventmanager)
 [![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f12b2146b1c46953b97a/maintainability)](https://codeclimate.com/github/Spectrumsun/eventmanager/maintainability)
 
 # Event-Manager
-Given​ ​you​ ​manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​
-center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ ​events​ ​when​ ​the​ ​proposed​ ​day​ ​is​ ​already​ ​taken,​ ​
-or​ ​suggest​ ​an  available​ ​day  
+Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​
+center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ ​events​ ​when​ ​the​ ​proposed day is already taken,
+or suggest an  available day  
 
 
 <b>View backend here </b> https://sleepy-wave-51548.herokuapp.com/
@@ -56,4 +57,11 @@ or​ ​suggest​ ​an  available​ ​day 
       <td>Modify center information</td>
   </tr> 
 </table>
+
+
+
+
+[![Build Status](https://travis-ci.org/Spectrumsun/eventmanager.svg?branch=develop)](https://travis-ci.org/Spectrumsun/eventmanager)
+
+[![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
 

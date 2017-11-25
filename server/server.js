@@ -2,23 +2,23 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import { eventRouter, centerRoute} from './routes';
+import expressValidator from 'express-validator'
+import { eventRouter, centerRoute } from './routes';
 
-const app = express();
 
-export default app;
 
-app.use(morgan('dev'));
+const app = express()
+
+export default app
+
+app.use(morgan('dev'))
 
 app.use(bodyParser.json({ type: 'application/json' }))
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(expressValidator());
 
-
-
-app.use('/api/events', eventRouter);
+app.use('/api/events', eventRouter)
 app.use('/api/centers', centerRoute)
-
-
 
 app.get('/',  (req, res) => {
     res.status(200).send({

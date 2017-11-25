@@ -37,7 +37,7 @@ describe('Event-Mananger', () => {
             "purpose": "  Free style"
           })
           .end((err, res) => {
-            expect(res).to.have.status(200);
+            expect(res).to.have.status(201);
             expect(res).to.be.json;
             done();
           });
@@ -114,56 +114,10 @@ describe('Event-Mananger', () => {
       });
     });
 
-
-
-
-
-    describe('Should add a new CENTER', () => {
-      it('responds with status 200', (done) => {
-        chai.request(server)
-          .post('/api/centers')
-          .set('Content-Type', 'application/json')
-          .send({
-            "name":  "Cms Center", 
-            "city":  "Lagos Island",
-            "address": "77, Lagos Island Lagos",
-            "facility": "['radio', 'open roof', '2, 000 chairs', 'free wifi']"
-          })
-          .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.an('object');
-            expect(res).to.be.json;
-            done();
-          });
-      });
-    });
-
-    describe('Should get all CENTERS', () => {
-      it('responds with status 200', (done) => {
-        chai.request(server)
-          .get('/api/centers')
-          .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.an('array');
-            expect(res).to.be.json;
-            done();
-          });
-      });
-    });
-
-
-    describe('Should get Single CENTER from id', () => {
-      it('responds with status 200', (done) => {
-        chai.request(server)
-          .get('/api/centers/1')
-          .end((err, res) => {
-            expect(res).to.have.status(200);
-            expect(res.body).to.be.an('object');
-            expect(res).to.be.json;
-            done();
-          });
-      });
-    });
-
 });
 
+
+
+
+
+   

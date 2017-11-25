@@ -2,7 +2,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import { eventRouter, centerRoute} from './src/routes';
+import { eventRouter, centerRoute} from './routes';
 
 const app = express();
 

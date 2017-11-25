@@ -5,15 +5,15 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run dev:start",
-    "dev:start": "nodemon --ignore lib --exec  babel-node server",
+    "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js",
     "prod:start": "babel-node server",
-    "test": "mocha --exit --compilers  js:babel-core/register",
+    "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix src"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
@@ -23,9 +23,14 @@
     "body-parser": "^1.18.2",
     "coveralls": "^3.0.0",
     "express": "^4.16.2",
-    "morgan": "^1.9.0"
+    "express-validate": "0.0.8",
+    "istanbul": "^0.4.5",
+    "istanbul-coveralls": "^1.0.3",
+    "morgan": "^1.9.0",
+    "nyc": "^11.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.11.0",
@@ -37,7 +42,7 @@
     "eslint-plugin-react": "^7.5.1",
     "mocha": "^4.0.1"
   },
-   "engines": {
+  "engines": {
     "node": "8.9.1"
   }
 }

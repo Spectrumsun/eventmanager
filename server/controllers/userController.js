@@ -1,6 +1,7 @@
-import db from '../models'
 import jwt from 'jsonwebtoken'
 import bcrpt from 'bcrypt'
+import db from '../models'
+
 
 const userDB = db.User
 

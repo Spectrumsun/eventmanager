@@ -1,3 +1,4 @@
+
 import db from './../data/db.json';
 
 const data = db.events;
@@ -17,12 +18,34 @@ exports.findEvent = (req, res) => {
         id: data[i]
       });
     }
+
+
+const eventDB = db.Event
+
+
+class Event {
+  static getEvent(req, res) {
+    eventDB.all()
+      .then(event => res.status(200).send({ message: 'success', event }))
+      .catch(error => res.status(200).send(error))
+
   }
   res.status(404).json({
     message: 'Event doesnt exist!'
   });
 };
 
+  static getOneEvent(req, res) {
+    eventDB.findById(req.params.id)
+      .then((event) => {
+        if (!event) {
+          return res.status(404).send({ message: 'Event not found' })
+        }
+        return eventDB.findById(req.params.id)
+          .then(event => res.status(200).send({ message: 'found', event }))
+          .catch(error => res.status(200).send(error))
+      })
+  }
 
 exports.createEvent = (req, res) => {
   data.push({
@@ -76,4 +99,58 @@ exports.deleteEvent = (req, res) => {
     message: 'event doesnt exist!'
   });
 };
+
+=======
+  static createEvent(req, res) {
+    eventDB.create({
+      eventName: req.body.name,
+      eventdate: req.body.date,
+      center: req.body.center,
+      time: req.body.time,
+      purpose: req.body.purpose,
+    })
+      .then(event => res.status(201).send({ message: 'successfully created', event }))
+      .catch(error => res.status(400).send(error))
+  }
+
+
+  static editEvent(req, res) {
+    eventDB.findById(req.params.id)
+      .then((event) => {
+        if (!event) {
+          return res.status(404).send({
+            message: 'Event Not Found',
+          })
+        }
+        return event
+          .update({
+            eventName: req.body.name,
+            eventdate: req.body.date,
+            center: req.body.center,
+            time: req.body.time,
+            purpose: req.body.purpose,
+          })
+          .then(() => res.status(200).send({ message: 'updated', event }))
+          .catch(error => res.status(400).send(error))
+      })
+      .catch(error => res.status(400).send(error))
+  }
+
+
+  static deleteEvent(req, res) {
+    eventDB.findById(req.params.id)
+      .then((event) => {
+        if (!event) {
+          return res.status(400).send({
+            message: 'Event not Found',
+          })
+        }
+        return event.destroy().then(res.status(200).send({ message: 'Event successfully deleted!' }))
+          .catch(error => res.status(400).send(error))
+      })
+  }
+}
+
+
+export default Event
 

@@ -9,7 +9,31 @@ const userDB = db.User;
 const Secret = process.env.SECRET;
 
 class User {
+ feature/enable_POST_for_center_api
   static login(req, res) {
+
+
+  static signup (req, res) {
+    userDB.create({
+      fullname: req.body.fullname,
+      email: req.body.email,
+      password: req.body.password,
+      confirmPassword: req.body.confirmPassword
+    })
+    .then(user => res.status(201).send({ message: 'User successfully created', 
+        user:{
+          fullname: user.fullname,
+          email: user.email,
+          password: user.password
+      } 
+    }))
+      .catch(error => res.status(400).send(error))
+  }
+
+
+
+  static login (req, res) {
+
     userDB.findOne({
       where: {
         email: req.body.Email
@@ -39,7 +63,14 @@ class User {
         }
       });
   }
-}
 
 
 export default User;
+
+  
+ 
+}
+
+
+export default User
+

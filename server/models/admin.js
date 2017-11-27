@@ -13,10 +13,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  })
+  });
   Admin.associate = (models) => {
     // associations can be defined here
-  }
-  return Admin
-}
+  };
+  return Admin;
+};
 

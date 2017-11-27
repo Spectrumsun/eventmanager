@@ -29,4 +29,4 @@ module.exports = {
       },
     }),
   down: queryInterface => queryInterface.dropTable('Admins'),
-}
+};

@@ -2,9 +2,8 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-    "semi": [2, "never"],
     "allowForLoopAfterthoughts": true,
-    "no-unexpected-multiline": 2,
+    
     "linebreak-style": [2, "windows"],
     "one-var": 0,
     "one-var-declaration-per-line": 0,

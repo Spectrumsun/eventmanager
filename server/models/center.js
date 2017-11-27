@@ -12,15 +12,15 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-     facility: {
+    facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
       defaultValue: 0,
       allowNull: false,
-    },    
-  })
+    },
+  });
   Center.associate = (models) => {
     // associations can be defined here
-  }
-  return Center
-}
+  };
+  return Center;
+};
 

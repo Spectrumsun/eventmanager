@@ -15,20 +15,21 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     }
-  },{hooks: {
+  }, {
+    hooks: {
       beforeCreate: (newUser) => {
-        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8))
+        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8));
       },
       afterUpdate: (newUser) => {
-        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8))
+        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8));
       }
     }
 
-    
-  })
+
+  });
   User.associate = (models) => {
     // associations can be defined here
-  }
-  return User
-}
+  };
+  return User;
+};
 

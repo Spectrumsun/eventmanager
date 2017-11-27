@@ -29,4 +29,5 @@ router.delete('/centers/:id', centerController.deleteCenter)
 
 
 router.post('/users/signup', userController.signup)
+router.post('/users/login', userController.login)
 

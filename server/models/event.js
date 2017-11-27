@@ -20,10 +20,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  })
+  });
   Event.associate = (models) => {
     // associations can be defined here
-  }
-  return Event
-}
+  };
+  return Event;
+};
 

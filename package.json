@@ -16,10 +16,8 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
-    "babel-jest": "^21.2.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "coveralls": "^3.0.0",

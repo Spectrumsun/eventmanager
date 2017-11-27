@@ -26,3 +26,4 @@ router.get('/centers/:id', centerController.getOneCenter)
 router.post('/centers', centerController.createCenter)
 router.put('/centers/:id', centerController.editCenter)
 router.delete('/centers/:id', centerController.deleteCenter)
+

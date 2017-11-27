@@ -10,6 +10,22 @@ const Secret = process.env.SECRET;
 
 class User {
 
+  static signup (req, res) {
+    userDB.create({
+      fullname: req.body.fullname,
+      email: req.body.email,
+      password: req.body.password,
+      confirmPassword: req.body.confirmPassword
+    })
+    .then(user => res.status(201).send({ message: 'User successfully created', 
+        user:{
+          fullname: user.fullname,
+          email: user.email,
+          password: user.password
+      } 
+    }))
+      .catch(error => res.status(400).send(error))
+  }
 
 
 
@@ -42,8 +58,11 @@ class User {
         }
       })
   }
-}
 
+
+  
+ 
+}
 
 
 export default User

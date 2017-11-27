@@ -6,6 +6,9 @@ import userController from '../controllers/userController'
 
 const router = express.Router()
 
+
+/* Get Home Page. */
+
 router.get('/', (req, res) => {
   res.status(200).send({ message: 'welcome to our Event Manager' })
 })
@@ -25,5 +28,5 @@ router.put('/centers/:id', centerController.editCenter)
 router.delete('/centers/:id', centerController.deleteCenter)
 
 
+router.post('/users/signup', userController.signup)
 
-export default router

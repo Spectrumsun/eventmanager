@@ -35,7 +35,10 @@ class Center {
   static createCenter(req, res) {
     centerDB
       .create({
-        centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility
+        centerName: req.body.name, 
+        city: req.body.city, 
+        address: req.body.address, 
+        facility: req.body.facility
       })
       .then(center => res.status(201).send({ message: 'successfully created', center }))
       .catch(error => res.status(400).send(error));

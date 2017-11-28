@@ -3,19 +3,27 @@ export default (sequelize, DataTypes) => {
     centerName: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: { msg: 'Empty strings not allowed' },
+      }
     },
     city: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Empty strings not allowed' },
+      }
     },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Empty strings not allowed' },
+      }
     },
     facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
-      defaultValue: 0,
-      allowNull: false,
     },
 
   });

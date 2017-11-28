@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server.js';
-import db from '../data/db';
+import {event, center} from '../models';
 
 const expect = chai.expect;
 

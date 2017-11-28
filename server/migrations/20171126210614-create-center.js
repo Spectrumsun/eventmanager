@@ -31,6 +31,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+     
     }),
   down: queryInterface => queryInterface.dropTable('Centers'),
 };

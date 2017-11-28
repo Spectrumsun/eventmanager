@@ -8,10 +8,6 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
-    center: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     time: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,9 +16,11 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
   });
   Event.associate = (models) => {
-    // associations can be defined here
+    Event.belongsTo(models.Center, { foreignKey: 'centerId', as: 'centers', onDelete: 'SET NULL' });
+    Event.belongsTo(models.User, {foreignKey: 'userId', onDelete: 'CASCADE' });
   };
   return Event;
 };

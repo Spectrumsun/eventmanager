@@ -12,8 +12,12 @@ class User {
   static signup(req, res) {
     userDB
       .create({
- fullname: req.body.fullname, email: req.body.email, password: req.body.password, confirmPassword: req.body.confirmPassword 
-})
+        fullname: req.body.fullname, 
+        email: req.body.email, 
+        password: req.body.password, 
+        confirmPassword: req.body.confirmPassword,
+        role: req.body.role
+      })
       .then(user => res.status(201).send({
         message: 'User successfully created',
         user: {
@@ -52,7 +56,7 @@ class User {
         } else {
           res
             .status(404)
-            .send({ message: 'This user with such information' });
+            .send({ message: 'NO user with such information' });
         }
       });
   }
@@ -62,8 +66,8 @@ class User {
   static resetPassword(req, res) {
     centerDB
       .create({
- centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility 
-})
+        centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility
+      })
       .then(center => res.status(201).send({ message: 'successfully created', center }))
       .catch(error => res.status(400).send(error));
   }

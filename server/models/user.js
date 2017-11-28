@@ -14,7 +14,11 @@ export default (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    role: {
+      type: DataTypes.ENUM('admin', 'user'),
+      allowNull: false,
+    },
   }, {
     hooks: {
       beforeCreate: (newUser) => {
@@ -24,11 +28,9 @@ export default (sequelize, DataTypes) => {
         newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8));
       }
     }
-
-
   });
   User.associate = (models) => {
-    // associations can be defined here
+    User.hasMany(models.Event, { foreignKey: 'userId', as: 'events' }); // associations can be defined here
   };
   return User;
 };

@@ -1,6 +1,7 @@
 import db from '../models';
 
 const eventDB = db.Event;
+const Center = db.Center;
 
 class Event {
   static getEvent(req, res) {
@@ -20,7 +21,12 @@ class Event {
             .send({ message: 'Event not found' });
         }
         return eventDB
-          .findById(req.params.id)
+          .findById(req.params.id, {
+          include: [{
+            model: Center,
+            as: 'centers'
+          }],
+        })
           .then(event => res.status(200).send({ message: 'found', event }))
           .catch(error => res.status(200).send(error));
       });
@@ -29,8 +35,13 @@ class Event {
   static createEvent(req, res) {
     eventDB
       .create({
- eventName: req.body.name, eventdate: req.body.date, center: req.body.center, time: req.body.time, purpose: req.body.purpose 
-})
+        eventName: req.body.name, 
+        eventdate: req.body.date, 
+        center: req.body.center, 
+        time: req.body.time, 
+        purpose: req.body.purpose,
+        centerId: req.body.center
+      })
       .then(event => res.status(201).send({ message: 'successfully created', event }))
       .catch(error => res.status(400).send(error));
   }
@@ -45,9 +56,9 @@ class Event {
             .send({ message: 'Event Not Found' });
         }
         return event
-          .update({ 
-eventName: req.body.name, eventdate: req.body.date, center: req.body.center, time: req.body.time, purpose: req.body.purpose 
-})
+          .update({
+            eventName: req.body.name, eventdate: req.body.date, center: req.body.center, time: req.body.time, purpose: req.body.purpose
+          })
           .then(() => res.status(200).send({ message: 'updated', event }))
           .catch(error => res.status(400).send(error));
       })

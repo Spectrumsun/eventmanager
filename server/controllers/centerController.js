@@ -1,5 +1,6 @@
 import db from '../models';
 
+const Event = db.Event;
 const centerDB = db.Center;
 
 class Center {
@@ -20,7 +21,12 @@ class Center {
             .send({ message: 'center not found' });
         }
         return centerDB
-          .findById(req.params.id)
+          .findById(req.params.id, {
+            include: [{
+              model: Event,
+              as: 'events',
+            }],
+          })
           .then(center => res.status(200).send({ message: 'found', center }))
           .catch(error => res.status(200).send(error));
       });

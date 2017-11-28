@@ -15,10 +15,6 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false,
       },
-      center: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       time: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -34,6 +30,24 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
+      },
+      centerId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Events',
+          key: 'id',
+          as: 'centerId',
+        }
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Events',
+          key: 'id',
+          as: 'userId',
+        }
       },
     }),
   down: queryInterface => queryInterface.dropTable('Events'),

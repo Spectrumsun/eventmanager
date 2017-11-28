@@ -30,7 +30,7 @@ class Validate {
     }
 }
     static checkDate(req, res, next) {
-        const date = 
+        
     }
 
 

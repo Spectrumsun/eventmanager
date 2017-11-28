@@ -22,11 +22,11 @@ class Event {
         }
         return eventDB
           .findById(req.params.id, {
-          include: [{
-            model: Center,
-            as: 'centers'
-          }],
-        })
+            include: [{
+              model: Center,
+              as: 'centers'
+            }],
+          })
           .then(event => res.status(200).send({ message: 'found', event }))
           .catch(error => res.status(200).send(error));
       });
@@ -35,10 +35,10 @@ class Event {
   static createEvent(req, res) {
     eventDB
       .create({
-        eventName: req.body.name, 
-        eventdate: req.body.date, 
-        center: req.body.center, 
-        time: req.body.time, 
+        eventName: req.body.name,
+        eventdate: req.body.date,
+        center: req.body.center,
+        time: req.body.time,
         purpose: req.body.purpose,
         centerId: req.body.center
       })

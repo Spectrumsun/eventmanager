@@ -2,6 +2,7 @@ import express from 'express';
 import eventController from '../controllers/eventController';
 import centerController from '../controllers/centerController';
 import userController from '../controllers/userController';
+import validator from '../handlers/validator'
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 
 router.get('/events', eventController.getEvent);
 router.get('/events/:id', eventController.getOneEvent);
-router.post('/events', eventController.createEvent);
+router.post('/events', validator.validateCreateEvent, eventController.createEvent);
 router.put('/events/:id', eventController.editEvent);
 router.delete('/events/:id', eventController.deleteEvent);
 
@@ -25,7 +26,7 @@ router.post('/centers', centerController.createCenter);
 router.put('/centers/:id', centerController.editCenter);
 router.delete('/centers/:id', centerController.deleteCenter);
 
-router.post('/users/signup', userController.signup);
+router.post('/users/signup', validator.validateSigup, userController.signup);
 router.post('/users/login', userController.login);
 
 export default router;

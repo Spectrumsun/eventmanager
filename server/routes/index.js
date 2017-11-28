@@ -21,8 +21,8 @@ router.get('/api-docs.json', (req, res) => {
 
 router.get('/events', eventController.getEvent);
 router.get('/events/:id', eventController.getOneEvent);
-router.post('/events', validator.validateCreateEvent, eventController.createEvent);
-router.put('/events/:id', validator.validateCreateEvent, eventController.editEvent);
+router.post('/events', validator.validateCreateEvent, validator.checkDate, eventController.createEvent);
+router.put('/events/:id', validator.validateCreateEvent, validator.checkDate, eventController.editEvent);
 router.delete('/events/:id', eventController.deleteEvent);
 
 router.get('/centers', centerController.getCenter);

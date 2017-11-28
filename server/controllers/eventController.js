@@ -37,7 +37,6 @@ class Event {
       .create({
         eventName: req.body.name,
         eventdate: req.body.date,
-        center: req.body.center,
         time: req.body.time,
         purpose: req.body.purpose,
         centerId: req.body.center
@@ -59,7 +58,6 @@ class Event {
           .update({
             eventName: req.body.name, 
             eventdate: req.body.date, 
-            center: req.body.center, 
             time: req.body.time, 
             purpose: req.body.purpose,
             centerId: req.body.center

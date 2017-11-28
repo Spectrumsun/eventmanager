@@ -23,7 +23,6 @@ class User {
         user: {
           fullname: user.fullname,
           email: user.email,
-          password: user.password
         }
       }))
       .catch(error => res.status(400).send(error));
@@ -41,7 +40,7 @@ class User {
           bcrypt.compare(req.body.password, user.password, (err, response) => {
             if (response) {
               const token = jwt.sign({
-                id: user.id,
+                userId: user.userId,
                 fullname: user.fullname,
                 email: user.email
               }, Secret, { expiresIn: '24h' });

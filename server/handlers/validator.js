@@ -15,7 +15,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      res.status(404).send({ message: 'sigup errors', errors });
+      res.status(404).send({ message: 'Sigup errors', errors });
       return; // stop the fn from running
     }
     next(); // there were no errors!
@@ -44,7 +44,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      return res.status(404).send({ message: 'sigup errors', errors });
+      return res.status(404).send({ message: 'Errors adding new event', errors });
     }
     next();
   }
@@ -57,7 +57,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      return res.status(404).send({ message: 'Error creating Center', errors });
+      return res.status(404).send({ message: 'Error adding new Center', errors });
       // stop the fn from running
     }
     next();
@@ -65,22 +65,23 @@ class Validate {
 
   static checkDate(req, res, next) {
     const newCenter = req.body.date;
-    const events = Center.findById(newCenter, {
-      include: [{
-        model: Event,
-        as: 'events',
-      }],
-    });
-    /*  .then((center) => {
+    const date = req.body.id;
+    Center.findById(req.body.center, { include: [{ model: Event, as: 'events', }], })
+      .then((center) => {
         const centerItems = center.toJSON();
-        // console.log(centerItems)
         const dates = [];
         centerItems.events.forEach((event) => {
           dates.push(event.eventdate);
         });
-        console.log(dates);
-      }); */
-    next();
+        const newData = dates;
+        for (let i = 0; i < newData.length; i++) {
+          if (newCenter == newData[i]) {
+            return res.status(400).send({ message: `Sorry Center boked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.`});
+          }
+        }
+        next();
+      });
+    
   }
 }
 

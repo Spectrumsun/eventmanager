@@ -57,7 +57,12 @@ class Event {
         }
         return event
           .update({
-            eventName: req.body.name, eventdate: req.body.date, center: req.body.center, time: req.body.time, purpose: req.body.purpose
+            eventName: req.body.name, 
+            eventdate: req.body.date, 
+            center: req.body.center, 
+            time: req.body.time, 
+            purpose: req.body.purpose,
+            centerId: req.body.center
           })
           .then(() => res.status(200).send({ message: 'updated', event }))
           .catch(error => res.status(400).send(error));

@@ -1,7 +1,12 @@
 import db from '../models';
+import dotenv from 'dotenv';
+
 
 const eventDB = db.Event;
 const Center = db.Center;
+const secret = process.env.SECRET;
+
+dotenv.config();
 
 
 /**
@@ -73,7 +78,8 @@ class Event {
         eventdate: req.body.date,
         time: req.body.time,
         purpose: req.body.purpose,
-        centerId: req.body.center
+        centerId: req.body.center,
+        userId: 1
       })
       .then(event => res.status(201).send({ message: 'successfully created', event }))
       .catch(error => res.status(400).send(error));

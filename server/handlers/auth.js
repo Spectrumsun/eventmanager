@@ -1,31 +1,29 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
-const Secret = process.env.SECRET;
-const Auth = {
-  // function to authenticate access to users with a token
-  verify(req, res, next) {
-    const token = req.headers.authorization;
-    // const token = req.headers.authorization.split(' ')[1];
+class Auth {
+  static verifyToken(req, res, next) {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
-      jwt.verify(token, Secret, (err, decoded) => {
+      const secret = process.env.SECRET;
+      jwt.verify(token, secret, (err, data) => {
         if (err) {
-          res
-            .status(401)
-            .send({ message: 'You do not have Permission  Page' });
-        } else {
-          // if everything is good, save to request for use in other routes
-          req.decoded = decoded;
-          next();
+          return res.json({
+            message: 'authentication failed',
+          });
         }
+        req.user = data;
+        next();
       });
     } else {
-      res
-        .status(401)
-        .send({ message: 'No token provided' });
+      return res.status(404).json({
+        message: 'no token yet',
+      });
     }
   }
-};
+}
+
 
 export default Auth;

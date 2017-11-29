@@ -1,9 +1,11 @@
 import jwt from 'jsonwebtoken';
-import bcrpt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import db from '../models';
 
-const userDB = db.User;
+require('dotenv').config();
 
+const secret = process.env.SECRET;
+const userDB = db.User;
 
 /**
  * @class User
@@ -24,24 +26,24 @@ class User {
 
 
   static signup(req, res) {
-    userDB
-      .create({
+    const data = req.body.password;
+    bcrypt.hash(data, 10)
+      .then(hash => userDB.create({
         fullname: req.body.fullname,
         email: req.body.email,
-        password: req.body.password,
+        password: hash,
         confirmPassword: req.body.confirmPassword,
         role: req.body.role
-      })
-      .then(user => res.status(201).send({
+      }).then(user => res.status(201).send({
         message: 'User successfully created',
         user: {
           fullname: user.fullname,
-          email: user.email,
+          email: user.email
         }
       }))
-      .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send(error)));
   }
-/**
+  /**
    * signIn
    * @desc Login a user to the application
    * Route: POST: 'api/v1/users/signin'
@@ -54,18 +56,19 @@ class User {
     userDB
       .findOne({
         where: {
-          email: req.body.Email
-        }
+          email: req.body.email
+        },
       })
       .then((user) => {
         if (user) {
           bcrypt.compare(req.body.password, user.password, (err, response) => {
             if (response) {
               const token = jwt.sign({
-                userId: user.userId,
+                id: user.id,
                 fullname: user.fullname,
-                email: user.email
-              }, Secret, { expiresIn: '24h' });
+                email: user.email,
+                role: user.role
+              }, secret, { expiresIn: '24h' });
               return res
                 .status(200)
                 .send({ message: `Welcome ${user.email} `, fullname: user.fullname, token });
@@ -77,11 +80,10 @@ class User {
         } else {
           res
             .status(404)
-            .send({ message: 'NO user with such information' });
+            .send({ message: 'No user with such information' });
         }
       });
   }
-
 }
 
 export default User;

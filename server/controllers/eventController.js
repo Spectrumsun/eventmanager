@@ -7,6 +7,7 @@ dotenv.config();
 const eventDB = db.Event;
 const Center = db.Center;
 
+
 dotenv.config();
 
 
@@ -73,26 +74,17 @@ class Event {
    */
 
   static createEvent(req, res) {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
-    if (token) {
-      const secret = process.env.SECRET;
-      jwt.verify(token, secret, (err, data) => {
-        req.user = data;
-        const num = data.id;
-
-        eventDB
-          .create({
-            eventName: req.body.name,
-            eventdate: req.body.date,
-            time: req.body.time,
-            purpose: req.body.purpose,
-            centerId: req.body.center,
-            userId: req.body.userId || num
-          })
-          .then(event => res.status(201).send({ message: 'successfully created', event }))
-          .catch(error => res.status(400).send(error));
-      });
-    }
+    eventDB
+      .create({
+        eventName: req.body.name,
+        eventdate: req.body.date,
+        time: req.body.time,
+        purpose: req.body.purpose,
+        centerId: req.body.center,
+        userId: req.user.id
+      })
+      .then(event => res.status(201).send({ message: 'successfully created', event }))
+      .catch(error => res.status(400).send(error));
   }
 
   /**
@@ -105,14 +97,16 @@ class Event {
    */
 
   static editEvent(req, res) {
-    eventDB
-      .findById(req.params.id)
+    eventDB.findById(req.params.id)
       .then((event) => {
         if (!event) {
           return res
             .status(404)
             .send({ message: 'Event Not Found' });
         }
+
+       
+
         return event
           .update({
             eventName: req.body.name,
@@ -155,8 +149,3 @@ class Event {
 
 export default Event;
 
-
-/* function x() {
-
-}
- */

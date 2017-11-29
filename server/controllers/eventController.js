@@ -1,10 +1,11 @@
-import db from '../models';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import db from '../models';
 
+dotenv.config();
 
 const eventDB = db.Event;
 const Center = db.Center;
-const secret = process.env.SECRET;
 
 dotenv.config();
 
@@ -72,17 +73,26 @@ class Event {
    */
 
   static createEvent(req, res) {
-    eventDB
-      .create({
-        eventName: req.body.name,
-        eventdate: req.body.date,
-        time: req.body.time,
-        purpose: req.body.purpose,
-        centerId: req.body.center,
-        userId: 1
-      })
-      .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send(error));
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+      const secret = process.env.SECRET;
+      jwt.verify(token, secret, (err, data) => {
+        req.user = data;
+        const num = data.id;
+
+        eventDB
+          .create({
+            eventName: req.body.name,
+            eventdate: req.body.date,
+            time: req.body.time,
+            purpose: req.body.purpose,
+            centerId: req.body.center,
+            userId: req.body.userId || num
+          })
+          .then(event => res.status(201).send({ message: 'successfully created', event }))
+          .catch(error => res.status(400).send(error));
+      });
+    }
   }
 
   /**
@@ -144,3 +154,9 @@ class Event {
 }
 
 export default Event;
+
+
+/* function x() {
+
+}
+ */

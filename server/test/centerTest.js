@@ -2,62 +2,79 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-import dbc from '../data/dbc.json';
+import {Center} from '../models';
 
 const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('Event-Mananger', () => {
-  describe('Should edit a CENTER', () => {
-    it('responds with status 200', (done) => {
-      chai.request(server)
-        .put('/api/centers/1')
-        .send({
-          name: 'Suru Center',
-          city: 'Lagos Main Land',
-          address: 'No 22, Akerele Street Lagos',
-          facility: "['radio', 'open roof', '2, 000 chairs', ]"
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('object');
-          expect(res).to.be.json;
-          done();
-        });
-    });
+
+describe('Event Manager', () => {
+  
+  it('returns a token upon successful signin', (done) => {
+    request(server)
+      .post('/api/v1/users/signin')
+      .send({Email: 'favor@yahoo.com', Password: '12345'})
+      .expect(200)
+      .end((err, res) => {
+        userToken = res.body.token;
+        expect(userToken);
+        expect(res.body.message)
+          .to
+          .equal('Welcome favor');
+        if (err) 
+          return done(err);
+        done();
+      });
   });
 
-
-  describe('Should fail to edit a CENTER not in the DB', () => {
-    it('responds with status 404', (done) => {
-      chai.request(server)
-        .put('/api/centers/2221')
-        .send({
-          name: 'Suru Center',
-          city: 'Lagos Main Land',
-          address: 'No 22, Akerele Street Lagos',
-          facility: "['radio', 'open roof', '2, 000 chairs', ]"
-        })
-        .end((err, res) => {
-          expect(res).to.have.status(404);
-          expect(res).to.be.json;
-          expect(res.body).to.be.an('object');
-          done();
-        });
-    });
+  it('adds a event to the database', (done) => {
+    request(server)
+      .post('/api/v1/events')
+      .set('authorization', userToken)
+      .send(fakeData.recipe)
+      .expect(200)
+      .end((err, res) => {
+        recipe2 = res.body.recipe;
+        if (err) 
+          return done(err);
+        done();
+      });
   });
 
-  describe('Should catch any invalid routes ', () => {
-    it('responds with status 404', (done) => {
-      chai.request(server)
-        .get('/kkfkf/ff')
-        .set('Content-Type', 'application/json')
-        .end((err, res) => {
-          expect(res).to.have.status(404);
-          expect(res).to.be.json;
-          done();
-        });
-    });
+  it('retrieves recipes from catalog', (done) => {
+    request(app)
+      .get('/api/v1/recipes')
+      .expect(200)
+      .end((err, res) => {
+        if (err) 
+          return done(err);
+        done();
+      });
+  });
+
+  it('modifies a recipe in catalog', (done) => {
+    request(app)
+      .put(`/api/v1/recipes/${recipe2.recipeId}`)
+      .set('authorization', userToken)
+      .send({Title: 'Egusi soup preparation', Description: 'This is how to prepare Egusi soup'})
+      .expect(200)
+      .end((err, res) => {
+        if (err) 
+          return done(err);
+        done();
+      });
+  });
+
+  it('deletes recipe from catalog', (done) => {
+    request(app)
+      .delete(`/api/v1/recipes/${recipe2.recipeId}`)
+      .set('authorization', userToken)
+      .expect(200)
+      .end((err, res) => {
+        if (err) 
+          return done(err);
+        done();
+      });
   });
 });

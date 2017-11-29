@@ -4,17 +4,31 @@ import db from '../models';
 
 const userDB = db.User;
 
-// require('dotenv').config()
 
-const Secret = process.env.SECRET;
+/**
+ * @class User
+ *@classdesc User Class
+ */
+
+// const Secret = process.env.SECRET;
 
 class User {
+/**
+   * signUp
+   * @desc Registers a user to the application
+   * Route: POST: 'api/v1/users/signup'
+   * @param {Object} req request object
+   * @param {Object} res response object
+   * @returns {void}
+   */
+
+
   static signup(req, res) {
     userDB
       .create({
-        fullname: req.body.fullname, 
-        email: req.body.email, 
-        password: req.body.password, 
+        fullname: req.body.fullname,
+        email: req.body.email,
+        password: req.body.password,
         confirmPassword: req.body.confirmPassword,
         role: req.body.role
       })
@@ -27,6 +41,14 @@ class User {
       }))
       .catch(error => res.status(400).send(error));
   }
+/**
+   * signIn
+   * @desc Login a user to the application
+   * Route: POST: 'api/v1/users/signin'
+   * @param {Object} req request object
+   * @param {Object} res response object
+   * @returns {void}
+   */
 
   static login(req, res) {
     userDB
@@ -60,16 +82,6 @@ class User {
       });
   }
 
-  static logout(req, res) {}
-
-  static resetPassword(req, res) {
-    centerDB
-      .create({
-        centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility
-      })
-      .then(center => res.status(201).send({ message: 'successfully created', center }))
-      .catch(error => res.status(400).send(error));
-  }
 }
 
 export default User;

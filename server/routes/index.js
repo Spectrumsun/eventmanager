@@ -1,11 +1,8 @@
 import express from 'express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import dotenv from 'dotenv';
-import eventController from '../controllers/eventController';
-import centerController from '../controllers/centerController';
-import userController from '../controllers/userController';
-import validator from '../handlers/validator';
-import auth from '../handlers/auth';
+import { validator, auth } from '../middleware';
+import { eventController, centerController, userController } from '../controllers'
 
 const router = express.Router();
 

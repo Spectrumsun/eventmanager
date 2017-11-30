@@ -9,7 +9,9 @@
     "prod:start": "babel-node server",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "eslint --fix server"
+    "lint": "eslint --fix server",
+    "migration": "sequelize db:migrate",
+    "undo:migration":"sequelize db:migrate:undo:all"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

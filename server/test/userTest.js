@@ -1,4 +1,4 @@
-import chai from 'chai';
+import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
 import models from '../models';
@@ -16,6 +16,7 @@ describe('Event Manager', () => {
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         res.should.have.status(400);
+        expect(res.body.message).to.equal('login errors');
         done();
       });
   });

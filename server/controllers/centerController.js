@@ -66,6 +66,11 @@ class Center {
    */
 
   static createCenter(req, res) {
+    const role = req.user.role;
+    if (role != 'admin') {
+      return res.json({ messgae: 'Only an admin can create center' });
+    }
+
     centerDB
       .create({
         centerName: req.body.name,
@@ -87,6 +92,10 @@ class Center {
    */
 
   static editCenter(req, res) {
+    const role = req.user.role;
+    if (role != 'admin') {
+      return res.json({ messgae: 'Only an admin can create centers' });
+    }
     centerDB
       .findById(req.params.id)
       .then((center) => {

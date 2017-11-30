@@ -84,7 +84,7 @@ class Event {
         userId: req.user.id
       })
       .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send({ message: 'Date must be set well example Year-month-day YYYY-MM-DD' }));
   }
 
   /**
@@ -97,16 +97,21 @@ class Event {
    */
 
   static editEvent(req, res) {
+   
     eventDB.findById(req.params.id)
       .then((event) => {
+         const role = req.user.id
+      if (role != event.userId) {
+        return res.json({ messgae: 'You are not owner of the event' });
+      }
+
+
+
         if (!event) {
           return res
             .status(404)
             .send({ message: 'Event Not Found' });
         }
-
-       
-
         return event
           .update({
             eventName: req.body.name,
@@ -116,9 +121,9 @@ class Event {
             centerId: req.body.center
           })
           .then(() => res.status(200).send({ message: 'updated', event }))
-          .catch(error => res.status(400).send(error));
+          .catch(error => res.status(400).send({ message: 'center not found' }));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send({ message: 'user not found' }));
   }
 
   /**

@@ -11,10 +11,11 @@ class Auth {
       jwt.verify(token, secret, (err, data) => {
         if (err) {
           return res.status(401).json({
-            message: 'authentication failed',
+            message: 'Authentication failed',
           });
         }
         req.user = data;
+        
         next();
       });
     } else {

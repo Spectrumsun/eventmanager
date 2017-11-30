@@ -27,7 +27,7 @@ class User {
 
   static signup(req, res) {
     const data = req.body.password;
-    
+
     bcrypt.hash(data, 10)
       .then(hash => userDB.create({
         fullname: req.body.fullname,
@@ -42,7 +42,7 @@ class User {
           email: user.email
         }
       }))
-        .catch(error => res.status(400).send(error)));
+        .catch(error => res.status(400).send({ message: 'email already used' })));
   }
   /**
    * signIn

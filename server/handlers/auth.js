@@ -10,7 +10,7 @@ class Auth {
       const secret = process.env.SECRET;
       jwt.verify(token, secret, (err, data) => {
         if (err) {
-          return res.json({
+          return res.status(401).json({
             message: 'authentication failed',
           });
         }
@@ -18,8 +18,8 @@ class Auth {
         next();
       });
     } else {
-      return res.status(404).json({
-        message: 'no token yet',
+      return res.status(403).json({
+        message: 'You need to sign up or login',
       });
     }
   }

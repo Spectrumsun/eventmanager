@@ -15,7 +15,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      res.status(404).send({ message: 'Sigup errors', errors });
+      res.status(400).send({ message: 'Sigup errors', errors });
       return; // stop the fn from running
     }
     next(); // there were no errors!
@@ -29,7 +29,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      res.status(404).send({ message: 'login errors', errors });
+      res.status(400).send({ message: 'login errors', errors });
       return; // stop the fn from running
     }
     next(); // there were no errors!
@@ -44,7 +44,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      return res.status(404).send({ message: 'Errors adding new event', errors });
+      return res.status(400).send({ message: 'Errors adding new event', errors });
     }
     next();
   }
@@ -57,7 +57,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      return res.status(404).send({ message: 'Error adding new Center', errors });
+      return res.status(400).send({ message: 'Error adding new Center', errors });
       // stop the fn from running
     }
     next();
@@ -73,10 +73,10 @@ class Validate {
         centerItems.events.forEach((event) => {
           dates.push(event.eventdate);
         });
-        const newData = dates;
+       
         for (let i = 0; i < newData.length; i++) {
           if (newCenter == newData[i]) {
-            return res.status(400).send({ message: `Sorry Center boked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.`});
+            return res.status(400).send({ message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.`});
           }
         }
         next();

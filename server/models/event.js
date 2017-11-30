@@ -3,30 +3,18 @@ export default (sequelize, DataTypes) => {
     eventName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     eventdate: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     time: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     purpose: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
 
   });

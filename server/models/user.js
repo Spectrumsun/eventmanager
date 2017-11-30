@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: { msg: 'Enter a Valid Email' },
+        isEmail: { msg: 'Enter a Valid Email Address' },
       }
     },
     password: {
@@ -36,14 +36,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
   }, {
-    hooks: {
-      beforeCreate: (newUser) => {
-        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8));
-      },
-      afterUpdate: (newUser) => {
-        newUser.password = bcrypt.hashSync(newUser.password, bcrypt.genSaltSync(8));
-      }
-    }
+
   });
   User.associate = (models) => {
     User.hasMany(models.Event, { foreignKey: 'userId', as: 'events' }); // associations can be defined here

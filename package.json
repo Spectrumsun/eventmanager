@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npm run dev:start",
+    "dev": "npm run dev:start",
     "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js",
-    "prod:start": "babel-node server",
+    "start": "babel-node server/server",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",

@@ -73,7 +73,7 @@ class Validate {
         centerItems.events.forEach((event) => {
           dates.push(event.eventdate);
         });
-        const newData = dates;
+       
         for (let i = 0; i < newData.length; i++) {
           if (newCenter == newData[i]) {
             return res.status(400).send({ message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.`});

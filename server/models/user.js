@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: { msg: 'Enter a Valid Email' },
+        isEmail: { msg: 'Enter a Valid Email Address' },
       }
     },
     password: {

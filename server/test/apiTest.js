@@ -1,21 +1,22 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-import models from '../models';
-import faker from '../seeders/faker';
 
 const should = chai.should();
 
 chai.use(chaiHttp);
 
-
 describe('Event Manager', () => {
   it('responds with status 200', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .get('/api/v1')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        res.should.have.status(200);
+        res
+          .should
+          .have
+          .status(200);
 
         done();
       });
@@ -27,52 +28,42 @@ describe('Event Manager', () => {
       .get('/')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        res.should.have
+        res
+          .should
+          .have
           .status(404);
         done();
       });
   });
 
-
   it('responds with status 403 if no token is found', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .get('/api/v1/events')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        res.should.have.status(403);
+        res
+          .should
+          .have
+          .status(403);
 
         done();
       });
   });
 
   it('responds with status 403 if no token is found', (done) => {
-    chai.request(server)
+    chai
+      .request(server)
       .get('/api/v1/centers')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        res.should.have.status(403);
+        res
+          .should
+          .have
+          .status(403);
         done();
       });
   });
 
-  it('responds with status 400 if input fields are empty', (done) => {
-    chai.request(server)
-      .post('/api/v1/users/login')
-      .set('Content-Type', 'application/json')
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-
-  it('responds with status 400 if input fields are empty', (done) => {
-    chai.request(server)
-      .post('/api/v1/users')
-      .set('Content-Type', 'application/json')
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
+ 
 });
-

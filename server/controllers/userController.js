@@ -27,13 +27,14 @@ class User {
 
   static signup(req, res) {
     const data = req.body.password;
+    
     bcrypt.hash(data, 10)
       .then(hash => userDB.create({
         fullname: req.body.fullname,
         email: req.body.email,
         password: hash,
         confirmPassword: req.body.confirmPassword,
-        role: req.body.role
+        role: req.body.role || 'user'
       }).then(user => res.status(201).send({
         message: 'User successfully created',
         user: {
@@ -74,7 +75,7 @@ class User {
                 .send({ message: `Welcome ${user.email} `, fullname: user.fullname, token });
             }
             return res
-              .status(409)
+              .status(400)
               .send({ message: 'email or password incorrect' });
           });
         } else {

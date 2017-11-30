@@ -5,6 +5,7 @@ const fake = {
     fullname: faker.name.findName(),
     email: faker.internet.email(),
     password: '12345',
+    confirmPassword: '12345'
   },
   loginUser: {
     email: faker.internet.email(),

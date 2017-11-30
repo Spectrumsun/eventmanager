@@ -3,8 +3,6 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import expressValidator from 'express-validator';
-
-
 import routes from './routes';
 
 require('dotenv').config();

@@ -6,7 +6,7 @@ module.exports = {
     password: process.env.configPassword,
     database: process.env.configDb,
     host: process.env.configHost,
-    dialect: process.env.configDialect,
+    dialect: 'postgres',
     operatorsAliases: false
   },
   test: {
@@ -14,7 +14,7 @@ module.exports = {
     password: process.env.configPassword,
     database: process.env.configTestDb,
     host: process.env.configHost,
-    dialect : process.env.configDialect,
+    dialect : 'postgres',
     operatorsAliases : false
   },
   production: {

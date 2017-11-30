@@ -54,9 +54,25 @@ describe('Event Manager', () => {
         done();
       });
   });
+
+  it('responds with status 400 if input fields are empty', (done) => {
+    chai.request(server)
+      .post('/api/v1/users/login')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('responds with status 400 if input fields are empty', (done) => {
+    chai.request(server)
+      .post('/api/v1/users')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
 });
 
-
-
-
-/

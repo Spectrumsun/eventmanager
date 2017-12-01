@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
 import models from '../models';
-import faker from '../seeders/faker';
+import faker from './faker';
 
 const should = chai.should();
 

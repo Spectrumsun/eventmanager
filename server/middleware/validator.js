@@ -65,23 +65,27 @@ class Validate {
 
   static checkDate(req, res, next) {
     const newCenter = req.body.date;
-    const date = req.body.id;
+    const userInfo = req.body.id;
     Center.findById(req.body.center, { include: [{ model: Event, as: 'events', }], })
       .then((center) => {
         const centerItems = center.toJSON();
         const dates = [];
         centerItems.events.forEach((event) => {
           dates.push(event.eventdate);
+          if (userInfo == dates.userId) {
+            return;
+          }
+          next();
         });
-       
-        for (let i = 0; i < newData.length; i++) {
-          if (newCenter == newData[i]) {
-            return res.status(400).send({ message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.`});
+
+        const newDate = dates;
+        for (let i = 0; i < newDate.length; i++) {
+          if (newCenter == newDate[i]) {
+            return res.status(400).send({ message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.` });
           }
         }
         next();
       });
-    
   }
 }
 

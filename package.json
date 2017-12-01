@@ -4,14 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "npm run dev:start",
-    "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js",
-    "start": "babel-node server/server",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
+    "start": "sequelize db:migrate && babel-node server/server",
+    "migrations": "set NODE_ENV=test sequelize db:migrate:undo:all && set NODE_ENV=test sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
-    "migration": "sequelize db:migrate",
-    "undo:migration":"sequelize db:migrate:undo:all"
+    "postinstall": "npm run build",
+    "dev": "npm run dev:start",
+    "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

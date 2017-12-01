@@ -97,14 +97,12 @@ class Event {
    */
 
   static editEvent(req, res) {
-   
     eventDB.findById(req.params.id)
       .then((event) => {
-         const role = req.user.id
-      if (role != event.userId) {
-        return res.json({ messgae: 'You are not owner of the event' });
-      }
-
+        const role = req.user.id;
+        if (role != event.userId) {
+          return res.json({ messgae: 'You are not owner of the event' });
+        }
 
 
         if (!event) {

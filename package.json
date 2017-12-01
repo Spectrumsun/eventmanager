@@ -9,7 +9,6 @@
     "migrations": "set NODE_ENV=test sequelize db:migrate:undo:all && set NODE_ENV=test sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
-    "postinstall": "npm run build",
     "dev": "npm run dev:start",
     "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js"
   },

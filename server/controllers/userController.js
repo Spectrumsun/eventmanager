@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import db from '../models';
 
 
-const secret = SECRET;
+const secret = process.env.SECRET;
 const userDB = db.User;
 
 /**

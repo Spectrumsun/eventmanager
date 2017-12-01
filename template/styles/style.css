@@ -3,6 +3,11 @@ body {
 	font-family: 'Mada', sans-serif;
 }
 
+.centerlist{
+	background-color: #f4f4f4;
+}
+
+
 .thebody {
     padding-top: 100px;
 
@@ -129,7 +134,7 @@ footer{
 	padding: 20px;
 	margin-top: 20px;
 	color: #ffffff;
-	background-color: #e8491d;
+	background-color: #35434a;
 	text-align: center;  
 }
 

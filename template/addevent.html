@@ -17,17 +17,14 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
 	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="about.html">About</a>
-	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Events
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="addevent.html">Add New Events</a>
+	          <a class="dropdown-item" href="addevent.html">Add Event</a>
 	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="viewevent.html">View My Events</a>
+	          <a class="dropdown-item" href="viewevent.html">View Events</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown">
@@ -74,11 +71,7 @@
 			  	      <input type="date" class="form-control form-control-lg" required>
 			  	    </div>
 			  	    <div class="form-group col-md-6">
-			  	     <h5><label for="inputPassword4">From</label></h5>
-			  	      <input type="time" class="form-control form-control-lg" required>
-			  	    </div>
-			  	    <div class="form-group col-md-6">
-			  	     <h5><label for="inputPassword4">To</label></h5>
+			  	     <h5><label for="inputPassword4">Time</label></h5>
 			  	      <input type="time" class="form-control form-control-lg" required>
 			  	    </div>
 			  	  </div>
@@ -91,70 +84,70 @@
 			  	    Pick center
 			  	  </button>
 			  	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  	    <div class="modal-dialog" role="document">
+			  	    <div class="modal-dialog " role="document">
 			  	      <div class="modal-content">
-			  	        <div class="modal-header">
-			  	          <h5 class="modal-title" id="exampleModalLabel">List of centers</h5>
+			  	        <div class="modal-header centerlist">
+			  	          <h5 class="modal-title " id="exampleModalLabel">List of centers</h5>
 			  	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  	            <span aria-hidden="true">&times;</span>
 			  	          </button>
 			  	        </div>
-			  	        <div class="modal-body">
-			  	         <h3>Havilah Event Centre</h3>
+			  	        <div class="modal-body centerlist ">
+			  	         <h3 class="dark color">Havilah Event Centre</h3>
 			  	         <h5 class="center">No 33 Ignobi Street Lagos</h6>
 			  	         <h6 class="center">Facility Available</h6>
 			  	         	<ul class="list-group">
-			  	         	  <li class="list-group-item list-group-item-primary">Open Field</li>
-			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
-			  	         	  <li class="list-group-item list-group-item-warning">Swimming Pool</li>
+			  	         	  <li class="list-group-item centerlist" >Open Field</li>
+			  	         	  <li class="list-group-item centerlist">Sound System</li>
+			  	         	  <li class="list-group-item centerlist">Free Wifi Hotspot</li>
+			  	         	  <li class="list-group-item centerlist">Swimming Pool</li>
 			  	         	</ul>
 			  	         	<br>
-			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	         	 <button type="button" class="btn btn-primary" data-dismiss="modal">Select</button>
 			  	        </div>
 
-			  	         <div class="modal-body">
-			  	         <h3>Nikoms Event Center Yaba</h3>
+			  	         <div class="modal-body centerlist">
+			  	         <h3 class="dark color">Nikoms Event Center Yaba</h3>
 			  	         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
 			  	         <h6 class="center">Facility Available</h6>
 			  	         	<ul class="list-group">
-			  	         	  <li class="list-group-item list-group-item-primary">Projector</li>
-			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			  	         	  <li class="list-group-item list-group-item-success">8,000 capacity</li>
-			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
-			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
+			  	         	  <li class="list-group-item centerlist" >Projector</li>
+			  	         	  <li class="list-group-item centerlist">Sound System</li>
+			  	         	  <li class="list-group-item centerlist">8,000 capacity</li>
+			  	         	  <li class="list-group-item centerlist">Packing Space</li>
+			  	         	  <li class="list-group-item centerlist">Free Wifi Hotspot</li>
 			  	         	</ul>
 			  	         	<br>
-			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	         	 <button type="button" class="btn btn-primary" data-dismiss="modal">Select</button>
 			  	        </div>
 
-			  	         <div class="modal-body">
-			  	         <h3>Panda Event Centre</h3>
+			  	         <div class="modal-body centerlist">
+			  	         <h3 class="dark color">Panda Event Centre</h3>
 			  	         <h5 class="center">No 12 Oyediran Street Lagos</h6>
 			  	         <h6 class="center">Facility Available</h6>
 			  	         	<ul class="list-group">
-			  	         	  <li class="list-group-item list-group-item-primary">Banquet Hall</li>
-			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			  	         	  <li class="list-group-item list-group-item-success">4,000 capacity</li>
-			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
+			  	         	  <li class="list-group-item centerlist">Banquet Hall</li>
+			  	         	  <li class="list-group-item centerlist">Sound System</li>
+			  	         	  <li class="list-group-item centerlist">4,000 capacity</li>
+			  	         	  <li class="list-group-item centerlist">Packing Space</li>
 			  	         	</ul>
 			  	         	<br>
-			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	         	 <button type="button" class="btn btn-primary" data-dismiss="modal">Select</button>
 			  	        </div>
 
-			  	         <div class="modal-body">
-			  	         <h3>Yaba Center</h3>
+			  	         <div class="modal-body centerlist">
+			  	         <h3 class="dark color">Yaba Center</h3>
 			  	         <h5 class="center">No 12 Yaba road Surulere Lagos</h6>
 			  	         <h6 class="center">Facility Available</h6>
-			  	         	<ul class="list-group">
-			  	         	  <li class="list-group-item list-group-item-primary">Projector</li>
-			  	         	  <li class="list-group-item list-group-item-secondary">Sound System</li>
-			  	         	  <li class="list-group-item list-group-item-success">2,000 capacity</li>
-			  	         	  <li class="list-group-item list-group-item-danger">Packing Space</li>
-			  	         	  <li class="list-group-item list-group-item-warning">Free Wifi Hotspot</li>
+			  	         	<ul class="list-group ">
+			  	         	  <li class="list-group-item  centerlist">Projector</li>
+			  	         	  <li class="list-group-item  centerlist">Sound System</li>
+			  	         	  <li class="list-group-item  centerlist">2,000 capacity</li>
+			  	         	  <li class="list-group-item centerlist">Packing Space</li>
+			  	         	  <li class="list-group-item centerlist">Free Wifi Hotspot</li>
 			  	         	</ul>
 			  	         	<br>
-			  	         	 <button type="button" class="btn btn-secondary" data-dismiss="modal">Select</button>
+			  	         	 <button type="button" class="btn btn-primary " data-dismiss="modal">Select</button>
 			  	        </div>
 			  	        <br>
 			  	      </div>
@@ -164,59 +157,12 @@
 			  	  <br>
 			  	  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
 			  	</form> 
-			    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			  </div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-			
 		</div>
 	</div>
-
-
 	<footer class>
-		<p>Event Managment Copyright 2017</p>
+		<p>Event Managment &copy; 2017</p>
 	</footer>
 </body>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

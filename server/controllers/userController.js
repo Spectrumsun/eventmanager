@@ -2,9 +2,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import db from '../models';
 
-require('dotenv').config();
 
-const secret = process.env.SECRET;
+const secret = SECRET;
 const userDB = db.User;
 
 /**

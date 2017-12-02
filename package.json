@@ -5,11 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": " npm run migrations &&  nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
-    "start": "set NODE_ENV=production babel-node server/server",
+    "start": "babel-node server/server",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
-    "dev": "set NODE_ENV=development && npm run dev:start",
+    "dev": "development && npm run dev:start",
     "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js"
   },
   "author": "Taiwo Sunday",

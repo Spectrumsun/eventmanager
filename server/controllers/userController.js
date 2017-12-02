@@ -68,7 +68,7 @@ class User {
                 fullname: user.fullname,
                 email: user.email,
                 role: user.role
-              }, secret, { expiresIn: '24h' });
+              }, secret, { expiresIn: '200h' });
               return res
                 .status(200)
                 .send({ message: `Welcome ${user.email} `, fullname: user.fullname, token });

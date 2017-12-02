@@ -15,12 +15,11 @@ describe('Event Manager', () => {
       .send(faker.loginUser1)
       .then((res) => {
         expect(res).to.have.status(200);
-        expect(res.to.be.json;
+        expect(res).to.be.json;
         newtoken = res.body.data.token;
-        event.userId = res.body.data.user.id)
-      })
+    }),
      
-  });
+  }));
 
 
   it('should not let user with un-verified Token create new event', (done) => {

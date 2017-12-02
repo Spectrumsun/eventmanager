@@ -9,13 +9,13 @@ center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ 
 or suggest an  available day 
 
 ## View App
-    * backend here https://sleepy-wave-51548.herokuapp.com/
-    * template ui  https://spectrumsun.github.io/eventmanager/
+    * [backend here] (https://sleepy-wave-51548.herokuapp.com/)
+    * [template ui]  (https://spectrumsun.github.io/eventmanager/)
 
 
 # Technologies Used
-   * Front-end: React/Redux + Bootstrap (To be Implemented)
-   * Back-end: Node/Expressjs + Sequelize/Postgres(To be Implemented)
+   * Front-end: React/Redux + Bootstrap (Yet To be Implemented)
+   * Back-end: Node/Expressjs + Sequelize/Postgres
    * Libraries: ES6, Babel-CLI, eslint, Mocha/Chai, expesss, sequelize, jwt
    * Postman
 
@@ -29,19 +29,19 @@ or suggest an  available day 
    * A page showing  a single center and the events slated for that center
 
 
- # API ENDPOINTS
-    * POST -    To sign up a new user - /api/v1/users
-    * POST -    To login in an exsisitng user - /api/v1/login
-    * GET -     To get all the list of events - /api/v1/events
-    * GET -     To get a single event - /api/v1/events/<eventID>
-    * POST -    To add a new event - /api/v1/events
-    * PUT -     To edit existing event - /api/v1/events/<eventID>
-    * DELETE -  To delete a single existing event - /ap/v1/events/<eventID>
-    * GET -     To get all the centers -  /api/v1/centers
+ ## Api Endpoints
+    * POST -    To sign up a new user -             /api/v1/users
+    * POST -    To login in an exsisitng user -     /api/v1/login
+    * GET -     To get all the list of events -     /api/v1/events
+    * GET -     To get a single event -             /api/v1/events/<eventID>
+    * POST -    To add a new event -                /api/v1/events
+    * PUT -     To edit existing event -            /api/v1/events/<eventID>
+    * DELETE -  To delete a single existing event   /ap/v1/events/<eventID>
+    * GET -     To get all the centers -            /api/v1/centers
     * GET -     To get a single center with the events added to the center - /api/v1/centers/<centerID>
-    * POST -    To add a new center - /api/v1/centers
-    * PUT -     To edit existing center - /api/centers/<enterID>
-    * DELETE -  To delete a single center - /api/centers/<centerID>
+    * POST -    To add a new center -               /api/v1/centers
+    * PUT -     To edit existing center -           /api/centers/<enterID>
+    * DELETE -  To delete a single center -         /api/centers/<centerID>
 
   
 

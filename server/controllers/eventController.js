@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import db from '../models';
+import { Event, Center } from '../models';
 
 dotenv.config();
 
-const eventDB = db.Event;
-const Center = db.Center;
+const eventDB = Event;
+const center = Center;
 
 
 dotenv.config();
@@ -16,7 +16,7 @@ dotenv.config();
  *@classdesc class Event
  */
 
-class Event {
+class Events {
 /**
    * get Events
    * @desc Show a list of all the current events in the db
@@ -54,7 +54,7 @@ class Event {
         return eventDB
           .findById(req.params.id, {
             include: [{
-              model: Center,
+              model: center,
               as: 'centers'
             }],
           })
@@ -77,7 +77,7 @@ class Event {
     eventDB
       .create({
         eventName: req.body.name,
-        eventdate: req.body.date,
+        eventdate: new Date(req.body.date).toISOString(),
         time: req.body.time,
         purpose: req.body.purpose,
         centerId: req.body.center,
@@ -113,7 +113,7 @@ class Event {
         return event
           .update({
             eventName: req.body.name,
-            eventdate: req.body.date,
+            eventdate: new Date(req.body.date).toISOString(),
             time: req.body.time,
             purpose: req.body.purpose,
             centerId: req.body.center
@@ -150,5 +150,5 @@ class Event {
   }
 }
 
-export default Event;
+export default Events;
 

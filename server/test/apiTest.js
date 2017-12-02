@@ -57,13 +57,9 @@ describe('Event Manager', () => {
       .get('/api/v1/centers')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        res
-          .should
-          .have
-          .status(403);
+        res.should.have.status(403);
         done();
       });
   });
-
  
 });

@@ -1,19 +1,16 @@
 {
   "development": {
     "username": "sun",
-    "password": 1,
+    "password": "1",
     "database": "event",
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres"
   },
   "test": {
-    "username": "sun",
-    "password": 1,
-    "database": "test_event",
-    "host": "localhost",
-    "port": 5432,
+    "use_env_variable": "DATABASE_URL_TEST",
     "dialect": "postgres"
+    
   },
   "production": {
     "use_env_variable": "DATABASE_URL_DEVELOPMENT",

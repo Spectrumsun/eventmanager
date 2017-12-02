@@ -11,9 +11,9 @@ dotenv.config();
 const options = {
   swaggerDefinition: {
     info: {
-      title: process.env.swaggerTitle,
-      version: process.env.swaggerVersion,
-      description: process.env.swaggerDescription,
+      title: 'Event Manager',
+      version: 'v1',
+      description: 'Event Managment ',
       contact: {
         name: process.env.swaggerName,
         url: process.env.swaggerUrl,
@@ -33,9 +33,8 @@ const swaggerSpec = swaggerJSDoc(options);
 /* GET Home Page. */
 
 router.get('/', (req, res) => {
-  res
-    .status(200)
-    .send({ message: 'welcome to our Event Manager' });
+  res.status(200)
+    .send({ message: 'welcome to Event Manager' });
 });
 
 

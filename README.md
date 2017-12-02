@@ -2,62 +2,58 @@
 [![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f12b2146b1c46953b97a/maintainability)](https://codeclimate.com/github/Spectrumsun/eventmanager/maintainability)
 
-# Event-Manager
+
+# Event Manager
 Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​
 center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ ​events​ ​when​ ​the​ ​proposed day is already taken,
-or suggest an  available day  
+or suggest an  available day 
+
+## View App
+    * backend here https://sleepy-wave-51548.herokuapp.com/
+    * template ui  https://spectrumsun.github.io/eventmanager/
 
 
-<b>View backend here </b> https://sleepy-wave-51548.herokuapp.com/<br>
-<b>View template ui </b> https://spectrumsun.github.io/eventmanager/
+# Technologies Used
+   * Front-end: React/Redux + Bootstrap (To be Implemented)
+   * Back-end: Node/Expressjs + Sequelize/Postgres(To be Implemented)
+   * Libraries: ES6, Babel-CLI, eslint, Mocha/Chai, expesss, sequelize, jwt
+   * Postman
 
-<h3>TECHNOLOGIES USED</h3>
-<hr>
-<ul>
-  <li>Front-end: React/Redux + Bootstrap (To be Implemented)</li>
-  <li>Back-end: Node/Expressjs + Sequelize/Postgres(To be Implemented)</li>
-  <li>Libraries: ES6, Babel-CLI, eslint, Mocha/Chai</li>
-  <li>Postman</li>
-</ul>
+## Features
+   * A User can signup and signin 
+   * A page where an authenticated user can add a new event
+   * A page, section or view where an authenticated user can Modify the event he/she added
+   * A page, section or view where an authenticated user can Delete the event he/she added
+   * A page where an admin can add a new center
+   * A page, section or view where an admin can modify the details of a center
+   * A page showing  a single center and the events slated for that center
 
 
-<h3>API ENDPOINTS</h3>
-<hr>
-<table>
-  <tr>
-      <td>POST</td>
-      <td>/api/events/</td>
-  </tr>
-  <tr>
-      <td>PUT</td>
-      <td>/api/events/ID</td>
-  </tr>
-  <tr>
-      <td>DELETE</td>
-      <td>/api/events/ID</td>
-  </tr>
-  <tr>
-      <td>POST</td>
-      <td>/api/centers</td>
-      <td>Get a single center</td>
-  </tr>
-  <tr>
-      <td>GET</td>
-      <td>/api/centers/ID</td>
-      <td>Get all center</td>
-  </tr>
-   <tr>
-      <td>GET</td>
-      <td>/api/centers/ID</td>
-      <td>Get a single center</td>
-  </tr>
-  <tr>
-      <td>PUT</td>
-      <td>/api/centers/ID<bookId></td>
-      <td>Modify center information</td>
-  </tr> 
-</table>
+ # API ENDPOINTS
+    * POST -    To sign up a new user - /api/v1/users
+    * POST -    To login in an exsisitng user - /api/v1/login
+    * GET -     To get all the list of events - /api/v1/events
+    * GET -     To get a single event - /api/v1/events/<eventID>
+    * POST -    To add a new event - /api/v1/events
+    * PUT -     To edit existing event - /api/v1/events/<eventID>
+    * DELETE -  To delete a single existing event - /ap/v1/events/<eventID>
+    * GET -     To get all the centers -  /api/v1/centers
+    * GET -     To get a single center with the events added to the center - /api/v1/centers/<centerID>
+    * POST -    To add a new center - /api/v1/centers
+    * PUT -     To edit existing center - /api/centers/<enterID>
+    * DELETE -  To delete a single center - /api/centers/<centerID>
+
+  
+
+# To Install
+* Download or clone 
+* open terminal inside root directory of cloned folder
+* type npm install to install the dependencies
+* type sequelize db:migrate to add migration if using Postgres locally 
+* npm start to run the app in production mode
+* npm test - to run the test suits on the app
+* npm dev:start to run the app in development mode
 
 
 
-
+`

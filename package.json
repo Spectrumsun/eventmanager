@@ -4,12 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
+    "test": " npm run migrations &&  nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "start": "set NODE_ENV=production babel-node server/server",
-    "migrations": "set NODE_ENV=test sequelize db:migrate:undo:all && set NODE_ENV=test sequelize db:migrate",
+    "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
-    "dev": "set NODE_ENV=development npm run dev:start",
+    "dev": "set NODE_ENV=development && npm run dev:start",
     "dev:start": "nodemon --ignore lib --exec  babel-node server/server.js"
   },
   "author": "Taiwo Sunday",
@@ -34,12 +34,12 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.23.0",
     "sequelize-cli": "^3.1.0",
-    "swagger-jsdoc": "^1.9.7"
+    "swagger-jsdoc": "^1.9.7",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-compat": "^2.1.0",

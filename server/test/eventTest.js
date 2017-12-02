@@ -1,18 +1,28 @@
-import chai, { expect } from 'chai';
+import chai from 'chai'
 import chaiHttp from 'chai-http';
 import server from '../server';
 import models from '../models';
 import faker from './faker';
 
-const should = chai.should();
+const expect = chai.expect;
 
-chai.use(chaiHttp);
-
-let token;
-let id;
-let userId;
+let newtoken;
 
 describe('Event Manager', () => {
+  it('return a token when a user login', (done) => {
+    chai.request(server)
+      .post('/api/v1/users/login')
+      .send(faker.loginUser1)
+      .then((res) => {
+        expect(res).to.have.status(200);
+        expect(res.to.be.json;
+        newtoken = res.body.data.token;
+        event.userId = res.body.data.user.id)
+      })
+     
+  });
+
+
   it('should not let user with un-verified Token create new event', (done) => {
     chai.request(server)
       .post('/api/v1/events')
@@ -26,10 +36,11 @@ describe('Event Manager', () => {
       });
   });
 
-  it('should let authorized user create new event', (done) => {
+
+  /* it('should let authorized user create new event', (done) => {
     chai.request(server)
       .post('/api/v1/events')
-      .send({ email: ' johedoe@example.com', password: '123458' })
+      .send({ email: ' johndoe@example.com', password: '123458' })
       .set('x-token', token)
       .end((err, res) => {
         console.log(res.body);
@@ -40,6 +51,5 @@ describe('Event Manager', () => {
         done();
       });
   });
-
-
+ */
 });

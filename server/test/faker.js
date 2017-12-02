@@ -7,8 +7,18 @@ const fake = {
     password: '12345',
     confirmPassword: '12345'
   },
+  singupUser1: {
+    fullname: 'Test User',
+    email: 'testuser@example.com',
+    password: '12345',
+    confirmPassword: '12345'
+  },
   loginUser: {
     email: faker.internet.email(),
+    password: '12345',
+  },
+  loginUser1: {
+    email: 'testuser@example.com',
     password: '12345',
   },
   missingPass: {

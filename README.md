@@ -10,7 +10,7 @@ or suggest an  available day 
 
 ## View App
     * backend here "https://sleepy-wave-51548.herokuapp.com/"
-    * template ui "https://spectrumsun.github.io/eventmanager/"
+    - template ui "https://spectrumsun.github.io/eventmanager/"
       
 
 

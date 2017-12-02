@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     eventName: {
@@ -5,7 +7,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     eventdate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     time: {

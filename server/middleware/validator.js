@@ -60,15 +60,12 @@ class Validate {
     next();
   }
 
+
   static checkDate(req, res, next) {
-    if ((new Date(req.body.date) - Date.now()) < 0) {
+        if ((new Date(req.body.date) - Date.now()) < 0) {
   	     return res.status(400).send({
         message: 'You Can not set a past date for an  event'
       });
-    }
-
-    if ((new Date(req.body.date) + Date.now()) > 0) {
-  	     return res.status(400).send({message: 'You Can not set a past date for an  event'});
     }
 
 

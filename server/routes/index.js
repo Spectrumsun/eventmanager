@@ -8,39 +8,12 @@ const router = express.Router();
 
 dotenv.config();
 
-const options = {
-  swaggerDefinition: {
-    info: {
-      title: 'Event Manager',
-      version: 'v1',
-      description: 'Event Managment ',
-      contact: {
-        name: process.env.swaggerName,
-        url: process.env.swaggerUrl,
-        email: process.env.swaggerEmail
-      }
-    },
-    host: process.env.swaggerHost,
-    basePath: '/'
-  },
-  apis: ['./routes.js'], // Path to the API docs
-};
-
-
-const swaggerSpec = swaggerJSDoc(options);
-
 
 /* GET Home Page. */
 
 router.get('/', (req, res) => {
   res.status(200)
     .send({ message: 'welcome to Event Manager' });
-});
-
-
-router.get('/api-docs.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
 });
 
 
@@ -62,14 +35,14 @@ router.get('/events/:id', auth.verifyToken, eventController.getOneEvent);
 router.post('/events', auth.verifyToken, validator.validateCreateEvent, validator.checkDate, eventController.createEvent);
 
 // PUT Edit event
-router.put('/events/:id', auth.verifyToken, validator.validateCreateEvent, validator.checkDate, eventController.editEvent);
+router.put('/events/:id', auth.verifyToken, validator.validateCreateEvent, eventController.editEvent);
 
 // DELETE remove event
 router.delete('/events/:id', auth.verifyToken, eventController.deleteEvent);
 
 
 // GET All Centers
-router.get('/centers', auth.verifyToken, centerController.getCenter);
+router.get('/centers', centerController.getCenter);
 
 // GET a single  Center with events added to the center
 router.get('/centers/:id', auth.verifyToken, centerController.getOneCenter);

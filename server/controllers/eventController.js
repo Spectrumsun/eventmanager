@@ -77,7 +77,7 @@ class Events {
     eventDB
       .create({
         eventName: req.body.name,
-        eventdate: new Date(req.body.date).toISOString(),
+        eventdate: new Date(req.body.date),
         time: req.body.time,
         purpose: req.body.purpose,
         centerId: req.body.center,

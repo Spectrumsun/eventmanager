@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
       },
       address: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       facility: {

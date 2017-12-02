@@ -32,7 +32,7 @@ router.get('/events', auth.verifyToken, eventController.getEvent);
 router.get('/events/:id', auth.verifyToken, eventController.getOneEvent);
 
 // POST  Add a new Event
-router.post('/events', auth.verifyToken, validator.validateCreateEvent,  eventController.createEvent);
+router.post('/events', auth.verifyToken, validator.validateCreateEvent, validator.checkDate, eventController.createEvent);
 
 // PUT Edit event
 router.put('/events/:id', auth.verifyToken, validator.validateCreateEvent, eventController.editEvent);

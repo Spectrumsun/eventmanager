@@ -7,7 +7,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     eventdate: {
-      type: DataTypes.TEXT,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     time: {

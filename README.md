@@ -8,9 +8,9 @@ Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​
 center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ ​events​ ​when​ ​the​ ​proposed day is already taken,
 or suggest an  available day 
 
-## View App
-    * backend here "https://sleepy-wave-51548.herokuapp.com/"
-    - template ui "https://spectrumsun.github.io/eventmanager/"
+
+    - [backend here] (https://sleepy-wave-51548.herokuapp.com/)
+    - [template ui] (https://spectrumsun.github.io/eventmanager/)
       
 
 

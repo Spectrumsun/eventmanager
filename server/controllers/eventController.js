@@ -76,11 +76,7 @@ class Events {
 
   static createEvent(req, res) {
  
-
-
-
-
-    eventDB
+  eventDB
       .create({
         eventName: req.body.name,
         eventdate: req.body.date,

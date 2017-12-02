@@ -1,8 +1,5 @@
 /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
-import moment from 'moment';
 import { Center, Event } from '../models';
-
-moment().format();
 
 
 class Validate {
@@ -65,13 +62,7 @@ class Validate {
 
 
   static checkDate(req, res, next) {
-  /*   if (res.body.date != new Date(year, month, day)) {
-      return res.status(400).send({ message: 'Error er'});
-    } */
-
-   /* s */
-
-    if ((new Date(req.body.date) - Date.now()) < 0) {
+        if ((new Date(req.body.date) - Date.now()) < 0) {
   	     return res.status(400).send({
         message: 'You Can not set a past date for an  event'
       });

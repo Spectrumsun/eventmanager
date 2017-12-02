@@ -7,13 +7,8 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     eventdate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.TEXT,
       allowNull: false,
-      validate: {
-        isDate: { args: true, msg: 'date format not invalid! - make sure it is in YYYY-MM-DD format' },
-        isAfter: { args: moment().add(1, 'day').toISOString(), msg: 'date format is invalid! - make sure it is not less than a day from now' },
-        isBefore: { args: moment().add(30, 'day').toISOString(), msg: 'date format is invalid! - make sure it is not more than a month from now' },
-      },
     },
     time: {
       type: DataTypes.STRING,

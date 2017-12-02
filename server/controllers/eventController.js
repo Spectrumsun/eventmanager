@@ -83,7 +83,7 @@ class Events {
     eventDB
       .create({
         eventName: req.body.name,
-        eventdate: new Date(req.body.date),
+        eventdate: req.body.date,
         time: req.body.time,
         purpose: req.body.purpose,
         centerId: req.body.center,
@@ -119,7 +119,7 @@ class Events {
         return event
           .update({
             eventName: req.body.name,
-            eventdate: new Date(req.body.date),
+            eventdate: req.body.date,
             time: req.body.time,
             purpose: req.body.purpose,
             centerId: req.body.center

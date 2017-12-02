@@ -1,4 +1,4 @@
-import db from '../models';
+/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
 import { Center, Event } from '../models';
 
 
@@ -94,8 +94,8 @@ class Validate {
         for (let i = 0; i < newDate.length; i++) {
           if (newCenter == newDate[i]) {
             return res.status(400).send({
-              message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}.
-            You can choose another date or another center.`
+              message: `Sorry Center booked for that date  You can choose another date or another center Please look through the aleady booked dates for the centers ${dates}`
+
             });
           }
         }

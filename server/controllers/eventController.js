@@ -74,18 +74,22 @@ class Event {
    */
 
   static createEvent(req, res) {
-    eventDB
-      .create({
-        eventName: req.body.name,
-        eventdate: req.body.date,
-        time: req.body.time,
-        purpose: req.body.purpose,
-        centerId: req.body.center,
-        userId: req.user.id
-      })
-      .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send({ message: 'Date must be set well example Year-month-day YYYY-MM-DD' }));
+    eventDB.create({
+      eventName: req.body.name,
+      eventdate: new Date(req.body.date).toISOString(),
+      time: req.body.time,
+      purpose: req.body.purpose,
+      centerId: req.body.center,
+      userId: req.user.id
+    }).then((event) => {
+      res.status(200).send({ message: 'sucesss', data: event });
+    })
+      .catch((e) => {
+        console.log(e);
+        res.status(500).send(e);
+      });
   }
+
 
   /**
    * Edit an already saved Event

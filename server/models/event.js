@@ -5,7 +5,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     eventdate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     time: {

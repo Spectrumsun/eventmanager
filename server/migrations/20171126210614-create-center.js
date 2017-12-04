@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: false,
       },
+      availability: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

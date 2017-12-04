@@ -22,6 +22,10 @@ export default (sequelize, DataTypes) => {
         notEmpty: { msg: 'Empty strings not allowed' },
       }
     },
+    availability: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
     },

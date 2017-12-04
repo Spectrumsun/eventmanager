@@ -1,7 +1,7 @@
-import db from '../models';
+import moment from 'moment';
+import { Event, Center} from '../models';
 
-const Center = db.Center;
-const Event = db.Event;
+
 
 class Validate {
   static validateSigup(req, res, next) {
@@ -63,29 +63,29 @@ class Validate {
     next();
   }
 
-  static checkDate(req, res, next) {
-    const newCenter = req.body.date;
-    const userInfo = req.body.id;
-    Center.findById(req.body.center, { include: [{ model: Event, as: 'events', }], })
-      .then((center) => {
-        const centerItems = center.toJSON();
-        const dates = [];
-        centerItems.events.forEach((event) => {
-          dates.push(event.eventdate);
-          if (userInfo == dates.userId) {
-            return;
-          }
-          next();
-        });
 
-        const newDate = dates;
-        for (let i = 0; i < newDate.length; i++) {
-          if (newCenter == newDate[i]) {
-            return res.status(400).send({ message: `Sorry Center booked for that date. Please look through the aleady booked dates for the centers ${dates}. You can choose another date or another center.` });
-          }
-        }
-        next();
-      });
+  static checkDate(req, res, next) {
+    if ((new Date(req.body.date) - Date.now()) < 0) {
+  	  return res.status(400).send({ message: 'You cant set a Past date for the event' });
+    }
+
+    if ((new Date(req.body.date) + Date.now()) > 30) {
+  	  return res.status(400).send({ message: 'You cant set a Past date for the event' });
+    }
+
+    Event.findOne({
+      where: {
+        centerId: req.body.center,
+        eventdate: new Date(req.body.date).toISOString(),
+        // date: req.body.eventdate
+      }
+    }).then((event) => {
+      // console.log('-----',event.toJSON())
+      if (event && event.id != req.params.id) {
+        return res.status(409).send({ message: 'Center booked for that date already' });
+      }
+      next();
+    });
   }
 }
 

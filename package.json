@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "start": "sequelize db:migrate && babel-node server/server",
-    "migrations": "set NODE_ENV=test sequelize db:migrate:undo:all && set NODE_ENV=test sequelize db:migrate",
+    "migrations": "sequelize db:migrate:undo:all && ssequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
     "dev": "npm run dev:start",

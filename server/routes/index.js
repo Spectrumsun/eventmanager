@@ -8,40 +8,12 @@ const router = express.Router();
 
 dotenv.config();
 
-const options = {
-  swaggerDefinition: {
-    info: {
-      title: process.env.swaggerTitle,
-      version: process.env.swaggerVersion,
-      description: process.env.swaggerDescription,
-      contact: {
-        name: process.env.swaggerName,
-        url: process.env.swaggerUrl,
-        email: process.env.swaggerEmail
-      }
-    },
-    host: process.env.swaggerHost,
-    basePath: '/'
-  },
-  apis: ['./routes.js'], // Path to the API docs
-};
-
-
-const swaggerSpec = swaggerJSDoc(options);
-
 
 /* GET Home Page. */
 
 router.get('/', (req, res) => {
-  res
-    .status(200)
-    .send({ message: 'welcome to our Event Manager' });
-});
-
-
-router.get('/api-docs.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
+  res.status(200)
+    .send({ message: 'welcome to Event Manager' });
 });
 
 
@@ -70,7 +42,7 @@ router.delete('/events/:id', auth.verifyToken, eventController.deleteEvent);
 
 
 // GET All Centers
-router.get('/centers', auth.verifyToken, centerController.getCenter);
+router.get('/centers', centerController.getCenter);
 
 // GET a single  Center with events added to the center
 router.get('/centers/:id', auth.verifyToken, centerController.getOneCenter);

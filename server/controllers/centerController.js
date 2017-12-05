@@ -60,11 +60,6 @@ class Centers {
    */
 
   static createCenter(req, res) {
-    const roles = req.user.role;
-    if (roles != 'admin') {
-      return res.status(400).json({ messgae: 'Only an admin can create center' });
-    }
-
     Center.create({
       centerName: req.body.name,
       city: req.body.city,
@@ -86,10 +81,6 @@ class Centers {
    */
 
   static editCenter(req, res) {
-    const roles = req.user.role;
-    if (roles != 'admin') {
-      return res.status(400).json({ messgae: 'Only an admin can create centers' });
-    }
     Center.findById(req.params.id)
       .then((center) => {
         if (!center) {
@@ -121,11 +112,6 @@ class Centers {
    */
 
   static deleteCenter(req, res) {
-    const roles = req.user.role;
-
-    if (roles != 'admin') {
-      return res.status(400).json({ messgae: 'Only an admin can create centers' });
-    }
     Center.findById(req.params.id)
       .then((center) => {
         if (!center) {

@@ -33,7 +33,7 @@ class Users {
         email: req.body.email,
         password: hash,
         confirmPassword: req.body.confirmPassword,
-        role: req.body.role || 'user'
+        role: req.body.role
       }).then(user => res.status(201).send({
         message: 'User successfully created',
         user: {

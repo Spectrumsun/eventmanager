@@ -1,9 +1,16 @@
-import moment from 'moment';
-import { Event, Center} from '../models';
-
+import { Event, Center } from '../models';
 
 
 class Validate {
+  static validateAdmin(req, res, next) {
+    const roles = req.user.role;
+    if (roles != process.env.ADMIN) {
+      return res.status(400).json({ messgae: 'Only an admin can create centers' });
+    }
+    next();
+  }
+
+
   static validateSigup(req, res, next) {
     req.sanitizeBody('fullname');
     req.checkBody('fullname', 'You must supply a name!').notEmpty();

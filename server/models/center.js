@@ -4,27 +4,18 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     city: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: { msg: 'Empty strings not allowed' },
-      }
     },
     availability: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),

@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import db from '../models';
+import { User } from '../models';
 
 
 const secret = process.env.SECRET;
-const userDB = db.User;
+
 
 /**
  * @class User
@@ -13,7 +13,7 @@ const userDB = db.User;
 
 // const Secret = process.env.SECRET;
 
-class User {
+class Users {
 /**
    * signUp
    * @desc Registers a user to the application
@@ -28,7 +28,7 @@ class User {
     const data = req.body.password;
 
     bcrypt.hash(data, 10)
-      .then(hash => userDB.create({
+      .then(hash => User.create({
         fullname: req.body.fullname,
         email: req.body.email,
         password: hash,
@@ -53,12 +53,11 @@ class User {
    */
 
   static login(req, res) {
-    userDB
-      .findOne({
-        where: {
-          email: req.body.email
-        },
-      })
+    User.findOne({
+      where: {
+        email: req.body.email
+      },
+    })
       .then((user) => {
         if (user) {
           bcrypt.compare(req.body.password, user.password, (err, response) => {
@@ -86,4 +85,4 @@ class User {
   }
 }
 
-export default User;
+export default Users;

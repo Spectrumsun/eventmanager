@@ -1,12 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import db from '../models';
-
-dotenv.config();
-
-const eventDB = db.Event;
-const Center = db.Center;
-
+import { Event, Center } from '../models';
 
 dotenv.config();
 
@@ -16,7 +10,7 @@ dotenv.config();
  *@classdesc class Event
  */
 
-class Event {
+class Events {
 /**
    * get Events
    * @desc Show a list of all the current events in the db
@@ -27,8 +21,7 @@ class Event {
    */
 
   static getEvent(req, res) {
-    eventDB
-      .all()
+    Event.all()
       .then(event => res.status(200).send({ message: 'success', event }))
       .catch(error => res.status(200).send(error));
   }
@@ -43,22 +36,21 @@ class Event {
    */
 
   static getOneEvent(req, res) {
-    eventDB
-      .findById(req.params.id)
+    Event.findById(req.params.id)
       .then((event) => {
         if (!event) {
           return res
             .status(404)
             .send({ message: 'Event not found' });
         }
-        return eventDB
+        return event
           .findById(req.params.id, {
             include: [{
               model: Center,
               as: 'centers'
             }],
           })
-          .then(event => res.status(200).send({ message: 'found', event }))
+          .then(events => res.status(200).send({ message: 'found', events }))
           .catch(error => res.status(200).send(error));
       });
   }
@@ -74,22 +66,17 @@ class Event {
    */
 
   static createEvent(req, res) {
-    eventDB.create({
+    Event.create({
       eventName: req.body.name,
-      eventdate: new Date(req.body.date).toISOString(),
+      eventdate: req.body.date,
       time: req.body.time,
       purpose: req.body.purpose,
       centerId: req.body.center,
       userId: req.user.id
-    }).then((event) => {
-      res.status(200).send({ message: 'sucesss', data: event });
     })
-      .catch((e) => {
-        console.log(e);
-        res.status(500).send(e);
-      });
+      .then(event => res.status(201).send({ message: 'successfully created', event }))
+      .catch(error => res.status(400).send(error));
   }
-
 
   /**
    * Edit an already saved Event
@@ -101,10 +88,10 @@ class Event {
    */
 
   static editEvent(req, res) {
-    eventDB.findById(req.params.id)
+    Event.findById(req.params.id)
       .then((event) => {
-        const role = req.user.id;
-        if (role != event.userId) {
+        const roles = req.user.id;
+        if (roles != event.userId) {
           return res.json({ messgae: 'You are not owner of the event' });
         }
 
@@ -138,8 +125,7 @@ class Event {
    */
 
   static deleteEvent(req, res) {
-    eventDB
-      .findById(req.params.id)
+    Event.findById(req.params.id)
       .then((event) => {
         if (!event) {
           return res
@@ -154,5 +140,5 @@ class Event {
   }
 }
 
-export default Event;
+export default Events;
 

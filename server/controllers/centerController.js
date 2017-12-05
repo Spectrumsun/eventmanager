@@ -1,7 +1,4 @@
-import db from '../models';
-
-const Event = db.Event;
-const centerDB = db.Center;
+import { Event, Center } from '../models';
 
 
 /**
@@ -9,7 +6,7 @@ const centerDB = db.Center;
  *@classdesc class Event
  */
 
-class Center {
+class Centers {
 /**
    * Get all them Center
    * @desc Show a list of all the current Centers.
@@ -20,8 +17,7 @@ class Center {
    */
 
   static getCenter(req, res) {
-    centerDB
-      .all()
+    Center.all()
       .then(center => res.status(200).send({ message: 'success', center }))
       .catch(error => res.status(200).send(error));
   }
@@ -36,22 +32,20 @@ class Center {
    */
 
   static getOneCenter(req, res) {
-    centerDB
-      .findById(req.params.id)
+    Center.findById(req.params.id)
       .then((center) => {
         if (!center) {
           return res
             .status(404)
             .send({ message: 'center not found' });
         }
-        return centerDB
-          .findById(req.params.id, {
-            include: [{
-              model: Event,
-              as: 'events',
-            }],
-          })
-          .then(center => res.status(200).send({ message: 'found', center }))
+        return Center.findById(req.params.id, {
+          include: [{
+            model: Event,
+            as: 'events',
+          }],
+        })
+          .then(centers => res.status(200).send({ message: 'found', centers }))
           .catch(error => res.status(200).send(error));
       });
   }
@@ -66,18 +60,18 @@ class Center {
    */
 
   static createCenter(req, res) {
-    const role = req.user.role;
-    if (role != 'admin') {
+    const roles = req.user.role;
+    if (roles != 'admin') {
       return res.status(400).json({ messgae: 'Only an admin can create center' });
     }
 
-    centerDB
-      .create({
-        centerName: req.body.name,
-        city: req.body.city,
-        address: req.body.address,
-        facility: req.body.facility
-      })
+    Center.create({
+      centerName: req.body.name,
+      city: req.body.city,
+      address: req.body.address,
+      facility: req.body.facility,
+      availability: req.body.availability || 'unknow'
+    })
       .then(center => res.status(201).send({ message: 'successfully created', center }))
       .catch(error => res.status(400).send(error));
   }
@@ -92,12 +86,11 @@ class Center {
    */
 
   static editCenter(req, res) {
-    const role = req.user.role;
-    if (role != 'admin') {
+    const roles = req.user.role;
+    if (roles != 'admin') {
       return res.status(400).json({ messgae: 'Only an admin can create centers' });
     }
-    centerDB
-      .findById(req.params.id)
+    Center.findById(req.params.id)
       .then((center) => {
         if (!center) {
           return res
@@ -106,7 +99,10 @@ class Center {
         }
         return center
           .update({
-            centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility
+            centerName: req.body.name, 
+            city: req.body.city, 
+            address: req.body.address, 
+            facility: req.body.facility
           })
           .then(() => res.status(200).send({ message: 'updated', center }))
           .catch(error => res.status(400).send(error));
@@ -124,13 +120,12 @@ class Center {
    */
 
   static deleteCenter(req, res) {
-    const role = req.user.role;
+    const roles = req.user.role;
 
-    if (role != 'admin') {
+    if (roles != 'admin') {
       return res.status(400).json({ messgae: 'Only an admin can create centers' });
     }
-    centerDB
-      .findById(req.params.id)
+    Center.findById(req.params.id)
       .then((center) => {
         if (!center) {
           return res
@@ -145,4 +140,4 @@ class Center {
   }
 }
 
-export default Center;
+export default Centers;

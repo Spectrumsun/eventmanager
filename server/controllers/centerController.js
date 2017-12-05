@@ -102,7 +102,8 @@ class Centers {
             centerName: req.body.name, 
             city: req.body.city, 
             address: req.body.address, 
-            facility: req.body.facility
+            facility: req.body.facility,
+            availability: req.body.availability || 'unknow'
           })
           .then(() => res.status(200).send({ message: 'updated', center }))
           .catch(error => res.status(400).send(error));

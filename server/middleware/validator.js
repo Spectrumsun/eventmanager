@@ -10,7 +10,6 @@ class Validate {
     next();
   }
 
-
   static validateSigup(req, res, next) {
     req.sanitizeBody('fullname');
     req.checkBody('fullname', 'You must supply a name!').notEmpty();
@@ -76,9 +75,14 @@ class Validate {
   	  return res.status(400).send({ message: 'You cant set a Past date for the event' });
     }
 
-    if ((new Date(req.body.date) + Date.now()) > 30) {
-  	  return res.status(400).send({ message: 'You cant set a Past date for the event' });
+    if (isNaN(new Date(req.body.date))) {
+      return res.status(400).send({ message: 'invalid date format make sure it\'s YYYY-MM-DD format' });
     }
+
+    if (!req.body.time.match(/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/)) {
+      return res.status(400).send({ messgae: 'invalid time format make sure it\'s HH:MM format 24 hours' });
+    }
+
 
     Event.findOne({
       where: {

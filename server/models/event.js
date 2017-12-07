@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
     eventName: {

@@ -24,7 +24,7 @@ class Validate {
             .send({ message: 'Event Not Found' });
         }
       });
-      next()
+    next();
   }
 
   static validateSigup(req, res, next) {
@@ -98,6 +98,10 @@ class Validate {
 
     if (!req.body.time.match(/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/)) {
       return res.status(400).send({ messgae: 'invalid time format make sure it\'s HH:MM format 24 hours' });
+    }
+
+    if (isNaN(req.body.center)) {
+      return res.status(400).send({ messgae: 'Only Number allowed for Center' });
     }
 
 

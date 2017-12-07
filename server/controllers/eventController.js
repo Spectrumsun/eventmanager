@@ -68,7 +68,7 @@ class Events {
       userId: req.user.id
     })
       .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send({ message: 'center not found!!', error }));
+      .catch(error => res.status(400).send({ message: 'center not found!!' }));
   }
 
   /**

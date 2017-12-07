@@ -32,24 +32,21 @@ class Centers {
    */
 
   static getOneCenter(req, res) {
-    Center.findById(req.params.id)
+    Center.findById(req.params.id, {
+      include: [{
+        model: Event,
+        as:
+        'events'
+      }],
+    })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(404)
-            .send({ message: 'center not found' });
+        if (center) {
+          res.status(200).send({ message: 'Center', center });
+        } else {
+          res.status(400).send({ message: 'center not found' });
         }
-        return Center.findById(req.params.id, {
-          include: [{
-            model: Event,
-            as: 'events',
-          }],
-        })
-          .then(centers => res.status(200).send({ message: 'found', centers }))
-          .catch(error => res.status(200).send(error));
       });
   }
-
   /**
    * New Center
    * @desc Add a new center.
@@ -81,25 +78,22 @@ class Centers {
    */
 
   static editCenter(req, res) {
-    Center.findById(req.params.id)
+    Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(404)
-            .send({ message: 'center Not Found' });
-        }
-        return center
-          .update({
-            centerName: req.body.name, 
-            city: req.body.city, 
-            address: req.body.address, 
+        if (center) {
+          center.update({
+            centerName: req.body.name,
+            city: req.body.city,
+            address: req.body.address,
             facility: req.body.facility,
             availability: req.body.availability || 'unknow'
-          })
-          .then(() => res.status(200).send({ message: 'updated', center }))
-          .catch(error => res.status(400).send(error));
+          });
+          res.status(200).send({ message: 'updated', center });
+        } else {
+          res.status(404).send({ message: 'center not found' });
+        }
       })
-      .catch(error => res.status(400).send(error));
+      .catch(err => res.status(400).send(err));
   }
 
   /**
@@ -112,18 +106,16 @@ class Centers {
    */
 
   static deleteCenter(req, res) {
-    Center.findById(req.params.id)
+    Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(400)
-            .send({ message: 'center not Found' });
+        if (center) {
+          center.destroy();
+          res.status(200).send({ message: 'center successfully deleted!' });
+        } else {
+          res.status(404).send({ message: 'center not found' });
         }
-        return center
-          .destroy()
-          .then(res.status(200).send({ message: 'center successfully deleted!' }))
-          .catch(error => res.status(400).send(error));
-      });
+      })
+      .catch(err => res.status(400).send(err));
   }
 }
 

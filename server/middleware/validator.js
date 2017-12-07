@@ -10,6 +10,23 @@ class Validate {
     next();
   }
 
+  static validateEventOwner(req, res, next) {
+    Event.findById(req.params.id)
+      .then((event) => {
+        const roles = req.user.id;
+        if (roles != event.userId) {
+          return res.json({ messgae: 'You are not owner of the event' });
+        }
+
+        if (!event) {
+          return res
+            .status(404)
+            .send({ message: 'Event Not Found' });
+        }
+      });
+      next()
+  }
+
   static validateSigup(req, res, next) {
     req.sanitizeBody('fullname');
     req.checkBody('fullname', 'You must supply a name!').notEmpty();

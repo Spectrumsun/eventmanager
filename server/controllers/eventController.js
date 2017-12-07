@@ -36,22 +36,15 @@ class Events {
    */
 
   static getOneEvent(req, res) {
-    Event.findById(req.params.id)
+    Event.findById(req.params.id, {
+      include: [{ model: Center, as: 'centers' }],
+    })
       .then((event) => {
-        if (!event) {
-          return res
-            .status(404)
-            .send({ message: 'Event not found' });
+        if (event) {
+          res.status(200).send({ message: 'Event', event });
+        } else {
+          res.status(400).send({ message: 'event not found' });
         }
-        return event
-          .findById(req.params.id, {
-            include: [{
-              model: Center,
-              as: 'centers'
-            }],
-          })
-          .then(events => res.status(200).send({ message: 'found', events }))
-          .catch(error => res.status(200).send(error));
       });
   }
 
@@ -71,11 +64,11 @@ class Events {
       eventdate: req.body.date,
       time: req.body.time,
       purpose: req.body.purpose,
-      centerId: req.body.center,
+      centerId: parseInt(req.body.center, 10),
       userId: req.user.id
     })
       .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send({message: 'center not found!!' }));
+      .catch(error => res.status(400).send({ message: 'center not found!!', error }));
   }
 
   /**
@@ -88,31 +81,22 @@ class Events {
    */
 
   static editEvent(req, res) {
-    Event.findById(req.params.id)
+    Event.findOne({ where: { id: req.params.id } })
       .then((event) => {
-        const roles = req.user.id;
-        if (roles != event.userId) {
-          return res.json({ messgae: 'You are not owner of the event' });
-        }
-
-
-        if (!event) {
-          return res
-            .status(404)
-            .send({ message: 'Event Not Found' });
-        }
-        return event
-          .update({
+        if (event) {
+          event.update({
             eventName: req.body.name,
             eventdate: req.body.date,
             time: req.body.time,
             purpose: req.body.purpose,
             centerId: req.body.center
-          })
-          .then(() => res.status(200).send({ message: 'updated', event }))
-          .catch(error => res.status(400).send({ message: 'center not found' }));
+          });
+          res.status(200).send({ message: 'updated', event });
+        } else {
+          res.status(404).send({ message: 'event not found' });
+        }
       })
-      .catch(error => res.status(400).send({ message: 'user not found' }));
+      .catch(err => res.status(400).send(err));
   }
 
   /**
@@ -125,18 +109,16 @@ class Events {
    */
 
   static deleteEvent(req, res) {
-    Event.findById(req.params.id)
+    Event.findOne({ where: { id: req.params.id } })
       .then((event) => {
-        if (!event) {
-          return res
-            .status(400)
-            .send({ message: 'Event not Found' });
+        if (event) {
+          event.destroy();
+          res.status(200).send({ message: 'Event successfully deleted!' });
+        } else {
+          res.status(404).send({ message: 'event not found' });
         }
-        return event
-          .destroy()
-          .then(res.status(200).send({ message: 'Event successfully deleted!' }))
-          .catch(error => res.status(400).send(error));
-      });
+      })
+      .catch(err => res.status(400).send(err));
   }
 }
 

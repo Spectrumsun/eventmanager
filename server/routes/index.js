@@ -60,6 +60,7 @@ router.put(
   '/events/:id', auth.verifyToken,
   validator.validateCreateEvent,
   validator.checkDate,
+  validator.validateEventOwner,
   eventController.editEvent
 );
 
@@ -67,6 +68,7 @@ router.put(
 router.delete(
   '/events/:id',
   auth.verifyToken,
+  validator.validateEventOwner,
   eventController.deleteEvent
 );
 

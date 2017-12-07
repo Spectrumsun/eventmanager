@@ -1,14 +1,39 @@
-/* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
-import { Center, Event } from '../models';
+import { Event, Center } from '../models';
 
 
 class Validate {
+  static validateAdmin(req, res, next) {
+    const roles = req.user.role;
+    if (roles != process.env.ADMIN) {
+      return res.status(400).json({ messgae: 'Only an admin can create centers' });
+    }
+    next();
+  }
+
+  static validateEventOwner(req, res, next) {
+    Event.findById(req.params.id)
+      .then((event) => {
+        const roles = req.user.id;
+        if (roles != event.userId) {
+          return res.json({ messgae: 'You are not owner of the event' });
+        }
+
+        if (!event) {
+          return res
+            .status(404)
+            .send({ message: 'Event Not Found' });
+        }
+      });
+      next()
+  }
+
   static validateSigup(req, res, next) {
     req.sanitizeBody('fullname');
     req.checkBody('fullname', 'You must supply a name!').notEmpty();
     req.checkBody('email', 'That Email is not valid!').isEmail();
     req.sanitizeBody('email').normalizeEmail({ remove_dots: false, remove_extension: false, gmail_remove_subaddress: false });
     req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+    req.checkBody('confirmPassword', 'Confirmed Password cannot be blank!').notEmpty();
     req.checkBody('confirmPassword', 'Oops! Your passwords do not match').equals(req.body.password);
 
     const errors = req.validationErrors();
@@ -56,46 +81,39 @@ class Validate {
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).send({ message: 'Error adding new Center', errors });
+      // stop the fn from running
     }
     next();
   }
 
 
   static checkDate(req, res, next) {
-        if ((new Date(req.body.date) - Date.now()) < 0) {
-  	     return res.status(400).send({
-        message: 'You Can not set a past date for an  event'
-      });
+    if ((new Date(req.body.date) - Date.now()) < 0) {
+  	  return res.status(400).send({ message: 'You cant set a Past date for the event' });
+    }
+
+    if (isNaN(new Date(req.body.date))) {
+      return res.status(400).send({ message: 'invalid date format make sure it\'s YYYY-MM-DD format' });
+    }
+
+    if (!req.body.time.match(/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/)) {
+      return res.status(400).send({ messgae: 'invalid time format make sure it\'s HH:MM format 24 hours' });
     }
 
 
-    const newCenter = req.body.date;
-    const userInfo = req.body.id;
-
-
-    Center.findById(req.body.center, { include: [{ model: Event, as: 'events', }], })
-      .then((center) => {
-        const centerItems = center.toJSON();
-        const dates = [];
-        centerItems.events.forEach((event) => {
-          dates.push(event.eventdate);
-          if (userInfo == dates.userId) {
-            return;
-          }
-          next();
-        });
-
-        const newDate = dates;
-        for (let i = 0; i < newDate.length; i++) {
-          if (newCenter == newDate[i]) {
-            return res.status(400).send({
-              message: `Sorry Center booked for that date  You can choose another date or another center Please look through the aleady booked dates for the centers ${dates}`
-
-            });
-          }
-        }
-        next();
-      });
+    Event.findOne({
+      where: {
+        centerId: req.body.center,
+        eventdate: new Date(req.body.date).toISOString(),
+        // date: req.body.eventdate
+      }
+    }).then((event) => {
+      // console.log('-----',event.toJSON())
+      if (event && event.id != req.params.id) {
+        return res.status(409).send({ message: 'Center booked for that date already' });
+      }
+      next();
+    });
   }
 }
 

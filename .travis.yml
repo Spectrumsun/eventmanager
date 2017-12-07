@@ -4,5 +4,6 @@ node_js: node
 script: 
       - cd server && npm install && npm test
 after_success:
-  npm run coverage
+    -  npm run coverage
+    - codeclimate-test-reporter < ./coverage/lcov.info
        

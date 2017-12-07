@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
       },
       eventdate: {
-        type: Sequelize.TEXT,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       time: {

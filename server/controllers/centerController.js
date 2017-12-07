@@ -1,7 +1,4 @@
-import db from '../models';
-
-const Event = db.Event;
-const centerDB = db.Center;
+import { Event, Center } from '../models';
 
 
 /**
@@ -9,7 +6,7 @@ const centerDB = db.Center;
  *@classdesc class Event
  */
 
-class Center {
+class Centers {
 /**
    * Get all them Center
    * @desc Show a list of all the current Centers.
@@ -20,8 +17,7 @@ class Center {
    */
 
   static getCenter(req, res) {
-    centerDB
-      .all()
+    Center.all()
       .then(center => res.status(200).send({ message: 'success', center }))
       .catch(error => res.status(200).send(error));
   }
@@ -36,26 +32,21 @@ class Center {
    */
 
   static getOneCenter(req, res) {
-    centerDB
-      .findById(req.params.id)
+    Center.findById(req.params.id, {
+      include: [{
+        model: Event,
+        as:
+        'events'
+      }],
+    })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(404)
-            .send({ message: 'center not found' });
+        if (center) {
+          res.status(200).send({ message: 'Center', center });
+        } else {
+          res.status(400).send({ message: 'center not found' });
         }
-        return centerDB
-          .findById(req.params.id, {
-            include: [{
-              model: Event,
-              as: 'events',
-            }],
-          })
-          .then(center => res.status(200).send({ message: 'found', center }))
-          .catch(error => res.status(200).send(error));
       });
   }
-
   /**
    * New Center
    * @desc Add a new center.
@@ -66,18 +57,13 @@ class Center {
    */
 
   static createCenter(req, res) {
-    const role = req.user.role;
-    if (role != 'admin') {
-      return res.json({ messgae: 'Only an admin can create center' });
-    }
-
-    centerDB
-      .create({
-        centerName: req.body.name,
-        city: req.body.city,
-        address: req.body.address,
-        facility: req.body.facility
-      })
+    Center.create({
+      centerName: req.body.name,
+      city: req.body.city,
+      address: req.body.address,
+      facility: req.body.facility,
+      availability: req.body.availability || 'unknow'
+    })
       .then(center => res.status(201).send({ message: 'successfully created', center }))
       .catch(error => res.status(400).send(error));
   }
@@ -92,26 +78,22 @@ class Center {
    */
 
   static editCenter(req, res) {
-    const role = req.user.role;
-    if (role != 'admin') {
-      return res.json({ messgae: 'Only an admin can create centers' });
-    }
-    centerDB
-      .findById(req.params.id)
+    Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(404)
-            .send({ message: 'center Not Found' });
+        if (center) {
+          center.update({
+            centerName: req.body.name,
+            city: req.body.city,
+            address: req.body.address,
+            facility: req.body.facility,
+            availability: req.body.availability || 'unknow'
+          });
+          res.status(200).send({ message: 'updated', center });
+        } else {
+          res.status(404).send({ message: 'center not found' });
         }
-        return center
-          .update({
-            centerName: req.body.name, city: req.body.city, address: req.body.address, facility: req.body.facility
-          })
-          .then(() => res.status(200).send({ message: 'updated', center }))
-          .catch(error => res.status(400).send(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(err => res.status(400).send(err));
   }
 
   /**
@@ -124,20 +106,17 @@ class Center {
    */
 
   static deleteCenter(req, res) {
-    centerDB
-      .findById(req.params.id)
+    Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
-        if (!center) {
-          return res
-            .status(400)
-            .send({ message: 'center not Found' });
+        if (center) {
+          center.destroy();
+          res.status(200).send({ message: 'center successfully deleted!' });
+        } else {
+          res.status(404).send({ message: 'center not found' });
         }
-        return center
-          .destroy()
-          .then(res.status(200).send({ message: 'center successfully deleted!' }))
-          .catch(error => res.status(400).send(error));
-      });
+      })
+      .catch(err => res.status(400).send(err));
   }
 }
 
-export default Center;
+export default Centers;

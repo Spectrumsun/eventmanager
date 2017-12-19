@@ -61,5 +61,4 @@ describe('Event Manager', () => {
         done();
       });
   });
- 
 });

@@ -24,7 +24,6 @@ export default (sequelize, DataTypes) => {
   });
   Center.associate = (models) => {
     Center.hasMany(models.Event, { foreignKey: 'centerId', as: 'events' });
-    // associations can be defined here
   };
   return Center;
 };

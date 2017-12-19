@@ -25,7 +25,7 @@ app.use('/api/v1/', routes);
   res.status(404).send({ message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫' });
 }); */
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 6000;
 
 app.listen(port);
 

@@ -1,5 +1,9 @@
 'use strict';
 
+var _dotenv = require('dotenv');
+
+var _dotenv2 = _interopRequireDefault(_dotenv);
+
 var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
@@ -22,6 +26,8 @@ var basename = _path2.default.basename(module.filename);
 var env = process.env.NODE_ENV || 'development';
 var config = _config2.default[env];
 var db = {};
+
+_dotenv2.default.config();
 
 var sequelize = void 0;
 if (config.use_env_variable) {

@@ -3,7 +3,7 @@
   "parser": "babel-eslint",
   "rules": {
     "allowForLoopAfterthoughts": true,
-    
+     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "linebreak-style": [0, "windows"],
     "one-var": 0,
     "one-var-declaration-per-line": 0,

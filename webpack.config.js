@@ -20,11 +20,29 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'env', ]
+            presets: ['react', 'env',]
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 10000 }
           }
-        }
-      }
-    ]
-  }
+        ]
+      },
+    ],
+  },
+
 
 };

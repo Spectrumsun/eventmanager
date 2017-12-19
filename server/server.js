@@ -21,9 +21,9 @@ app.use('/api/v1/', express.static(path.join(__dirname, '/../client/public')));
 
 app.use('/api/v1/', routes);
 
-app.get('*', (req, res) => {
+/* app.get('*', (req, res) => {
   res.status(404).send({ message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫' });
-});
+}); */
 
 const port = process.env.PORT || 7000;
 

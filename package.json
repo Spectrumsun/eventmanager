@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "sequelize db:migrate && node ./build/server.js",
+    "start": "node build/server.js",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "migrations": "sequelize db:migrate:undo:all && ssequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -15,6 +15,7 @@
     "build-server": "babel ./server -d ./build ./server -s",
     "build": "npm run clean && npm run build-server",
     "webpack-watch": "webpack -d --watch"
+    
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

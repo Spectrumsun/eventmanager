@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "webpack-watch": "webpack -d --watch",
-    "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "start": "sequelize db:migrate && npm run build && node ./build/server.js",
+    "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "migrations": "sequelize db:migrate:undo:all && ssequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
@@ -14,7 +13,8 @@
     "dev:start": "concurrent --kill-others \"npm run webpack-watch\" \"nodemon --ignore lib --exec  babel-node server/server.js",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel ./server -d ./build ./server -s",
-    "build": "npm run clean && npm run build-server"
+    "build": "npm run clean && npm run build-server",
+    "webpack-watch": "webpack -d --watch"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

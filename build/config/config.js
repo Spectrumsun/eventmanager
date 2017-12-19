@@ -8,14 +8,18 @@ module.exports = {
     password: '1',
     database: 'event',
     host: 5432,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    operatorAliases: false
   },
   test: {
     use_env_variable: 'DATABASE_URL_TEST',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    operatorAliases: false
   },
   production: {
-    use_env_variable: process.env.DATABASE_URL
+    use_env_variable: process.env.DATABASE_URL,
+    operatorAliases: false,
+    dialect: 'postgres'
   }
 
 };

@@ -5,3 +5,4 @@
 /.eslintignore
 /.process.env/
 /.vscode/
+/build/

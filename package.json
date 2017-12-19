@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "sequelize db:migrate && npm run build && node build/server.js",
+    "start": "sequelize db:migrate &&  babel-node server/server.js",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "migrations": "sequelize db:migrate:undo:all && ssequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

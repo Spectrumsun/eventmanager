@@ -16,7 +16,7 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-// app.use('/api/v1/', express.static(path.join(__dirname, '/../client/public')));
+app.use('/api/v1/', express.static(path.join(__dirname, '/../client/public')));
 
 
 app.use('/api/v1/', routes);

@@ -1,8 +1,4 @@
 import React from 'react';
-import image1 from '../static/image/image1.jpg';
-import image2 from '../static/image/image2.jpg';
-import image3 from '../static/image/image3.jpg';
-
 
 const style1 = {
   textAlign: 'justify'
@@ -23,21 +19,21 @@ const home = () => (
       </ol>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img className="d-block w-100" src={image1} alt="First slide" />
+          <img className="d-block w-100" src="./image/image1.jpg" alt="First slide" />
           <div className="carousel-caption d-none d-md-block caption">
             <h3>Our Event Centers are the best</h3>
             <p>You dont need to look any further</p>
           </div>
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src={image2} alt="Second slide" />
+          <img className="d-block w-100" src="./image/image2.jpg" alt="Second slide" />
           <div className="carousel-caption d-none d-md-block caption">
             <h3>World class center to host your events</h3>
             <p>Very easy to book and check</p>
           </div>
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src={image3} alt="Third slide" />
+          <img className="d-block w-100" src="./image/image3.jpg" alt="Third slide" />
           <div className="carousel-caption d-none d-md-block caption">
             <h3>Chooce from variety of Places</h3>
             <p>Just Login or Signup to access..</p>

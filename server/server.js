@@ -16,14 +16,16 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-app.use('/api/v1/', express.static(path.join(__dirname, '/../client/public')));
 
+app.use(express.static(path.join(__dirname, '/../client/public')));
+app.use(express.static(path.join(__dirname, '/../client/src')));
 
 app.use('/api/v1/', routes);
 
-/* app.get('*', (req, res) => {
-  res.status(404).send({ message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫' });
-}); */
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/public/index.html'));
+  // res.status(404).send({ message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫' });
+});
 
 const port = process.env.PORT || 6000;
 

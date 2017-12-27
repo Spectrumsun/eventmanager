@@ -15,7 +15,6 @@
     "build-server": "babel ./server -d ./build ./server -s",
     "build": "npm run clean && npm run build-server",
     "webpack-watch": "webpack -d --watch"
-    
   },
   "author": "Taiwo Sunday",
   "license": "ISC",
@@ -48,7 +47,6 @@
     "popper.js": "^1.12.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "sequelize": "^4.23.0",

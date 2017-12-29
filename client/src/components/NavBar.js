@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Login from './Login';
 import Home from './Home';
-import Centers from './Cemters';
+import AddCenter from './AddCenter';
 
 
 const styles = {

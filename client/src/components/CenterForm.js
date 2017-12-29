@@ -7,7 +7,7 @@ const centerFrom = () => (
       <div className="form-row">
         <div className="form-group col-md-6">
           <h5><label htmlFor="inputEmail4">Name</label></h5>
-          <input type="text" className="form-control form-control-lg" placeholder required />
+          <input type="text" className="form-control form-control-lg" required />
         </div>
         <div className="form-group col-md-6">
           <h5><label htmlFor="inputPassword4">Address</label></h5>

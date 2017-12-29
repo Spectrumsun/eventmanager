@@ -1,8 +1,13 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Login from './Login';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import Home from './Home';
-//import AddCenter from './AddCenter';
+import Signup from './Signup';
+import Login from './Login';
+import AddCenter from './AddCenter';
+import ViewCenters from './ViewCenters';
+import AddEvent from './Addevent';
+import ViewEvents from './ViewEvents';
+
 
 
 const styles = {
@@ -26,9 +31,9 @@ const navBar = () => (
 	          Events
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="addevent.html">Add Event</a>
+              <Link to='/addevent' className="dropdown-item">Add Event</Link>
               <div className="dropdown-divider" />
-              <a className="dropdown-item" href="viewevent.html">View Events</a>
+              <Link to="/events"className="dropdown-item">View Events</Link>
             </div>
           </li>
           <li className="nav-item dropdown">
@@ -36,26 +41,33 @@ const navBar = () => (
 	          Center
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="addcenter.html">Add Center</a>
+              <Link to="/addcenter" className="dropdown-item">Add Center</Link>
               <div className="dropdown-menu" />
-              <a className="dropdown-item" href="/center">View Centers</a>
+              < Link to="/centers" className="dropdown-item">View Centers</Link>
             </div>
           </li>
           <br />
         </ul>
         <ul className=" nav navbar-nav navbar-right">
           <li className="nav-item">
-            <a className="btn btn-outline-light" href="/login">Login</a>
+            <Link to="/login" className="btn btn-outline-light">Login</Link>
           </li>
           <br />
           <li className="nav-item">
-            <a className="btn btn-outline-light" href="signup.html">Sign up</a>
+            <Link to="/signup" className="btn btn-outline-light">Sign up</Link>
           </li>
         </ul>
       </div>
     </nav>
-    <Route path="/" exact component={Home} />
-    <Route path="/login" exact component={Login} />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/addevent" exact component={AddEvent} />
+      <Route path="/events" exact component={ViewEvents} />
+      <Route path="/addcenter" exact component={AddCenter} />
+      <Route path="/centers" exact component={ViewCenters} />
+      <Route path="/signup" exact component={Signup} />
+      <Route path="/login" exact component={Login} />
+    </Switch>
    
   </div>
 );

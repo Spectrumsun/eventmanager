@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const viewEvent = () => (
-  <div className="container">
+  <div className="container" style={{ paddingTop: '100px' }}>
     <h1 style={{ textAlign: 'center' }}>Events</h1>
     <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
       <img className="card-img-top" src="./image/image1.jpg" alt="Card cap" />

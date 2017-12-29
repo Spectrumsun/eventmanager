@@ -1,7 +1,7 @@
 import React from 'react';
 
 const passwordRest = () => (
-  <div className="container">
+  <div className="container" style={{ paddingTop: '100px' }}>
     <div className="card loginCard" style={{width: '30rem' }}>
       <div className="card-header">
         <h3>Password Reset</h3>

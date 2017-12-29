@@ -31,6 +31,6 @@ const port = process.env.PORT || 6000;
 
 app.listen(port);
 
-console.log(`Find me on http://localhost:${port}/api/v1`);
+console.log(`Find me on http://localhost:${port}`);
 
 export default app;

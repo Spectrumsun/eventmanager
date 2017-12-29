@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Login from './Login';
 import Home from './Home';
-import AddCenter from './AddCenter';
+//import AddCenter from './AddCenter';
 
 
 const styles = {
@@ -56,7 +56,7 @@ const navBar = () => (
     </nav>
     <Route path="/" exact component={Home} />
     <Route path="/login" exact component={Login} />
-    <Route path="/center" exact component={Centers} />
+   
   </div>
 );
 

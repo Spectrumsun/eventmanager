@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const signup = () => (
-  <div className="container">
+  <div className="container" style={{ paddingTop: '100px' }}>
     <div className="card loginCard" style={{ width: '40rem' }}>
       <div className="card-header">
         <h3>Sign up</h3>
@@ -11,24 +11,24 @@ const signup = () => (
         <div className="cont">
           <form action="login.html" className="centerform">
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Full Name</label>
-              <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your name" required />
+              <label htmlFor="1">Full Name</label>
+              <input type="text" className="form-control form-control-lg" placeholder="your name" required />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputEmail1">Email address</label>
-              <input type="email" className="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your-email@example.com" required />
+              <label htmlFor="2">Email address</label>
+              <input type="email" className="form-control form-control-lg" placeholder="your-email@example.com" required />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1 ">Password</label>
-              <input type="password" className="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required />
+              <label htmlFor="2 ">Password</label>
+              <input type="password" className="form-control form-control-lg" placeholder="Password" required />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Confirm Password</label>
-              <input type="password" className="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required />
+              <label htmlFor="3">Confirm Password</label>
+              <input type="password" className="form-control form-control-lg" placeholder="Password" required />
             </div>
             <div className="form-check">
               <label className="form-check-label">
-                <input type="checkbox" className="form-check-input form-control-lg" required />>
+                <input type="checkbox" className="form-check-input form-control-lg" required />
                 <small> Have read and accepted the terms and conditions ?</small>
               </label>
             </div>

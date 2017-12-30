@@ -1,7 +1,7 @@
 import React from 'react';
 
 const centers = () => (
-  <div className="container">
+  <div className="container" style={{ paddingTop: '100px' }}>
     <h1 style={{ textAlign: 'center' }}>Centers</h1>
     <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
       <div className="card-body">

@@ -8,7 +8,7 @@ import './static/css/style.css';
 
 require('bootstrap');
 
-
+axios.defaults.baseURL = 'https://sleepy-wave-51548.herokuapp.com/api/v1/';
 
 const App = () => (
   <BrowserRouter>

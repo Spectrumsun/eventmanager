@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
 class EventForm extends Component {
-  onSubmit(e) {
-    e.preventDefault();
-    //customHistory.push('/events');
-  }
+ 
 
   render() {
     return (

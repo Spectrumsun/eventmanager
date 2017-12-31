@@ -1,13 +1,6 @@
 import React from 'react';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
-import Home from './Home';
-import Signup from '../User/Signup';
-import Login from '../User//Login';
-import AddCenter from '../Center/AddCenter';
-import ViewCenters from '../Center/ViewCenters';
-import AddEvent from '../Event/Addevent';
-import ViewEvents from '../Event/ViewEvents';
-
+import { Link } from 'react-router-dom';
+import Router from '../Route/Route';
 
 
 const styles = {
@@ -31,7 +24,7 @@ const navBar = () => (
 	          Events
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <Link to='/addevent' className="dropdown-item">Add Event</Link>
+              <Link to="/addevent" className="dropdown-item">Add Event</Link>
               <div className="dropdown-divider" />
               <Link to="/events"className="dropdown-item">View Events</Link>
             </div>
@@ -43,7 +36,7 @@ const navBar = () => (
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <Link to="/addcenter" className="dropdown-item">Add Center</Link>
               <div className="dropdown-menu" />
-              < Link to="/centers" className="dropdown-item">View Centers</Link>
+              <Link to="/centers" className="dropdown-item">View Centers</Link>
             </div>
           </li>
           <br />
@@ -59,16 +52,7 @@ const navBar = () => (
         </ul>
       </div>
     </nav>
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/addevent" exact component={AddEvent} />
-      <Route path="/events" exact component={ViewEvents} />
-      <Route path="/addcenter" exact component={AddCenter} />
-      <Route path="/centers" exact component={ViewCenters} />
-      <Route path="/signup" exact component={Signup} />
-      <Route path="/login" exact component={Login} />
-    </Switch>
-   
+    <Router />
   </div>
 );
 

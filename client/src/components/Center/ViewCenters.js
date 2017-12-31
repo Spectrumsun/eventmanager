@@ -9,6 +9,7 @@ class Centers extends Component {
      }
 
      componentDidMount() {
+       console.log(this.props)
        axios.get('/centers')
          .then((res) => {
            this.setState({ centers: res.data.center });

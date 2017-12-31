@@ -1,4 +1,5 @@
 import React from 'react';
+import Centers from '../Center/ViewCenters';
 
 const style1 = {
   textAlign: 'justify'
@@ -48,38 +49,7 @@ const home = () => (
           <p style={style1}>Manage your events easily. Pick from our different centers to host your events. Each center has different facility. projectors, car pack, swimming pools.  We have centers for all types of events you want to organize.
                 Easily check if a center is book up while you plan your event. It’s that easy and simple just create an account and browse through all our center and pick the one you like.
           </p>
-          <h1 className="center-item shadow">Current Events</h1>
-          <br />
-          <div className="card d-lg-inline-block" style={style2}>
-            <img className="card-img-top" src="./image/image33.jpg" alt="Card cap" />
-            <div className="card-body">
-              <h4 className="card-title">Birthday Party</h4>
-              <p className="card-text">A event to celebrate Life</p>
-              <h6 className="card-text left">12-12-2017 | </h6>
-              <h6 className="card-text">10:55 AM</h6>
-              <a href="eventinfo.html" className="btn btn-primary">View</a>
-            </div>
-          </div>
-          <div className="card d-lg-inline-block" style={style2}>
-            <img className="card-img-top" src="./image/image2.jpg" alt="Card cap" />
-            <div className="card-body">
-              <h4 className="card-title">Wedding </h4>
-              <p className="card-text">A wedding party.</p>
-              <h6 className="card-text left">12-12-2017 | </h6>
-              <h6 className="card-text">10:55 AM</h6>
-              <a href="eventinfo.html" className="btn btn-primary">View</a>
-            </div>
-          </div>
-          <div className="card d-lg-inline-block" style={style2}>
-            <img className="card-img-top" src="./image/image3.jpg" alt="Card  cap" />
-            <div className="card-body">
-              <h4 className="card-title">Seminar</h4>
-              <p className="card-text">Having a Growth mindset.</p>
-              <h6 className="card-text left">12-12-2017 | </h6>
-              <h6 className="card-text">10:55 AM</h6>
-              <a href="eventinfo.html" className="btn btn-primary">View</a>
-            </div>
-          </div>
+          <Centers />
         </div>
       </div>
     </div>

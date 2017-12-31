@@ -1,5 +1,5 @@
 import React from 'react';
-import CenterFrom from './CenterForm';
+import CenterFrom from './Form/CenterForm';
 
 const addCenter = () => (
   <div className="container" style={{ paddingTop: '100px' }}>

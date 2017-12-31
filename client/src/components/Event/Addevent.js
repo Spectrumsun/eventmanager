@@ -1,5 +1,5 @@
 import React from 'react';
-import EventForm from './EventForm';
+import EventForm from './Form/EventForm';
 
 const eventCenter = () => (
   <div className="container" style={{ paddingTop: '100px' }}>

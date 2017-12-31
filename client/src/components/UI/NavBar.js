@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 import Home from './Home';
-import Signup from './Signup';
-import Login from './Login';
-import AddCenter from './AddCenter';
-import ViewCenters from './ViewCenters';
-import AddEvent from './Addevent';
-import ViewEvents from './ViewEvents';
+import Signup from '../User/Signup';
+import Login from '../User//Login';
+import AddCenter from '../Center/AddCenter';
+import ViewCenters from '../Center/ViewCenters';
+import AddEvent from '../Event/Addevent';
+import ViewEvents from '../Event/ViewEvents';
 
 
 

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+
 
 const centerInfo = (props) => (
   <div className="container" style={{ paddingTop: '100px' }}>

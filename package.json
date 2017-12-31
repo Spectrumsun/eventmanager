@@ -55,11 +55,13 @@
     "style-loader": "^0.19.1",
     "swagger-jsdoc": "^1.9.7",
     "tether": "^1.4.3",
+    "toastr": "^2.1.4",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-preset-stage-1": "^6.24.1",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "cross-env": "^5.1.1",

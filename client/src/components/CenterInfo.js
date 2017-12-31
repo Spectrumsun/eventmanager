@@ -1,6 +1,6 @@
 import React from 'react';
 
-const centerInfo = () => (
+const centerInfo = (props) => (
   <div className="container" style={{ paddingTop: '100px' }}>
     <div className="card loginCard" style={{ width: '45rem' }}>
       <div className="card-header dark">
@@ -11,7 +11,7 @@ const centerInfo = () => (
           <div className="form-group row">
             <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Center Name</label>
             <div className="col-sm-10">
-              <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value="Yaba Center" />
+              <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={props.centerName} />
             </div>
           </div>
           <div className="form-group row">

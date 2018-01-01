@@ -15,10 +15,10 @@ const routers = () => (
     <Route path="/" exact component={Home} />
     <Route path="/addevent" exact component={AddEvent} />
     <Route path="/events" exact component={ViewEvents} />
-    <Route path="/events:eventId" exact component={EventInfo} />
+    <Route path="/events/:eventId" exact component={EventInfo} />
     <Route path="/addcenter" exact component={AddCenter} />
     <Route path="/centers" exact component={ViewCenters} />
-    <Route path="/centers/centerId" exact component={CenterInfo} />
+    <Route path="/centers/:centerId" exact component={CenterInfo} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
   </Switch>

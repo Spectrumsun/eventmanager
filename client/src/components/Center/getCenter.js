@@ -5,7 +5,7 @@ const display = (props) => (
              <div className="card-body">
                <h4 className="card-title">{props.centerName}</h4>
                <h6 className="card-subtitle mb-2 text-muted">{props.address}</h6>
-               <a  className="card-link">View More</a>
+               <h5  className="card-link">View More</h5>
              </div>
            </div>
        );

@@ -82,7 +82,7 @@ router.get(
 // GET a single  Center with events added to the center
 router.get(
   '/centers/:id',
-  auth.verifyToken,
+  //auth.verifyToken,
   centerController.getOneCenter
 );
 

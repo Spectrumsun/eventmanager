@@ -1,52 +1,53 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 import Display from './getCenter';
-import CenterInfo from '../Center/CenterInfo'
-import { Route, Link } from 'react-router-dom';
+import CenterInfo from '../Center/CenterInfo';
+
 
 class Centers extends Component {
      state = {
-       centers: [],
-       selectedCenterId: null
-
-
+       centers: []
      }
 
      componentDidMount() {
-       axios.get('/centers')
+       axios.get('/centers/')
          .then((res) => {
            this.setState({ centers: res.data.center });
            // console.log(this.state.centers);
          })
-         .catch((error) => {
-           console.log(error);
+         .catch((e) => {
+           console.log(e);
+           this.setState({ e: true });
          });
      }
      centerclicked = (id) => {
-       this.setState({selectedCenterId: id});
-
-
-       //this.props.histroy.push('/centers/'+ id);
+       this.props.history.push(`/centers/${id}`);
      }
 
      render() {
-       const centers = this.state.centers.map(center =>
-         (
-           <Display
-             key={center.id}
-             centerName={center.centerName}
-             address={center.address}
-             clicked={() => this.centerclicked(center.id)}
-           />
-         ));
+       let centers = <p style={{ textAlign: 'center' }}>Somthing went wrong</p>;
+       if (!this.state.e) {
+         centers = this.state.centers.map(center =>
+           (
+             <Display
+               key={center.id}
+               centerName={center.centerName}
+               address={center.address}
+               clicked={() => this.centerclicked(center.id)}
+             />
+           ));
+       }
+
+
        return (
          <div>
            <div className="container" style={{ paddingTop: '100px' }}>
              <h1 style={{ textAlign: 'center' }}>Centers</h1>
              {centers}
-             <CenterInfo id={this.state.selectedCenterId}/>
+             <CenterInfo id={this.state.selectedCenterId} />
            </div>
-          
+           
 
          </div>
        );

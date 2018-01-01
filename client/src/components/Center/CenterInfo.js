@@ -7,12 +7,13 @@ class CenterInfo extends Component {
   }
 
   componentDidUpdate() {
+    console.log(this.props)
     if (this.props.id) {
-      if (!this.state.loadedCenter || (this.state.loadedCenter.id !== this.props.id)) {
+      if (!this.state.loadedCenter || (this.state.loadedCenter.id && this.state.loadedCenter !== +this.props.id)) {
         axios.get(`/centers/${this.props.id}`)
           .then((res) => {
             this.setState({ loadedCenter: res.data.center });
-            console.log(this.state.loadedCenter.facility);
+            console.log(this.state.loadedCenter);
           });
       }
     }

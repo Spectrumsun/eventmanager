@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const display = (props) => (
            <div onClick={props.clicked} className="card d-lg-inline-block" style={{ width: '20rem' }}>

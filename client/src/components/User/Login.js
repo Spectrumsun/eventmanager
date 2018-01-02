@@ -1,7 +1,47 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import toast from 'toastr';
 import axios from 'axios';
 
 class Login extends Component {
+  state = {
+    email: '',
+    password: ''
+  }
+
+  onChange =(e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    //console.log(this.state);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    let errors = '';
+    if (this.state.email === '') {
+      errors += 'Email cannot be empty';
+    }
+
+    if (this.state.password === '') {
+      errors += 'Password cannot be empty';
+    }
+
+    if (errors) {
+      toast.error(errors);
+    } else {
+      axios.post('/users/login', this.state)
+        .then((res) => {
+          toast.success(res.data.message);
+          console.log(res.data);
+          this.props.history.push('/');
+          return (res);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+          console.log(error.response.data.message);
+        });
+    }
+  }
+
 
 
   render() {
@@ -14,15 +54,30 @@ class Login extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
-                <form action="viewevent.html" className="centerform">
+                <form onSubmit={this.onSubmit} className="centerform">
                   <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" required />
+                    <input
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      name="email"
+                      className="form-control form-control-lg"
+                      placeholder="your-email@example.com"
+                      required
+                    />
                   </div>
                   <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control form-control-lg" id="exampleInputPassword1" required />
-                    <small ><a href="passwordreset.html" className="center-item">Password Reset</a></small>
+                    <input
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      name="password"
+                      className="form-control form-control-lg"
+                      required
+                    />
+                    <small ><Link to="/passwordreset" className="center-item">Password Reset</Link></small>
                     <br />
                   </div>
                   <div className="text-center">

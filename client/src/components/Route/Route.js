@@ -10,6 +10,7 @@ import ViewEvents from '../Event/ViewEvents';
 import CenterInfo from '../Center/CenterInfo';
 import EventInfo from '../Event/EventInfo';
 import NotFound from '../NotFound';
+import PasswordRest from '../User/PasswordReset'
 
 
 const routers = () => (
@@ -23,6 +24,7 @@ const routers = () => (
     <Route path="/centers/:id" exact component={CenterInfo} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
+    <Route path="/passwordreset" exact component={PasswordRest} />
     <Route component={NotFound} />
   </Switch>
 );

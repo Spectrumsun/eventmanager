@@ -5,30 +5,41 @@ import toast from 'toastr';
 
 class Signup extends Component {
   state = {
-    FullName: '',
-    EmailAddress: '',
-    Password: '',
-    ConfirmPassword: '',
-    errorMessgae: ''
+    fullname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   }
+
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state)
+    //  console.log(this.state);
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.Fullname === '') {
-      toast.error('Full Name cannot be empty!!!');
+    let errors = '';
+    if (this.state.fullname === '') {
+      errors += 'Full Name cannot be empty!\n';
+    }
+    if (this.state.password !== this.state.confirmPassword) {
+      errors += 'Password do not match';
     }
 
-    if (this.state.EmailAddress === '') {
-      toast.error('Email cannnot be empty!!!!');
-    }
-
-    if (this.state.Password !== this.state.ConfirmPassword) {
-      toast.error('Passwords do not match');
+    if (errors) {
+      toast.error(errors);
+    } else {
+      axios.post('/users', this.state)
+        .then((res) => {
+          toast.success(res.data.message, 'processed to Sign in');
+          this.props.history.push('/login');
+          return (res);
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+          console.log(error.response.data.message);
+        });
     }
   }
 
@@ -48,9 +59,9 @@ class Signup extends Component {
                   <label htmlFor="1">Full Name</label>
                   <input
                     type="text"
-                    value={this.state.FullName}
+                    value={this.state.fullname}
                     onChange={this.onChange}
-                    name="FullName"
+                    name="fullname"
                     className="form-control form-control-lg"
                     placeholder="your name"
                     required
@@ -58,15 +69,39 @@ class Signup extends Component {
                 </div>
                 <div className="form-group">
                   <label htmlFor="2">Email address</label>
-                  <input type="email" value={this.state.EmailAddress} onChange={this.onChange} name="EmailAddress" className="form-control form-control-lg" placeholder="your-email@example.com" required />
+                  <input
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    name="email"
+                    className="form-control form-control-lg"
+                    placeholder="your-email@example.com"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="2 ">Password</label>
-                  <input type="password" value={this.state.Password} onChange={this.onChange} name="Password" className="form-control form-control-lg" placeholder="Password" required />
+                  <input
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    name="password"
+                    className="form-control form-control-lg"
+                    placeholder="Password"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="3">Confirm Password</label>
-                  <input type="password" value={this.state.ConfirmPassword} onChange={this.onChange} name="ConfirmPassword" className="form-control form-control-lg" placeholder="Password" required />
+                  <input
+                    type="password"
+                    value={this.state.confirmPassword}
+                    onChange={this.onChange}
+                    name="confirmPassword"
+                    className="form-control form-control-lg"
+                    placeholder="Password"
+                    required
+                  />
                 </div>
                 <div className="form-check">
                   <label className="form-check-label">

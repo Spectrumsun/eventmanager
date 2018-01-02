@@ -9,18 +9,21 @@ import AddEvent from '../Event/Addevent';
 import ViewEvents from '../Event/ViewEvents';
 import CenterInfo from '../Center/CenterInfo';
 import EventInfo from '../Event/EventInfo';
+import NotFound from '../NotFound';
+
 
 const routers = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/addevent" exact component={AddEvent} />
-    <Route path="/centers" exact component={ViewCenters} />
-   
     <Route path="/events" exact component={ViewEvents} />
-    <Route path="/events/:eventId" exact component={EventInfo} />
+    <Route path="/addevent" exact component={AddEvent} />
+    <Route path="/events/:id" exact component={EventInfo} />
     <Route path="/addcenter" exact component={AddCenter} />
+    <Route path="/centers" exact component={ViewCenters} />
+    <Route path="/centers/:id" exact component={CenterInfo} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
+    <Route component={NotFound} />
   </Switch>
 );
 

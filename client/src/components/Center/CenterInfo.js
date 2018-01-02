@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
+import EditCenter from './EditCenter';
 
 class CenterInfo extends Component {
   state = {
     loadedCenter: null
   }
 
-  componentDidUpdate() {
-    console.log(this.props)
-    if (this.props.id) {
-      if (!this.state.loadedCenter || (this.state.loadedCenter.id && this.state.loadedCenter !== +this.props.id)) {
-        axios.get(`/centers/${this.props.id}`)
+  componentDidMount() {
+    console.log(this.props);
+    if (this.props.match.params.id) {
+      if (!this.state.loadedCenter || (this.state.loadedCenter.id !== this.props.id )) {
+        axios.get(`/centers/${this.props.match.params.id}`)
           .then((res) => {
             this.setState({ loadedCenter: res.data.center });
-            console.log(this.state.loadedCenter);
+            console.log(this.state.loadedCenter.events);
           });
       }
     }
@@ -32,52 +34,58 @@ class CenterInfo extends Component {
               <h1 className="color">Center Info</h1>
             </div>
             <div className="card-body">
-              <form action="addcenter.html">
+              <form >
                 <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Center name</label>
+                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Center name</strong></label>
                   <div className="col-sm-10">
                     <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.state.loadedCenter.centerName} />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Address</label>
+                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Address</strong></label>
                   <div className="col-sm-10">
                     <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.state.loadedCenter.address} />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label">City</label>
+                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>City</strong></label>
                   <div className="col-sm-10">
                     <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.state.loadedCenter.city} />
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Availability</label>
+                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Availability</strong></label>
                   <div className="col-sm-10">
                     <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.state.loadedCenter.availability} />
                   </div>
                 </div>
-                <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Events Holding</label>
-                  <div className="col-sm-10">
-                    <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value="Wedding, Seminar, Birthday" />
-                  </div>
-                </div>
-                <h5>Avaliable Facilities</h5>
+                <h5><strong>Events</strong></h5>
+                <ul className="list-group col-md-6">
+                  {this.state.loadedCenter.events.map(eve =>
+                    (<li className="list-group-item centerlist" key={eve.id} >
+                      <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
+                    </li>))}
+                </ul>
+                <br />
+                <h5><strong>Avaliable Facilities</strong></h5>
                 <ul className="list-group col-md-4">
-                  {this.state.loadedCenter.facility.map(list => <li className="list-group-item centerlist" key={this.props.id}>{list}</li>)}
+                  {this.state.loadedCenter.facility.map(list =>
+                    (<li
+                      className="list-group-item centerlist"
+                      key={this.props.match.params.id}
+                    >{list}
+                    </li>))}
                 </ul>
                 <br />
                 <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
               </form>
-              <a className="btn btn-danger" href="viewevent.html" style={{ marginLleft: '20px' }}>Delete</a>
+              <a className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</a>
             </div>
           </div>
         </div>
       );
     }
     return (
-
       <div>
         {center}
       </div>

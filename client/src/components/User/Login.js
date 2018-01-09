@@ -32,7 +32,7 @@ class Login extends Component {
         .then((res) => {
           toast.success(res.data.message);
           console.log(res.data);
-          this.props.history.push('/');
+          this.props.history.replace('/');
           return (res);
         })
         .catch((error) => {

@@ -11,15 +11,16 @@ class CenterInfo extends Component {
   componentDidMount() {
     console.log(this.props);
     if (this.props.match.params.id) {
-      if (!this.state.loadedCenter || (this.state.loadedCenter.id !== this.props.id )) {
+      if (!this.state.loadedCenter || (this.state.loadedCenter.id !== this.props.id)) {
         axios.get(`/centers/${this.props.match.params.id}`)
           .then((res) => {
             this.setState({ loadedCenter: res.data.center });
-            console.log(this.state.loadedCenter.events);
+            // console.log(this.state.loadedCenter.events);
           });
       }
     }
   }
+
 
   render() {
     let center = <p>invalied center!!!</p>;
@@ -64,7 +65,7 @@ class CenterInfo extends Component {
                   {this.state.loadedCenter.events.map(eve =>
                     (<li className="list-group-item centerlist" key={eve.id} >
                       <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
-                    </li>))}
+                     </li>))}
                 </ul>
                 <br />
                 <h5><strong>Avaliable Facilities</strong></h5>
@@ -74,12 +75,12 @@ class CenterInfo extends Component {
                       className="list-group-item centerlist"
                       key={this.props.match.params.id}
                     >{list}
-                    </li>))}
+                     </li>))}
                 </ul>
                 <br />
-                <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+                <button type="submit"  className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
               </form>
-              <a className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</a>
+              <Link to={ this.props.history.push + '/edit'} className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</Link>
             </div>
           </div>
         </div>
@@ -88,6 +89,7 @@ class CenterInfo extends Component {
     return (
       <div>
         {center}
+        <Route path="/edit" exact component={EditCenter} />
       </div>
     );
   }

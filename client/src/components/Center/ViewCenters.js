@@ -41,8 +41,6 @@ class Centers extends Component {
              <h1 style={{ textAlign: 'center' }}>Centers</h1>
              {centers}
            </div>
-
-
          </div>
        );
      }

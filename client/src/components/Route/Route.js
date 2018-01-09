@@ -10,7 +10,8 @@ import ViewEvents from '../Event/ViewEvents';
 import CenterInfo from '../Center/CenterInfo';
 import EventInfo from '../Event/EventInfo';
 import NotFound from '../NotFound';
-import PasswordRest from '../User/PasswordReset'
+import PasswordRest from '../User/PasswordReset';
+import EditCenter from '../Center/EditCenter'
 
 
 const routers = () => (
@@ -22,9 +23,11 @@ const routers = () => (
     <Route path="/addcenter" exact component={AddCenter} />
     <Route path="/centers" exact component={ViewCenters} />
     <Route path="/centers/:id" exact component={CenterInfo} />
+    
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
     <Route path="/passwordreset" exact component={PasswordRest} />
+    
     <Route component={NotFound} />
   </Switch>
 );

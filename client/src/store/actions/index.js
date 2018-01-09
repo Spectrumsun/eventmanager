@@ -1,0 +1,2 @@
+export { getAllCenters } from './centerAction';
+

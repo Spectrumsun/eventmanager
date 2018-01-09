@@ -1,11 +1,12 @@
 import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
-  centers: []
+  center: [],
+  error: 
 };
 
 const reducer = (state = initialState, action) => {
-  switch (action.actiontype) {
+  switch (action.type) {
     case actionTypes.GET_ALL_CENTERS:
       return {
         ...state,

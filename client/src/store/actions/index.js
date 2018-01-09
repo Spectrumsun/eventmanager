@@ -1,2 +1,2 @@
-export { getAllCenters } from './centerAction';
+export { getAllCenters, initCenters } from './centerAction';
 

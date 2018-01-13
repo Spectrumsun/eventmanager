@@ -20,7 +20,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'env',]
+            presets: ['react', 'env', 'stage-1']
           },
         },
       },
@@ -43,6 +43,13 @@ module.exports = {
       },
     ],
   },
-
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
+    })
+  ]
 
 };

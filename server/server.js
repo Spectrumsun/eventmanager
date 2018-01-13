@@ -3,12 +3,15 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import expressValidator from 'express-validator';
+import cors from 'cors'
 import path from 'path';
 import routes from './routes';
 
 require('dotenv').config();
 
 const app = express();
+
+app.use(cors());
 
 app.use(morgan('dev'));
 

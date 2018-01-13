@@ -21,6 +21,7 @@ class Signup extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.props.onUserCreate(this.state);
     let errors = '';
     if (this.state.fullname === '') {
       errors += 'Full Name cannot be empty!\n';
@@ -29,25 +30,34 @@ class Signup extends Component {
       errors += 'Password do not match';
     }
 
-    if (errors && this.props.onUserError()) {
+    if (errors) {
       toast.error(errors);
-      toast.error(this.props.onUserError());
-      console.log(this.props.onUserError());
-    } else {
-      this.props.onUserCreate(this.state);
-      this.props.history.push('/login');
-      toast.success('processed to Sign in');
-
     }
+
+
   }
 
 
   render() {
-    //  const { errorMessgae } = this.state;
+    let errorMessage = null;
+
+    if (this.props.error) {
+      errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
+    }
+
+    let successMessage = null;
+
+    if (this.props.user) {
+      successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.user}</strong></p>);
+    }
+
+
     return (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="card loginCard" style={{ width: '40rem' }}>
           <div className="card-header">
+            {errorMessage}
+            {successMessage}
             <h3>Sign up</h3>
           </div>
           <div className="card-body">

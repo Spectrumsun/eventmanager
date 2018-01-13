@@ -33,7 +33,7 @@ class Centers extends Component {
 }
 
 const mapStateToProps = state => ({
-  center: state.center
+  center: state.centers.center
 });
 
 const mapDispatchToProps = dispatch => ({

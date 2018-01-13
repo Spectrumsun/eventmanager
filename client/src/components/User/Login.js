@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'toastr';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as action from '../../store/actions/index';
 
 class Login extends Component {
   state = {
@@ -11,11 +13,12 @@ class Login extends Component {
 
   onChange =(e) => {
     this.setState({ [e.target.name]: e.target.value });
-    //console.log(this.state);
+    // console.log(this.state);
   }
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.props.initUserLogin(this.state);
     let errors = '';
     if (this.state.email === '') {
       errors += 'Email cannot be empty';
@@ -28,28 +31,33 @@ class Login extends Component {
     if (errors) {
       toast.error(errors);
     } else {
-      axios.post('/users/login', this.state)
-        .then((res) => {
-          toast.success(res.data.message);
-          console.log(res.data);
-          this.props.history.replace('/');
-          return (res);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-          console.log(error.response.data.message);
-        });
+      // toast.success(this.props.user);
     }
   }
 
 
+  // this.props.history.replace('/');
 
   render() {
+    let errorMessage = null;
+
+    if (this.props.error) {
+      errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
+    }
+
+    let successMessage = null;
+
+    if (this.props.user) {
+      successMessage = (<p style={{ color: 'black', textAlign: 'center' }}><strong>{this.props.user}</strong></p>);
+    }
+
     return (
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
+              {errorMessage}
+              {successMessage}
               <h3>Login</h3>
             </div>
             <div className="card-body">
@@ -64,7 +72,7 @@ class Login extends Component {
                       name="email"
                       className="form-control form-control-lg"
                       placeholder="your-email@example.com"
-                      required
+
                     />
                   </div>
                   <div className="form-group">
@@ -89,11 +97,18 @@ class Login extends Component {
           </div>
         </div>
       </div>
-
-
     );
   }
 }
 
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.users.user,
+  error: state.users.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  initUserLogin: user => dispatch(action.initUserLogin(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

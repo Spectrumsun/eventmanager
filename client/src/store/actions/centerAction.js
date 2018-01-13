@@ -9,17 +9,47 @@ export const getAllCenters = (center) => {
     }
 };
 
+export const getSingleCenter = (center) => {
+  return {
+    type: actionTypes.GET_SINGLE_CENTER,
+    loadedCenter: center
+  }
+} 
+
+
+export const centerError = () => {
+  return {
+    type: actionTypes.CENTER_ERROR
+    
+    }
+};
+
 
 export const initCenters = () => {
   return dispatch => {
     axios.get('/centers')
       .then((res) => {
-        const data = res.data.center
-        dispatch(getAllCenters(data));
+        dispatch(getAllCenters(res.data.center));
         //console.log(getAllCenters(data))
       })
       .catch((error) => {
-       // console.log(error);
+        dispatch(centerError())
+       console.log(error);
       });
   };
 };
+
+
+export const getOneCenter = (id) => {
+  return  dispatch => {
+     axios.get(`/centers/${id}`)
+          .then((res) => {
+            dispatch(getSingleCenter(res.data.center))
+            //console.log(data)
+          })
+          .catch((error) => {
+            dispatch(centerError())
+          })
+    
+  }
+}

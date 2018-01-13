@@ -1,31 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import Display from './getEvent';
+import * as actions from '../../store/actions/index';
 
 
-const viewEvent = () => (
-  <div className="container" style={{ paddingTop: '100px' }}>
-    <h1 style={{ textAlign: 'center' }}>Events</h1>
-    <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
-      <img className="card-img-top" src="./image/image1.jpg" alt="Card cap" />
-      <div className="card-body">
-        <h4 className="card-title">Birthday Party</h4>
-        <p className="card-text">A event to celebrate Life</p>
-        <h6 className="card-text">12-12-2017</h6>
-        <h6 className="card-text">10:55 AM</h6>
-        <a href="eventinfo.html" className="btn btn-primary">View</a>
+class ViewEvent extends Component {
+  componentDidMount() {
+    this.props.onInitEvent();
+  }
+  render() {
+    const events = this.props.event.map(event =>
+      (<Link to={`/events/${event.id}`} key={event.id} style={{ color: 'black' }}>
+        <Display
+          eventName={event.eventName}
+          eventdate={event.eventdate}
+          purpose={event.purpose}
+        />
+       </Link>
+      ));
+
+    return (
+      <div>
+        <div className="container" style={{ paddingTop: '100px' }}>
+          <h1 style={{ textAlign: 'center' }}>Events</h1>
+          {events}
+        </div>
       </div>
-    </div>
-    <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
-      <img className="card-img-top" src="./image/image1.jpg" alt="Card cap" />
-      <div className="card-body">
-        <h4 className="card-title">Wedding </h4>
-        <p className="card-text">A wedding party.</p>
-        <h6 className="card-text">12-12-2017</h6>
-        <h6 className="card-text">10:55 AM</h6>
-        <a href="eventinfo.html" className="btn btn-primary">View</a>
-      </div>
-    </div>
-  </div>
+    );
+  }
+}
 
-);
 
-export default viewEvent;
+
+const mapStateToProps = state => ({
+  event: state.events.event
+});
+
+const mapDispatchToProps = dispatch => ({
+  onInitEvent: () => dispatch(actions.initEvents())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewEvent);

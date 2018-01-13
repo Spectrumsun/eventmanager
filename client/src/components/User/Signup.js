@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import toast from 'toastr';
+import { connect } from 'react-redux';
+import * as action from '../../store/actions/index';
 
 
 class Signup extends Component {
@@ -27,19 +29,15 @@ class Signup extends Component {
       errors += 'Password do not match';
     }
 
-    if (errors) {
+    if (errors && this.props.onUserError()) {
       toast.error(errors);
+      toast.error(this.props.onUserError());
+      console.log(this.props.onUserError());
     } else {
-      axios.post('/users', this.state)
-        .then((res) => {
-          toast.success(res.data.message, 'processed to Sign in');
-          this.props.history.push('/login');
-          return (res);
-        })
-        .catch((error) => {
-          toast.error(error.response.data.message);
-          console.log(error.response.data.message);
-        });
+      this.props.onUserCreate(this.state);
+      this.props.history.push('/login');
+      toast.success('processed to Sign in');
+
     }
   }
 
@@ -124,4 +122,15 @@ class Signup extends Component {
 }
 
 
-export default Signup;
+const mapStateToProps = state => ({
+  user: state.users.user,
+  error: state.users.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  onUserCreate: user => dispatch(action.initUser(user)),
+  onUserError: () => dispatch(action.userError())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

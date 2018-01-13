@@ -36,14 +36,14 @@ router.post(
 // GET Events
 router.get(
   '/events',
-  auth.verifyToken,
+  
   eventController.getEvent
 );
 
 // GET One Event with the Center for the event
 router.get(
   '/events/:id',
-  auth.verifyToken,
+  
   eventController.getOneEvent
 );
 

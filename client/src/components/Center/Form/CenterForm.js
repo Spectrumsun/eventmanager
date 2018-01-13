@@ -9,16 +9,22 @@ class CenterFrom extends Component {
     facility: []
   }
 
+
+  
   onChange = (e) => {
+
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   }
+
+ /*  getinfo =(e) => {
+    this.setState({facility: })
+  } */
 
    onSubmit = (e) => {
      e.preventDefault();
    // this.props.onUserCreate(this.state);
    }
-
 
    render() {
      return (
@@ -71,10 +77,26 @@ class CenterFrom extends Component {
              </div>
            </div>
            <h5>Add Facilities</h5>
-           <input type="text" className="form-control col-md-6 form-control-lg" id="addFacility" style={{ float: 'left' }} />
-           <input type="reset" value="add" id="add" className="btn btn-info btn-lg" style={{ marginLeft: '20px' }} />
+           <input
+             type="text"
+             value={this.getinfo}
+             className="form-control col-md-6 form-control-lg"
+             style={{ float: 'left' }}
+             name="facility"
+             onChange={this.onChange}
+           />
+
+           <input
+             type="reset"
+             value="add"
+             id="add"
+             className="btn btn-info btn-lg"
+             style={{ marginLeft: '20px' }}
+           />
+
            <br />
            <br />
+
            <ul className="list-group col-md-5" id="list" >
              <li className="list-group-item centerlist">Security</li>
            </ul>

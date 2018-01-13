@@ -12,11 +12,13 @@ import EventInfo from '../Event/EventInfo';
 import NotFound from '../NotFound';
 import PasswordRest from '../User/PasswordReset';
 import EditCenter from '../Center/EditCenter'
+import pickCenter from '../Center/PickCenter'
 
 
 const routers = () => (
   <Switch>
     <Route path="/" exact component={Home} />
+    <Route path="/pickcenter" exact component={pickCenter} />
     <Route path="/events" exact component={ViewEvents} />
     <Route path="/addevent" exact component={AddEvent} />
     <Route path="/events/:id" exact component={EventInfo} />

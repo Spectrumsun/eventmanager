@@ -18,57 +18,41 @@ class CenterInfo extends Component {
             <h1 className="color">Center Info</h1>
           </div>
           <div className="card-body">
-            <form >
-              <div className="form-group row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Center name</strong></label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.loadedCenter.centerName} />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Address</strong></label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.loadedCenter.address} />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>City</strong></label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.loadedCenter.city} />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Availability</strong></label>
-                <div className="col-sm-10">
-                  <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.loadedCenter.availability} />
-                </div>
-              </div>
-              <h5><strong>Events</strong></h5>
-              <ul className="list-group col-md-6">
-                {this.props.loadedCenter && this.props.loadedCenter.events && this.props.loadedCenter.events.map(eve =>
+            <h5 ><strong>Center name</strong></h5>
+            <h6 className="list-group-item centerlist">{this.props.loadedCenter.centerName}</h6>
+
+            <br />
+            <h5 ><strong>Address</strong></h5>
+            <h6 className="list-group-item centerlist">{this.props.loadedCenter.address}</h6>
+            <br />
+            <h5 ><strong>City</strong></h5>
+            <h6 className="list-group-item centerlist">{this.props.loadedCenter.city}</h6>
+            <br />
+            <h5 ><strong>Availability</strong></h5>
+            <h6 className="list-group-item centerlist">{this.props.loadedCenter.availability}</h6>
+            <br />
+            <h5><strong>Events</strong></h5>
+            <ul className="list-group col-md-6">
+              {this.props.loadedCenter && this.props.loadedCenter.events && this.props.loadedCenter.events.map(eve =>
                   (<Link to={`/events/${eve.id}`} key={eve.id} style={{ color: 'black' }}>
                     <li className="list-group-item centerlist" key={eve.id} >
                       <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
                     </li>
-                   </Link>))}
-
-              </ul>
-
-              <br />
-              <h5><strong>Avaliable Facilities</strong></h5>
-              <ul className="list-group col-md-4">
-                {this.props.loadedCenter && this.props.loadedCenter.facility && this.props.loadedCenter.facility.map(list =>
+                  </Link>))}
+            </ul>
+            <br />
+            <h5><strong>Avaliable Facilities</strong></h5>
+            <ul className="list-group col-md-4">
+              {this.props.loadedCenter && this.props.loadedCenter.facility && this.props.loadedCenter.facility.map(list =>
                     (<li
                       className="list-group-item centerlist"
                       key={this.props.match.params.id}
-                    >{list}
-                     </li>))}
-              </ul>
-
-
-              <br />
-              <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
-            </form>
+                    >
+                      {list}
+                    </li>))}
+            </ul>
+            <br />
+            <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
             <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</Link>
           </div>
         </div>
@@ -95,4 +79,3 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CenterInfo);
-

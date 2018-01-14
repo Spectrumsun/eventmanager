@@ -38,7 +38,7 @@ class CenterInfo extends Component {
                     <li className="list-group-item centerlist" key={eve.id} >
                       <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
                     </li>
-                  </Link>))}
+                   </Link>))}
             </ul>
             <br />
             <h5><strong>Avaliable Facilities</strong></h5>
@@ -49,10 +49,12 @@ class CenterInfo extends Component {
                       key={this.props.match.params.id}
                     >
                       {list}
-                    </li>))}
+                     </li>))}
             </ul>
             <br />
-            <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+            <Link to={`/centers/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
+              <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+            </Link>
             <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</Link>
           </div>
         </div>

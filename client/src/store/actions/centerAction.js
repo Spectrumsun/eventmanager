@@ -16,10 +16,24 @@ export const getSingleCenter = (center) => {
   }
 } 
 
-
-export const centerError = () => {
+export const addCenters =(center) => {
   return {
-    type: actionTypes.CENTER_ERROR
+    type: actionTypes.ADD_CENTER,
+    newCenter: center
+  }
+}
+
+export const editCenter =(center) => {
+  return {
+    type: actionTypes.EDIT_CENTER,
+    editCenter: center
+  }
+}
+
+export const centerError = (error) => {
+  return {
+    type: actionTypes.CENTER_ERROR,
+     error: error
     
     }
 };
@@ -33,7 +47,7 @@ export const initCenters = () => {
         //console.log(getAllCenters(data))
       })
       .catch((error) => {
-        dispatch(centerError())
+        dispatch(centerError(error.response.data.message))
        console.log(error);
       });
   };
@@ -49,7 +63,38 @@ export const getOneCenter = (id) => {
           })
           .catch((error) => {
             dispatch(centerError())
+          }
+      )
+  }
+}
+
+
+
+export const initPostCenters = (inputs) => {
+  return dispatch => {
+    axios.post('/centers', inputs)
+      .then((res) => {
+        dispatch(addCenters(res.data.messgae));
+        //console.log(getAllCenters(data))
+      })
+      .catch((error) => {
+        dispatch(centerError(error.response.data.message))
+       console.log(error);
+      });
+  };
+};
+
+
+export const initEditCenter = (id, center) => {
+  return  dispatch => {
+     axios.put(`/centers/${id}`, center)
+          .then((res) => {
+            dispatch(editCenter(res.data.center))
+            //console.log(data)
           })
-    
+          .catch((error) => {
+            dispatch(centerError())
+          }
+      )
   }
 }

@@ -16,7 +16,7 @@ or suggest an  available day 
 
 
 # Technologies Used
-   * Front-end: React/Redux + Bootstrap (Yet To be Implemented)
+   * Front-end: React/Redux + Bootstrap
    * Back-end: Node/Expressjs + Sequelize/Postgres
    * Libraries: ES6, Babel-CLI, eslint, Mocha/Chai, expesss, sequelize, jwt
    * Postman

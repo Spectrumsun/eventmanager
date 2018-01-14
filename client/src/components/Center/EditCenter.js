@@ -1,15 +1,83 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
+import * as action from '../../store/actions/index';
 
-const editCenter = () => (
-  <div className="container" style={{ paddingTop: '100px' }}>
-    <div className="card card w-50 loginCard ">
-      <div className="card-header dark">
-        <h1 className="color">Edit Center</h1>
-      </div>
-      <CenterFrom />
-    </div>
-  </div>
-);
 
-export default editCenter;
+class AddCenter extends Component {
+    state = {
+      centerName: this.props.loadedCenter.centerName,
+      city: this.props.loadedCenter.city,
+      address: this.props.loadedCenter.address,
+      availability: this.props.loadedCenter.availability,
+      facility: []
+    }
+
+  
+   
+
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(this.state);
+  }
+
+   onSubmit = (e) => {
+     e.preventDefault();
+     this.props.initEditCenter(this.props.match.params.id, this.state);
+   }
+
+
+   render() {
+     let errorMessage = null;
+
+     if (this.props.error) {
+       errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
+     }
+
+     let successMessage = null;
+
+     if (this.props.newCenter) {
+       successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.newCenter}</strong></p>);
+     }
+
+
+     return (
+       <div className="container" style={{ paddingTop: '100px' }}>
+         <div className="card card w-50 loginCard ">
+           <div className="card-header dark">
+             <h1 className="color">Edit Center</h1>
+           </div>
+           <CenterFrom
+             errorMessage={errorMessage}
+             successMessage={successMessage}
+             onChange={this.onChange}
+             onSubmit={this.onSubmit}
+             centerName={this.state.centerName}
+             city={this.state.city}
+             address={this.state.address}
+             availability={this.state.availability}
+             facility={this.state.facility}
+
+           />
+         </div>
+       </div>
+
+
+     );
+   }
+}
+
+
+const mapStateToProps = state => ({
+  editCenter: state.centers.editCenter,
+  loadedCenter: state.centers.loadedCenter,
+  error: state.centers.error
+});
+
+const mapDispatchToProps = dispatch => ({
+  initEditCenter: (id, input) => dispatch(action.initEditCenter(id, input)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCenter);

@@ -11,8 +11,10 @@ import CenterInfo from '../Center/CenterInfo';
 import EventInfo from '../Event/EventInfo';
 import NotFound from '../NotFound';
 import PasswordRest from '../User/PasswordReset';
-import EditCenter from '../Center/EditCenter'
-import pickCenter from '../Center/PickCenter'
+import EditCenter from '../Center/EditCenter';
+import EditEvent from '../Event/EditEvent';
+import pickCenter from '../Center/PickCenter';
+
 
 
 const routers = () => (
@@ -22,10 +24,11 @@ const routers = () => (
     <Route path="/events" exact component={ViewEvents} />
     <Route path="/addevent" exact component={AddEvent} />
     <Route path="/events/:id" exact component={EventInfo} />
+    <Route path="/events/edit/:id" exact component={EditEvent} />
     <Route path="/addcenter" exact component={AddCenter} />
     <Route path="/centers" exact component={ViewCenters} />
     <Route path="/centers/:id" exact component={CenterInfo} />
-    
+    <Route path="/centers/edit/:id" exact component={EditCenter} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
     <Route path="/passwordreset" exact component={PasswordRest} />

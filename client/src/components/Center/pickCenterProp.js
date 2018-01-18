@@ -9,7 +9,7 @@ const display = props => (
       <h6 className="card-title "><strong>Availability: </strong>{props.availability}</h6>
       <h6 className="card-title "><strong>Facility</strong></h6>
       <h6 className="card-title ">{props.facility}</h6>
-      <button type="button" className="btn btn-primary"value={props.key} data-dismiss="modal">Select</button>
+      <button type="button" className="btn btn-primary" data-dismiss="modal">Select</button>
     </div>
   </div>
 );

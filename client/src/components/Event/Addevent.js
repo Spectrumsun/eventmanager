@@ -36,22 +36,22 @@ class EventCenter extends Component {
      }
      return (
        <div className="container" style={{ paddingTop: '100px' }}>
-        <div className="card card w-50 loginCard">
-          <div className="card-header dark">
-            <h1 className="color">Add Event</h1>
-          </div>
-          <EventForm
-            errorMessage={errorMessage}
-            successMessage={successMessage}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-            eventName={this.state.eventName}
-            eventdate={this.state.eventdate}
-            time={this.state.time}
-            purpose={this.state.purpose}
-          />
-        </div>
-      </div>
+         <div className="card card w-50 loginCard">
+           <div className="card-header dark">
+             <h1 className="color">Add Event</h1>
+           </div>
+           <EventForm
+             errorMessage={errorMessage}
+             successMessage={successMessage}
+             onChange={this.onChange}
+             onSubmit={this.onSubmit}
+             eventName={this.state.eventName}
+             eventdate={this.state.eventdate}
+             time={this.state.time}
+             purpose={this.state.purpose}
+           />
+         </div>
+       </div>
 
 
      );

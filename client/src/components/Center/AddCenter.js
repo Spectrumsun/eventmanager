@@ -14,40 +14,24 @@ class AddCenter extends Component {
       facility: []
     }
 
-
-  /* getInput = () => {
-     document.getElementById('add').onclick = function () {
-       const node = document.createElement('li');
-       node.className += 'list-group-item list-group-item-primary';
-       const text = document.getElementById('addFacility').value;
-       const textnode = document.createTextNode(text);
-       node.appendChild(textnode);
-       document.getElementById('list').appendChild(node);
-     };
-   } */
   onClick = () => {
     this.setState({ facility: this.state.facility.concat([this.state.values]) });
     this.setState({ values: '' });
+  
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value }),
-
-
     console.log(this.state);
   }
 
    onSubmit = (e) => {
      e.preventDefault();
      if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
-       event.preventDefault();
+       e.preventDefault();
      }
      this.props.initPostCenters(this.state);
    }
 
-  /* catch =(e) => {
-      ({ [e.target.name]: e.target.value });
-      console.log(input);
-    } */
 
 
    render() {
@@ -82,10 +66,9 @@ class AddCenter extends Component {
              values={this.state.values}
              onClick={this.onClick}
              facility={this.state.facility}
-             key={this.props.match.params.id}
+             disabled={this.state.values}
            />
          </div>
-        
        </div>
 
 

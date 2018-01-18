@@ -63,10 +63,10 @@ const centerFrom = props => (
       />
 
       <input
-        type="reset"
+        type="button"
         value="add"
         id="add"
-        onChange={props.onChange}
+        disabled={!props.values}
         onClick={props.onClick}
         className="btn btn-info btn-lg"
         style={{ marginLeft: '20px' }}
@@ -78,10 +78,15 @@ const centerFrom = props => (
 
       <ul className="list-group col-md-6">
         {props.facility.map(list =>
-          (<li className="list-group-item centerlist" key={Math.floor(Math.random() * 1000)}>
+          (<li 
+            className="list-group-item d-flex justify-content-between align-items-center"
+            key={Math.floor(Math.random() * 1000)}>
             {list}
+            <span className="badge badge-danger badge-pill">X</span>
            </li>))}
       </ul>
+
+      
       <br />
       <button type="button" className="btn btn-primary btn-lg">Done</button>
       <br />

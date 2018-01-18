@@ -19,8 +19,7 @@ class CenterInfo extends Component {
           </div>
           <div className="card-body">
             <h5 ><strong>Center name</strong></h5>
-            <h6 className="list-group-item centerlist">{this.props.loadedCenter.centerName}</h6>
-
+            <h6 className="list-group-item d-flex justify-content-between align-items-center">{this.props.loadedCenter.centerName}</h6>
             <br />
             <h5 ><strong>Address</strong></h5>
             <h6 className="list-group-item centerlist">{this.props.loadedCenter.address}</h6>

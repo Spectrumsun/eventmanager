@@ -10,11 +10,14 @@ class AddCenter extends Component {
       city: this.props.loadedCenter.city,
       address: this.props.loadedCenter.address,
       availability: this.props.loadedCenter.availability,
-      facility: []
+      facility: this.props.loadedCenter.facility,
+      values: '',
     }
 
-  
-   
+    onClick = () => {
+      this.setState({ facility: this.state.facility.concat([this.state.values]) });
+      this.setState({ values: '' });
+    }
 
 
   onChange = (e) => {
@@ -23,6 +26,9 @@ class AddCenter extends Component {
   }
 
    onSubmit = (e) => {
+     if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
+       e.preventDefault();
+     }
      e.preventDefault();
      this.props.initEditCenter(this.props.match.params.id, this.state);
    }
@@ -49,7 +55,7 @@ class AddCenter extends Component {
              <h1 className="color">Edit Center</h1>
            </div>
            <CenterFrom
-             errorMessage={errorMessage}
+              errorMessage={errorMessage}
              successMessage={successMessage}
              onChange={this.onChange}
              onSubmit={this.onSubmit}
@@ -57,7 +63,10 @@ class AddCenter extends Component {
              city={this.state.city}
              address={this.state.address}
              availability={this.state.availability}
+             values={this.state.values}
+             onClick={this.onClick}
              facility={this.state.facility}
+             disabled={this.state.values}
 
            />
          </div>

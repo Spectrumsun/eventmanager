@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import toast from 'toastr';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import TextField from '../UI/TextField';
 import * as action from '../../store/actions/index';
 
 class Login extends Component {
@@ -63,31 +63,26 @@ class Login extends Component {
             <div className="card-body">
               <div className="cont card-body">
                 <form onSubmit={this.onSubmit} className="centerform">
-                  <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input
-                      type="email"
-                      value={this.state.email}
-                      onChange={this.onChange}
-                      name="email"
-                      className="form-control form-control-lg"
-                      placeholder="your-email@example.com"
+                  <TextField
+                    label="Email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    name="email"
+                    type="email"
+                    placeholder="Vaild Email"
+                  />
 
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input
-                      type="password"
-                      value={this.state.password}
-                      onChange={this.onChange}
-                      name="password"
-                      className="form-control form-control-lg"
-                      required
-                    />
-                    <small ><Link to="/passwordreset" className="center-item">Password Reset</Link></small>
-                    <br />
-                  </div>
+                  <TextField
+                    label="Password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <small ><Link to="/passwordreset" className="center-item">Password Reset</Link></small>
+
+
                   <div className="text-center">
                     <button type="submit" className="btn btn-outline-dark">Submit</button>
                   </div>

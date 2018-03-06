@@ -34,6 +34,7 @@ export const logOutandRdirect = () => {
 }
 
 export const userError = (error) => {
+   console.log(error)
   return {
     type: actionTypes.USER_ERROR,
     error: error
@@ -57,6 +58,7 @@ export const initUser = (inputs) => {
         })
         .catch((error) => {
             dispatch(userError(error.response.data.message))
+             console.log(error.response.data)
             //toast.error(rror.response.data.message)
         })
   };
@@ -74,6 +76,7 @@ export const initUserLogin = (inputs) => {
         })
         .catch((error) => {
             dispatch(userError(error.response.data.message))
+           
         })
   };
 };

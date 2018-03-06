@@ -15,7 +15,7 @@ class Validate {
       .then((event) => {
         const roles = req.user.id;
         if (roles != event.userId) {
-          return res.json({ messgae: 'You are not owner of the event' });
+          return res.json({ message: 'You are not owner of the event' });
         }
 
         if (!event) {
@@ -38,7 +38,7 @@ class Validate {
 
     const errors = req.validationErrors();
     if (errors) {
-      res.status(400).send({ message: 'Sigup errors', errors });
+      res.status(400).send({ message: 'Signup Errors', errors });
       return; // stop the fn from running
     }
     next(); // there were no errors!

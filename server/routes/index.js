@@ -36,14 +36,14 @@ router.post(
 // GET Events
 router.get(
   '/events',
-  
+  auth.verifyToken,
   eventController.getEvent
 );
 
 // GET One Event with the Center for the event
 router.get(
   '/events/:id',
-  
+  auth.verifyToken,
   eventController.getOneEvent
 );
 
@@ -88,9 +88,9 @@ router.get(
 // POST  Add a new center
 router.post(
   '/centers',
-  auth.verifyToken,
-  validator.validateCreateCenter,
-  validator.validateAdmin,
+  //auth.verifyToken,
+ validator.validateCreateCenter,
+  //validator.validateAdmin,
   centerController.createCenter
 );
 

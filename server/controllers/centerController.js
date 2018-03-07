@@ -18,8 +18,8 @@ class Centers {
 
   static getCenter(req, res) {
     Center.all()
-      .then(center => res.status(200).send({ message: 'success', center }))
-      .catch(error => res.status(200).send(error));
+      .then(center => res.status(200).json({ message: 'success', center }))
+      .catch(error => res.status(200).json(error));
   }
 
   /**
@@ -41,9 +41,9 @@ class Centers {
     })
       .then((center) => {
         if (center) {
-          res.status(200).send({ message: 'Center', center });
+          res.status(200).json({ message: 'Center', center });
         } else {
-          res.status(400).send({ message: 'center not found' });
+          res.status(400).json({ message: 'center not found' });
         }
       });
   }
@@ -56,7 +56,9 @@ class Centers {
    * @returns {void}
    */
 
+
   static createCenter(req, res) {
+    const arr = ['free wifi', 'carpack', 'raido']
     Center.create({
       centerName: req.body.name,
       city: req.body.city,
@@ -64,8 +66,8 @@ class Centers {
       facility: req.body.facility,
       availability: req.body.availability || 'unknow'
     })
-      .then(center => res.status(201).send({ message: 'successfully created', center }))
-      .catch(error => res.status(400).send(error));
+      .then(center => res.status(201).json({ message: 'successfully created', center }))
+      .catch(error => res.status(400).json(error));
   }
 
   /**
@@ -88,12 +90,12 @@ class Centers {
             facility: req.body.facility,
             availability: req.body.availability || 'unknow'
           });
-          res.status(200).send({ message: 'updated', center });
+          res.status(200).json({ message: 'updated', center });
         } else {
-          res.status(404).send({ message: 'center not found' });
+          res.status(404).json({ message: 'center not found' });
         }
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(400).json(err));
   }
 
   /**
@@ -110,12 +112,12 @@ class Centers {
       .then((center) => {
         if (center) {
           center.destroy();
-          res.status(200).send({ message: 'center successfully deleted!' });
+          res.status(200).json({ message: 'center successfully deleted!' });
         } else {
-          res.status(404).send({ message: 'center not found' });
+          res.status(404).json({ message: 'center not found' });
         }
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(400).json(err));
   }
 }
 

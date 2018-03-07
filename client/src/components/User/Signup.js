@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import toast from 'toastr';
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import TextField from '../UI/TextField';
+import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
 
@@ -13,49 +14,21 @@ class Signup extends Component {
     confirmPassword: '',
   }
 
-
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onUserCreate(this.state);
-    let errors = '';
-    if (this.state.fullname === '') {
-      errors += 'Full Name cannot be empty!\n';
-    }
-    if (this.state.password !== this.state.confirmPassword) {
-      errors += 'Password do not match';
-    }
-
-    if (errors) {
-      toast.error(errors);
-    }
-  }
+    this.props.onUserCreate(this.state, this.props.history)
+  };
 
 
   render() {
-    let errorMessage = null;
-
-    if (this.props.error) {
-      errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
-    }
-
-    let successMessage = null;
-
-    if (this.props.user) {
-      successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.user}</strong></p>);
-    }
-
-
     return (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="card loginCard" style={{ width: '40rem' }}>
           <div className="card-header">
-            {errorMessage}
-            {successMessage}
             <h3>Sign up</h3>
           </div>
           <div className="card-body">
@@ -80,7 +53,7 @@ class Signup extends Component {
                 />
 
                 <TextField
-                  label="Email"
+                  label="Password"
                   value={this.state.password}
                   onChange={this.onChange}
                   name="password"
@@ -112,8 +85,6 @@ class Signup extends Component {
           </div>
         </div>
       </div>
-
-
     );
   }
 }
@@ -125,7 +96,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onUserCreate: user => dispatch(action.initUser(user)),
+  onUserCreate: (user, history) => dispatch(action.initUser(user, history)),
   onUserError: () => dispatch(action.userError())
 });
 

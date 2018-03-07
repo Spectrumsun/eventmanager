@@ -2,6 +2,7 @@
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
 import toast from 'toastr';
+import { BrowserRouter, Redirect } from 'react-router-dom'
 
 export const signUpUser = (user) => {
   return {
@@ -34,7 +35,6 @@ export const logOutandRdirect = () => {
 }
 
 export const userError = (error) => {
-   console.log(error)
   return {
     type: actionTypes.USER_ERROR,
     error: error
@@ -49,34 +49,38 @@ export const authSuccess = (token) => {
   }
 } 
 
-export const initUser = (inputs) => {
+export const initUser = (inputs, history) => {
   return dispatch => {
        axios.post('/users', inputs)
         .then((res) => {
-         dispatch(signUpUser(res.data.message))
-         //toast.success(res.data.fullname)
+          toast.success(res.data.message)
+          dispatch(signUpUser(res))
+          history.push('/') 
         })
         .catch((error) => {
-            dispatch(userError(error.response.data.message))
-             console.log(error.response.data)
-            //toast.error(rror.response.data.message)
+          const newError = error.response.data.errorMessage
+          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
+          dispatch(userError(error.response.data.errorMessage))  
         })
   };
 };
 
-export const initUserLogin = (inputs) => {
+export const initUserLogin = (inputs, history) => {
   return dispatch => {
        axios.post('/users/login', inputs)
-        .then((response) => {
-        console.log(response)
-        const token = response.data.token;
-        //console.log(token)
-        localStorage.setItem('jwtToken', token);
-         dispatch(logIn(response.data.fullname, token))
+        .then((res) => {
+          toast.success(res.data.message)
+          history.push('/')
+          console.log(res)
+          const token = res.data.token;
+          console.log(token)
+          localStorage.setItem('jwtToken', token);
+         dispatch(logIn(res.data.fullname, token))
         })
         .catch((error) => {
-            dispatch(userError(error.response.data.message))
-           
+          const newError = error.response.data.errorMessage
+          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
+          dispatch(userError(error.response.data.errorMessage))
         })
   };
 };

@@ -16,12 +16,12 @@ module.exports = {
         allowNull: false,
       },
       address: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       facility: {
         type: Sequelize.ARRAY(Sequelize.TEXT),
-        allowNull: false,
+        allowNull: true,
       },
       availability: {
         type: Sequelize.STRING,

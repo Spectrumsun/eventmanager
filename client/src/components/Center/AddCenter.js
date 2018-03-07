@@ -17,7 +17,6 @@ class AddCenter extends Component {
   onClick = () => {
     this.setState({ facility: this.state.facility.concat([this.state.values]) });
     this.setState({ values: '' });
-  
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value }),
@@ -26,28 +25,14 @@ class AddCenter extends Component {
 
    onSubmit = (e) => {
      e.preventDefault();
-     if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
-       e.preventDefault();
-     }
+     // if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
+     // e.preventDefault();
+     // }
      this.props.initPostCenters(this.state);
    }
 
 
-
    render() {
-     let errorMessage = null;
-
-     if (this.props.error) {
-       errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
-     }
-
-     let successMessage = null;
-
-     if (this.props.newCenter) {
-       successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.newCenter}</strong></p>);
-     }
-
-
      return (
        <div className="container" style={{ paddingTop: '100px' }}>
          <div className="card card w-50 loginCard ">
@@ -55,8 +40,6 @@ class AddCenter extends Component {
              <h1 className="color">Add Center</h1>
            </div>
            <CenterFrom
-             errorMessage={errorMessage}
-             successMessage={successMessage}
              onChange={this.onChange}
              onSubmit={this.onSubmit}
              centerName={this.state.centerName}

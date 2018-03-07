@@ -3,8 +3,6 @@ import React from 'react';
 const centerFrom = props => (
 
   <div className="card-body">
-    {props.errorMessage}
-    {props.successMessage}
     <form onSubmit={props.onSubmit} >
       <div className="form-row">
         <div className="form-group col-md-12">

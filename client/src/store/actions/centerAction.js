@@ -44,7 +44,7 @@ export const initCenters = () => {
     axios.get('/centers')
       .then((res) => {
         dispatch(getAllCenters(res.data.center));
-        console.log(res)
+      //  console.log(res)
       })
       .catch((error) => {
         dispatch(centerError(error.response.data.message))
@@ -75,7 +75,7 @@ export const initPostCenters = (inputs) => {
     axios.post('/centers', inputs)
       .then((res) => {
         dispatch(addCenters(res.data.messgae));
-        console.log(getAllCenters(data))
+       // console.log(getAllCenters(data))
       })
       .catch((error) => {
         dispatch(centerError(error.response.data.message))

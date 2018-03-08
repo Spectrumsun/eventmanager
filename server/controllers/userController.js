@@ -65,12 +65,11 @@ class Users {
               const token = jwt.sign({
                 id: user.id,
                 fullname: user.fullname,
-                email: user.email,
                 role: user.role
               }, secret, { expiresIn: '200h' });
               return res
                 .status(200)
-                .json({ message: `Welcome ${user.fullname} `, fullname: user.email, token });
+                .json({ message: `Welcome ${user.fullname} `, token });
             }
             return res
               .status(400)

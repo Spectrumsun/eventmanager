@@ -6,7 +6,6 @@ const initialState = {
   newCenter: [],
   editCenter: [],
   error: false
-
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,7 +33,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         editCenter: action.editCenter,
         error: false
-      }
+      };
     case actionTypes.CENTER_ERROR:
       return {
         ...state,

@@ -13,7 +13,8 @@ export {
   userError,
   initUser,
   logIn,
-  initUserLogin
+  initUserLogin,
+  initUserLogout
 } from './userAction';
 
 export {

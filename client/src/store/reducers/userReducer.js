@@ -28,11 +28,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.error
       };
-    case actionTypes.LOGGED_OUT:
-      return {
-        ...state,
-        token: null
-      };
     default:
       return state;
   }

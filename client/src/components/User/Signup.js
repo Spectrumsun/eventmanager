@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import toast from 'toastr';
-import { BrowserRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';

@@ -1,8 +1,9 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
-import axios from 'axios';
+import axios from 'axios'; 
 import toast from 'toastr';
-import { BrowserRouter, Redirect } from 'react-router-dom'
+import setAuthToken from '../../components/Auth/auth';
+import jwt from 'jsonwebtoken';
 
 export const signUpUser = (user) => {
   return {
@@ -13,7 +14,6 @@ export const signUpUser = (user) => {
 
 
 export const logIn = (user, token) => {
- // console.log(user)
   return {
     type: actionTypes.LOGGED_IN,
     user: user,
@@ -21,18 +21,13 @@ export const logIn = (user, token) => {
     }
 };
 
-export const logout = () => {
+export const setUser = (user) => {
   return {
-    type: actionTypes.LOGGED_OUT
+    type: actionTypes.SET_CURRENT_USER,
+    user: user
   }
 }
 
-export const logOutandRdirect = () => {
-  return{
-
-  }
-   
-}
 
 export const userError = (error) => {
   return {
@@ -40,14 +35,6 @@ export const userError = (error) => {
     error: error
     }
 };
-
-export const authSuccess = (token) => {
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    token: token
-
-  }
-} 
 
 export const initUser = (inputs, history) => {
   return dispatch => {
@@ -60,10 +47,11 @@ export const initUser = (inputs, history) => {
         .catch((error) => {
           const newError = error.response.data.errorMessage
           newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
-          dispatch(userError(error.response.data.errorMessage))  
+          dispatch(userError(error.response.data.errorMessage));
         })
   };
 };
+
 
 export const initUserLogin = (inputs, history) => {
   return dispatch => {
@@ -71,11 +59,11 @@ export const initUserLogin = (inputs, history) => {
         .then((res) => {
           toast.success(res.data.message)
           history.push('/')
-          console.log(res)
           const token = res.data.token;
-          console.log(token)
           localStorage.setItem('jwtToken', token);
-         dispatch(logIn(res.data.fullname, token))
+        setAuthToken(token);
+        dispatch(setUser(jwt.decode(token)));
+        dispatch(logIn(res.data.message, token))
         })
         .catch((error) => {
           const newError = error.response.data.errorMessage
@@ -85,5 +73,15 @@ export const initUserLogin = (inputs, history) => {
   };
 };
 
+
+export const initUserLogout = (history) => {
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    toast.success('Logout Successfull')
+    history.push('/')
+    dispatch(setUser({}))
+  }
+}
 
 

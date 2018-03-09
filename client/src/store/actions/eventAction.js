@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
+import toast from 'toastr';
 
 export const getAllEvent = (events) => {
   return {
@@ -50,11 +51,9 @@ export const initEvents = () => {
     axios.get('/events')
       .then((response) => {
         dispatch(getAllEvent(response.data.event));
-        console.log(getAllEvent(response))
       })
       .catch((error) => {
        dispatch(eventError(error.response.data.message))
-       console.log(error.response.data);
       });
   };
 };
@@ -65,7 +64,6 @@ export const initGetOneEvent = (id) => {
      axios.get(`/events/${id}`)
           .then((res) => {
             dispatch(getOneEvent(res.data.event))
-            //console.log(data)
           })
           .catch((error) => {
             dispatch(eventError(error.response.data.message))
@@ -75,46 +73,53 @@ export const initGetOneEvent = (id) => {
 }
 
 
-export const initPostEvent = (event) => {
+export const initPostEvent = (event, history) => {
+  console.log(event)
   return dispatch => {
-    axios.post('/events')
+    axios.post('/events', event)
       .then((response) => {
+        toast.success(response.data.message)
+        history.push('/events')
         dispatch(postEvent(response.data.message));
-        console.log(getAllEvent(response))
       })
       .catch((error) => {
-       dispatch(eventError(error.response.data.message))
-       console.log(error.response.data);
+        const newError = error.response.data.errorMessage;
+        newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+        dispatch(eventError(error.response.data.message))
       });
   };
 };
 
 
-export const initEditEvent = (id, events) => {
+export const initEditEvent = (id, events, history) => {
   return  dispatch => {
      axios.put(`/events/${id}`, events)
-          .then((res) => {
-            dispatch(editEvent(res.data.message))
-            //console.log(data)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/events')
+            dispatch(editEvent(response.data.message))
           })
           .catch((error) => {
+            const newError = error.response.data.errorMessage;
+            newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
             dispatch(eventError(error.response.data.message))
-            console.log(error.response.data);
         }
     )
   }
 }
 
 
-export const initDeleteEvent = (id) => {
+export const initDeleteEvent = (id, history) => {
   return  dispatch => {
      axios.delete(`/events/${id}`)
-          .then((res) => {
-            dispatch(deleteEvent(res.data.message))
-            //console.log(data)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/events')
+            dispatch(deleteEvent(response.data.message))
           })
           .catch((error) => {
             dispatch(eventError(error.response.data.message))
+            toast.error(error.response.data.message)
             console.log(error.response.data);
         }
     )

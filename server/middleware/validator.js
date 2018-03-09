@@ -45,7 +45,6 @@ class Validate {
   }
 
   static validatelogin(req, res, next) {
-    req.sanitizeBody('fullname');
     req.checkBody('email', 'That Email is not valid!').isEmail();
     req.sanitizeBody('email').normalizeEmail({ remove_dots: false, remove_extension: false, gmail_remove_subaddress: false });
     req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
@@ -60,7 +59,7 @@ class Validate {
   }
 
   static validateCreateEvent(req, res, next) {
-    req.checkBody('name', 'You must supply an Event  name!').notEmpty();
+    req.checkBody('name', 'You must supply an Event name!').notEmpty();
     req.checkBody('date', 'You must supply a date !').notEmpty();
     req.checkBody('time', 'You must supply a time!').notEmpty();
     req.checkBody('purpose', 'You must supply a purpose !').notEmpty();

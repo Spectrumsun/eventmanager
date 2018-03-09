@@ -10,7 +10,7 @@ export const ADD_CENTER = 'ADD_CENTER';
 export const EDIT_CENTER = 'EDIT_CENTER';
 export const DELETE_CENTER = 'DELETE_CENTER';
 export const CENTER_ERROR = 'CENTER_ERROR';
-
+export const CENTER_ID = 'CENTER_ID';
 
 export const GET_ALL_EVENT = 'GET_ALL_EVENT';
 export const GET_SINGLE_EVENT = 'GET_SINGLE_EVENT';

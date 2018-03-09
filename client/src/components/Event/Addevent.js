@@ -5,35 +5,24 @@ import * as action from '../../store/actions/index';
 
 class EventCenter extends Component {
    state = {
-     eventName: '',
-     eventdate: '',
+     name: '',
+     date: '',
      time: '',
      purpose: '',
-     centerId: ''
+     center: ''
    }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
    onSubmit = (e) => {
      e.preventDefault();
-     this.props.initPostEvent(this.state);
+     this.setState({ center: this.props.centerId });
+     this.props.initPostEvent(this.state, this.props.history);
    }
 
-
    render() {
-     let errorMessage = null;
-     if (this.props.error) {
-       errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
-     }
-
-     let successMessage = null;
-
-     if (this.props.newCenter) {
-       successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.newCenter}</strong></p>);
-     }
      return (
        <div className="container" style={{ paddingTop: '100px' }}>
          <div className="card card w-50 loginCard">
@@ -41,19 +30,15 @@ class EventCenter extends Component {
              <h1 className="color">Add Event</h1>
            </div>
            <EventForm
-             errorMessage={errorMessage}
-             successMessage={successMessage}
              onChange={this.onChange}
              onSubmit={this.onSubmit}
-             eventName={this.state.eventName}
-             eventdate={this.state.eventdate}
+             name={this.state.name}
+             date={this.state.date}
              time={this.state.time}
              purpose={this.state.purpose}
            />
          </div>
        </div>
-
-
      );
    }
 }
@@ -61,11 +46,11 @@ class EventCenter extends Component {
 
 const mapStateToProps = state => ({
   newEvent: state.events.newEvent,
-  error: state.events.error
+  centerId: state.centers.centerId,
 });
 
 const mapDispatchToProps = dispatch => ({
-  initPostEvent: input => dispatch(action.initPostEvent(input)),
+  initPostEvent: (input, history) => dispatch(action.initPostEvent(input, history)),
 });
 
 

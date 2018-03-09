@@ -14,15 +14,16 @@ import PasswordRest from '../User/PasswordReset';
 import EditCenter from '../Center/EditCenter';
 import EditEvent from '../Event/EditEvent';
 import pickCenter from '../Center/PickCenter';
+import RequireAuth from '../Auth/authHOC';
 
 
 
 const routers = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/pickcenter" exact component={pickCenter} />
+    <Route path="/pickcenter" exact component={RequireAuth(pickCenter)} />
     <Route path="/events" exact component={ViewEvents} />
-    <Route path="/addevent" exact component={AddEvent} />
+    <Route path="/addevent" exact component={RequireAuth(AddEvent)} />
     <Route path="/events/:id" exact component={EventInfo} />
     <Route path="/events/edit/:id" exact component={EditEvent} />
     <Route path="/addcenter" exact component={AddCenter} />

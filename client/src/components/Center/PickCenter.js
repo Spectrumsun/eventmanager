@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Display from './pickCenterProp';
 import * as actions from '../../store/actions/index';
 
 class Centers extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onInitCenters();
   }
+
+
 
   render() {
     const centers = this.props.center.map(center =>
       (
         <Display
           key={center.id}
+          id={center.id}
           centerName={center.centerName}
           address={center.address}
           city={center.city}

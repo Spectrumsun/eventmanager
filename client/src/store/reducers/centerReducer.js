@@ -5,6 +5,7 @@ const initialState = {
   loadedCenter: [],
   newCenter: [],
   editCenter: [],
+  centerId: null,
   error: false
 };
 
@@ -33,6 +34,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         editCenter: action.editCenter,
         error: false
+      };
+    case actionTypes.CENTER_ID:
+      return {
+        ...state,
+        centerId: action.centerId,
       };
     case actionTypes.CENTER_ERROR:
       return {

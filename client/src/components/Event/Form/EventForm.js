@@ -3,19 +3,17 @@ import PickCenter from '../../Center/PickCenter';
 
 const eventForm = props => (
   <div className="card-body" >
-    {props.errorMessage}
-    {props.successMessage}
     <form onSubmit={props.onSubmit}>
       <div className="form-row">
         <div className="form-group col-md-12">
           <h5><label htmlFor="inputEmail4">Event Name</label></h5>
           <input
             type="text"
-            value={props.eventName}
+            value={props.name}
             onChange={props.onChange}
-            name="eventName"
+            name="name"
             className="form-control form-control-lg"
-            required
+            
           />
         </div>
 
@@ -23,11 +21,11 @@ const eventForm = props => (
           <h5><label htmlFor="inputPassword4">Date</label></h5>
           <input
             type="date"
-            value={props.eventdate}
+            value={props.date}
             onChange={props.onChange}
-            name="eventdate"
+            name="date"
             className="form-control form-control-lg"
-            required
+            
           />
         </div>
 
@@ -39,7 +37,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="time"
             className="form-control form-control-lg"
-            required
+            
           />
         </div>
       </div>

@@ -13,7 +13,6 @@ class Login extends Component {
 
   onChange =(e) => {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(this.state);
   }
 
   onSubmit = (e) => {
@@ -65,13 +64,13 @@ class Login extends Component {
 }
 
 
-const mapStateToProps = state => ({
+/* const mapStateToProps = state => ({
   user: state.users.user,
   error: state.users.error
-});
+}); */
 
 const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) => dispatch(action.initUserLogin(user, history)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

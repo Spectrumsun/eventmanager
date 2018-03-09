@@ -2,9 +2,7 @@ import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   user: [],
-  token: null,
   error: null
-
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,14 +11,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
-        token: null,
         error: null
       };
     case actionTypes.LOGGED_IN:
       return {
         ...state,
         user: action.user,
-        token: action.token,
         error: null
       };
     case actionTypes.USER_ERROR:

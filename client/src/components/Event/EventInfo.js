@@ -8,16 +8,14 @@ class EventInfo extends Component {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
-  deletePost = () => {
+  deletePost = (e) => {
     e.preventDefault();
-    this.props.onDeleteEvent(this.props.match.params.id);
+    this.props.onDeleteEvent(this.props.match.params.id, this.props.history);
   }
 
 
   render() {
     const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
-    console.log(center);
-    // console.log(events);
     const event = (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="container" style={{ width: '45rem' }}>
@@ -67,7 +65,7 @@ class EventInfo extends Component {
                 <div className="modal-dialog" role="document">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <h5 className="modal-title" id="exampleModalLabel">Delete Event</h5>
                       <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -77,13 +75,11 @@ class EventInfo extends Component {
                     </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      <button type="button" className="btn btn-danger">Yes</button>
+                      <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.deletePost}>Yes</button>
                     </div>
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -103,7 +99,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(actions.initGetOneEvent(id)),
-  onDeleteEvent: id => dispatch(actions.initDeleteEvent(id))
+  onDeleteEvent: (id, history) => dispatch(actions.initDeleteEvent(id, history))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventInfo);

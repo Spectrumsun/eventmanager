@@ -13,7 +13,6 @@ class Auth {
           });
         }
         req.user = data;
-        
         next();
       });
     } else {

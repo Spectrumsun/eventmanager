@@ -58,7 +58,6 @@ class Centers {
 
 
   static createCenter(req, res) {
-    const arr = ['free wifi', 'carpack', 'raido']
     Center.create({
       centerName: req.body.name,
       city: req.body.city,

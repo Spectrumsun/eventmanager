@@ -13,11 +13,10 @@ export const signUpUser = (user) => {
 };
 
 
-export const logIn = (user, token) => {
+export const logIn = (user) => {
   return {
     type: actionTypes.LOGGED_IN,
     user: user,
-    token: token
     }
 };
 
@@ -61,9 +60,9 @@ export const initUserLogin = (inputs, history) => {
           history.push('/')
           const token = res.data.token;
           localStorage.setItem('jwtToken', token);
-        setAuthToken(token);
-        dispatch(setUser(jwt.decode(token)));
-        dispatch(logIn(res.data.message, token))
+          setAuthToken(token);
+          dispatch(setUser(jwt.decode(token)));
+          dispatch(logIn(res.data.message))
         })
         .catch((error) => {
           const newError = error.response.data.errorMessage

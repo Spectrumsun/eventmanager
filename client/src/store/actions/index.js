@@ -5,7 +5,9 @@ export { getAllCenters,
   addCenters,
   editCenter,
   centerError,
-  initPostCenters
+  initPostCenters,
+  centerId,
+  pickCenterId
 } from './centerAction';
 
 export {

@@ -16,14 +16,14 @@ export const getSingleCenter = (center) => {
   }
 } 
 
-export const addCenters =(center) => {
+export const addCenters = (center) => {
   return {
     type: actionTypes.ADD_CENTER,
     newCenter: center
   }
 }
 
-export const editCenter =(center) => {
+export const editCenter = (center) => {
   return {
     type: actionTypes.EDIT_CENTER,
     editCenter: center
@@ -37,6 +37,14 @@ export const centerError = (error) => {
     
     }
 };
+
+export const centerId = (id) => {
+  console.log(id)
+  return {
+    type: actionTypes.CENTER_ID,
+    centerId: id
+  }
+}
 
 
 export const initCenters = () => {
@@ -52,6 +60,7 @@ export const initCenters = () => {
       });
   };
 };
+
 
 
 export const getOneCenter = (id) => {
@@ -98,3 +107,14 @@ export const initEditCenter = (id, center) => {
       )
   }
 }
+
+
+export const pickCenterId = (id) => {
+  return dispatch => {
+     dispatch(centerId(id))
+  }
+}
+
+
+
+

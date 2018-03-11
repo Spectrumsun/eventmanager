@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import Display from './getCenter';
 import * as actions from '../../store/actions/index';
 
@@ -12,7 +11,6 @@ class Centers extends Component {
   }
 
   render() {
-    // const cent = this.props.onInitCenters()
     const centers = this.props.center.map(center =>
       (<Link to={`/centers/${center.id}`} key={center.id} style={{ color: 'black' }}>
         <Display
@@ -33,7 +31,7 @@ class Centers extends Component {
 }
 
 const mapStateToProps = state => ({
-  center: state.centers.center
+  center: state.centers.center,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
+import toast from 'toastr';
 
 export const getAllCenters = (center) => {
   return {
@@ -16,13 +17,35 @@ export const getSingleCenter = (center) => {
   }
 } 
 
-
-export const centerError = () => {
+export const addCenters = (center) => {
   return {
-    type: actionTypes.CENTER_ERROR
+    type: actionTypes.ADD_CENTER,
+    newCenter: center
+  }
+}
+
+export const editCenter = (center) => {
+  return {
+    type: actionTypes.EDIT_CENTER,
+    editCenter: center
+  }
+}
+
+export const centerError = (error) => {
+  return {
+    type: actionTypes.CENTER_ERROR,
+     error: error
     
     }
 };
+
+export const centerId = (id) => {
+  console.log(id)
+  return {
+    type: actionTypes.CENTER_ID,
+    centerId: id
+  }
+}
 
 
 export const initCenters = () => {
@@ -30,26 +53,86 @@ export const initCenters = () => {
     axios.get('/centers')
       .then((res) => {
         dispatch(getAllCenters(res.data.center));
-        //console.log(getAllCenters(data))
       })
       .catch((error) => {
-        dispatch(centerError())
-       console.log(error);
+        dispatch(centerError(error.response.data.message))
+        console.log(error);
       });
   };
 };
 
 
+
 export const getOneCenter = (id) => {
-  return  dispatch => {
+  return dispatch => {
      axios.get(`/centers/${id}`)
           .then((res) => {
             dispatch(getSingleCenter(res.data.center))
-            //console.log(data)
           })
           .catch((error) => {
-            dispatch(centerError())
-          })
-    
+            dispatch(centerError(error.response.data.message))
+          }
+      )
   }
 }
+
+
+
+export const initPostCenters = (inputs, history) => {
+  return dispatch => {
+    axios.post('/centers', inputs)
+      .then((response) => {
+        toast.success(response.data.message)
+        history.push('/centers')
+        dispatch(addCenters(response.data.messgae));
+      })
+      .catch((error) => {
+        const newError = error.response.data.errorMessage;
+        newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+        dispatch(centerError(error.response.data.message))
+      });
+  };
+};
+
+
+export const initEditCenter = (id, center, history) => {
+  return  dispatch => {
+     axios.put(`/centers/${id}`, center)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/centers')
+            dispatch(editCenter(response.data.center))
+          })
+          .catch((error) => {
+            const newError = error.response.data.errorMessage;
+            newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+            dispatch(centerError(error.response.data.message))
+          }
+      )
+  }
+}
+
+
+export const pickCenterId = (id) => {
+  return dispatch => {
+     dispatch(centerId(id))
+  }
+}
+
+
+export const initDeleteCenter = (id, history) => {
+  return  dispatch => {
+     axios.delete(`/centers/${id}`)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/centers')
+          })
+          .catch((error) => {
+            toast.error(error.response.data.message)
+        }
+    )
+  }
+}
+
+
+

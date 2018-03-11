@@ -1,94 +1,90 @@
-import React, { Component } from 'react';
+import React from 'react';
+import uuid from 'uuid-random';
 
-class CenterFrom extends Component {
-  state = {
-    centerName: '',
-    city: '',
-    address: '',
-    availability: '',
-    facility: []
-  }
+const centerFrom = props => (
+  <div className="card-body" >
+    <form onSubmit={props.onSubmit}>
+      <div className="form-row">
+        <div className="form-group col-md-12">
+          <h5><label htmlFor="inputEmail4">Center Name</label></h5>
+          <input
+            type="text"
+            value={props.name}
+            onChange={props.onChange}
+            name="name"
+            className="form-control form-control-lg"
+            required
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <h5><label htmlFor="inputPassword4">City</label></h5>
+          <input
+            type="text"
+            value={props.city}
+            onChange={props.onChange}
+            name="city"
+            className="form-control form-control-lg"
+            required
+          />
+        </div>
+        <div className="form-group col-md-6">
+          <h5><label htmlFor="inputPassword4">Availability</label></h5>
+          <input
+            type="text"
+            value={props.availability}
+            onChange={props.onChange}
+            name="availability"
+            className="form-control form-control-lg"
+            required
+          />
+        </div>
+        <div className="form-group col-md-12">
+          <h5><label htmlFor="inputPassword4">Address</label></h5>
+          <input
+            type="text"
+            value={props.address}
+            onChange={props.onChange}
+            name="address"
+            className="form-control form-control-lg"
+            required
+          />
+        </div>
+      </div>
 
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
-  }
+      <h5>Add Facilities</h5>
+      <input
+        type="text"
+        value={props.values}
+        className="form-control col-md-6 form-control-lg"
+        style={{ float: 'left' }}
+        name="values"
+        onChange={props.onChange}
+      />
 
-   onSubmit = (e) => {
-     e.preventDefault();
-   // this.props.onUserCreate(this.state);
-   }
+      <input
+        type="button"
+        value="add"
+        id="add"
+        disabled={!props.values}
+        onClick={props.onClick}
+        className="btn btn-info btn-lg"
+        style={{ marginLeft: '20px' }}
+      />
 
-
-   render() {
-     return (
-       <div className="card-body">
-         <form onSubmit={this.onSubmit} >
-           <div className="form-row">
-             <div className="form-group col-md-12">
-               <h5><label htmlFor="inputEmail4">Name</label></h5>
-               <input
-                 type="text"
-                 value={this.state.centerName}
-                 onChange={this.onChange}
-                 name="centerName"
-                 className="form-control form-control-lg"
-                 required
-               />
-             </div>
-             <div className="form-group col-md-6">
-               <h5><label htmlFor="inputPassword4">City</label></h5>
-               <input
-                 type="text"
-                 value={this.state.city}
-                 onChange={this.onChange}
-                 name="city"
-                 className="form-control form-control-lg"
-                 required
-               />
-             </div>
-             <div className="form-group col-md-6">
-               <h5><label htmlFor="inputPassword4">Availability</label></h5>
-               <input
-                 type="text"
-                 value={this.state.availability}
-                 onChange={this.onChange}
-                 name="availability"
-                 className="form-control form-control-lg"
-                 required
-               />
-             </div>
-             <div className="form-group col-md-12">
-               <h5><label htmlFor="inputPassword4">Address</label></h5>
-               <input
-                 type="text"
-                 value={this.state.address}
-                 onChange={this.onChange}
-                 name="address"
-                 className="form-control form-control-lg"
-                 required
-               />
-             </div>
-           </div>
-           <h5>Add Facilities</h5>
-           <input type="text" className="form-control col-md-6 form-control-lg" id="addFacility" style={{ float: 'left' }} />
-           <input type="reset" value="add" id="add" className="btn btn-info btn-lg" style={{ marginLeft: '20px' }} />
-           <br />
-           <br />
-           <ul className="list-group col-md-5" id="list" >
-             <li className="list-group-item centerlist">Security</li>
-           </ul>
-           <br />
-           <button type="submit" className="btn btn-primary btn-lg">Done</button>
-           <br />
-           <br />
-         </form>
-       </div>
+      <br />
+      <br />
+      <ul className="list-group col-md-6">
+        {props.facility.map((list, i) =>
+          (<li className="list-group-item d-flex justify-content-between align-items-center" key={uuid()}>
+            {list}
+            <span className="badge badge-danger badge-pill" onClick={() => props.removeFacility(i)}>X</span>
+           </li>))}
+      </ul>
+      <br />
+      <button type="submit" className="btn btn-primary btn-lg">Submit</button>
+    </form>
+  </div>
+);
 
 
-     );
-   }
-}
-
-export default CenterFrom;
-
+export default centerFrom;

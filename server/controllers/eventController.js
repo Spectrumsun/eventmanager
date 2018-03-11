@@ -67,8 +67,8 @@ class Events {
       centerId: parseInt(req.body.center, 10),
       userId: req.user.id
     })
-      .then(event => res.status(201).send({ message: 'successfully created', event }))
-      .catch(error => res.status(400).send({ message: 'center not found!!' }));
+      .then(event => res.status(201).json({ message: 'successfully created', event }))
+      .catch(error => res.status(400).json({ message: 'center not found!!', error }));
   }
 
   /**
@@ -91,12 +91,12 @@ class Events {
             purpose: req.body.purpose,
             centerId: req.body.center
           });
-          res.status(200).send({ message: 'updated', event });
+          res.status(200).json({ message: 'updated', event });
         } else {
-          res.status(404).send({ message: 'event not found' });
+          res.status(404).json({ message: 'event not found' });
         }
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(400).json(err));
   }
 
   /**
@@ -113,12 +113,12 @@ class Events {
       .then((event) => {
         if (event) {
           event.destroy();
-          res.status(200).send({ message: 'Event successfully deleted!' });
+          res.status(200).json({ message: 'Event successfully deleted!' });
         } else {
-          res.status(404).send({ message: 'event not found' });
+          res.status(404).json({ message: 'event not found' });
         }
       })
-      .catch(err => res.status(400).send(err));
+      .catch(err => res.status(400).json(err));
   }
 }
 

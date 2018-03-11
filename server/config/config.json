@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "sun",
+    "username": "sunday",
     "password": "1",
     "database": "event",
     "host": "localhost",
@@ -8,12 +8,20 @@
     "dialect": "postgres"
   },
   "test": {
-    "use_env_variable": "DATABASE_URL_TEST",
+    "username": "sunday",
+    "password": "1",
+    "database": "event",
+    "host": "localhost",
+    "port": 5432,
     "dialect": "postgres"
     
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "username": "sunday",
+    "password": "1",
+    "database": "event",
+    "host": "localhost",
+    "port": 5432,
     "dialect": "postgres"
   }
 }

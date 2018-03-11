@@ -10,13 +10,13 @@ or suggest an  available day 
 
 ## View App
     * template ui   https://spectrumsun.github.io/eventmanager/
-    * React ui      https://sleepy-wave-51548.herokuapp.com
-    * backend APi   https://sleepy-wave-51548.herokuapp.com/api/v1/
+    * React ui      https://eventappmanager.herokuapp.com/
+    * backend APi   https://eventappmanager.herokuapp.com/api/v1/
       
 
 
 # Technologies Used
-   * Front-end: React/Redux + Bootstrap (Yet To be Implemented)
+   * Front-end: React/Redux + Bootstrap
    * Back-end: Node/Expressjs + Sequelize/Postgres
    * Libraries: ES6, Babel-CLI, eslint, Mocha/Chai, expesss, sequelize, jwt
    * Postman

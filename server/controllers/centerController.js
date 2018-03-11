@@ -66,7 +66,7 @@ class Centers {
       availability: req.body.availability || 'unknow'
     })
       .then(center => res.status(201).json({ message: 'successfully created', center }))
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(400).json({ message: 'Unable to create Center! ', error }));
   }
 
   /**

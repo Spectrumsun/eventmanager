@@ -6,7 +6,7 @@ import * as action from '../../store/actions/index';
 class EventCenter extends Component {
    state = {
      name: this.props.loadedEvent.eventName,
-     date: this.props.loadedEvent.eventdate.split('T')[0],
+     date: this.props.loadedEvent.eventdate,
      time: this.props.loadedEvent.time,
      purpose: this.props.loadedEvent.purpose,
      center: this.props.loadedEvent.centerId

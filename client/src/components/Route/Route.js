@@ -15,6 +15,7 @@ import EditCenter from '../Center/EditCenter';
 import EditEvent from '../Event/EditEvent';
 import pickCenter from '../Center/PickCenter';
 import RequireAuth from '../Auth/authHOC';
+import IsAdmin from '../Auth/adminHOC';
 
 
 
@@ -25,11 +26,11 @@ const routers = () => (
     <Route path="/events" exact component={ViewEvents} />
     <Route path="/addevent" exact component={RequireAuth(AddEvent)} />
     <Route path="/events/:id" exact component={EventInfo} />
-    <Route path="/events/edit/:id" exact component={EditEvent} />
-    <Route path="/addcenter" exact component={AddCenter} />
+    <Route path="/events/edit/:id" exact component={RequireAuth(EditEvent)} />
+    <Route path="/addcenter" exact component={IsAdmin(AddCenter)} />
     <Route path="/centers" exact component={ViewCenters} />
     <Route path="/centers/:id" exact component={CenterInfo} />
-    <Route path="/centers/edit/:id" exact component={EditCenter} />
+    <Route path="/centers/edit/:id" exact component={IsAdmin(EditCenter)} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
     <Route path="/passwordreset" exact component={PasswordRest} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import EventForm from './Form/EventForm';
 import { connect } from 'react-redux';
+import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
 
 class EventCenter extends Component {
@@ -14,12 +14,15 @@ class EventCenter extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.setState({ center: this.props.centerId });
   }
 
+ 
    onSubmit = (e) => {
      e.preventDefault();
-     this.setState({ center: this.props.centerId });
+     
      this.props.initPostEvent(this.state, this.props.history);
+     console.log(this.state)
    }
 
    render() {
@@ -36,6 +39,7 @@ class EventCenter extends Component {
              date={this.state.date}
              time={this.state.time}
              purpose={this.state.purpose}
+             center={this.state.center}
            />
          </div>
        </div>
@@ -45,8 +49,7 @@ class EventCenter extends Component {
 
 
 const mapStateToProps = state => ({
-  newEvent: state.events.newEvent,
-  centerId: state.centers.centerId,
+  centerId: state.centers.centerId
 });
 
 const mapDispatchToProps = dispatch => ({

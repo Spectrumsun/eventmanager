@@ -13,7 +13,6 @@ const eventForm = props => (
             onChange={props.onChange}
             name="name"
             className="form-control form-control-lg"
-            
           />
         </div>
 
@@ -25,7 +24,6 @@ const eventForm = props => (
             onChange={props.onChange}
             name="date"
             className="form-control form-control-lg"
-            
           />
         </div>
 
@@ -61,7 +59,7 @@ const eventForm = props => (
         data-toggle="modal"
         data-target=".bd-example-modal-lg"
       >
-             Pick Center
+             Select Center
       </button>
 
       <div

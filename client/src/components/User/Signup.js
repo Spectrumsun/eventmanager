@@ -88,15 +88,10 @@ class Signup extends Component {
 }
 
 
-const mapStateToProps = state => ({
-  user: state.users.user,
-  error: state.users.error
-});
 
 const mapDispatchToProps = dispatch => ({
-  onUserCreate: (user, history) => dispatch(action.initUser(user, history)),
-  onUserError: () => dispatch(action.userError())
+  onUserCreate: (user, history) => dispatch(action.initUser(user, history))
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);

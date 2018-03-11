@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import uuid from 'uuid-random';
 import * as action from '../../store/actions/index';
 
 class CenterInfo extends Component {
@@ -10,7 +10,25 @@ class CenterInfo extends Component {
     this.props.onFetOneCenters(this.props.match.params.id);
   }
 
+  deleteCenter = (e) => {
+    e.preventDefault();
+    this.props.onDeleteCenter(this.props.match.params.id, this.props.history);
+  }
+
+
   render() {
+    const admin = this.props.auth.user.role;
+
+    const showbutton = (
+      <div>
+        <Link to={`/centers/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
+          <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+        </Link>
+        <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" onClick={this.deleteCenter} style={{ marginLeft: '20px' }}>Delete</Link>
+      </div>
+    );
+
+
     const center = (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="card loginCard" style={{ width: '45rem' }}>
@@ -45,16 +63,13 @@ class CenterInfo extends Component {
               {this.props.loadedCenter && this.props.loadedCenter.facility && this.props.loadedCenter.facility.map(list =>
                     (<li
                       className="list-group-item centerlist"
-                      key={this.props.match.params.id}
+                      key={uuid()}
                     >
                       {list}
                      </li>))}
             </ul>
             <br />
-            <Link to={`/centers/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
-              <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
-            </Link>
-            <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" style={{ marginLeft: '20px' }}>Delete</Link>
+            {admin === 'ADMIN1' ? showbutton : null}
           </div>
         </div>
       </div>
@@ -71,11 +86,13 @@ class CenterInfo extends Component {
 
 
 const mapStateToProps = state => ({
-  loadedCenter: state.centers.loadedCenter
+  loadedCenter: state.centers.loadedCenter,
+  auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFetOneCenters: id => dispatch(action.getOneCenter(id))
+  onFetOneCenters: id => dispatch(action.getOneCenter(id)),
+  onDeleteCenter: (id, history) => dispatch(action.initDeleteCenter(id, history))
 });
 
 

@@ -8,16 +8,54 @@ class EventInfo extends Component {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
-  deletePost = (e) => {
+  deleteEvent = (e) => {
     e.preventDefault();
     this.props.onDeleteEvent(this.props.match.params.id, this.props.history);
   }
 
-
   render() {
+    const id = this.props.auth.user.id;
+
+    const eventOwner = (
+      <div>
+        <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
+          <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+        </Link>
+        <button
+          type="button"
+          className="btn btn-danger"
+          style={{ marginLeft: '20px' }}
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+                  Delete
+        </button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Delete Event</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <h6>Are you sure you want to delete <strong>{this.props.events.eventName} ?</strong></h6>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.deleteEvent}>Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
     const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
-    const event = (
-      <div className="container" style={{ paddingTop: '100px' }}>
+    return (
+      <div>
+        <div className="container" style={{ paddingTop: '100px' }}>
         <div className="container" style={{ width: '45rem' }}>
           <div className="card loginCard">
             <div className="card-header dark">
@@ -48,53 +86,20 @@ class EventInfo extends Component {
                 </Link>
               </ul>
               <br />
+              { id === this.props.events.userId ? eventOwner : null}
 
-              <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
-                <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
-              </Link>
-              <button
-                type="button"
-                className="btn btn-danger"
-                style={{ marginLeft: '20px' }}
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                  Delete
-              </button>
-              <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLabel">Delete Event</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <h6>Are you sure you want to delete <strong>{this.props.events.eventName} ?</strong></h6>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.deletePost}>Yes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-    );
-    return (
-      <div>
-        {event}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  events: state.events.loadedEvent
+  events: state.events.loadedEvent,
+  auth: state.auth
 });
 
 const mapDispatchToProps = dispatch => ({

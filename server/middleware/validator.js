@@ -1,11 +1,12 @@
 import { Event, Center } from '../models';
 
+require('dotenv').config();
 
 class Validate {
   static validateAdmin(req, res, next) {
     const roles = req.user.role;
     if (roles != process.env.ADMIN) {
-      return res.status(400).json({ messgae: 'Only an admin can create centers' });
+      return res.status(400).json({ message: 'You have to be an Admin to do that' });
     }
     next();
   }

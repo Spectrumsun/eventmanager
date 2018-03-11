@@ -63,6 +63,7 @@
     "tether": "^1.4.3",
     "toastr": "^2.1.4",
     "url-loader": "^0.6.2",
+    "uuid-random": "^1.0.6",
     "webpack": "^3.10.0"
   },
   "devDependencies": {

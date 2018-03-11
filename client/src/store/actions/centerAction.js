@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
+import toast from 'toastr';
 
 export const getAllCenters = (center) => {
   return {
@@ -52,7 +53,6 @@ export const initCenters = () => {
     axios.get('/centers')
       .then((res) => {
         dispatch(getAllCenters(res.data.center));
-      //  console.log(res)
       })
       .catch((error) => {
         dispatch(centerError(error.response.data.message))
@@ -64,14 +64,13 @@ export const initCenters = () => {
 
 
 export const getOneCenter = (id) => {
-  return  dispatch => {
+  return dispatch => {
      axios.get(`/centers/${id}`)
           .then((res) => {
             dispatch(getSingleCenter(res.data.center))
-            //console.log(data)
           })
           .catch((error) => {
-            dispatch(centerError())
+            dispatch(centerError(error.response.data.message))
           }
       )
   }
@@ -79,30 +78,35 @@ export const getOneCenter = (id) => {
 
 
 
-export const initPostCenters = (inputs) => {
+export const initPostCenters = (inputs, history) => {
   return dispatch => {
     axios.post('/centers', inputs)
-      .then((res) => {
-        dispatch(addCenters(res.data.messgae));
-       // console.log(getAllCenters(data))
+      .then((response) => {
+        toast.success(response.data.message)
+        history.push('/centers')
+        dispatch(addCenters(response.data.messgae));
       })
       .catch((error) => {
+        const newError = error.response.data.errorMessage;
+        newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
         dispatch(centerError(error.response.data.message))
-       console.log(error);
       });
   };
 };
 
 
-export const initEditCenter = (id, center) => {
+export const initEditCenter = (id, center, history) => {
   return  dispatch => {
      axios.put(`/centers/${id}`, center)
-          .then((res) => {
-            dispatch(editCenter(res.data.center))
-            //console.log(data)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/centers')
+            dispatch(editCenter(response.data.center))
           })
           .catch((error) => {
-            dispatch(centerError())
+            const newError = error.response.data.errorMessage;
+            newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+            dispatch(centerError(error.response.data.message))
           }
       )
   }
@@ -115,6 +119,20 @@ export const pickCenterId = (id) => {
   }
 }
 
+
+export const initDeleteCenter = (id, history) => {
+  return  dispatch => {
+     axios.delete(`/centers/${id}`)
+          .then((response) => {
+            toast.success(response.data.message)
+            history.push('/centers')
+          })
+          .catch((error) => {
+            toast.error(error.response.data.message)
+        }
+    )
+  }
+}
 
 
 

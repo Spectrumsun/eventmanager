@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 
+require('dotenv').config();
 
 class Auth {
   static verifyToken(req, res, next) {

@@ -6,11 +6,11 @@ import * as action from '../../store/actions/index';
 
 class AddCenter extends Component {
     state = {
-      centerName: this.props.loadedCenter.centerName,
+      name: this.props.loadedCenter.centerName,
       city: this.props.loadedCenter.city,
       address: this.props.loadedCenter.address,
       availability: this.props.loadedCenter.availability,
-      facility: this.props.loadedCenter.facility,
+      facility: this.props.loadedCenter.facility || [],
       values: '',
     }
 
@@ -22,7 +22,6 @@ class AddCenter extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
    onSubmit = (e) => {
@@ -30,62 +29,49 @@ class AddCenter extends Component {
        e.preventDefault();
      }
      e.preventDefault();
-     this.props.initEditCenter(this.props.match.params.id, this.state);
+     this.props.initEditCenter(this.props.match.params.id, this.state, this.props.history);
    }
 
-
-   render() {
-     let errorMessage = null;
-
-     if (this.props.error) {
-       errorMessage = (<p style={{ color: 'red', textAlign: 'center' }}><strong>{this.props.error}</strong></p>);
-     }
-
-     let successMessage = null;
-
-     if (this.props.newCenter) {
-       successMessage = (<p style={{ color: '#35434A', textAlign: 'center' }}><strong>{this.props.newCenter}</strong></p>);
-     }
+    removeFacility = (i) => {
+      const array = this.state.facility;
+      array.splice(i, 1);
+      this.setState({ facility: array });
+    }
 
 
-     return (
-       <div className="container" style={{ paddingTop: '100px' }}>
-         <div className="card card w-50 loginCard ">
-           <div className="card-header dark">
-             <h1 className="color">Edit Center</h1>
-           </div>
-           <CenterFrom
-              errorMessage={errorMessage}
-             successMessage={successMessage}
-             onChange={this.onChange}
-             onSubmit={this.onSubmit}
-             centerName={this.state.centerName}
-             city={this.state.city}
-             address={this.state.address}
-             availability={this.state.availability}
-             values={this.state.values}
-             onClick={this.onClick}
-             facility={this.state.facility}
-             disabled={this.state.values}
-
-           />
-         </div>
-       </div>
-
-
-     );
-   }
+    render() {
+      return (
+        <div className="container" style={{ paddingTop: '100px' }}>
+          <div className="card card w-50 loginCard ">
+            <div className="card-header dark">
+              <h1 className="color">Edit Center</h1>
+            </div>
+            <CenterFrom
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              name={this.state.name}
+              city={this.state.city}
+              address={this.state.address}
+              availability={this.state.availability}
+              values={this.state.values}
+              onClick={this.onClick}
+              facility={this.state.facility}
+              removeFacility={this.removeFacility}
+              disabled={this.state.values}
+            />
+          </div>
+        </div>
+      );
+    }
 }
 
 
 const mapStateToProps = state => ({
-  editCenter: state.centers.editCenter,
   loadedCenter: state.centers.loadedCenter,
-  error: state.centers.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  initEditCenter: (id, input) => dispatch(action.initEditCenter(id, input)),
+  initEditCenter: (id, input, history) => dispatch(action.initEditCenter(id, input, history)),
 });
 
 

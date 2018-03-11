@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router-dom';
 import Router from '../Route/Route';
 import * as action from '../../store/actions/index';
 
+// require('dotenv').config()
+
 const styles = {
   backgroundColor: '#35434a'
 };
@@ -18,25 +20,39 @@ class NavBar extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
+    const admin = this.props.auth.user.role
 
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-            <Link to="/logout" className="btn btn-outline-light" onClick={this.logout}>Logout</Link>
-          </li>
+          <Link to="/logout" className="btn btn-outline-light" onClick={this.logout}>Logout</Link>
+        </li>
       </ul>
     );
 
     const guessLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-            <Link to="/login" className="btn btn-outline-light">Login</Link>
-          </li>
+          <Link to="/login" className="btn btn-outline-light">Login</Link>
+        </li>
         <br />
         <li className="nav-item">
-            <Link to="/signup" className="btn btn-outline-light">Sign up</Link>
-          </li>
+          <Link to="/signup" className="btn btn-outline-light">Sign up</Link>
+        </li>
       </ul>
+    );
+
+    const center = (
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Center
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <Link to="/addcenter" className="dropdown-item">Add Center</Link>
+          <div className="dropdown-menu" />
+          <Link to="/centers" className="dropdown-item">View Centers</Link>
+        </div>
+      </li>
     );
 
     return (
@@ -59,18 +75,12 @@ class NavBar extends Component {
                   <Link to="/addevent" className="dropdown-item">Add Event</Link>
                   <div className="dropdown-divider" />
                   <Link to="/events"className="dropdown-item">View Events</Link>
-                </div>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Center
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link to="/addcenter" className="dropdown-item">Add Center</Link>
-                  <div className="dropdown-menu" />
+                  <div className="dropdown-divider" />
                   <Link to="/centers" className="dropdown-item">View Centers</Link>
                 </div>
               </li>
+              {admin === 'ADMIN1' ? center : null}
+
               <br />
             </ul>
             { isAuthenticated ? userLink : guessLink }

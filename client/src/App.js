@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import setAuthToken from './components/Auth/auth';
 import NavBar from './components/UI/NavBar';
-// import Footer from './components/Footer';
+import Footer from './components/UI/Footer';
 import '../../node_modules/toastr/build/toastr.min.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './static/css/style.css';
@@ -44,6 +44,7 @@ const App = () => (
     <BrowserRouter>
       <div>
         <NavBar />
+        <Footer />
       </div>
     </BrowserRouter>
   </Provider>

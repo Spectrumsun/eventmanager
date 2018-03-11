@@ -1,17 +1,17 @@
 import React from 'react';
+import uuid from 'uuid-random';
 
 const centerFrom = props => (
-
-  <div className="card-body">
-    <form onSubmit={props.onSubmit} >
+  <div className="card-body" >
+    <form onSubmit={props.onSubmit}>
       <div className="form-row">
         <div className="form-group col-md-12">
-          <h5><label htmlFor="inputEmail4">Name</label></h5>
+          <h5><label htmlFor="inputEmail4">Center Name</label></h5>
           <input
             type="text"
-            value={props.centerName}
+            value={props.name}
             onChange={props.onChange}
-            name="centerName"
+            name="name"
             className="form-control form-control-lg"
             required
           />
@@ -50,6 +50,7 @@ const centerFrom = props => (
           />
         </div>
       </div>
+
       <h5>Add Facilities</h5>
       <input
         type="text"
@@ -72,26 +73,17 @@ const centerFrom = props => (
 
       <br />
       <br />
-
-
       <ul className="list-group col-md-6">
-        {props.facility.map(list =>
-          (<li 
-            className="list-group-item d-flex justify-content-between align-items-center"
-            key={Math.floor(Math.random() * 1000)}>
+        {props.facility.map((list, i) =>
+          (<li className="list-group-item d-flex justify-content-between align-items-center" key={uuid()}>
             {list}
-            <span className="badge badge-danger badge-pill">X</span>
+            <span className="badge badge-danger badge-pill" onClick={() => props.removeFacility(i)}>X</span>
            </li>))}
       </ul>
-
-      
       <br />
-      <button type="button" className="btn btn-primary btn-lg">Done</button>
-      <br />
-      <br />
+      <button type="submit" className="btn btn-primary btn-lg">Submit</button>
     </form>
   </div>
-
 );
 
 

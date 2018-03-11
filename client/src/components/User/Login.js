@@ -64,10 +64,6 @@ class Login extends Component {
 }
 
 
-/* const mapStateToProps = state => ({
-  user: state.users.user,
-  error: state.users.error
-}); */
 
 const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) => dispatch(action.initUserLogin(user, history)),

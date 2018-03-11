@@ -23,7 +23,6 @@ class display extends Component {
           <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.clicked}>Select</button>
         </div>
       </div>
-
     );
   }
 }

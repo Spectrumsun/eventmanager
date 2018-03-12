@@ -1,6 +1,8 @@
 import React from 'react';
 import PickCenter from '../../Center/PickCenter';
 
+
+
 const eventForm = props => (
   <div className="card-body" >
     <form onSubmit={props.onSubmit}>
@@ -35,7 +37,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="time"
             className="form-control form-control-lg"
-            
+
           />
         </div>
       </div>
@@ -72,7 +74,7 @@ const eventForm = props => (
 
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
-            <PickCenter />
+            <PickCenter selectCenter={(id) => props.selectCenter(id)}/>
           </div>
         </div>
       </div>

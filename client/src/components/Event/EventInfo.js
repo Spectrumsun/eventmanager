@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 class EventInfo extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
@@ -14,8 +14,6 @@ class EventInfo extends Component {
   }
 
   render() {
-    const id = this.props.auth.user.id;
-
     const eventOwner = (
       <div>
         <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
@@ -56,7 +54,7 @@ class EventInfo extends Component {
     return (
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
-        <div className="container" style={{ width: '45rem' }}>
+          <div className="container" style={{ width: '45rem' }}>
           <div className="card loginCard">
             <div className="card-header dark">
               <h1 className="color">Event Info</h1>
@@ -64,21 +62,16 @@ class EventInfo extends Component {
             <div className="card-body">
               <h5 ><strong>Event Name</strong></h5>
               <h6 className="list-group-item centerlist">{this.props.events.eventName}</h6>
-
               <br />
-
               <h5><strong>Date</strong></h5>
               <h6 className="list-group-item centerlist">{this.props.events.eventdate}</h6>
               <br />
-
               <h5><strong>Time</strong></h5>
               <h6 className="list-group-item centerlist">{this.props.events.time}</h6>
               <br />
-
               <h5><strong>Purpose</strong></h5>
               <h6 className="list-group-item centerlist">{this.props.events.purpose}</h6>
               <br />
-
               <h5><strong>Center</strong></h5>
               <ul className="list-group col-md-6">
                 <Link to={`/centers/${center.id}`} key={center.id} style={{ color: '#35434A' }}>
@@ -86,12 +79,11 @@ class EventInfo extends Component {
                 </Link>
               </ul>
               <br />
-              { id === this.props.events.userId ? eventOwner : null}
-
+              { this.props.id !== this.props.events.userId ? null : eventOwner }
             </div>
           </div>
         </div>
-      </div>
+        </div>
       </div>
     );
   }
@@ -99,7 +91,7 @@ class EventInfo extends Component {
 
 const mapStateToProps = state => ({
   events: state.events.loadedEvent,
-  auth: state.auth
+  id: state.auth.user.id
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -53,7 +53,11 @@ const home = () => (
         </div>
       </div>
     </div>
+    <footer >
+      <p>Event Managment &copy; 2017</p>
+    </footer>
   </div>
+
 );
 
 export default home;

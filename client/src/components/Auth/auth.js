@@ -7,15 +7,3 @@ export default function setAuthToken(token) {
     delete axios.defaults.headers.common.Authorization;
   }
 }
-
-
-
-// /redux/todos/index.js
-/* import axios from "axios";  
-let todoAxios = axios.create();
-
-todoAxios.interceptors.request.use((config)=>{  
-    const token = localStorage.getItem("token");
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-}) */

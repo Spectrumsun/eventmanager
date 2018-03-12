@@ -39,14 +39,6 @@ export const centerError = (error) => {
     }
 };
 
-export const centerId = (id) => {
-  console.log(id)
-  return {
-    type: actionTypes.CENTER_ID,
-    centerId: id
-  }
-}
-
 
 export const initCenters = () => {
   return dispatch => {
@@ -80,7 +72,7 @@ export const getOneCenter = (id) => {
 
 export const initPostCenters = (inputs, history) => {
   return dispatch => {
-    axios.post('/centers', inputs)
+    axios.post('/centers?token='+localStorage.jwtToken, inputs)
       .then((response) => {
         toast.success(response.data.message)
         history.push('/centers')
@@ -97,7 +89,7 @@ export const initPostCenters = (inputs, history) => {
 
 export const initEditCenter = (id, center, history) => {
   return  dispatch => {
-     axios.put(`/centers/${id}`, center)
+     axios.put(`/centers/${id}?token=`+localStorage.jwtToken, center)
           .then((response) => {
             toast.success(response.data.message)
             history.push('/centers')
@@ -113,16 +105,11 @@ export const initEditCenter = (id, center, history) => {
 }
 
 
-export const pickCenterId = (id) => {
-  return dispatch => {
-     dispatch(centerId(id))
-  }
-}
 
 
 export const initDeleteCenter = (id, history) => {
   return  dispatch => {
-     axios.delete(`/centers/${id}`)
+     axios.delete(`/centers/${id}?token=`+localStorage.jwtToken)
           .then((response) => {
             toast.success(response.data.message)
             history.push('/centers')

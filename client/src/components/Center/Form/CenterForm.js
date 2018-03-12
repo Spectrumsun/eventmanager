@@ -77,7 +77,7 @@ const centerFrom = props => (
         {props.facility.map((list, i) =>
           (<li className="list-group-item d-flex justify-content-between align-items-center" key={uuid()}>
             {list}
-            <span className="badge badge-danger badge-pill" onClick={() => props.removeFacility(i)}>X</span>
+            <span className="badge badge-danger badge-pill point" onClick={() => props.removeFacility(i)}>X</span>
            </li>))}
       </ul>
       <br />

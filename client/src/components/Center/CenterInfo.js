@@ -18,7 +18,6 @@ class CenterInfo extends Component {
 
   render() {
     const admin = this.props.auth.user.role;
-
     const showbutton = (
       <div>
         <Link to={`/centers/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
@@ -27,7 +26,6 @@ class CenterInfo extends Component {
         <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" onClick={this.deleteCenter} style={{ marginLeft: '20px' }}>Delete</Link>
       </div>
     );
-
 
     const center = (
       <div className="container" style={{ paddingTop: '100px' }}>

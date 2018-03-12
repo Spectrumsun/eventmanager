@@ -35,6 +35,7 @@ export const userError = (error) => {
     }
 };
 
+
 export const initUser = (inputs, history) => {
   return dispatch => {
        axios.post('/users', inputs)

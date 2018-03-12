@@ -83,7 +83,6 @@ export const initPostEvent = (event, history) => {
         dispatch(postEvent(res));
       })
       .catch((error) => {
-        console.log(error)
         const newError = error.response.data.errorMessage;
         newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
         dispatch(eventError(error.response.data.message))

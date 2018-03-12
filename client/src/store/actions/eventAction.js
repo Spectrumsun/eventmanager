@@ -19,14 +19,14 @@ export const getOneEvent = (events) => {
 
 export const postEvent = (events) => {
   return {
-    type: actionType.ADD_EVENT,
+    type: actionTypes.ADD_EVENT,
     addEvent: events
   }
 }
 
 export const editEvent = (events) => {
   return {
-    type: actionType.EDIT_EVENT,
+    type: actionTypes.EDIT_EVENT,
     editEvent: events
   }
 }
@@ -76,13 +76,14 @@ export const initGetOneEvent = (id) => {
 export const initPostEvent = (event, history) => {
   console.log(event)
   return dispatch => {
-    axios.post('/events', event)
-      .then((response) => {
-        toast.success(response.data.message)
+    axios.post('/events?token='+localStorage.jwtToken, event)
+      .then((res) => {
+        toast.success(res.data.message)
         history.push('/events')
-        dispatch(postEvent(response.data.message));
+        dispatch(postEvent(res));
       })
       .catch((error) => {
+        console.log(error)
         const newError = error.response.data.errorMessage;
         newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
         dispatch(eventError(error.response.data.message))
@@ -91,9 +92,12 @@ export const initPostEvent = (event, history) => {
 };
 
 
+
+
+
 export const initEditEvent = (id, events, history) => {
   return  dispatch => {
-     axios.put(`/events/${id}`, events)
+     axios.put(`/events/${id}?token=`+localStorage.jwtToken, events)
           .then((response) => {
             toast.success(response.data.message)
             history.push('/events')
@@ -111,7 +115,7 @@ export const initEditEvent = (id, events, history) => {
 
 export const initDeleteEvent = (id, history) => {
   return  dispatch => {
-     axios.delete(`/events/${id}`)
+     axios.delete(`/events/${id}?token=`+localStorage.jwtToken)
           .then((response) => {
             toast.success(response.data.message)
             history.push('/events')

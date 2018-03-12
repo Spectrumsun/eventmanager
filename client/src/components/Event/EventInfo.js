@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 class EventInfo extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
@@ -15,7 +15,6 @@ class EventInfo extends Component {
 
   render() {
     const id = this.props.auth.user.id;
-
     const eventOwner = (
       <div>
         <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
@@ -52,11 +51,15 @@ class EventInfo extends Component {
       </div>
     );
 
+    const notOwner = (
+      <button type="hidden" />
+    );
+
     const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
     return (
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
-        <div className="container" style={{ width: '45rem' }}>
+          <div className="container" style={{ width: '45rem' }}>
           <div className="card loginCard">
             <div className="card-header dark">
               <h1 className="color">Event Info</h1>
@@ -86,12 +89,12 @@ class EventInfo extends Component {
                 </Link>
               </ul>
               <br />
-              { id === this.props.events.userId ? eventOwner : null}
+              { id !== this.props.events.userId ? notOwner : eventOwner }
 
             </div>
           </div>
         </div>
-      </div>
+        </div>
       </div>
     );
   }

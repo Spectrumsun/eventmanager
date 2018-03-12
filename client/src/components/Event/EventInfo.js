@@ -4,75 +4,99 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 
 class EventInfo extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
+  deleteEvent = (e) => {
+    e.preventDefault();
+    this.props.onDeleteEvent(this.props.match.params.id, this.props.history);
+  }
+
   render() {
-    const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
-    console.log(center.centerName);
-    const event = (
-      <div className="container" style={{ paddingTop: '100px' }}>
-        <div className="container" style={{ width: '45rem' }}>
-          <div className="card loginCard">
-            <div className="card-header dark">
-              <h1 className="color">Event Info</h1>
-            </div>
-            <div className="card-body">
-              <form action="addevent.html">
-                <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-lg-2 col-form-label"><strong>Event</strong></label>
-                  <div className="col-sm-10">
-                    <input type="text" className="form-control-plaintext " id="staticEmail" value={this.props.events.eventName} />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Date</strong></label>
-                  <div className="col-sm-10">
-                    <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.events.eventdate} />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Time</strong></label>
-                  <div className="col-sm-10">
-                    <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.events.time} />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  <label htmlFor="staticEmail" className="col-sm-2 col-form-label"><strong>Purpose</strong></label>
-                  <div className="col-sm-10">
-                    <input type="text" readOnly className="form-control-plaintext" id="staticEmail" value={this.props.events.purpose} />
-                  </div>
-                </div>
-                <h5><strong>Center</strong></h5>
-                <ul className="list-group col-md-6">
-                  <Link to={`/centers/${center.id}`} key={center.id} style={{ color: 'black' }}>
-                    <li className="list-group-item centerlist">{center.centerName}</li>
-                  </Link>
-                </ul>
-                <br/>
-                <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
-              </form>
-              <a className="btn btn-danger" href="viewevent.html" style={{ marginLeft: '20px' }}>Delete</a>
+    const eventOwner = (
+      <div>
+        <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
+          <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+        </Link>
+        <button
+          type="button"
+          className="btn btn-danger"
+          style={{ marginLeft: '20px' }}
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+                  Delete
+        </button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Delete Event</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <h6>Are you sure you want to delete <strong>{this.props.events.eventName} ?</strong></h6>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.deleteEvent}>Yes</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     );
+
+    const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
     return (
       <div>
-        {event}
+        <div className="container" style={{ paddingTop: '100px' }}>
+          <div className="container" style={{ width: '45rem' }}>
+          <div className="card loginCard">
+            <div className="card-header dark">
+              <h1 className="color">Event Info</h1>
+            </div>
+            <div className="card-body">
+              <h5 ><strong>Event Name</strong></h5>
+              <h6 className="list-group-item centerlist">{this.props.events.eventName}</h6>
+              <br />
+              <h5><strong>Date</strong></h5>
+              <h6 className="list-group-item centerlist">{this.props.events.eventdate}</h6>
+              <br />
+              <h5><strong>Time</strong></h5>
+              <h6 className="list-group-item centerlist">{this.props.events.time}</h6>
+              <br />
+              <h5><strong>Purpose</strong></h5>
+              <h6 className="list-group-item centerlist">{this.props.events.purpose}</h6>
+              <br />
+              <h5><strong>Center</strong></h5>
+              <ul className="list-group col-md-6">
+                <Link to={`/centers/${center.id}`} key={center.id} style={{ color: '#35434A' }}>
+                  <h6><li className="list-group-item centerlist">{center.centerName}</li></h6>
+                </Link>
+              </ul>
+              <br />
+              { this.props.id !== this.props.events.userId ? null : eventOwner }
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  events: state.events.loadedEvent
+  events: state.events.loadedEvent,
+  id: state.auth.user.id
 });
 
 const mapDispatchToProps = dispatch => ({
-  onOneEvent: id => dispatch(actions.initGetOneEvent(id))
+  onOneEvent: id => dispatch(actions.initGetOneEvent(id)),
+  onDeleteEvent: (id, history) => dispatch(actions.initDeleteEvent(id, history))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventInfo);

@@ -1,7 +1,9 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
-import axios from 'axios';
+import axios from 'axios'; 
 import toast from 'toastr';
+import setAuthToken from '../../components/Auth/auth';
+import jwt from 'jsonwebtoken';
 
 export const signUpUser = (user) => {
   return {
@@ -11,27 +13,20 @@ export const signUpUser = (user) => {
 };
 
 
-export const logIn = (user, token) => {
- // console.log(user)
+export const logIn = (user) => {
   return {
     type: actionTypes.LOGGED_IN,
     user: user,
-    token: token
     }
 };
 
-export const logout = () => {
+export const setUser = (user) => {
   return {
-    type: actionTypes.LOGGED_OUT
+    type: actionTypes.SET_CURRENT_USER,
+    user: user
   }
 }
 
-export const logOutandRdirect = () => {
-  return{
-
-  }
-   
-}
 
 export const userError = (error) => {
   return {
@@ -40,43 +35,53 @@ export const userError = (error) => {
     }
 };
 
-export const authSuccess = (token) => {
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    token: token
 
-  }
-} 
-
-export const initUser = (inputs) => {
+export const initUser = (inputs, history) => {
   return dispatch => {
        axios.post('/users', inputs)
         .then((res) => {
-         dispatch(signUpUser(res.data.message))
-         //toast.success(res.data.fullname)
+          toast.success(res.data.message)
+          dispatch(signUpUser(res))
+          history.push('/') 
         })
         .catch((error) => {
-            dispatch(userError(error.response.data.message))
-            //toast.error(rror.response.data.message)
+          const newError = error.response.data.errorMessage
+          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
+          dispatch(userError(error.response.data.errorMessage));
         })
   };
 };
 
-export const initUserLogin = (inputs) => {
+
+export const initUserLogin = (inputs, history) => {
   return dispatch => {
        axios.post('/users/login', inputs)
-        .then((response) => {
-        console.log(response)
-        const token = response.data.token;
-        //console.log(token)
-        localStorage.setItem('jwtToken', token);
-         dispatch(logIn(response.data.fullname, token))
+        .then((res) => {
+          toast.success(res.data.message)
+          history.push('/')
+          const token = res.data.token;
+          localStorage.setItem('jwtToken', token);
+          setAuthToken(token);
+          dispatch(setUser(jwt.decode(token)));
+          dispatch(logIn(res.data.message))
         })
         .catch((error) => {
-            dispatch(userError(error.response.data.message))
+          const newError = error.response.data.errorMessage
+          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
+          dispatch(userError(error.response.data.errorMessage))
         })
   };
 };
 
+
+export const initUserLogout = (history) => {
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    toast.success('Logout Successfull')
+    history.push('/')
+    dispatch(setUser({}))
+  }
+}
 
 

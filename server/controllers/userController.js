@@ -34,14 +34,14 @@ class Users {
         password: hash,
         confirmPassword: req.body.confirmPassword,
         role: req.body.role
-      }).then(user => res.status(201).send({
-        message: 'User successfully created',
+      }).then(user => res.status(201).json({
+        message: 'Account successfully created',
         user: {
           fullname: user.fullname,
           email: user.email
         }
       }))
-        .catch(error => res.status(400).send({ message: 'email already used' })));
+        .catch(error => res.status(400).json({ message: 'email already used' })));
   }
   /**
    * signIn
@@ -65,21 +65,20 @@ class Users {
               const token = jwt.sign({
                 id: user.id,
                 fullname: user.fullname,
-                email: user.email,
                 role: user.role
               }, secret, { expiresIn: '200h' });
               return res
                 .status(200)
-                .send({ message: `Welcome ${user.email} `, fullname: user.fullname, token });
+                .json({ message: `Welcome ${user.fullname} `, token });
             }
             return res
               .status(400)
-              .send({ message: 'email or password incorrect' });
+              .json({ message: 'email or password incorrect' });
           });
         } else {
           res
             .status(404)
-            .send({ message: 'No user with such information' });
+            .json({ message: 'No account with such information' });
         }
       });
   }

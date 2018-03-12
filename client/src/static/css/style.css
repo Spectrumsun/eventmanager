@@ -1,7 +1,6 @@
 body {
 	background-color: #f4f4f4 ;
 	font-family: 'Mada', sans-serif;
-	margin-bottom: 150px;
 }
 
 .centerlist{
@@ -132,15 +131,11 @@ a {
 }
 
 footer{
-	height: 60px;
+	padding: 20px;
+	margin-top: 20px;
 	color: #ffffff;
 	background-color: #35434a;
 	text-align: center;  
-	position:fixed;
-	bottom: 0;
-	left: 0px;
-	right: 0px;
-	margin-bottom: 0px;
 }
 
 .con {
@@ -148,4 +143,9 @@ footer{
     transition: .5s ease;
     top: 50%;
     left: 50%;
+}
+
+
+.point {
+	cursor: pointer; 
 }

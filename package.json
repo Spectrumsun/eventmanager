@@ -6,7 +6,7 @@
   "scripts": {
     "start": "sequelize db:migrate && npm run build && node build/server",
     "test": "nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
-    "migrations": "sequelize db:migrate:undo:all && ssequelize db:migrate",
+    "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
     "dev": "npm run dev:start",
@@ -42,6 +42,8 @@
     "istanbul-coveralls": "^1.0.3",
     "jquery": "^3.2.1",
     "jsonwebtoken": "^8.1.0",
+    "lodash": "^4.17.5",
+    "lodash.isempty": "^4.4.0",
     "morgan": "^1.9.0",
     "nyc": "^11.3.0",
     "pg": "^7.4.0",
@@ -54,13 +56,14 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^4.23.0",
+    "sequelize": "^4.35.2",
     "sequelize-cli": "^3.1.0",
     "style-loader": "^0.19.1",
     "swagger-jsdoc": "^1.9.7",
     "tether": "^1.4.3",
     "toastr": "^2.1.4",
     "url-loader": "^0.6.2",
+    "uuid-random": "^1.0.6",
     "webpack": "^3.10.0"
   },
   "devDependencies": {

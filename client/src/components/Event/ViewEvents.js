@@ -11,7 +11,7 @@ class ViewEvent extends Component {
     this.props.onInitEvent();
   }
   render() {
-    const events = this.props.event.map(event =>
+    const events = this.props.events.map(event =>
       (<Link to={`/events/${event.id}`} key={event.id} style={{ color: 'black' }}>
         <Display
           eventName={event.eventName}
@@ -35,7 +35,7 @@ class ViewEvent extends Component {
 
 
 const mapStateToProps = state => ({
-  event: state.events.event
+  events: state.events.events
 });
 
 const mapDispatchToProps = dispatch => ({

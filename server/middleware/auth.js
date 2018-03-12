@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
 
+require('dotenv').config();
 
 class Auth {
   static verifyToken(req, res, next) {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.body.token || req.query.token || req.headers.authorization;
     if (token) {
       const secret = process.env.SECRET;
       jwt.verify(token, secret, (err, data) => {
@@ -13,7 +14,6 @@ class Auth {
           });
         }
         req.user = data;
-        
         next();
       });
     } else {

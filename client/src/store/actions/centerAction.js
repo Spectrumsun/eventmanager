@@ -39,14 +39,6 @@ export const centerError = (error) => {
     }
 };
 
-export const centerId = (id) => {
-  console.log(id)
-  return {
-    type: actionTypes.CENTER_ID,
-    centerId: id
-  }
-}
-
 
 export const initCenters = () => {
   return dispatch => {
@@ -113,11 +105,6 @@ export const initEditCenter = (id, center, history) => {
 }
 
 
-export const pickCenterId = (id) => {
-  return dispatch => {
-     dispatch(centerId(id))
-  }
-}
 
 
 export const initDeleteCenter = (id, history) => {

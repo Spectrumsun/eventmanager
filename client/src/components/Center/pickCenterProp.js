@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as action from '../../store/actions/index';
-
-
 class display extends Component {
   state;
 
   clicked = () => {
-    this.props.pickCenterId(this.props.id);
+    this.props.selectCenter(this.props.id)
   }
 
   render() {
@@ -27,10 +23,4 @@ class display extends Component {
   }
 }
 
-
-const mapDispatchToProps = dispatch => ({
-  pickCenterId: id => dispatch(action.pickCenterId(id)),
-});
-
-
-export default connect(null, mapDispatchToProps)(display);
+export default display;

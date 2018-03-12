@@ -14,48 +14,44 @@ class EventCenter extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-    this.setState({ center: this.props.centerId });
   }
 
- 
-   onSubmit = (e) => {
-     e.preventDefault();
-     
-     this.props.initPostEvent(this.state, this.props.history);
-     console.log(this.state)
-   }
+  onSubmit = (e) => {
+    e.preventDefault();
+    this.props.initPostEvent(this.state, this.props.history);
+  }
 
-   render() {
-     return (
-       <div className="container" style={{ paddingTop: '100px' }}>
-         <div className="card card w-50 loginCard">
-           <div className="card-header dark">
-             <h1 className="color">Add Event</h1>
-           </div>
-           <EventForm
-             onChange={this.onChange}
-             onSubmit={this.onSubmit}
-             name={this.state.name}
-             date={this.state.date}
-             time={this.state.time}
-             purpose={this.state.purpose}
-             center={this.state.center}
-           />
-         </div>
-       </div>
-     );
-   }
+  selectCenter = (id) => {
+    this.state.center = id;
+  }
+
+  render() {
+    return (
+      <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="card card w-50 loginCard">
+          <div className="card-header dark">
+            <h1 className="color">Add Event</h1>
+          </div>
+          <EventForm
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            name={this.state.name}
+            date={this.state.date}
+            time={this.state.time}
+            purpose={this.state.purpose}
+            selectCenter={id => this.selectCenter(id)}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-
-const mapStateToProps = state => ({
-  centerId: state.centers.centerId
-});
 
 const mapDispatchToProps = dispatch => ({
   initPostEvent: (input, history) => dispatch(action.initPostEvent(input, history)),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventCenter);
+export default connect(null, mapDispatchToProps)(EventCenter);
 

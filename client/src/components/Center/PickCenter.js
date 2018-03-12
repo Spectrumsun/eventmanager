@@ -9,7 +9,6 @@ class Centers extends Component {
   }
 
 
-
   render() {
     const centers = this.props.center.map(center =>
       (
@@ -21,6 +20,7 @@ class Centers extends Component {
           city={center.city}
           availability={center.availability}
           facility={center.facility}
+          selectCenter={id => this.props.selectCenter(id)}
         />
       ));
     return (

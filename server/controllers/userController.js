@@ -82,6 +82,38 @@ class Users {
         }
       });
   }
+
+
+  static passwordrest(req, res) {
+   User.findOne({
+      where: {
+        email: req.body.email
+      },
+    })
+      .then((user) => {
+        if (user) {
+          bcrypt.compare(req.body.password, user.password, (err, response) => {
+            if (response) {
+              const token = jwt.sign({
+                id: user.id,
+                fullname: user.fullname,
+                role: user.role
+              }, secret, { expiresIn: '200h' });
+              return res
+                .status(200)
+                .json({ message: `Welcome ${user.fullname} `, token });
+            }
+            return res
+              .status(400)
+              .json({ message: 'email or password incorrect' });
+          });
+        } else {
+          res
+            .status(404)
+            .json({ message: 'No account with such information' });
+        }
+      });
+  }
 }
 
 export default Users;

@@ -18,7 +18,9 @@ export {
   initUser,
   logIn,
   initUserLogin,
-  initUserLogout
+  initUserLogout,
+  initPasswordRest,
+  passwordRest
 } from './userAction';
 
 export {

@@ -85,3 +85,20 @@ export const initUserLogout = (history) => {
 }
 
 
+export const initPasswordRest = (user, history) => {
+   return dispatch => {
+       axios.post('/passwordrest', user)
+        .then((res) => {
+          toast.success(res.data.message)
+          history.push('/')
+        })
+        .catch((error) => {
+          const newError = error.response.data.errorMessage
+          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
+          dispatch(userError(error.response.data.errorMessage))
+        })
+  };
+}
+
+
+

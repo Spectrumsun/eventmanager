@@ -48,7 +48,7 @@ class Login extends Component {
                     type="password"
                     placeholder="Password"
                   />
-                  <small ><Link to="/passwordreset" className="center-item">Password Reset</Link></small>
+                  <small ><Link to="/forgotpassword" className="center-item">Password Reset</Link></small>
 
                   <div className="text-center">
                     <button type="submit" className="btn btn-outline-dark">Submit</button>

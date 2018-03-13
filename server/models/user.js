@@ -18,6 +18,22 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'user',
     },
+    emailVerfication: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    emailVerficationExpires: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    resetPasswordToken: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    resetPasswordExpires: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+    }
   }, {
 
   });

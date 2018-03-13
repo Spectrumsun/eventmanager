@@ -30,7 +30,25 @@ router.post(
 router.post(
   '/users/login',
   validator.validatelogin,
+  userController.isConfirmEmail,
   userController.login
+);
+
+router.post(
+  '/users/forgotpassword',
+  validator.forgetPassword,
+  userController.forgotpassword
+);
+
+router.post(
+  '/users/password/reset/:token',
+  validator.passwordReset,
+  userController.passwordReset
+);
+
+router.get(
+  '/users/email/:token',
+  userController.confirmEmail
 );
 
 // GET Events

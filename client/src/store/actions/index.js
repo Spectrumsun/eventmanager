@@ -18,7 +18,11 @@ export {
   initUser,
   logIn,
   initUserLogin,
-  initUserLogout
+  initUserLogout,
+  initconfirmPassword,
+  initemailverify,
+  passwordRest,
+  initpasswordreset
 } from './userAction';
 
 export {

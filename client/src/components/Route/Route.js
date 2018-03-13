@@ -10,13 +10,14 @@ import ViewEvents from '../Event/ViewEvents';
 import CenterInfo from '../Center/CenterInfo';
 import EventInfo from '../Event/EventInfo';
 import NotFound from '../NotFound';
-import PasswordRest from '../User/PasswordReset';
+import ForgotPassword from '../User/ForgotPassword';
 import EditCenter from '../Center/EditCenter';
 import EditEvent from '../Event/EditEvent';
 import pickCenter from '../Center/PickCenter';
+import PasswordReset from '../User/passwordReset';
 import RequireAuth from '../Auth/authHOC';
 import IsAdmin from '../Auth/adminHOC';
-
+import EmailCheck from '../User/EmailVerfy';
 
 
 const routers = () => (
@@ -33,8 +34,9 @@ const routers = () => (
     <Route path="/centers/edit/:id" exact component={IsAdmin(EditCenter)} />
     <Route path="/signup" exact component={Signup} />
     <Route path="/login" exact component={Login} />
-    <Route path="/passwordreset" exact component={PasswordRest} />
-    
+    <Route path="/forgotpassword" exact component={ForgotPassword} />
+    <Route path="/user/password/reset/:token" exact component={PasswordReset} />
+    <Route path="/users/email/:token" exact component={EmailCheck} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
-class PasswordReset extends Component {
+class Login extends Component {
   state = {
-    email: '',
+    password:'',
+    confirmPassword: ''
   }
 
   onChange =(e) => {
@@ -16,8 +17,7 @@ class PasswordReset extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-    this.props.initPasswordRest(this.state, this.props.history);
+    this.props.initpasswordreset(this.props.match.params.token, this.state, this.props.history);
   }
 
   render() {
@@ -26,18 +26,27 @@ class PasswordReset extends Component {
         <div className="container" style={{ paddingTop: '100px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
-              <h3>Login</h3>
+              <h3>Password Reset</h3>
             </div>
             <div className="card-body">
               <div className="cont card-body">
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
-                    label="Email"
-                    value={this.state.email}
+                    label="New Password"
+                    value={this.state.password}
                     onChange={this.onChange}
-                    name="email"
-                    type="email"
-                    placeholder="Vaild Email"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                  />
+
+                  <TextField
+                    label="Password"
+                    value={this.state.confirmPassword}
+                    onChange={this.onChange}
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="confirm Password"
                   />
                   <div className="text-center">
                     <button type="submit" className="btn btn-outline-dark">Submit</button>
@@ -52,8 +61,9 @@ class PasswordReset extends Component {
   }
 }
 
+
 const mapDispatchToProps = dispatch => ({
-  initPasswordRest: (user, history) => dispatch(action.initPasswordRest(user, history)),
+  initpasswordreset: (token, user, history) => dispatch(action.initpasswordreset(token, user, history)),
 });
 
-export default connect(null, mapDispatchToProps)(PasswordReset);
+export default connect(null, mapDispatchToProps)(Login);

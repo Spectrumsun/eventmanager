@@ -24,6 +24,22 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      emailVerfication: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      emailVerficationExpires: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
+      resetPasswordToken: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      resetPasswordExpires: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

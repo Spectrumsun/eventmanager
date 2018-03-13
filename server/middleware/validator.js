@@ -74,6 +74,26 @@ class Validate {
     next();
   }
 
+  static passwordReset(req, res, next) {
+    req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+    req.checkBody('confirmPassword', 'Oops! Your passwords do not match').equals(req.body.password);
+    const errors = req.validationErrors();
+    if (errors) {
+      const errorMessage = errors.map(err => err.msg);
+      return res.status(400).json({ message: 'Errors adding new event', errorMessage });
+    }
+    next();
+  }
+
+  static forgetPassword(req, res, next) {
+    req.checkBody('email', 'That Email is not valid!').isEmail();
+    const errors = req.validationErrors();
+    if (errors) {
+      const errorMessage = errors.map(err => err.msg);
+      return res.status(400).json({ message: 'Errors adding new event', errorMessage });
+    }
+    next();
+  }
 
   static validateCreateCenter(req, res, next) {
     req.checkBody('name', 'You must supply a Center  name!').notEmpty();

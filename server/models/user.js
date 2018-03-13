@@ -23,7 +23,7 @@ export default (sequelize, DataTypes) => {
       allowNull: true
     },
     emailVerficationExpires: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     },
     resetPasswordToken: {

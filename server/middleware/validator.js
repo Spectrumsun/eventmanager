@@ -1,4 +1,4 @@
-import { Event, Center } from '../models';
+import { Event } from '../models';
 
 require('dotenv').config();
 
@@ -33,7 +33,7 @@ class Validate {
     req.checkBody('fullname', 'You must supply a name!').notEmpty();
     req.checkBody('email', 'That Email is not valid!').isEmail();
     req.sanitizeBody('email').normalizeEmail({ remove_dots: false, remove_extension: false, gmail_remove_subaddress: false });
-    req.checkBody('password', 'Password Cannot be Blank!').notEmpty();
+    req.checkBody('password', 'Password Cannot be Blank cant be less than six Charaters!').notEmpty().isLength({min:6});
     req.checkBody('confirmPassword', 'Oops! Your passwords do not match').equals(req.body.password);
 
     const errors = req.validationErrors();

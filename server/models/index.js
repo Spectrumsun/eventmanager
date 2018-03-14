@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import configfile from '../../server/config/config.json';
+import configfile from '../../server/config/config';
 
 
 const basename = path.basename(module.filename);
@@ -13,10 +13,20 @@ const db = {};
 dotenv.config();
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable],);
+if (config.url) {
+  sequelize = new Sequelize(
+    config.url.toString(),
+    {
+      dialect: config.dialect
+    }
+  );
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
 }
 
 fs

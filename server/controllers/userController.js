@@ -48,7 +48,7 @@ class Users {
         res.status(201).json({
           message: 'Account successfully created Check Your mail to verify'
         })
-      )).catch(error => res.status(400).json({ message: 'Email alreeady used!!', error }));
+      ))//.catch(error => res.status(400).json({ message: 'Email alreeady used!!', error }));
   }
   /**
    * signIn
@@ -107,7 +107,7 @@ class Users {
   }
 
 
-  static async isConfirmEmail(req, res, next) {
+  static isConfirmEmail(req, res, next) {
     User.findOne({ where: { email: req.body.email } })
       .then((user) => {
         if (!user) {

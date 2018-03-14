@@ -21,7 +21,7 @@ import { setUser } from './store/actions/userAction';
 
 require('bootstrap');
 
-axios.defaults.baseURL = 'http://localhost:5000/api/v1/';
+axios.defaults.baseURL = 'http://localhost:8000/api/v1/'; // 'https://eventappmanager.herokuapp.com/';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
@@ -35,7 +35,7 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.token);
-  store.dispatch(setUser(jwt.decode(localStorage.jwtToken)))
+  store.dispatch(setUser(jwt.decode(localStorage.jwtToken)));
 }
 
 

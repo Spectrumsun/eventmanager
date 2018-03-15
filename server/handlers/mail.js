@@ -15,7 +15,7 @@ const transport = nodemailer.createTransport({
 
 const handlebarsOptions = {
   viewEngine: 'handlebars',
-  viewPath: path.join(__dirname, '../public/email'),
+  viewPath: path.join(__dirname, '../../template/email'),
   extName: '.html'
 };
 

@@ -63,6 +63,7 @@
     "sequelize-cli": "^3.1.0",
     "style-loader": "^0.19.1",
     "swagger-jsdoc": "^1.9.7",
+    "swagger-ui-express": "^2.0.15",
     "tether": "^1.4.3",
     "toastr": "^2.1.4",
     "url-loader": "^0.6.2",

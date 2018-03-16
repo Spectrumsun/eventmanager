@@ -1,0 +1,440 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Event Manager API",
+    "description": "An Application to manage event and book centers API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Events",
+      "description": " API for events in the system"
+    },
+    {
+       "name": "Centers",
+      "description": " API for centers in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+         "summary": "Create new user",
+        "description": "Create new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+  "/users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Login an existing user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Login an existing user",
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User login",
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        }
+      }
+    },
+  "/events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "description": "Create new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Events"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      }
+    },
+     "/centers": {
+      "post": {
+        "tags": [
+          "Centers"
+        ],
+        "description": "Create new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Centers"
+        ],
+        "summary": "Get all users in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        }
+      }
+    },
+    "/centes/{userId}": {
+      "parameters": [
+        {
+          "name": "userId",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Centers"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Centers"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "Centers"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/Centers"
+            }
+          }
+        }
+      }
+    }
+  },
+  
+
+
+
+  "definitions": {
+    "User": {
+      "required": [
+        "email",
+        "password",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "fullname": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+            "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+         "required": [
+        "email",
+        "password",
+        "_id"
+      ],
+       "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+           "type":
+           "string"
+        }
+      }
+    },
+      "Event": {
+        "required": [
+            "email",
+            "password",
+            "_id"
+      ],
+       "properties": {
+           "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "eventName": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "eventdate": {
+          "type": "string"
+        },
+        "purpose": {
+            "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+         "centerId": {
+          "type": "string"
+            }
+
+        }
+
+      },
+      "Center": {
+          "required": [
+            "email",
+            "password",
+            "_id"
+      ],
+       "properties": {
+           "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "centerName": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "city": {
+          "type": "string"
+        },
+        "adddress": {
+          "type": "string"
+        },
+        "availability": {
+          "type": "string"
+        },
+        "facility": {
+            "type": "array"
+        }   
+
+    }
+
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "UsersLogin": {
+        "type": "array",
+      "$ref": "#/definitions/UserLogin"
+    },
+    "Events": {
+    "type": "array",
+      "$ref": "#/definitions/Event"
+
+    },
+    "Centers": {
+        "type": "array",
+      "$ref": "#/definitions/Center"
+    }
+  }
+}

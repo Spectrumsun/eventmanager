@@ -20,7 +20,7 @@ import { setUser } from './store/actions/userAction';
 
 
 require('bootstrap');
-// 
+
 axios.defaults.baseURL = 'https://eventappmanager.herokuapp.com/api/v1';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -11,7 +11,10 @@ class Centers extends Component {
   }
 
   render() {
-    const centers = this.props.center.map(center =>
+    const isLoading = (
+      <div className="loader" />
+    )
+    const centers = this.props.center === undefined ? isLoading : this.props.center.map(center =>
       (<Link to={`/centers/${center.id}`} key={center.id} style={{ color: 'black' }}>
         <Display
           centerName={center.centerName}

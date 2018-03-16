@@ -99,12 +99,13 @@
         "tags": [
           "Events"
         ],
-        "description": "Create new user",
+        "summary": "Add new event",
+        "description": "Add new event",
         "parameters": [
           {
-            "name": "user",
+            "name": "event",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Add a new event",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -115,7 +116,7 @@
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New event is added",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -126,7 +127,7 @@
         "tags": [
           "Events"
         ],
-        "summary": "Get all users in system",
+        "summary": "Get all Events",
         "responses": {
           "200": {
             "description": "OK",
@@ -137,13 +138,13 @@
         }
       }
     },
-    "/users/{userId}": {
+    "/events/{eventId}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "eventId",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of event that we want to find",
           "type": "string"
         }
       ],
@@ -151,10 +152,10 @@
         "tags": [
           "Events"
         ],
-        "summary": "Get user with given ID",
+        "summary": "Get event with given ID",
         "responses": {
           "200": {
-            "description": "User is found",
+            "description": "Event is found",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -162,13 +163,13 @@
         }
       },
       "delete": {
-        "summary": "Delete user with given ID",
+        "summary": "Delete Event with given ID",
         "tags": [
           "Events"
         ],
         "responses": {
           "200": {
-            "description": "User is deleted",
+            "description": "Event is deleted",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -176,15 +177,15 @@
         }
       },
       "put": {
-        "summary": "Update user with give ID",
+        "summary": "Update Event with give ID",
         "tags": [
           "Events"
         ],
         "parameters": [
           {
-            "name": "user",
+            "name": "event",
             "in": "body",
-            "description": "User with new values of properties",
+            "description": "Event with new values of properties",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -192,7 +193,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Event is updated",
             "schema": {
               "$ref": "#/definitions/Events"
             }
@@ -205,12 +206,13 @@
         "tags": [
           "Centers"
         ],
-        "description": "Create new user",
+        "summary": "Add new event",
+        "description": "Admin add new center",
         "parameters": [
           {
-            "name": "user",
+            "name": "center",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Center that we want to add",
             "schema": {
               "$ref": "#/definitions/Centers"
             }
@@ -221,9 +223,9 @@
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New center is created",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/Centers"
             }
           }
         }
@@ -232,7 +234,7 @@
         "tags": [
           "Centers"
         ],
-        "summary": "Get all users in system",
+        "summary": "Get all centers in system",
         "responses": {
           "200": {
             "description": "OK",
@@ -243,13 +245,13 @@
         }
       }
     },
-    "/centes/{userId}": {
+    "/centes/{centerId}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "centerId",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of center that we want to find",
           "type": "string"
         }
       ],
@@ -257,10 +259,10 @@
         "tags": [
           "Centers"
         ],
-        "summary": "Get user with given ID",
+        "summary": "Get center with given ID",
         "responses": {
           "200": {
-            "description": "User is found",
+            "description": "Center is found",
             "schema": {
               "$ref": "#/definitions/Centers"
             }
@@ -268,13 +270,13 @@
         }
       },
       "delete": {
-        "summary": "Delete user with given ID",
+        "summary": "Delete center with given ID",
         "tags": [
           "Centers"
         ],
         "responses": {
           "200": {
-            "description": "User is deleted",
+            "description": "Center is deleted",
             "schema": {
               "$ref": "#/definitions/Centers"
             }
@@ -282,7 +284,7 @@
         }
       },
       "put": {
-        "summary": "Update user with give ID",
+        "summary": "Update center with give ID",
         "tags": [
           "Centers"
         ],
@@ -290,7 +292,7 @@
           {
             "name": "user",
             "in": "body",
-            "description": "User with new values of properties",
+            "description": "Cener with new values of properties",
             "schema": {
               "$ref": "#/definitions/Centers"
             }
@@ -298,7 +300,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "Center is updated",
             "schema": {
               "$ref": "#/definitions/Centers"
             }
@@ -384,9 +386,7 @@
          "centerId": {
           "type": "string"
             }
-
         }
-
       },
       "Center": {
           "required": [

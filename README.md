@@ -12,7 +12,7 @@ or suggest an  available day 
     * template ui   https://spectrumsun.github.io/eventmanager/
     * React ui      https://eventappmanager.herokuapp.com/
     * backend APi   https://eventappmanager.herokuapp.com/api/v1/
-      
+    * API Doc       https://eventappmanager.herokuapp.com/api/v1/docs
 
 
 # Technologies Used

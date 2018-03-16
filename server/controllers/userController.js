@@ -7,25 +7,7 @@ import { User } from '../models';
 
 const secret = process.env.SECRET;
 
-
-/**
- * @class User
- *@classdesc User Class
- */
-
-// const Secret = process.env.SECRET;
-
 class Users {
-/**
-   * signUp
-   * @desc Registers a user to the application
-   * Route: POST: 'api/v1/users/signup'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
-
-
   static signup(req, res) {
     const data = req.body.password;
     bcrypt.hash(data, 10)

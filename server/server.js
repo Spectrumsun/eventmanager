@@ -5,8 +5,11 @@ import bodyParser from 'body-parser';
 import expressValidator from 'express-validator';
 import cors from 'cors';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import routes from './routes';
+import swaggerDocument from '../swagger.json';
 
+// use env to store important keys
 require('dotenv').config();
 
 const app = express();
@@ -19,11 +22,11 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
-
 app.use(express.static(path.join(__dirname, '/../client/public')));
 app.use(express.static(path.join(__dirname, '/../client/src')));
 
 app.use('/api/v1/', routes);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/public/index.html'));

@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:8000",
+  "host": "https://eventappmanager.herokuapp.com",
   "basePath": "/api/v1",
   "tags": [
     {

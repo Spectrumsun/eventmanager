@@ -47,15 +47,6 @@ class Centers {
         }
       });
   }
-  /**
-   * New Center
-   * @desc Add a new center.
-   * Route: POST: 'api/v1/centers/'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
-
 
   static createCenter(req, res) {
     Center.create({
@@ -69,14 +60,6 @@ class Centers {
       .catch(error => res.status(400).json({ message: 'Unable to create Center! ', error }));
   }
 
-  /**
-   *Edit Center
-   * @desc update a centers information.
-   * Route: PUT: 'api/v1/centers/<centerID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static editCenter(req, res) {
     Center.findOne({ where: { id: req.params.id } })
@@ -94,7 +77,7 @@ class Centers {
           res.status(404).json({ message: 'center not found' });
         }
       })
-      .catch(err => res.status(400).json(err));
+    //  .catch(err => res.status(400).json(err));
   }
 
   /**

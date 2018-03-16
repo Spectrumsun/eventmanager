@@ -24,10 +24,6 @@ class AddCenter extends Component {
 
    onSubmit = (e) => {
      e.preventDefault();
-     console.log(this.state);
-     // if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
-     // e.preventDefault();
-     // }
      this.props.initPostCenters(this.state, this.props.history);
    }
 

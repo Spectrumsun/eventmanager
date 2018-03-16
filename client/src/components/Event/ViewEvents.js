@@ -11,14 +11,18 @@ class ViewEvent extends Component {
     this.props.onInitEvent();
   }
   render() {
-    const events = this.props.events.map(event =>
+    const isLoading = (
+       <div className="loader" />
+    );
+
+    const events = this.props.events === undefined ? isLoading : this.props.events.map(event =>
       (<Link to={`/events/${event.id}`} key={event.id} style={{ color: 'black' }}>
         <Display
           eventName={event.eventName}
           eventdate={event.eventdate}
           purpose={event.purpose}
         />
-       </Link>
+      </Link>
       ));
 
     return (
@@ -31,7 +35,6 @@ class ViewEvent extends Component {
     );
   }
 }
-
 
 
 const mapStateToProps = state => ({

@@ -7,29 +7,11 @@ import { Event, Center } from '../models';
  */
 
 class Centers {
-/**
-   * Get all them Center
-   * @desc Show a list of all the current Centers.
-   * Route: GET: 'api/v1/centers'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
-
   static getCenter(req, res) {
     Center.all()
       .then(center => res.status(200).json({ message: 'success', center }))
       .catch(error => res.status(200).json(error));
   }
-
-  /**
-   * Get a single Center
-   * @desc Show just one center with all events associated with the center.
-   * Route: GET: 'api/v1/centers/<centerID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static getOneCenter(req, res) {
     Center.findById(req.params.id, {
@@ -77,17 +59,9 @@ class Centers {
           res.status(404).json({ message: 'center not found' });
         }
       })
-    //  .catch(err => res.status(400).json(err));
+      .catch(err => res.status(400).json(err));
   }
 
-  /**
-   * Remove a Center
-   * @desc Delete a center.
-   * Route: DELETE: 'api/v1/centers/<centerID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static deleteCenter(req, res) {
     Center.findOne({ where: { id: req.params.id } })

@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Event Manager API",
-    "description": "An Application to manage event and book centers API",
+    "title": "Event Manager",
+    "description": "An Application to manage event and book centers",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"

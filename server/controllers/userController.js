@@ -26,11 +26,11 @@ class Users {
         }))
       .then(users =>
         res.status(201).send({
-          message: 'User successfully created'
+          message: 'Account successfully created. Check your mail to confirm your account '
         }))
       .catch(error =>
         res.status(400).send({
-          message: 'email already used'
+          message: 'Email already used !!'
         }));
   }
 
@@ -104,7 +104,7 @@ class Users {
             resetPasswordToken: crypto.randomBytes(20).toString('hex'),
             resetPasswordExpires: Date.now() + 360000
           });
-          const resetURL = `http//${req.headers.host}/user/password/reset/${user.resetPasswordToken}`;
+          const resetURL = `http://${req.headers.host}/user/password/reset/${user.resetPasswordToken}`;
           resetpassword({
             user,
             subject: 'Password Reset',

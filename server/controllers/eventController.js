@@ -3,36 +3,13 @@ import { Event, Center } from '../models';
 
 dotenv.config();
 
-
-/**
- * @class Event
- *@classdesc class Event
- */
-
 class Events {
-/**
-   * get Events
-   * @desc Show a list of all the current events in the db
-   * Route: GET: 'api/v1/events'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
-
   static getEvent(req, res) {
     Event.all()
       .then(event => res.status(200).send({ message: 'success', event }))
       .catch(error => res.status(200).send(error));
   }
 
-  /**
-   * Get one Event
-   * @desc Return a single event based on the id number
-   * Route: GET: 'api/v1/events/<eventID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static getOneEvent(req, res) {
     Event.findById(req.params.id, {
@@ -47,16 +24,6 @@ class Events {
       });
   }
 
-
-  /**
-   * Add a new Event
-   * @desc Add a new Event
-   * Route: POST: 'api/v1/events'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
-
   static createEvent(req, res) {
     Event.create({
       eventName: req.body.name,
@@ -70,14 +37,6 @@ class Events {
       .catch(error => res.status(400).json({ message: 'center not found!!', error }));
   }
 
-  /**
-   * Edit an already saved Event
-   * @desc Return a single event based on the id number
-   * Route: PUT: 'api/v1/events/<eventID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static editEvent(req, res) {
     Event.findOne({ where: { id: req.params.id } })
@@ -98,14 +57,7 @@ class Events {
       .catch(err => res.status(400).json(err));
   }
 
-  /**
-   * Delete Event
-   * @desc Deleter an event
-   * Route: DELETE: 'api/v1/events/<eventID>'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
+
 
   static deleteEvent(req, res) {
     Event.findOne({ where: { id: req.params.id } })

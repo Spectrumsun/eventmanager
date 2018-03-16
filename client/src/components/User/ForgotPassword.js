@@ -16,7 +16,6 @@ class ForgotPassword extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
     this.props.initconfirmPassword(this.state, this.props.history);
   }
 

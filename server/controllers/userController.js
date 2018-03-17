@@ -16,30 +16,23 @@ class Users {
         email: req.body.email,
         password: hash,
         confirmPassword: req.body.confirmPassword,
-        role: 'user',
-        emailVerfication: crypto.randomBytes(20).toString('hex'),
-        emailVerficationExpires: Date.now()
-      }).then(
-        user =>
-          emailVerfication({
-            user,
-            subject: 'Email Verification',
-            emailVerfication: `http//${req.headers.host}/users/email/${user.emailVerfication}`,
-            name: user.fullname
-          }),
-        res.status(201).json({
-          message: 'Account successfully created Check Your mail to verify'
-        })
-      ))//.catch(error => res.status(400).json({ message: 'Email alreeady used!!', error }));
+        role: req.body.role
+      })).then(user =>
+        emailVerfication({
+          user,
+          subject: 'Email Verification',
+          emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
+          name: user.fullname
+        }))
+      .then(users =>
+        res.status(201).send({
+          message: 'Account successfully created. Check your mail to confirm your account '
+        }))
+      .catch(error =>
+        res.status(400).send({
+          message: 'Email already used !!'
+        }));
   }
-  /**
-   * signIn
-   * @desc Login a user to the application
-   * Route: POST: 'api/v1/users/signin'
-   * @param {Object} req request object
-   * @param {Object} res response object
-   * @returns {void}
-   */
 
   static login(req, res) {
     User.findOne({
@@ -80,9 +73,9 @@ class Users {
             emailVerfication: null,
             emailVerficationExpires: null
           });
-          res.status(200).json({message: '💃 Nice! Email Confirmed You are can now login! ' });
+          res.status(200).json({ message: '💃 Nice! Email Confirmed You are can now login! ' });
         } else {
-          res.status(400).json({message: 'Email verification failed token is not invalid or has expired' });
+          res.status(400).json({ message: 'Email verification failed token is not invalid or has expired' });
         }
       })
       .catch(error => res.status(400).json({ message: 'An error occoured', error }));
@@ -111,7 +104,7 @@ class Users {
             resetPasswordToken: crypto.randomBytes(20).toString('hex'),
             resetPasswordExpires: Date.now() + 360000
           });
-          const resetURL = `http//${req.headers.host}/user/password/reset/${user.resetPasswordToken}`;
+          const resetURL = `http://${req.headers.host}/user/password/reset/${user.resetPasswordToken}`;
           resetpassword({
             user,
             subject: 'Password Reset',

@@ -7,12 +7,14 @@ import { Event, Center } from '../models';
  */
 
 class Centers {
+  // return a list of cennters in the db
   static getCenter(req, res) {
     Center.all()
       .then(center => res.status(200).json({ message: 'success', center }))
       .catch(error => res.status(200).json(error));
   }
 
+  // return just one center that the id matches the parmas id
   static getOneCenter(req, res) {
     Center.findById(req.params.id, {
       include: [{
@@ -30,6 +32,7 @@ class Centers {
       });
   }
 
+  // Admin can add new center to the db
   static createCenter(req, res) {
     Center.create({
       centerName: req.body.name,
@@ -43,6 +46,7 @@ class Centers {
   }
 
 
+  // Admin can edit a center
   static editCenter(req, res) {
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
@@ -62,7 +66,7 @@ class Centers {
       .catch(err => res.status(400).json(err));
   }
 
-
+  // admin can delete a center
   static deleteCenter(req, res) {
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {

@@ -4,6 +4,7 @@ import { Event, Center } from '../models';
 dotenv.config();
 
 class Events {
+  // return all the list of events in the database in json
   static getEvent(req, res) {
     Event.all()
       .then(event => res.status(200).send({ message: 'success', event }))
@@ -12,6 +13,7 @@ class Events {
 
 
   static getOneEvent(req, res) {
+    // return one event which id is the same has id in the pramas
     Event.findById(req.params.id, {
       include: [{ model: Center, as: 'centers' }],
     })
@@ -23,7 +25,7 @@ class Events {
         }
       });
   }
-
+  // a sign in user can create a new event
   static createEvent(req, res) {
     Event.create({
       eventName: req.body.name,
@@ -37,7 +39,7 @@ class Events {
       .catch(error => res.status(400).json({ message: 'center not found!!', error }));
   }
 
-
+  // a sign in user can edit events they added
   static editEvent(req, res) {
     Event.findOne({ where: { id: req.params.id } })
       .then((event) => {
@@ -57,8 +59,7 @@ class Events {
       .catch(err => res.status(400).json(err));
   }
 
-
-
+  // a sign in user can delete events they add
   static deleteEvent(req, res) {
     Event.findOne({ where: { id: req.params.id } })
       .then((event) => {

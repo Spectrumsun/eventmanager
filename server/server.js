@@ -14,6 +14,7 @@ require('dotenv').config();
 
 const app = express();
 
+
 app.use(cors());
 
 app.use(morgan('dev'));
@@ -25,12 +26,15 @@ app.use(expressValidator());
 app.use(express.static(path.join(__dirname, '/../client/public')));
 app.use(express.static(path.join(__dirname, '/../client/src')));
 
+// set base url for api
 app.use('/api/v1/', routes);
+
+// base usl for documentation
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('*', (req, res) => {
+  // user express serve to load react
   res.sendFile(path.join(__dirname, '/../client/public/index.html'));
-  // res.status(404).send({ message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫' });
 });
 
 const port = process.env.PORT || 6000;

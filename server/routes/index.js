@@ -33,18 +33,21 @@ router.post(
   userController.login
 );
 
+// Post send a email to user account with a link for password reset
 router.post(
   '/users/forgotpassword',
   validator.forgetPassword,
   userController.forgotpassword
 );
 
+// all user to change password
 router.post(
   '/users/password/reset/:token',
   validator.passwordReset,
   userController.passwordReset
 );
 
+// check if user has confirm emaill address
 router.get(
   '/users/email/:token',
   userController.confirmEmail

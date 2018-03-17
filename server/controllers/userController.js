@@ -8,8 +8,10 @@ import { User } from '../models';
 const secret = process.env.SECRET;
 
 class Users {
+  // signup a new user and save the inforamtion to db
   static signup(req, res) {
     const data = req.body.password;
+    // hash user password with bcrypt
     bcrypt.hash(data, 10)
       .then(hash => User.create({
         fullname: req.body.fullname,
@@ -18,6 +20,7 @@ class Users {
         confirmPassword: req.body.confirmPassword,
         role: req.body.role
       })).then(user =>
+      // send a mail to the user after a successfull signup
         emailVerfication({
           user,
           subject: 'Email Verification',
@@ -34,6 +37,7 @@ class Users {
         }));
   }
 
+  // login a user and trow error if user does not exisit or password is wrong
   static login(req, res) {
     User.findOne({
       where: {
@@ -65,6 +69,7 @@ class Users {
       });
   }
 
+  // confirm if new email verfication token in parmas is valid
   static confirmEmail(req, res) {
     User.findOne({ where: { emailVerfication: req.params.token } })
       .then((user) => {
@@ -81,7 +86,7 @@ class Users {
       .catch(error => res.status(400).json({ message: 'An error occoured', error }));
   }
 
-
+  // check if user has confirm email address before they can login
   static isConfirmEmail(req, res, next) {
     User.findOne({ where: { email: req.body.email } })
       .then((user) => {
@@ -96,6 +101,7 @@ class Users {
       });
   }
 
+  // reset user password and send them a email link to a url token
   static forgotpassword(req, res) {
     User.findOne({ where: { email: req.body.email } })
       .then((user) => {
@@ -119,6 +125,7 @@ class Users {
       .catch(error => res.status(400).json({ message: 'An error occoured', error }));
   }
 
+  // verify if reest password token is same as reset password in db then change the password
   static passwordReset(req, res) {
     User.findOne({ where: { resetPasswordToken: req.params.token, resetPasswordExpires: Date.now() } })
       .then((user) => {

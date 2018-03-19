@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; 
 
 const TextField = ({
   type, value, onChange, name, label, placeholder
@@ -12,7 +13,7 @@ const TextField = ({
       name={name}
       className="form-control form-control-lg"
       placeholder={placeholder}
-      //required
+      required
     />
   </div>
 );

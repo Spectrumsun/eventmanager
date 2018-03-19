@@ -46,10 +46,12 @@ export const initUser = (inputs, history) => {
         })
         .catch((error) => {
           const newError = error.response.data.errorMessage
-          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
-          dispatch(userError(error.response.data.errorMessage));
+          newError ? newError.map(err => 
+          toast.error(err)) : toast.error(
+          error.response.data.message)
+          dispatch(userError(error));
         })
-  };
+    };
 };
 
 
@@ -67,8 +69,10 @@ export const initUserLogin = (inputs, history) => {
         })
         .catch((error) => {
           const newError = error.response.data.errorMessage
-          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message)
-          dispatch(userError(error.response.data.errorMessage))
+          newError ? newError.map(err => 
+          toast.error(err)) : toast.error(
+          error.response.data.message)
+          dispatch(userError(error))
         })
   };
 };
@@ -94,8 +98,10 @@ export const initconfirmPassword = (user, history) => {
         })
         .catch((error) => {
           const newError = error.response.data.errorMessage
-          newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message) &&  history.push('/')
-          dispatch(userError(error.response.data.errorMessage))
+          newError ? newError.map(err => 
+          toast.error(err)) : toast.error(
+          error.response.data.message) &&  history.push('/')
+          dispatch(userError(error))
         })
   };
 }
@@ -109,8 +115,10 @@ export const initpasswordreset = (token, input, history) => {
         history.push('/login')
       }).catch((error) => {
         const newError = error.response.data.errorMessage
-        newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message) &&  history.replace('/')
-       dispatch(userError(error.response.data.errorMessage))
+        newError ? newError.map(err => 
+        toast.error(err)) : toast.error(
+        error.response.data.message) &&  history.replace('/')
+       dispatch(userError(error))
       })
   }
 }
@@ -123,10 +131,9 @@ export const initemailverify = (token, history) => {
       toast.success(res.data.message)
       history.replace('/login');
     }).catch((error) => {
-      console.log(error)
       toast.error(error.response.data.message)
-       history.replace('/login');
+      history.replace('/login');
+      dispatch(userError(error))
     })
   }
-
 }

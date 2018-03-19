@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'uuid-random';
+import PropTypes from 'prop-types';
 
 const centerFrom = props => (
   <div className="card-body" >

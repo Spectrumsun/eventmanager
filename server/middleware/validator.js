@@ -16,23 +16,19 @@ class Validate {
   }
 
   static validateEventOwner(req, res, next) {
-    // make sure  a sign in is the same has the id of the event owner
-    Event.findById(req.params.id)
-      .then((event) => {
-        const roles = req.user.id;
-        if (roles != event.userId) {
-          return res.json({
-            message: 'You are not owner of the event'
-          });
-        }
-
-        if (!event) {
-          return res
-            .status(404)
-            .send({ message: 'Event Not Found' });
-        }
-      });
-    next();
+    // make sure  a userId is the same has the id of the event owner
+    Event.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((event) => {
+      if (event.userId !== req.user.id) {
+        return res.status(409).json({
+          message: 'You are not the owner of the event'
+        });
+      }
+      next();
+    });
   }
 
   // check input to see if user filled the correct inforamtion for signup route
@@ -67,8 +63,8 @@ class Validate {
     const errors = req.validationErrors();
     if (errors) {
       const errorMessage = errors.map(err => err.msg);
-      res.status(400).json({ 
-        message: 'Signup Errors', 
+      res.status(400).json({
+        message: 'Signup Errors',
         errorMessage
       });
       return; // stop the fn from running
@@ -244,10 +240,8 @@ class Validate {
       where: {
         centerId: req.body.center,
         eventdate: new Date(req.body.date).toISOString(),
-        // date: req.body.eventdate
       }
     }).then((event) => {
-      // console.log('-----',event.toJSON())
       if (event && event.id != req.params.id) {
         return res.status(409).json({
           message: 'Center booked for that date already'

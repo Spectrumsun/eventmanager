@@ -14,10 +14,10 @@ import ForgotPassword from '../User/ForgotPassword';
 import EditCenter from '../Center/EditCenter';
 import EditEvent from '../Event/EditEvent';
 import pickCenter from '../Center/PickCenter';
-import PasswordReset from '../User/passwordReset';
+import PasswordReset from '../User/PasswordReset';
 import RequireAuth from '../Auth/authHOC';
 import IsAdmin from '../Auth/adminHOC';
-import EmailCheck from '../User/EmailVerfy';
+import EmailCheck from '../User/EmailVerify';
 
 
 const routers = () => (

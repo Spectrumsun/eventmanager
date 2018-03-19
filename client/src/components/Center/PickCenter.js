@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Display from './pickCenterProp';
 import * as actions from '../../store/actions/index';
 
@@ -7,7 +8,6 @@ class Centers extends Component {
   componentWillMount() {
     this.props.onInitCenters();
   }
-
 
   render() {
     const centers = this.props.center.map(center =>
@@ -33,6 +33,17 @@ class Centers extends Component {
     );
   }
 }
+
+Centers.propTypes = {
+  onInitCenters: PropTypes.func.isRequired,
+  center: PropTypes.shape({
+    centerName: PropTypes.string,
+    centeraddress: PropTypes.string,
+    availability: PropTypes.string,
+    facility: PropTypes.string,
+  }).isRequired,
+  selectCenter: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   center: state.centers.center

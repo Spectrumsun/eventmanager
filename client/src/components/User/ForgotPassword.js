@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import toast from 'toastr';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
@@ -50,6 +49,11 @@ class ForgotPassword extends Component {
     );
   }
 }
+
+ForgotPassword.propTypes = {
+  initconfirmPassword: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   initconfirmPassword: (user, history) => dispatch(action.initconfirmPassword(user, history)),

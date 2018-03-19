@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types'; 
 import Router from '../Route/Route';
 import * as action from '../../store/actions/index';
 
@@ -20,7 +21,7 @@ class NavBar extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
-    const admin = this.props.auth.user.role
+    const admin = this.props.auth.user.role;
 
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
@@ -58,7 +59,7 @@ class NavBar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-md navbar navbar-dark fixed-top bar" style={styles} >
-          <a className="navbar-brand" href="/"><img src="./image/event.png" width="30" height="30" alt="" /></a>
+          <a className="navbar-brand" href="/"><img src="https://res.cloudinary.com/skybound/image/upload/v1521281910/event.png" width="30" height="30" alt="" /></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
@@ -91,6 +92,18 @@ class NavBar extends Component {
     );
   }
 }
+
+NavBar.propTypes = {
+  onLogOut: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      role: PropTypes.string,
+    })
+  }).isRequired,
+};
 
 
 const mapStateToProps = state => ({

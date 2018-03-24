@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
@@ -18,7 +19,7 @@ class Signup extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onUserCreate(this.state, this.props.history)
+    this.props.onUserCreate(this.state, this.props.history);
   };
 
 
@@ -87,6 +88,14 @@ class Signup extends Component {
   }
 }
 
+Signup.propTypes = {
+  onUserCreate: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired
+};
+
+const mapStateToProps = state => ({
+  error: state.users.error
+});
 
 
 const mapDispatchToProps = dispatch => ({
@@ -94,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

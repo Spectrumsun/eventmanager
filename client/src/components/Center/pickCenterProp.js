@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 class display extends Component {
   state;
 
@@ -22,5 +23,13 @@ class display extends Component {
     );
   }
 }
+
+display.propTypes = {
+  centerName: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  availability: PropTypes.string.isRequired,
+  facility: PropTypes.string.isRequired,
+};
 
 export default display;

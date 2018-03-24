@@ -1,7 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PickCenter from '../../Center/PickCenter';
-
-
 
 const eventForm = props => (
   <div className="card-body" >
@@ -74,7 +73,7 @@ const eventForm = props => (
 
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
-            <PickCenter selectCenter={(id) => props.selectCenter(id)}/>
+            <PickCenter selectCenter={id => props.selectCenter(id)} />
           </div>
         </div>
       </div>
@@ -85,6 +84,17 @@ const eventForm = props => (
   </div>
 
 );
+
+eventForm.propTypes = {
+  selectCenter: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  purpose: PropTypes.string.isRequired,
+};
+
 
 export default eventForm;
 

@@ -42,17 +42,15 @@ export const centerError = (error) => {
 
 export const initCenters = () => {
   return dispatch => {
-    axios.get('/centers')
+    return axios.get('/centers')
       .then((res) => {
         dispatch(getAllCenters(res.data.center));
       })
       .catch((error) => {
-        dispatch(centerError(error.response.data.message))
-        console.log(error);
+        dispatch(centerError(error))
       });
   };
 };
-
 
 
 export const getOneCenter = (id) => {
@@ -62,7 +60,7 @@ export const getOneCenter = (id) => {
             dispatch(getSingleCenter(res.data.center))
           })
           .catch((error) => {
-            dispatch(centerError(error.response.data.message))
+            dispatch(centerError(error))
           }
       )
   }
@@ -81,7 +79,7 @@ export const initPostCenters = (inputs, history) => {
       .catch((error) => {
         const newError = error.response.data.errorMessage;
         newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
-        dispatch(centerError(error.response.data.message))
+        dispatch(centerError(error))
       });
   };
 };
@@ -98,7 +96,7 @@ export const initEditCenter = (id, center, history) => {
           .catch((error) => {
             const newError = error.response.data.errorMessage;
             newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
-            dispatch(centerError(error.response.data.message))
+            dispatch(centerError(error))
           }
       )
   }
@@ -116,6 +114,7 @@ export const initDeleteCenter = (id, history) => {
           })
           .catch((error) => {
             toast.error(error.response.data.message)
+            dispatch(centerError(error))
         }
     )
   }

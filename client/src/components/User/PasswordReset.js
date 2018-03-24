@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import toast from 'toastr';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
-class Login extends Component {
+class PasswordReset extends Component {
   state = {
     password:'',
     confirmPassword: ''
@@ -61,9 +60,18 @@ class Login extends Component {
   }
 }
 
+PasswordReset.propTypes = {
+  initpasswordreset: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      token: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   initpasswordreset: (token, user, history) => dispatch(action.initpasswordreset(token, user, history)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(PasswordReset);

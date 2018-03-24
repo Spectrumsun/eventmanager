@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 require('dotenv').config();
 
 class Auth {
+  // confirm if toekn exist and is valid
   static verifyToken(req, res, next) {
     const token = req.body.token || req.query.token || req.headers.authorization;
     if (token) {

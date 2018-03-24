@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import toast from 'toastr';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
@@ -63,10 +63,19 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  initUserLogin: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired
+};
+
+
+const mapStateToProps = state => ({
+  error: state.users.error
+});
 
 
 const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) => dispatch(action.initUserLogin(user, history)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

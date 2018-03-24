@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import uuid from 'uuid-random';
@@ -27,6 +27,27 @@ class CenterInfo extends Component {
       </div>
     );
 
+    const progress = (
+      <div className="progress">
+        <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: '10%' }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" />
+      </div>
+    );
+
+    const set = this.props.loadedCenter;
+    const isLoading = (
+      <div>
+        <div className="container" style={{ paddingTop: '100px' }}>
+          <div className="card loginCard" style={{ width: '45rem' }}>
+            <div className="card-header dark">
+              <h1 className="color">Center Info</h1>
+            </div>
+            <div className="loader" />
+            <p className="center-item shadow" >Unable to connect. Refresh your browser or check your internet connection</p>
+          </div>
+        </div>
+      </div>
+    );
+
     const center = (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="card loginCard" style={{ width: '45rem' }}>
@@ -35,36 +56,36 @@ class CenterInfo extends Component {
           </div>
           <div className="card-body">
             <h5 ><strong>Center name</strong></h5>
-            <h6 className="list-group-item d-flex justify-content-between align-items-center">{this.props.loadedCenter.centerName}</h6>
+            <h6 className="list-group-item">{set.centerName}</h6>
             <br />
             <h5 ><strong>Address</strong></h5>
-            <h6 className="list-group-item centerlist">{this.props.loadedCenter.address}</h6>
+            <h6 className="list-group-item">{set.address}</h6>
             <br />
             <h5 ><strong>City</strong></h5>
-            <h6 className="list-group-item centerlist">{this.props.loadedCenter.city}</h6>
+            <h6 className="list-group-item">{set.city}</h6>
             <br />
             <h5 ><strong>Availability</strong></h5>
-            <h6 className="list-group-item centerlist">{this.props.loadedCenter.availability}</h6>
+            <h6 className="list-group-item">{set.availability}</h6>
             <br />
             <h5><strong>Events</strong></h5>
             <ul className="list-group col-md-6">
-              {this.props.loadedCenter && this.props.loadedCenter.events && this.props.loadedCenter.events.map(eve =>
+              {set && set.events && set.events.map(eve =>
                   (<Link to={`/events/${eve.id}`} key={eve.id} style={{ color: 'black' }}>
                     <li className="list-group-item centerlist" key={eve.id} >
                       <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
                     </li>
-                   </Link>))}
+                  </Link>))}
             </ul>
             <br />
             <h5><strong>Avaliable Facilities</strong></h5>
             <ul className="list-group col-md-4">
-              {this.props.loadedCenter && this.props.loadedCenter.facility && this.props.loadedCenter.facility.map(list =>
+              {set && set.facility && set.facility.map(list =>
                     (<li
                       className="list-group-item centerlist"
                       key={uuid()}
                     >
                       {list}
-                     </li>))}
+                    </li>))}
             </ul>
             <br />
             {admin === 'ADMIN1' ? showbutton : null}
@@ -76,7 +97,7 @@ class CenterInfo extends Component {
 
     return (
       <div>
-        {center}
+        { this.props.loadedCenter === undefined || this.props.error != false ? isLoading : center}
       </div>
     );
   }
@@ -85,7 +106,8 @@ class CenterInfo extends Component {
 
 const mapStateToProps = state => ({
   loadedCenter: state.centers.loadedCenter,
-  auth: state.auth
+  auth: state.auth,
+  error: state.centers.error
 });
 
 const mapDispatchToProps = dispatch => ({

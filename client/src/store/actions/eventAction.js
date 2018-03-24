@@ -11,6 +11,7 @@ export const getAllEvent = (events) => {
 };
 
 export const getOneEvent = (events) => {
+  console.log(typeof events);
   return {
     type: actionTypes.GET_SINGLE_EVENT,
     loadEvent: events
@@ -53,7 +54,7 @@ export const initEvents = () => {
         dispatch(getAllEvent(response.data.event));
       })
       .catch((error) => {
-       dispatch(eventError(error.response.data.message))
+       dispatch(eventError(error))
       });
   };
 };
@@ -66,7 +67,7 @@ export const initGetOneEvent = (id) => {
             dispatch(getOneEvent(res.data.event))
           })
           .catch((error) => {
-            dispatch(eventError(error.response.data.message))
+            dispatch(eventError(error))
         }
     )
   }
@@ -84,7 +85,7 @@ export const initPostEvent = (event, history) => {
       .catch((error) => {
         const newError = error.response.data.errorMessage;
         newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
-        dispatch(eventError(error.response.data.message))
+        dispatch(eventError(error))
       });
   };
 };
@@ -104,7 +105,7 @@ export const initEditEvent = (id, events, history) => {
           .catch((error) => {
             const newError = error.response.data.errorMessage;
             newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
-            dispatch(eventError(error.response.data.message))
+            dispatch(eventError(error))
         }
     )
   }
@@ -120,9 +121,8 @@ export const initDeleteEvent = (id, history) => {
             dispatch(deleteEvent(response.data.message))
           })
           .catch((error) => {
-            dispatch(eventError(error.response.data.message))
+            dispatch(eventError(error))
             toast.error(error.response.data.message)
-            console.log(error.response.data);
         }
     )
   }

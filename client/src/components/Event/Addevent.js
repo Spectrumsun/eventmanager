@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
 
-class EventCenter extends Component {
+class AddEvent extends Component {
    state = {
      name: '',
      date: '',
@@ -47,11 +48,16 @@ class EventCenter extends Component {
   }
 }
 
+AddEvent.propTypes = {
+  initPostEvent: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired,
+};
+
 
 const mapDispatchToProps = dispatch => ({
   initPostEvent: (input, history) => dispatch(action.initPostEvent(input, history)),
 });
 
 
-export default connect(null, mapDispatchToProps)(EventCenter);
+export default connect(null, mapDispatchToProps)(AddEvent);
 

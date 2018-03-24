@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import Display from './getEvent';
 import * as actions from '../../store/actions/index';
 
@@ -25,7 +25,7 @@ class ViewEvent extends Component {
           eventdate={event.eventdate}
           purpose={event.purpose}
         />
-       </Link>
+      </Link>
       ));
 
     return (
@@ -38,9 +38,11 @@ class ViewEvent extends Component {
     );
   }
 }
+
 ViewEvent.propTypes = {
   onInitEvent: PropTypes.func.isRequired,
   events: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+
   error: PropTypes.bool.isRequired
 };
 

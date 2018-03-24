@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
-
 
 class AddCenter extends Component {
     state = {
@@ -64,6 +64,35 @@ class AddCenter extends Component {
       );
     }
 }
+
+AddCenter.propTypes = {
+  initEditCenter: PropTypes.func.isRequired,
+  loadedCenter: PropTypes.shape({
+    centerName: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    availability: PropTypes.string.isRequired,
+    facility: PropTypes.array.isRequired,
+  }),
+  history: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
+
+
+AddCenter.defaultProps = {
+  loadedCenter: PropTypes.shape({
+    userId: 1,
+    eventName: 'eventName',
+    eventdate: '2018-10-02',
+    time: '11:00',
+    purpose: 'fun',
+    facility: ['example']
+  }),
+};
 
 
 const mapStateToProps = state => ({

@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const display = props => (
+const getCenter = props => (
   <div onClick={props.clicked} className="card d-lg-inline-block" style={{ width: '20rem' }}>
     <div className="card-body">
       <h4 className="card-title">{props.centerName}</h4>
@@ -10,5 +11,10 @@ const display = props => (
   </div>
 );
 
+getCenter.propTypes = {
+  centerName: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired
+};
 
-export default display;
+
+export default getCenter;

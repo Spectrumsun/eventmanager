@@ -11,6 +11,7 @@ export const getAllEvent = (events) => {
 };
 
 export const getOneEvent = (events) => {
+  console.log(typeof events);
   return {
     type: actionTypes.GET_SINGLE_EVENT,
     loadEvent: events

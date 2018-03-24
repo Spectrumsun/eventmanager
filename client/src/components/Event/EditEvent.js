@@ -23,7 +23,10 @@ class EventCenter extends Component {
 
    onSubmit = (e) => {
      e.preventDefault();
-     this.props.initEditEvent(this.props.match.params.id, this.state, this.props.history);
+     this.props.initEditEvent(
+       this.props.match.params.id, this.state,
+       this.props.history
+     );
    }
 
    selectCenter = (id) => {
@@ -63,7 +66,6 @@ EventCenter.propTypes = {
     userId: PropTypes.number,
     centerId: PropTypes.number,
   }).isRequired,
-  error: PropTypes.string.isRequired,
   history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

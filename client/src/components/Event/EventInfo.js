@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import * as action from '../../store/actions/index';
 
 class EventInfo extends Component {
@@ -72,7 +72,8 @@ class EventInfo extends Component {
       </div>
     );
     const { isAuthenticated, user } = this.props.auth;
-    const center = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
+    const centers = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
+
     const load = (
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
@@ -96,8 +97,8 @@ class EventInfo extends Component {
                 <br />
                 <h5><strong>Center</strong></h5>
                 <ul className="list-group col-md-6">
-                  <Link to={`/centers/${center.id}`} key={center.id} style={{ color: '#35434A' }}>
-                    <h6><li className="list-group-item centerlist">{center.centerName}</li></h6>
+                  <Link to={`/centers/${centers.id}`} key={centers.id} style={{ color: '#35434A' }}>
+                    <h6><li className="list-group-item centerlist">{centers.centerName}</li></h6>
                   </Link>
                 </ul>
                 <br />
@@ -119,7 +120,17 @@ class EventInfo extends Component {
 EventInfo.propTypes = {
   onOneEvent: PropTypes.func.isRequired,
   onDeleteEvent: PropTypes.func.isRequired,
-  events: PropTypes.object.isRequired,
+ /*  events: PropTypes.shape({
+     userId: PropTypes.number,
+    eventName: PropTypes.string,
+    eventdate: PropTypes.string,
+    time: PropTypes.string,
+    purpose: PropTypes.string,
+    centers: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      centerName: PropTypes.string.isRequired
+    })
+  }), */
   error: PropTypes.bool.isRequired,
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
@@ -136,6 +147,17 @@ EventInfo.propTypes = {
   }).isRequired,
 };
 
+
+/* EventInfo.defaultProps = {
+  events: PropTypes.shape({
+    userId: 1,
+    eventName: 'eventName',
+    eventdate: '2018-10-02',
+    time: '11:00',
+    purpose: 'fun'
+  }),
+};
+ */
 
 const mapStateToProps = state => ({
   events: state.events.loadedEvent,

@@ -134,7 +134,7 @@ class Users {
             name: user.fullname
           });
           res.status(200).json({
-            message: 'Check your email for a password reset link'
+            message: 'Check your email for a password reset link',
           });
         } else {
           res.status(404).json({

@@ -27,7 +27,7 @@ export default (sequelize, DataTypes) => {
       allowNull: true
     },
     resetPasswordExpires: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     }
   }, {

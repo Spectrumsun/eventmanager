@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import toast from 'toastr';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextField from './TextField';
@@ -6,7 +7,7 @@ import * as action from '../../store/actions/index';
 
 class PasswordReset extends Component {
   state = {
-    password:'',
+    password: '',
     confirmPassword: ''
   }
 
@@ -16,7 +17,18 @@ class PasswordReset extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.initpasswordreset(this.props.match.params.token, this.state, this.props.history);
+    if (this.state.password === '') {
+      toast.error('Password cannot be blank');
+    } else if (this.state.password !== this.state.confirmPassword) {
+      toast.error('Confirm Password dont match Password');
+    } else if (this.state.password.length < 6) {
+      toast.error('Password cannot be less than 6 Charaters');
+    } else {
+      this.props.initpasswordreset(
+        this.props.match.params.token,
+        this.state, this.props.history
+      );
+    }
   }
 
   render() {

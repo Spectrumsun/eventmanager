@@ -22,16 +22,12 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    emailVerficationExpires: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
     resetPasswordToken: {
       type: DataTypes.STRING,
       allowNull: true
     },
     resetPasswordExpires: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: true,
     }
   }, {

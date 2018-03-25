@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import toast from 'toastr';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
@@ -29,7 +30,20 @@ class AddCenter extends Component {
        e.preventDefault();
      }
      e.preventDefault();
-     this.props.initEditCenter(this.props.match.params.id, this.state, this.props.history);
+     if (this.state.name === '') {
+       toast.error('Center Name cannot be blank');
+     } else if (this.state.date === '') {
+       toast.error('Center city cannot be blank');
+     } else if (this.state.time === '') {
+       toast.error('Center Address cannot be blank');
+     } else if (this.state.purpose === '') {
+       toast.error('Center Availability must be set');
+     } else {
+       this.props.initEditCenter(
+         this.props.match.params.id,
+         this.state, this.props.history
+       );
+     }
    }
 
     removeFacility = (i) => {

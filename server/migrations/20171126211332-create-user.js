@@ -28,10 +28,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      emailVerficationExpires: {
-        type: Sequelize.DATE,
-        allowNull: true,
-      },
       resetPasswordToken: {
         type: Sequelize.STRING,
         allowNull: true

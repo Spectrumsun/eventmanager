@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import toast from 'toastr';
+import PropTypes from 'prop-types';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
@@ -15,7 +16,11 @@ class ForgotPassword extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.initconfirmPassword(this.state, this.props.history);
+    if (this.state.email === '') {
+      toast.error('Email cannot be blank');
+    } else {
+      this.props.initconfirmPassword(this.state, this.props.history);
+    }
   }
 
   render() {

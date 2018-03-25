@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import toast from 'toastr';
 import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
 
@@ -23,10 +24,22 @@ class EventCenter extends Component {
 
    onSubmit = (e) => {
      e.preventDefault();
-     this.props.initEditEvent(
-       this.props.match.params.id, this.state,
-       this.props.history
-     );
+     if (this.state.name === '') {
+       toast.error('Event Name cannot be blank');
+     } else if (this.state.date === '') {
+       toast.error('Event Date cannot be blank');
+     } else if (this.state.time === '') {
+       toast.error('Event Time cannot be blank');
+     } else if (this.state.purpose === '') {
+       toast.error('Event Purpose cannot be blank');
+     } else if (this.state.center === '') {
+       toast.error('You have to choose a Center');
+     } else {
+       this.props.initEditEvent(
+         this.props.match.params.id, this.state,
+         this.props.history
+       );
+     }
    }
 
    selectCenter = (id) => {

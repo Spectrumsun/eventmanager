@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
+import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
@@ -19,7 +20,22 @@ class Signup extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onUserCreate(this.state, this.props.history);
+    if (this.state.fullname === '') {
+      toast.error('Full Name cannot be blank');
+    } else if (this.state.email === '') {
+      toast.error('Email cannot be blank');
+    } else if (this.state.password === '') {
+      toast.error('Password cannot be blank');
+    } else if (this.state.password !== this.state.confirmPassword) {
+      toast.error('Confirm Password dont match Password');
+    } else if (this.state.password.length < 6) {
+      toast.error('Password cannot be less than 6 Charaters');
+    } else {
+      this.props.onUserCreate(
+        this.state,
+        this.props.history
+      );
+    }
   };
 
 

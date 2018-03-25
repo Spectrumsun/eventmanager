@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
+import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
 class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
   }
 
   onChange =(e) => {
@@ -17,7 +18,16 @@ class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.initUserLogin(this.state, this.props.history);
+    if (this.state.email === '') {
+      toast.error('Email cannot be blank');
+    } else if (this.state.password === '') {
+      toast.error('Password cannot be blank');
+    } else {
+      this.props.initUserLogin(
+        this.state,
+        this.props.history
+      );
+    }
   }
 
   render() {

@@ -4,7 +4,7 @@ class display extends Component {
   state;
 
   clicked = () => {
-    this.props.selectCenter(this.props.id)
+    this.props.selectCenter(this.props.id);
   }
 
   render() {
@@ -30,6 +30,8 @@ display.propTypes = {
   city: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   facility: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  selectCenter: PropTypes.func.isRequired,
 };
 
 export default display;

@@ -13,7 +13,7 @@ const getCenter = props => (
 
 getCenter.propTypes = {
   centerName: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired
+  address: PropTypes.string.isRequired,
 };
 
 

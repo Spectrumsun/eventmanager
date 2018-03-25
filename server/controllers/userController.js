@@ -19,14 +19,16 @@ class Users {
         password: hash,
         confirmPassword: req.body.confirmPassword,
         role: req.body.role,
-      }))/* .then(user =>
+        emailVerfication: crypto.randomBytes(20).toString('hex'),
+        emailVerficationExpires: Date.now()
+      })).then(user =>
       // send a mail to the user after a successfull signup
         emailVerfication({
           user,
           subject: 'Email Verification',
           emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
           name: user.fullname
-        })) */
+        }))
       .then(users =>
         res.status(201).send({
           message: 'Account successfully created. Check your mail to confirm your account '
@@ -70,7 +72,7 @@ class Users {
           res
             .status(404)
             .json({
-              message: 'No account with such information'
+              message: 'email or password incorrect'
             });
         }
       });
@@ -83,14 +85,13 @@ class Users {
         if (user) {
           user.update({
             emailVerfication: null,
-            emailVerficationExpires: null
           });
           res.status(200).json({
             message: '💃 Nice! Email Confirmed You are can now login! '
           });
         } else {
           res.status(400).json({
-            message: 'Email verification failed token is not invalid or has expired'
+            message: 'Email verification failed token is not invalid'
           });
         }
       })
@@ -107,7 +108,7 @@ class Users {
           next();
           return;
         }
-        if (user.emailVerfication && user.emailVerficationExpires !== null) {
+        if (user.emailVerfication !== null) {
           return res.status(400).json({
             message: 'You have to first confirm Your Email'
           });
@@ -144,12 +145,12 @@ class Users {
       .catch(error => res.status(400).json({ message: 'An error occoured', error }));
   }
 
-  // verify if reest password token is same as reset password in db then change the password
+  // verify if reset password token is same as reset password in db then change the password
   static passwordReset(req, res) {
     User.findOne({
       where: {
         resetPasswordToken: req.params.token,
-        resetPasswordExpires: Date.now()
+        resetPasswordExpires: { $gt: Date.now() }
       }
     })
       .then((user) => {

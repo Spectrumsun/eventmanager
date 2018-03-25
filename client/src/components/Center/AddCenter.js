@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import toast from 'toastr';
 import PropTypes from 'prop-types';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
@@ -25,14 +26,26 @@ class AddCenter extends Component {
 
    onSubmit = (e) => {
      e.preventDefault();
-     this.props.initPostCenters(this.state, this.props.history);
+     if (this.state.name === '') {
+       toast.error('Center Name cannot be blank');
+     } else if (this.state.date === '') {
+       toast.error('Center city cannot be blank');
+     } else if (this.state.time === '') {
+       toast.error('Center Address cannot be blank');
+     } else if (this.state.purpose === '') {
+       toast.error('Center Availability must be set');
+     } else {
+       this.props.initPostCenters(
+         this.state,
+         this.props.history
+       );
+     }
    }
 
     removeFacility = (i) => {
       const array = this.state.facility;
       array.splice(i, 1);
       this.setState({ facility: array });
-      console.log(array);
     }
 
     render() {
@@ -60,6 +73,12 @@ class AddCenter extends Component {
       );
     }
 }
+
+AddCenter.propTypes = {
+  initPostCenters: PropTypes.func.isRequired,
+  history: PropTypes.shape({}).isRequired,
+};
+
 
 const mapDispatchToProps = dispatch => ({
   initPostCenters: (input, history) => dispatch(action.initPostCenters(input, history)),

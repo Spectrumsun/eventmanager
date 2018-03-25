@@ -20,9 +20,11 @@ import { setUser } from './store/actions/userAction';
 
 require('bootstrap');
 
-process.env.NODE_ENV === 'production' ?
-  axios.defaults.baseURL = 'https://eventappmanager.herokuapp.com/api/v1'
-  : axios.defaults.baseURL = 'http://localhost:8000/api/v1';
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://localhost:8000/api/v1';
+} else {
+  axios.defaults.baseURL = 'https://eventappmanager.herokuapp.com/api/v1';
+}
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

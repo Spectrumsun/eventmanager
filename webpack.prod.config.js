@@ -6,7 +6,7 @@ const APP_DIR = path.resolve(__dirname, './client/src');
 
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: `${APP_DIR}/index.js`,
   output: {
     path: BUILD_DIR,
@@ -51,5 +51,6 @@ module.exports = {
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default'],
     }),
+    new webpack.optimize.UglifyJsPlugin()
   ],
 };

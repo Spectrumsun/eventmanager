@@ -19,7 +19,7 @@ class AddCenter extends Component {
       preview: '',
       imageurl: '',
       publicUrlId: '',
-      progress: 0+'%'
+      progress: `${0}%`
     }
 
   onClick = () => {
@@ -39,6 +39,8 @@ class AddCenter extends Component {
        toast.error('Center city cannot be blank');
      } else if (this.state.time === '') {
        toast.error('Center Address cannot be blank');
+     } else if (this.state.image === '') {
+       toast.error('Add an image');
      } else if (this.state.purpose === '') {
        toast.error('Center Availability must be set');
      } else {
@@ -49,7 +51,7 @@ class AddCenter extends Component {
        fd.append('upload_preset', 'eventmanager');
        axios.post('https://api.cloudinary.com/v1_1/skybound/image/upload', fd, {
          onUploadProgress: (progressEvent) => {
-           const level = Math.round(progressEvent.loaded / progressEvent.total * 100)+'%';
+           const level = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
            this.setState({ progress: level });
          }
        })
@@ -112,7 +114,6 @@ class AddCenter extends Component {
               availability={this.state.availability}
               values={this.state.values}
               handleImageChange={this.handleImageChange}
-              publicid={this.state.publicid}
               onClick={this.onClick}
               removeFacility={this.removeFacility}
               facility={this.state.facility}

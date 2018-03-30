@@ -2,7 +2,7 @@
 import * as actionTypes from './actionsTypes';
 import axios from 'axios'; 
 import toast from 'toastr';
-import setAuthToken from '../../components/Auth/auth';
+//import setAuthToken from '../../components/Auth/auth';
 import jwt from 'jsonwebtoken';
 
 export const signUpUser = (user) => {
@@ -63,7 +63,7 @@ export const initUserLogin = (inputs, history) => {
           history.push('/')
           const token = res.data.token;
           localStorage.setItem('jwtToken', token);
-          setAuthToken(token);
+          //setAuthToken(token);
           dispatch(setUser(jwt.decode(token)));
           dispatch(logIn(res.data.message))
         })
@@ -81,7 +81,7 @@ export const initUserLogin = (inputs, history) => {
 export const initUserLogout = (history) => {
   return dispatch => {
     localStorage.removeItem('jwtToken');
-    setAuthToken(false);
+    //setAuthToken(false);
     toast.success('Logout Successfull')
     history.push('/')
     dispatch(setUser({}))

@@ -58,7 +58,6 @@ const centerFrom = props => (
             name="image"
             accept="image/gif, image/png, image/jpeg"
             className="btn btn-light"
-            required
           />
         </div>
         <div className="imgPreview">

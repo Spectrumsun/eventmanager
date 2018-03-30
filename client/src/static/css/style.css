@@ -111,11 +111,10 @@ a {
 }
 
 .loginCard {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
+  margin: 0 auto; 
+  float: none;
+  margin-bottom: 10px;
 }
-
 
 .dark{
 	padding: 15px;
@@ -150,7 +149,17 @@ footer{
 	cursor: pointer; 
 }
 
+.imgPreview {
+  text-align: center;
+  margin: 5px 15px;
+ 
+}
 
+.imgPre {
+  width: 50%;
+  height: 100%;
+}
+  
 
 .loader {
   color: #000000;

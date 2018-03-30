@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import toast from 'toastr';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
+
 
 class AddCenter extends Component {
     state = {
@@ -12,7 +14,12 @@ class AddCenter extends Component {
       address: '',
       availability: '',
       values: '',
-      facility: []
+      facility: [],
+      image: '',
+      preview: '',
+      imageurl: '',
+      publicUrlId: '',
+      progress: 0+'%'
     }
 
   onClick = () => {
@@ -35,12 +42,47 @@ class AddCenter extends Component {
      } else if (this.state.purpose === '') {
        toast.error('Center Availability must be set');
      } else {
-       this.props.initPostCenters(
-         this.state,
-         this.props.history
-       );
+       const fd = new FormData();
+       const id = `${Date.now()}-${this.state.image.name}`;
+       fd.append('file', this.state.image);
+       fd.append('public_id', id);
+       fd.append('upload_preset', 'eventmanager');
+       axios.post('https://api.cloudinary.com/v1_1/skybound/image/upload', fd, {
+         onUploadProgress: (progressEvent) => {
+           const level = Math.round(progressEvent.loaded / progressEvent.total * 100)+'%';
+           this.setState({ progress: level });
+         }
+       })
+         .then((response) => {
+           this.setState({
+             imageurl: response.data.secure_url,
+             publicUrlId: response.data.public_id,
+             image: null,
+             preview: null
+           });
+           this.props.initPostCenters(
+             this.state,
+             this.props.history
+           );
+         })
+         .catch((err) => {
+           toast.error('Unable to upload. Check your internet');
+         });
      }
    }
+
+    handleImageChange = (e) => {
+      e.preventDefault();
+      const reader = new FileReader();
+      const file = e.target.files[0];
+      reader.onloadend = () => {
+        this.setState({
+          image: file,
+          preview: reader.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
 
     removeFacility = (i) => {
       const array = this.state.facility;
@@ -49,6 +91,12 @@ class AddCenter extends Component {
     }
 
     render() {
+      const { preview } = this.state;
+      let imagePreview = null;
+      if (preview) {
+        imagePreview = (<img src={preview} alt="ImagePreview" className="imgPre" />);
+      }
+
       return (
         <div className="container" style={{ paddingTop: '100px' }}>
           <div className="card card w-50 loginCard ">
@@ -63,10 +111,14 @@ class AddCenter extends Component {
               address={this.state.address}
               availability={this.state.availability}
               values={this.state.values}
+              handleImageChange={this.handleImageChange}
+              publicid={this.state.publicid}
               onClick={this.onClick}
               removeFacility={this.removeFacility}
               facility={this.state.facility}
+              imagePreview={imagePreview}
               disabled={this.state.values}
+              progress={this.state.progress}
             />
           </div>
         </div>
@@ -78,7 +130,6 @@ AddCenter.propTypes = {
   initPostCenters: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired,
 };
-
 
 const mapDispatchToProps = dispatch => ({
   initPostCenters: (input, history) => dispatch(action.initPostCenters(input, history)),

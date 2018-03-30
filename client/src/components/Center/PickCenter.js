@@ -18,6 +18,7 @@ class Centers extends Component {
           centerName={center.centerName}
           address={center.address}
           city={center.city}
+          image={center.imageurl}
           availability={center.availability}
           facility={center.facility}
           selectCenter={id => this.props.selectCenter(id)}

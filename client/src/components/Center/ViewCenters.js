@@ -23,6 +23,7 @@ class Centers extends Component {
         <Display
           centerName={center.centerName}
           address={center.address}
+          image={center.imageurl}
         />
        </Link>
       ));
@@ -30,7 +31,7 @@ class Centers extends Component {
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
-          {centers}
+          <div className="container">{centers}</div>
         </div>
       </div>
     );

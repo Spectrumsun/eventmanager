@@ -19,6 +19,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      imageurl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      imageId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       facility: {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: true,

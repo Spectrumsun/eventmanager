@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 class display extends Component {
   state;
 
@@ -9,7 +10,8 @@ class display extends Component {
 
   render() {
     return (
-      <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
+      <div className="card d-lg-inline-block" style={{ width: '18rem' }}>
+        <img className="card-img-top" src={this.props.imageurl} style={{ width: '286', height: '180' }} alt="Card image cap" />
         <div className="card-body">
           <h6 className="card-title"><strong>Name: </strong>{this.props.centerName}</h6>
           <h6 className="card-title "><strong>Address: </strong>{this.props.address}</h6>

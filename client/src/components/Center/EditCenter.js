@@ -13,6 +13,8 @@ class AddCenter extends Component {
       availability: this.props.loadedCenter.availability,
       facility: this.props.loadedCenter.facility || [],
       values: '',
+      image: this.props.loadedCenter.imageurl,
+      publicid: this.props.loadedCenter.imageId,
     }
 
     onClick = () => {
@@ -68,6 +70,8 @@ class AddCenter extends Component {
               address={this.state.address}
               availability={this.state.availability}
               values={this.state.values}
+              image={this.state.image}
+              publicid={this.state.publicid}
               onClick={this.onClick}
               facility={this.state.facility}
               removeFacility={this.removeFacility}
@@ -87,6 +91,8 @@ AddCenter.propTypes = {
     address: PropTypes.string.isRequired,
     availability: PropTypes.string.isRequired,
     facility: PropTypes.array.isRequired,
+    imageurl: PropTypes.string.isRequired,
+    imageId: PropTypes.string.isRequired,
   }),
   history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({

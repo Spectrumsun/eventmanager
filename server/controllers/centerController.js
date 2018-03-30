@@ -1,10 +1,6 @@
 import { Event, Center } from '../models';
+import deletePicture from '../handlers/deleteImage';
 
-
-/**
- * @class Event
- *@classdesc class Event
- */
 
 class Centers {
   // return a list of cennters in the db
@@ -50,6 +46,8 @@ class Centers {
 
   // Admin can edit a center
   static editCenter(req, res) {
+    const { oldpublicId, publicUrlId } = req.body;
+    deletePicture(oldpublicId, publicUrlId);
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
         if (center) {
@@ -75,6 +73,7 @@ class Centers {
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
         if (center) {
+          deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
           res.status(200).json({ message: 'center successfully deleted!' });
         } else {

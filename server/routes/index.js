@@ -129,5 +129,4 @@ router.delete(
   centerController.deleteCenter
 );
 
-
 export default router;

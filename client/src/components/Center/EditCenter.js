@@ -18,7 +18,8 @@ class AddCenter extends Component {
       preview: this.props.loadedCenter.imageurl,
       imageurl: this.props.loadedCenter.imageurl,
       publicUrlId: this.props.loadedCenter.imageId,
-      progress: `${0}%`
+      progress: `${0}%`,
+      oldpublicId: this.props.loadedCenter.imageId
     }
 
 

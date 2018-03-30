@@ -78,7 +78,7 @@ class CenterInfo extends Component {
     const center = (
       <div style={{ paddingTop: '45px' }}>
         <div className="card-header dark">
-          <h1 className=" container color" style={{ paddingTop: '10px' }}>Center Info</h1>
+          <h1 className=" container color" style={{ paddingTop: '10px' }}>Center Info {set.centerName}</h1>
         </div>
         <img
           className="card-img-top"

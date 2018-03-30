@@ -67,7 +67,7 @@ class NavBar extends Component {
       <div>
         <nav className="navbar navbar-expand-md navbar navbar-dark fixed-top bar" style={styles} >
           <a className="navbar-brand" href="/"><img
-            src="https://res.cloudinary.com/skybound/image/upload/v1521281910/event.png"
+            src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
             width="30"
             height="30"
             alt=""

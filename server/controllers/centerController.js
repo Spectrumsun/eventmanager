@@ -34,8 +34,9 @@ class Centers {
       centerName: req.body.name,
       city: req.body.city,
       address: req.body.address,
+      about: req.body.about,
       facility: req.body.facility,
-      availability: req.body.availability || 'unknow',
+      availability: req.body.availability,
       imageurl: req.body.imageurl,
       imageId: req.body.publicUrlId
     })
@@ -55,8 +56,8 @@ class Centers {
             centerName: req.body.name,
             city: req.body.city,
             address: req.body.address,
-            facility: req.body.facility,
-            availability: req.body.availability || 'unknow',
+            about: req.body.about,
+            availability: req.body.availability,
             imageurl: req.body.imageurl,
             imageId: req.body.publicUrlId
           });

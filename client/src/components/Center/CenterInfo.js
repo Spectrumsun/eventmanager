@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import uuid from 'uuid-random';
 import * as action from '../../store/actions/index';
+import Footer from '../UI/Footer';
 
 class CenterInfo extends Component {
   componentDidMount() {
@@ -45,18 +46,6 @@ class CenterInfo extends Component {
       </div>
     );
 
-    const progress = (
-      <div className="progress">
-        <div
-          className="progress-bar progress-bar-striped"
-          role="progressbar"
-          style={{ width: '10%' }}
-          aria-valuenow="10"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        />
-      </div>
-    );
 
     const set = this.props.loadedCenter;
     const isLoading = (
@@ -76,9 +65,9 @@ class CenterInfo extends Component {
     );
 
     const center = (
-      <div style={{ paddingTop: '45px' }}>
+      <div style={{ paddingTop: '60px' }}>
         <div className="card-header dark">
-          <h1 className=" container color" style={{ paddingTop: '10px' }}>Center Info {set.centerName}</h1>
+          <h1 className="container color centerTitle">Center Info {set.centerName}</h1>
         </div>
         <img
           className="card-img-top"
@@ -92,19 +81,9 @@ class CenterInfo extends Component {
             <h6 className="list-group-item">{set.address}</h6>
             <br />
             <div className="list-group-item centerlist" >
-              <h3 style={{}}>About</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              <h3>About</h3>
+              <p className="read" style={{ textAlign: 'justify' }}>
+                {set.about}
               </p>
             </div>
             <br />
@@ -115,7 +94,7 @@ class CenterInfo extends Component {
             <h6 className="list-group-item col-md-4">{set.availability}</h6>
             <br />
             <h5><strong>Avaliable Facilities</strong></h5>
-            <ul className="list-group col-md-4">
+            <ul className="list-group col-md-4 text-capitalize">
               {set && set.facility && set.facility.map(list =>
                     (<li
                       className="list-group-item centerlist"
@@ -144,6 +123,7 @@ class CenterInfo extends Component {
             {admin === 'ADMIN1' ? showbutton : null}
           </div>
         </div>
+        <Footer />
       </div>
     );
 

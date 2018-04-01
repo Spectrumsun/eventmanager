@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Display from './getCenter';
+import Footer from '../UI/Footer'
 import * as actions from '../../store/actions/index';
 
 
@@ -15,24 +16,29 @@ class Centers extends Component {
     const isLoading = (
       <div>
         <div className="loader" />
-        <p className="center-item shadow" >Unable to connect. Refresh your browser or check your internet connection</p>
+        <p className="center-item shadow">
+        Unable to connect. Refresh your browser or check your internet connection
+        </p>
       </div>
     );
-    const centers = this.props.center === undefined || this.props.error != false ? isLoading : this.props.center.map(center =>
-      (<Link to={`/centers/${center.id}`} key={center.id} style={{ color: 'black' }}>
-        <Display
-          centerName={center.centerName}
-          address={center.address}
-          image={center.imageurl}
-        />
-       </Link>
-      ));
+    const centers = this.props.center ===
+    undefined || this.props.error != false ?
+      isLoading : this.props.center.map(center =>
+        (<Link to={`/centers/${center.id}`} key={center.id} style={{ color: 'black' }}>
+          <Display
+            centerName={center.centerName}
+            address={center.address}
+            image={center.imageurl}
+          />
+        </Link>
+        ));
     return (
       <div>
         <div className="container" style={{ paddingTop: '100px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
           <div className="container">{centers}</div>
         </div>
+        <Footer />
       </div>
     );
   }

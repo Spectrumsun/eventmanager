@@ -31,6 +31,10 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: true,
       },
+      about: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       availability: {
         type: Sequelize.STRING,
         allowNull: false,

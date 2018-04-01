@@ -1,6 +1,6 @@
 body {
-	background-color: #f4f4f4 ;
-	font-family: 'Mada', sans-serif;
+	background-color: white ;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 .centerlist{
@@ -10,9 +10,17 @@ body {
 
 .thebody {
     padding-top: 100px;
-
 }
 
+
+
+.centerTitle{
+  font-family: 'Monoton', cursive;
+}
+
+.read {
+  font-family: 'Roboto Mono', monospace;
+}
 
 .divider{
     width:5px;
@@ -20,23 +28,13 @@ body {
     display:inline-block;
 }
 
+
 .bar {
 	background-color: #35434a;
 	border-bottom: #e8491d 3px solid;
 
 }
 
-
-/*.caption {
-	color: white;
-	text-shadow: 2px 2px black; 
-}*/
-
-/*.shadow {
-	color: black;
-	text-shadow: 1px 2px 15px black;
-
-}*/
 
 .color {
 	color: white;
@@ -72,7 +70,6 @@ h3 {
 
 .center-item {
 	text-align: center;
-
 }
 
 div.cont {
@@ -101,7 +98,7 @@ div.cont {
 }
 
 .card {
-	margin-left: 30px;
+	margin-left: 50px;
 	margin-bottom: 30px;
 }
 
@@ -117,8 +114,9 @@ a {
 }
 
 .dark{
-	padding: 15px;
+	padding: 10px;
 	background: #35424a;
+  
 }
 
 .left {
@@ -129,12 +127,24 @@ a {
 	margin-right: 80px;
 }
 
+
 footer{
 	padding: 20px;
-	margin-top: 20px;
-	color: #ffffff;
-	background-color: #35434a;
-	text-align: center;  
+	margin-top: 50px;
+	color: white;
+	background-color: #35434a; 
+}
+
+ul {
+  list-style-type: none;
+}
+
+.footerColor {
+  color: #84888B;
+}
+
+.footerTitle{
+  color: #F2F3F3;
 }
 
 .con {
@@ -152,13 +162,28 @@ footer{
 .imgPreview {
   text-align: center;
   margin: 5px 15px;
- 
 }
 
 .imgPre {
   width: 50%;
   height: 100%;
 }
+
+
+.centeriMGHeader {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+.transbox {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
+
   
 
 .loader {

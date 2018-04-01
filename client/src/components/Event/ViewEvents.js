@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Display from './getEvent';
+import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
 
 
@@ -30,10 +31,11 @@ class ViewEvent extends Component {
 
     return (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="container thebody" >
           <h1 style={{ textAlign: 'center' }}>Events</h1>
           {events}
         </div>
+        <Footer />
       </div>
     );
   }

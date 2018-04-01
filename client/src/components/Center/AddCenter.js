@@ -12,6 +12,7 @@ class AddCenter extends Component {
       name: '',
       city: '',
       address: '',
+      about: '',
       availability: '',
       values: '',
       facility: [],
@@ -41,6 +42,8 @@ class AddCenter extends Component {
        toast.error('Center Address cannot be blank');
      } else if (this.state.image === '') {
        toast.error('Add an image');
+     } else if (this.state.about === '') {
+       toast.error('Add about');
      } else if (this.state.purpose === '') {
        toast.error('Center Availability must be set');
      } else {
@@ -100,27 +103,30 @@ class AddCenter extends Component {
       }
 
       return (
-        <div className="container" style={{ paddingTop: '100px' }}>
-          <div className="card card w-50 loginCard ">
-            <div className="card-header dark">
-              <h1 className="color">Add Center</h1>
+        <div>
+          <div className="container" style={{ paddingTop: '100px' }}>
+            <div className="card card w-50 loginCard ">
+              <div className="card-header dark">
+                <h1 className="color">Add Center</h1>
+              </div>
+              <CenterFrom
+                onChange={this.onChange}
+                onSubmit={this.onSubmit}
+                centerName={this.state.name}
+                city={this.state.city}
+                address={this.state.address}
+                availability={this.state.availability}
+                values={this.state.values}
+                handleImageChange={this.handleImageChange}
+                onClick={this.onClick}
+                removeFacility={this.removeFacility}
+                facility={this.state.facility}
+                imagePreview={imagePreview}
+                about={this.state.about}
+                disabled={this.state.values}
+                progress={this.state.progress}
+              />
             </div>
-            <CenterFrom
-              onChange={this.onChange}
-              onSubmit={this.onSubmit}
-              centerName={this.state.name}
-              city={this.state.city}
-              address={this.state.address}
-              availability={this.state.availability}
-              values={this.state.values}
-              handleImageChange={this.handleImageChange}
-              onClick={this.onClick}
-              removeFacility={this.removeFacility}
-              facility={this.state.facility}
-              imagePreview={imagePreview}
-              disabled={this.state.values}
-              progress={this.state.progress}
-            />
           </div>
         </div>
       );

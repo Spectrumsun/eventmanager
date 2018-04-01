@@ -11,6 +11,7 @@ class AddCenter extends Component {
       name: this.props.loadedCenter.centerName,
       city: this.props.loadedCenter.city,
       address: this.props.loadedCenter.address,
+      about: this.props.loadedCenter.about,
       availability: this.props.loadedCenter.availability,
       facility: this.props.loadedCenter.facility || [],
       values: '',
@@ -121,6 +122,7 @@ class AddCenter extends Component {
               onSubmit={this.onSubmit}
               name={this.state.name}
               city={this.state.city}
+              about={this.state.about}
               address={this.state.address}
               availability={this.state.availability}
               values={this.state.values}

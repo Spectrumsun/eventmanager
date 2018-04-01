@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Footer from '../UI/Footer';
 import * as action from '../../store/actions/index';
 
 class EventInfo extends Component {
@@ -107,6 +108,7 @@ class EventInfo extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
     return (

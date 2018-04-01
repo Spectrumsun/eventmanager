@@ -51,6 +51,19 @@ const centerFrom = props => (
           />
         </div>
         <div className="form-group col-md-12">
+          <h5><label htmlFor="inputPassword4">About</label></h5>
+          <textarea
+            type="text"
+            value={props.about}
+            onChange={props.onChange}
+            name="about"
+            id="exampleFormControlTextarea1" 
+            rows="5"
+            className="form-control form-control-lg"
+            required
+          />
+        </div>
+        <div className="form-group col-md-12">
           <h5><label htmlFor="inputPassword4">Add Image</label></h5>
           <input
             type="file"
@@ -117,7 +130,8 @@ centerFrom.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   progress: PropTypes.string.isRequired,
-  name: PropTypes.string,
+  about: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   handleImageChange: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,

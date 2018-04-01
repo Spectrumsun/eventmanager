@@ -25,6 +25,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    about: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
     }

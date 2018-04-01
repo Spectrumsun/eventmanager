@@ -31,7 +31,7 @@ class ViewEvent extends Component {
 
     return (
       <div>
-        <div className="container thebody" >
+        <div className="center thebody" >
           <h1 style={{ textAlign: 'center' }}>Events</h1>
           {events}
         </div>

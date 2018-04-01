@@ -7,17 +7,18 @@ import * as action from '../../store/actions/index';
 
 
 const styles = {
-  backgroundColor: '#35434a'
+  backgroundColor: '#35434a',
 };
 
 class NavBar extends Component {
   state = {
-
+    hid: '',
   }
   logout = (e) => {
     e.preventDefault();
     this.props.onLogOut(this.props.history);
   }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     const admin = this.props.auth.user === null ? 'nouser' : this.props.auth.user.role;
@@ -25,7 +26,7 @@ class NavBar extends Component {
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-          <Link to="/logout" className="btn btn-outline-light" onClick={this.logout}>Logout</Link>
+          <Link to="/logout" className="btn btn-outline-light" >Logout</Link>
         </li>
       </ul>
     );
@@ -33,7 +34,7 @@ class NavBar extends Component {
     const guessLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-          <Link to="/login" className="btn btn-outline-light">Login</Link>
+          <Link to="/login" onClick={this.hidNav} className="btn btn-outline-light">Login</Link>
         </li>
         <br />
         <li className="nav-item">
@@ -65,7 +66,10 @@ class NavBar extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-md navbar navbar-dark fixed-top bar" style={styles} >
+        <nav
+          className="navbar navbar-expand-md navbar navbar-dark fixed-top bar" 
+          style={styles}
+        >
           <a className="navbar-brand" href="/"><img
             src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
             width="30"

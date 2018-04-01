@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
-//import setAuthToken from './components/Auth/auth';
 import NavBar from './components/UI/NavBar';
 import '../../node_modules/toastr/build/toastr.min.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -34,11 +33,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 store.dispatch(setUser(jwt.decode(localStorage.jwtToken)));
-
-/* if (localStorage.jwtToken) {
-  setAuthToken(localStorage.token);
- 
-} */
 
 
 const App = () => (

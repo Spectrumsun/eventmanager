@@ -65,7 +65,7 @@ class CenterInfo extends Component {
     );
 
     const center = (
-      <div style={{ paddingTop: '60px' }}>
+      <div style={{ paddingTop: '60px', backgroundColor: 'white' }}>
         <div className="card-header dark">
           <h1 className="container color centerTitle">Center Info {set.centerName}</h1>
         </div>
@@ -75,7 +75,7 @@ class CenterInfo extends Component {
           style={{ height: '600px', width: '100%' }}
           alt="center"
         />
-        <div className="card loginCard">
+        <div>
           <div className="container card-body" style={{ width: '45rem' }}>
             <h1><strong>{set.centerName}</strong></h1>
             <h6 className="list-group-item">{set.address}</h6>

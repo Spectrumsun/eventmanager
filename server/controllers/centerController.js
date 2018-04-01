@@ -57,6 +57,7 @@ class Centers {
             city: req.body.city,
             address: req.body.address,
             about: req.body.about,
+            facility: req.body.facility,
             availability: req.body.availability,
             imageurl: req.body.imageurl,
             imageId: req.body.publicUrlId

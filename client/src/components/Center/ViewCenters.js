@@ -34,9 +34,9 @@ class Centers extends Component {
         ));
     return (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="center " style={{ paddingTop: '100px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
-          <div className="container">{centers}</div>
+          <div>{centers}</div>
         </div>
         <Footer />
       </div>

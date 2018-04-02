@@ -49,7 +49,7 @@ class Events {
             eventdate: req.body.date,
             time: req.body.time,
             purpose: req.body.purpose,
-            centerId: req.body.center
+            centerId: parseInt(req.body.center, 10),
           });
           res.status(200).json({ message: 'updated', event });
         } else {
@@ -61,18 +61,28 @@ class Events {
 
   // a sign in user can delete events they add
   static deleteEvent(req, res) {
-    Event.findOne({ where: { id: req.params.id } })
+    Event.destroy({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    })
       .then((event) => {
         if (event) {
-          event.destroy();
-          res.status(200).json({ message: 'Event successfully deleted!' });
+          res.status(200).json({
+            message: 'Event successfully deleted!'
+          });
         } else {
-          res.status(404).json({ message: 'event not found' });
+          res.status(404).json({
+            message: 'You are not the owner of the event'
+          });
         }
       })
-      .catch(err => res.status(400).json(err));
+      .catch(err => res.status(400).json({
+        message: 'Event not found',
+        err
+      }));
   }
 }
 
 export default Events;
-

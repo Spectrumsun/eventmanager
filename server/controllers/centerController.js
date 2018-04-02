@@ -38,7 +38,8 @@ class Centers {
       facility: req.body.facility,
       availability: req.body.availability,
       imageurl: req.body.imageurl,
-      imageId: req.body.publicUrlId
+      imageId: req.body.publicUrlId,
+      userId: req.user.id
     })
       .then(center => res.status(201).json({ message: 'successfully created', center }))
       .catch(error => res.status(400).json({ message: 'Unable to create Center! ', error }));
@@ -60,7 +61,8 @@ class Centers {
             facility: req.body.facility,
             availability: req.body.availability,
             imageurl: req.body.imageurl,
-            imageId: req.body.publicUrlId
+            imageId: req.body.publicUrlId,
+            userId: req.user.id
           });
           res.status(200).json({ message: 'updated', center });
         } else {

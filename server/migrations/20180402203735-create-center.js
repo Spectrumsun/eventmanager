@@ -1,6 +1,7 @@
+'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('Centers', {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('Centers', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -39,6 +40,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        // onDelete: 'CASCADE',
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'userId',
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -47,6 +58,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    }),
-  down: queryInterface => queryInterface.dropTable('Centers'),
+    });
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('Centers');
+  }
 };

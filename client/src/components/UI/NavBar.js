@@ -11,9 +11,6 @@ const styles = {
 };
 
 class NavBar extends Component {
-  state = {
-    hid: '',
-  }
   logout = (e) => {
     e.preventDefault();
     this.props.onLogOut(this.props.history);
@@ -26,7 +23,12 @@ class NavBar extends Component {
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-          <Link to="/logout" className="btn btn-outline-light" >Logout</Link>
+          <Link
+            to="/logout"
+            className="btn btn-outline-light"
+            onClick={this.logout}
+          >Logout
+          </Link>
         </li>
       </ul>
     );
@@ -34,11 +36,19 @@ class NavBar extends Component {
     const guessLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
-          <Link to="/login" onClick={this.hidNav} className="btn btn-outline-light">Login</Link>
+          <Link
+            to="/login"
+            className="btn btn-outline-light"
+          >Login
+          </Link>
         </li>
         <br />
         <li className="nav-item">
-          <Link to="/signup" className="btn btn-outline-light">Sign up</Link>
+          <Link
+            to="/signup"
+            className="btn btn-outline-light"
+          >Sign up
+          </Link>
         </li>
       </ul>
     );
@@ -67,7 +77,7 @@ class NavBar extends Component {
     return (
       <div>
         <nav
-          className="navbar navbar-expand-md navbar navbar-dark fixed-top bar" 
+          className="navbar navbar-expand-md navbar navbar-dark fixed-top bar"
           style={styles}
         >
           <a className="navbar-brand" href="/"><img

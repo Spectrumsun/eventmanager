@@ -86,7 +86,6 @@ router.put(
 router.delete(
   '/events/:id',
   auth.verifyToken,
-  validator.validateEventOwner,
   eventController.deleteEvent
 );
 

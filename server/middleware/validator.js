@@ -106,28 +106,23 @@ class Validate {
     req.checkBody(
       'name',
       'You must supply an Event name!'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'date',
       'You must supply a date !'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'time',
       'You must supply a time!'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'purpose',
       'You must supply a purpose !'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'center',
       'You must pick a center!'
-    )
-      .notEmpty();
+    ).notEmpty();
 
     const errors = req.validationErrors();
     if (errors) {
@@ -184,18 +179,27 @@ class Validate {
     req.checkBody(
       'name',
       'You must supply a Center  name!'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'city',
       'You must supply a city !'
-    )
-      .notEmpty();
+    ).notEmpty();
     req.checkBody(
       'address',
       'You must supply a address!'
-    )
-      .notEmpty();
+    ).notEmpty();
+    req.checkBody(
+      'availability',
+      'You add availability of center!'
+    ).notEmpty();
+    req.checkBody(
+      'publicUrlId',
+      'You add public Id of picture!'
+    ).notEmpty();
+    req.checkBody(
+      'about',
+      'You About for center!'
+    ).notEmpty();
 
     const errors = req.validationErrors();
     if (errors) {

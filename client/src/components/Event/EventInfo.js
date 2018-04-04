@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Footer from '../UI/Footer';
 import * as action from '../../store/actions/index';
 
 class EventInfo extends Component {
@@ -72,6 +73,7 @@ class EventInfo extends Component {
       </div>
     );
     const { isAuthenticated, user } = this.props.auth;
+    const id = this.props.auth.user === null ? 'nouser' : this.props.auth.user.id;
     const centers = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
 
     const load = (
@@ -102,11 +104,12 @@ class EventInfo extends Component {
                   </Link>
                 </ul>
                 <br />
-                { this.props.events.userId !== user.id || !isAuthenticated ? null : eventOwner }
+                { this.props.events.userId !== id || !isAuthenticated ? null : eventOwner }
               </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
     return (

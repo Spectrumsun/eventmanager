@@ -86,7 +86,6 @@ router.put(
 router.delete(
   '/events/:id',
   auth.verifyToken,
-  validator.validateEventOwner,
   eventController.deleteEvent
 );
 
@@ -128,6 +127,5 @@ router.delete(
   validator.validateAdmin,
   centerController.deleteCenter
 );
-
 
 export default router;

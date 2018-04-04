@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import uuid from 'uuid-random';
 import * as action from '../../store/actions/index';
+import Footer from '../UI/Footer';
 
 class CenterInfo extends Component {
   componentDidMount() {
@@ -12,26 +13,39 @@ class CenterInfo extends Component {
 
   deleteCenter = (e) => {
     e.preventDefault();
-    this.props.onDeleteCenter(this.props.match.params.id, this.props.history);
+    this.props.onDeleteCenter(
+      this.props.match.params.id,
+      this.props.history
+    );
   }
 
 
   render() {
-    const admin = this.props.auth.user.role;
+    const admin = this.props.auth.user === null ? 'nouser' : this.props.auth.user.role;
     const showbutton = (
       <div>
-        <Link to={`/centers/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
-          <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+        <Link
+          to={`/centers/edit/${this.props.match.params.id}`}
+          key={this.props.match.params.id}
+          style={{ color: '#35434A' }}
+        >
+          <button
+            type="submit"
+            className="btn btn-dark"
+            style={{ float: 'left' }}
+          >Edit
+          </button>
         </Link>
-        <Link to={`${this.props.history.push}/edit`} className="btn btn-danger" onClick={this.deleteCenter} style={{ marginLeft: '20px' }}>Delete</Link>
+        <Link
+          to={`${this.props.history.push}/edit`}
+          className="btn btn-danger"
+          onClick={this.deleteCenter}
+          style={{ marginLeft: '20px' }}
+        >Delete
+        </Link>
       </div>
     );
 
-    const progress = (
-      <div className="progress">
-        <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: '10%' }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" />
-      </div>
-    );
 
     const set = this.props.loadedCenter;
     const isLoading = (
@@ -42,55 +56,74 @@ class CenterInfo extends Component {
               <h1 className="color">Center Info</h1>
             </div>
             <div className="loader" />
-            <p className="center-item shadow" >Unable to connect. Refresh your browser or check your internet connection</p>
+            <p className="center-item shadow" >
+              Unable to connect. Refresh your browser or check your internet connection
+            </p>
           </div>
         </div>
       </div>
     );
 
     const center = (
-      <div className="container" style={{ paddingTop: '100px' }}>
-        <div className="card loginCard" style={{ width: '45rem' }}>
-          <div className="card-header dark">
-            <h1 className="color">Center Info</h1>
-          </div>
-          <div className="card-body">
-            <h5 ><strong>Center name</strong></h5>
-            <h6 className="list-group-item">{set.centerName}</h6>
-            <br />
-            <h5 ><strong>Address</strong></h5>
+      <div style={{ paddingTop: '60px', backgroundColor: 'white' }}>
+        <div className="card-header dark">
+          <h1 className="container color centerTitle">Center Info {set.centerName}</h1>
+        </div>
+        <img
+          className="card-img-top"
+          src={set.imageurl}
+          style={{ height: '600px', width: '100%' }}
+          alt="center"
+        />
+        <div>
+          <div className="container card-body" style={{ width: '45rem' }}>
+            <h1><strong>{set.centerName}</strong></h1>
             <h6 className="list-group-item">{set.address}</h6>
             <br />
-            <h5 ><strong>City</strong></h5>
-            <h6 className="list-group-item">{set.city}</h6>
+            <div className="list-group-item centerlist" >
+              <h3>About</h3>
+              <p className="read" style={{ textAlign: 'justify' }}>
+                {set.about}
+              </p>
+            </div>
+            <br />
+            <h1><strong>City</strong></h1>
+            <h6 className="list-group-item col-md-4">{set.city}</h6>
             <br />
             <h5 ><strong>Availability</strong></h5>
-            <h6 className="list-group-item">{set.availability}</h6>
-            <br />
-            <h5><strong>Events</strong></h5>
-            <ul className="list-group col-md-6">
-              {set && set.events && set.events.map(eve =>
-                  (<Link to={`/events/${eve.id}`} key={eve.id} style={{ color: 'black' }}>
-                    <li className="list-group-item centerlist" key={eve.id} >
-                      <strong>{eve.eventName}</strong><h6>{eve.eventdate}</h6>
-                    </li>
-                  </Link>))}
-            </ul>
+            <h6 className="list-group-item col-md-4">{set.availability}</h6>
             <br />
             <h5><strong>Avaliable Facilities</strong></h5>
-            <ul className="list-group col-md-4">
+            <ul className="list-group col-md-4 text-capitalize">
               {set && set.facility && set.facility.map(list =>
                     (<li
                       className="list-group-item centerlist"
                       key={uuid()}
                     >
                       {list}
-                    </li>))}
+                     </li>))}
             </ul>
+            <br />
+            <h5><strong>Events</strong></h5>
+            {set && set.events && set.events.map(eve =>
+                  (<Link to={`/events/${eve.id}`} key={eve.id} style={{ color: 'black' }}>
+                    <div className="card d-lg-inline-block" style={{ width: '15rem' }}>
+                      <img
+                        className="card-img-top"
+                        src="https://res.cloudinary.com/skybound/image/upload/v1521281912/image1.jpg"
+                        alt="Card cap"
+                      />
+                      <div className="card-body">
+                        <h4 className="card-title">{eve.eventName}</h4>
+                        <p className="card-text">{eve.eventdate}</p>
+                      </div>
+                    </div>
+                   </Link>))}
             <br />
             {admin === 'ADMIN1' ? showbutton : null}
           </div>
         </div>
+        <Footer />
       </div>
     );
 

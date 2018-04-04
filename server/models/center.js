@@ -17,13 +17,30 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageurl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    imageId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    about: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
     facility: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
-    },
-
+    }
   });
   Center.associate = (models) => {
-    Center.hasMany(models.Event, { foreignKey: 'centerId', as: 'events' });
+    Center.hasMany(models.Event, {
+      foreignKey: 'centerId',
+      as: 'events'
+    });
+    Center.belongsTo(models.User, {
+      foreignKey: 'userId',
+    });
   };
   return Center;
 };

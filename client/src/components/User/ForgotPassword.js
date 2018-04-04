@@ -29,13 +29,13 @@ class ForgotPassword extends Component {
         <div className="container" style={{ paddingTop: '100px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
-              <h3>Forgot Password</h3>
+              <h3>Password Reset</h3>
             </div>
             <div className="card-body">
               <div className="cont card-body">
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
-                    label="Email"
+                    label="Email address"
                     value={this.state.email}
                     onChange={this.onChange}
                     name="email"
@@ -43,7 +43,7 @@ class ForgotPassword extends Component {
                     placeholder="Vaild Email"
                   />
                   <div className="text-center">
-                    <button type="submit" className="btn btn-outline-dark">Submit</button>
+                    <button type="submit" className="btn btn-outline-dark">Email me a recovery link</button>
                   </div>
                 </form>
               </div>

@@ -1,11 +1,18 @@
 import React from 'react';
+import Footer from './UI/Footer';
 
 const notFound = () => (
   <div>
     <div className="cover">
-      <img className="d-block w-100" src="https://res.cloudinary.com/skybound/image/upload/v1521281910/error-404.gif" alt="Second slide" />
-      <img className="d-block w-100" src="https://res.cloudinary.com/skybound/image/upload/v1521282600/error-40.jpg" alt="Second slide" />
+      <a href="/">
+        <img
+          className="d-block w-100"
+          src="https://res.cloudinary.com/skybound/image/upload/v1522578533/404.gif"
+          alt="Second slide"
+        />
+      </a>
     </div>
+    <Footer />
   </div>
 );
 

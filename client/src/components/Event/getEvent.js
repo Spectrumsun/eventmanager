@@ -1,10 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
 
 const display = props => (
-  <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
-    <img className="card-img-top" src="https://res.cloudinary.com/skybound/image/upload/v1521281912/image1.jpg" alt="Card cap" />
+  <div className="card d-lg-inline-block" style={{ width: '14rem' }}>
+    <img
+      className="card-img-top"
+      src="https://res.cloudinary.com/skybound/image/upload/v1521281912/image1.jpg"
+      style={{ objectFit: 'cover', height: '15rem' }}
+      alt="Card cap"
+    />
     <div className="card-body">
       <h4 className="card-title">{props.eventName}</h4>
       <p className="card-text">{props.eventdate}</p>

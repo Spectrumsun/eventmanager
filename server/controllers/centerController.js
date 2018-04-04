@@ -1,10 +1,6 @@
 import { Event, Center } from '../models';
+import deletePicture from '../handlers/deleteImage';
 
-
-/**
- * @class Event
- *@classdesc class Event
- */
 
 class Centers {
   // return a list of cennters in the db
@@ -38,8 +34,12 @@ class Centers {
       centerName: req.body.name,
       city: req.body.city,
       address: req.body.address,
+      about: req.body.about,
       facility: req.body.facility,
-      availability: req.body.availability || 'unknow'
+      availability: req.body.availability,
+      imageurl: req.body.imageurl,
+      imageId: req.body.publicUrlId,
+      userId: req.user.id
     })
       .then(center => res.status(201).json({ message: 'successfully created', center }))
       .catch(error => res.status(400).json({ message: 'Unable to create Center! ', error }));
@@ -48,6 +48,8 @@ class Centers {
 
   // Admin can edit a center
   static editCenter(req, res) {
+    const { oldpublicId, publicUrlId } = req.body;
+    deletePicture(oldpublicId, publicUrlId);
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
         if (center) {
@@ -55,8 +57,12 @@ class Centers {
             centerName: req.body.name,
             city: req.body.city,
             address: req.body.address,
+            about: req.body.about,
             facility: req.body.facility,
-            availability: req.body.availability || 'unknow'
+            availability: req.body.availability,
+            imageurl: req.body.imageurl,
+            imageId: req.body.publicUrlId,
+            userId: req.user.id
           });
           res.status(200).json({ message: 'updated', center });
         } else {
@@ -71,6 +77,7 @@ class Centers {
     Center.findOne({ where: { id: req.params.id } })
       .then((center) => {
         if (center) {
+          deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
           res.status(200).json({ message: 'center successfully deleted!' });
         } else {

@@ -110,7 +110,7 @@ class CenterInfo extends Component {
                     <div className="card d-lg-inline-block" style={{ width: '15rem' }}>
                       <img
                         className="card-img-top"
-                        src="https://res.cloudinary.com/skybound/image/upload/v1521281912/image1.jpg"
+                        src="https://res.cloudinary.com/skybound/image/upload/v1522444977/eventmanager/static/image1.jpg"
                         alt="Card cap"
                       />
                       <div className="card-body">

@@ -21,14 +21,14 @@ class Users {
         role: req.body.role,
         emailVerfication: crypto.randomBytes(20).toString('hex'),
         emailVerficationExpires: Date.now()
-      }))/* .then(user =>
+      })).then(user =>
       // send a mail to the user after a successfull signup
         emailVerfication({
           user,
           subject: 'Email Verification',
           emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
           name: user.fullname
-        })) */
+        }))
       .then(users =>
         res.status(201).send({
           message: 'Account successfully created. Check your mail to confirm your account '

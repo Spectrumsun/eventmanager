@@ -14,7 +14,7 @@ module.exports = {
     dialect: process.env.configDialect
   },
   production: {
-    url: 'postgres://cegrrihw:rnQj8f_xe0Ariy3OdYv6sbNX5MxoXcK_@baasu.db.elephantsql.com:5432/cegrrihw',
+    url: process.env.configEnvVar,
     dialect: process.env.configDialect
   }
 };

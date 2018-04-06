@@ -9,7 +9,7 @@
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
-    "dev": "cross-env NODE_ENV=production npm run dev:start",
+    "dev": "cross-env NODE_ENV=development npm run dev:start",
     "dev:start": "concurrently --kill-others \"npm run webpack:watch\" \"nodemon --ignore lib --exec  babel-node server/server\"",
     "clean": "rm -rf build && mkdir build",
     "build:server": "babel ./server -d ./build ./server -s",

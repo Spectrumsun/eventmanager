@@ -1,4 +1,4 @@
-import isEmpty from 'lodash/isempty';
+import { isEmpty } from 'lodash';
 import * as actionTypes from '../actions/actionsTypes';
 
 

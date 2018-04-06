@@ -40,7 +40,7 @@ export default (sequelize, DataTypes) => {
     });
     User.hasMany(models.Center, {
       foreignKey: 'userId',
-    });// associations can be defined here
+    });
   };
   return User;
 };

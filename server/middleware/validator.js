@@ -15,22 +15,6 @@ class Validate {
     next();
   }
 
-  static validateEventOwner(req, res, next) {
-    // make sure  a userId is the same has the id of the event owner
-    Event.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then((event) => {
-      if (event.userId !== req.user.id) {
-        return res.status(409).json({
-          message: 'You are not the owner of the event'
-        });
-      }
-      next();
-    });
-  }
-
   // check input to see if user filled the correct inforamtion for signup route
   static validateSigup(req, res, next) {
     req.sanitizeBody('fullname');

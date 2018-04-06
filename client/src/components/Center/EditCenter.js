@@ -35,7 +35,7 @@ class AddCenter extends Component {
   }
 
    onSubmit = (e) => {
-     if (e.target.type != 'textarea' && e.which === 13 /* Enter */) {
+     if (e.target.type != 'textarea' && e.which === 13) {
        e.preventDefault();
      }
      e.preventDefault();
@@ -74,7 +74,8 @@ class AddCenter extends Component {
              });
              this.props.initEditCenter(
                this.props.match.params.id,
-               this.state, this.props.history
+               this.state,
+               this.props.history
              );
            })
            .catch((err) => {

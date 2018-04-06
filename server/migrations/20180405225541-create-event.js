@@ -34,7 +34,7 @@ module.exports = {
     },
     centerId: {
       type: Sequelize.INTEGER,
-      // onDelete: 'set null',
+      onDelete: 'set null',
       allowNull: false,
       references: {
         model: 'Centers',
@@ -44,7 +44,7 @@ module.exports = {
     },
     userId: {
       type: Sequelize.INTEGER,
-      // onDelete: 'CASCADE',
+      onDelete: 'CASCADE',
       allowNull: false,
       references: {
         model: 'Users',

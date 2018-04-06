@@ -6,7 +6,10 @@ class Centers {
   // return a list of cennters in the db
   static getCenter(req, res) {
     Center.all()
-      .then(center => res.status(200).json({ message: 'success', center }))
+      .then(center => res.status(200).json({
+        message: 'success',
+        center
+      }))
       .catch(error => res.status(200).json(error));
   }
 
@@ -21,9 +24,14 @@ class Centers {
     })
       .then((center) => {
         if (center) {
-          res.status(200).json({ message: 'Center', center });
+          res.status(200).json({
+            message: 'Center',
+            center
+          });
         } else {
-          res.status(400).json({ message: 'center not found' });
+          res.status(400).json({
+            message: 'center not found'
+          });
         }
       });
   }
@@ -41,8 +49,14 @@ class Centers {
       imageId: req.body.publicUrlId,
       userId: req.user.id
     })
-      .then(center => res.status(201).json({ message: 'successfully created', center }))
-      .catch(error => res.status(400).json({ message: 'Unable to create Center! ', error }));
+      .then(center => res.status(201).json({
+        message: 'successfully created',
+        center
+      }))
+      .catch(error => res.status(400).json({
+        message: 'Unable to create Center! ',
+        error
+      }));
   }
 
 
@@ -50,7 +64,12 @@ class Centers {
   static editCenter(req, res) {
     const { oldpublicId, publicUrlId } = req.body;
     deletePicture(oldpublicId, publicUrlId);
-    Center.findOne({ where: { id: req.params.id } })
+    Center.findOne({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    })
       .then((center) => {
         if (center) {
           center.update({
@@ -62,29 +81,47 @@ class Centers {
             availability: req.body.availability,
             imageurl: req.body.imageurl,
             imageId: req.body.publicUrlId,
-            userId: req.user.id
           });
-          res.status(200).json({ message: 'updated', center });
+          res.status(200).json({
+            message: 'updated',
+            center
+          });
         } else {
-          res.status(404).json({ message: 'center not found' });
+          res.status(404).json({
+            message: 'center not found'
+          });
         }
       })
-      .catch(err => res.status(400).json(err));
+      .catch(err => res.status(400).json({
+        message: 'You dont have permissions',
+        err
+      }));
   }
 
   // admin can delete a center
   static deleteCenter(req, res) {
-    Center.findOne({ where: { id: req.params.id } })
+    Center.findOne({ 
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      } 
+    })
       .then((center) => {
         if (center) {
           deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
-          res.status(200).json({ message: 'center successfully deleted!' });
+          res.status(200).json({ 
+            message: 'center successfully deleted!'
+          });
         } else {
-          res.status(404).json({ message: 'center not found' });
+          res.status(404).json({ 
+            message: 'center not found' 
+          });
         }
       })
-      .catch(err => res.status(400).json(err));
+      .catch(err => res.status(400).json({
+        message: 'You dont have permissions'
+      }));
   }
 }
 

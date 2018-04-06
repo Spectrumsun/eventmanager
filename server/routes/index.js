@@ -78,7 +78,6 @@ router.put(
   '/events/:id', auth.verifyToken,
   validator.validateCreateEvent,
   validator.checkDate,
-  validator.validateEventOwner,
   eventController.editEvent
 );
 

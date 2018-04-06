@@ -7,7 +7,10 @@ class Events {
   // return all the list of events in the database in json
   static getEvent(req, res) {
     Event.all()
-      .then(event => res.status(200).send({ message: 'success', event }))
+      .then(event => res.status(200).send({
+        message: 'success',
+        event
+      }))
       .catch(error => res.status(200).send(error));
   }
 
@@ -19,9 +22,14 @@ class Events {
     })
       .then((event) => {
         if (event) {
-          res.status(200).send({ message: 'Event', event });
+          res.status(200).send({
+            message: 'Event',
+            event
+          });
         } else {
-          res.status(400).send({ message: 'event not found' });
+          res.status(400).send({
+            message: 'event not found'
+          });
         }
       });
   }
@@ -35,13 +43,24 @@ class Events {
       centerId: parseInt(req.body.center, 10),
       userId: req.user.id
     })
-      .then(event => res.status(201).json({ message: 'successfully created', event }))
-      .catch(error => res.status(400).json({ message: 'center not found!!', error }));
+      .then(event => res.status(201).json({
+        message: 'successfully created',
+        event
+      }))
+      .catch(error => res.status(400).json({
+        message: 'center not found!!',
+        error
+      }));
   }
 
   // a sign in user can edit events they added
   static editEvent(req, res) {
-    Event.findOne({ where: { id: req.params.id } })
+    Event.findOne({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    })
       .then((event) => {
         if (event) {
           event.update({
@@ -51,9 +70,14 @@ class Events {
             purpose: req.body.purpose,
             centerId: parseInt(req.body.center, 10),
           });
-          res.status(200).json({ message: 'updated', event });
+          res.status(200).json({ 
+            message: 'updated',
+            event
+          });
         } else {
-          res.status(404).json({ message: 'event not found' });
+          res.status(404).json({
+            message: 'You dont own any event with that id!!'
+          });
         }
       })
       .catch(err => res.status(400).json(err));
@@ -74,7 +98,7 @@ class Events {
           });
         } else {
           res.status(404).json({
-            message: 'You are not the owner of the event'
+            message: 'You dont own any event with that id!!'
           });
         }
       })

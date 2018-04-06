@@ -10,6 +10,7 @@ cloudinary.config({
 
 
 const deletePicture = (newid, oldid) => {
+  console.log("newid", newid, oldid)
   if (newid !== oldid) {
     cloudinary.v2.uploader.destroy(newid, (error, result) => {
       console.log(result);

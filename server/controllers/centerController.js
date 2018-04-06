@@ -120,7 +120,8 @@ class Centers {
         }
       })
       .catch(err => res.status(400).json({
-        message: 'You dont have permissions'
+        message: 'You dont have permissions',
+        err
       }));
   }
 }

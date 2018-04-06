@@ -35,7 +35,7 @@ module.exports = {
     centerId: {
       type: Sequelize.INTEGER,
       onDelete: 'set null',
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'Centers',
         key: 'id',

@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production npm run build && npm run webpack:build && node build/server",
+    "start": "npm run build && npm run webpack:build && node build/server",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --exit --compilers  js:babel-core/register server/test",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",

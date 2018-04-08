@@ -30,6 +30,10 @@ const fake = {
     email: 'kaka@example.com',
     password: '1234567',
   },
+  passwordReset: {
+    password: '1234567',
+    confirmPassword: '1234567',
+  },
   missingPass: {
     email: faker.internet.email(),
   },

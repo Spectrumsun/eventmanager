@@ -52,7 +52,6 @@ describe('Event Manager Api end Point', () => {
       });
   });
 
-  
 
   it('validator should responds with status 400 if body is not filed correctly when user try to login', (done) => {
     chai

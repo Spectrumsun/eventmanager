@@ -1,18 +1,18 @@
 import request from 'supertest';
 import chai from 'chai';
 import jwtDecode from 'jsonwebtoken';
-import app from '../../server';
+import server from '../../server';
 import { User } from '../../models';
-import fakeData from '../faker';
+import testData from '../faker';
 
 const { expect } = chai;
-const userToken = {};
-const newUser = {};
+const testUserToken = {};
+const testUser = {};
 
 
 describe('Event Manager User Test', () => {
   it('loads the api home page', (done) => {
-    request(app)
+    request(server)
       .get('/api/v1/')
       .expect(200)
       .end((err) => {
@@ -24,27 +24,27 @@ describe('Event Manager User Test', () => {
   });
 
   it('creates a new user', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users')
       .set('Content-Type', 'application/json')
-      .send(fakeData.singupUser1)
+      .send(testData.singupUser1)
       .expect(201)
       .end((err, res) => {
-        newUser.user = res.body.user;
-        expect(newUser.user).to.have.property('fullname');
-        expect(newUser.user).to.have.property('email');
-        expect(res.body.user.email).to.equal(fakeData.singupUser1.email);
-        expect(res.body.user.fullname).to.equal(fakeData.singupUser1.fullname);
+        testUser.user = res.body.user;
+        expect(testUser.user).to.have.property('fullname');
+        expect(testUser.user).to.have.property('email');
+        expect(res.body.user.email).to.equal(testData.singupUser1.email);
+        expect(res.body.user.fullname).to.equal(testData.singupUser1.fullname);
         if (err) return done(err);
         done();
       });
   });
 
   it('trown error if email already exisit in database', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users')
       .set('Content-Type', 'application/json')
-      .send(fakeData.singupUser1)
+      .send(testData.singupUser1)
       .expect(409)
       .end((err, res) => {
         expect(res.body.message).to.equal('Email already used !!');
@@ -54,26 +54,26 @@ describe('Event Manager User Test', () => {
   });
 
   it('creates another user second user with fullname and email', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users')
       .set('Content-Type', 'application/json')
-      .send(fakeData.singupUser)
+      .send(testData.singupUser)
       .expect(201)
       .end((err, res) => {
-        newUser.user2 = res.body.user;
-        expect(newUser.user2).to.have.property('fullname');
-        expect(newUser.user2).to.have.property('email');
-        expect(res.body.user.email).to.equal(fakeData.singupUser.email);
-        expect(res.body.user.fullname).to.equal(fakeData.singupUser.fullname);
+        testUser.user2 = res.body.user;
+        expect(testUser.user2).to.have.property('fullname');
+        expect(testUser.user2).to.have.property('email');
+        expect(res.body.user.email).to.equal(testData.singupUser.email);
+        expect(res.body.user.fullname).to.equal(testData.singupUser.fullname);
         if (err) return done(err);
         done();
       });
   });
 
   it('user cant login if they have not confirm eamil address', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users/login')
-      .send(fakeData.loginUser)
+      .send(testData.loginUser)
       .expect(400)
       .end((err, res) => {
         expect(res.body.message).to.equal('You have to first confirm Your Email');
@@ -88,7 +88,7 @@ describe('Event Manager User Test', () => {
         email: 'testuser@example.com'
       },
     }).then((user) => {
-      request(app)
+      request(server)
         .get(`/api/v1/users/email/${user.emailVerfication}`)
         .expect(200)
         .end((err, res) => {
@@ -100,9 +100,9 @@ describe('Event Manager User Test', () => {
   });
 
   it('user cant login if the password is not correct', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users/login')
-      .send(fakeData.loginUser1)
+      .send(testData.loginUser1)
       .expect(409)
       .end((err, res) => {
         expect(res.body.message).to.equal('Email or password incorrect');
@@ -112,9 +112,9 @@ describe('Event Manager User Test', () => {
   });
 
   it('user cant login if the email is not correct.', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users/login')
-      .send(fakeData.loginUser3)
+      .send(testData.loginUser3)
       .expect(404)
       .end((err, res) => {
         expect(res.body.message).to.equal('Email or password incorrect');
@@ -124,28 +124,90 @@ describe('Event Manager User Test', () => {
   });
 
   it('user login Successfully with correct details', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users/login')
-      .send(fakeData.loginUser2)
+      .send(testData.loginUser2)
       .expect(200)
       .end((err, res) => {
-        expect(res.body.message).to.equal(`Welcome ${fakeData.singupUser1.fullname} `);
+        expect(res.body.message).to.equal(`Welcome ${testData.singupUser1.fullname} `);
         if (err) return done(err);
         done();
       });
   });
 
   it('return a token whren user successful signin', (done) => {
-    request(app)
+    request(server)
       .post('/api/v1/users/login')
-      .send(fakeData.loginUser2)
+      .send(testData.loginUser2)
       .expect(200)
       .end((err, res) => {
-        userToken.token = res.body.token;
-        expect(userToken.token);
-        expect(res.body.message).to.equal(`Welcome ${fakeData.singupUser1.fullname} `);
+        testUserToken.token = res.body.token;
+        expect(testUserToken.token);
+        expect(res.body.message).to.equal(`Welcome ${testData.singupUser1.fullname} `);
         if (err) return done(err);
         done();
       });
   });
+
+  it('Fail to send password reset link if email supplied is wrong', (done) => {
+    request(server)
+      .post('/api/v1/users/forgotpassword')
+      .expect(404)
+      .send(testData.loginUser3)
+      .end((error, res) => {
+        expect(res.body.message).to.equal('Check your email for a password reset link');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('send maail with password reset when the email is found in database', (done) => {
+    request(server)
+      .post('/api/v1/users/forgotpassword')
+      .expect(200)
+      .send(testData.loginUser2)
+      .end((error, res) => {
+        expect(res.body.message).to.equal('Check your email for a password reset link');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('password reset should fail if reset token is wrong', (done) => {
+    const faketoken = 'kndowpo943049304ijfbjn3i4r7uiejor8';
+    request(server)
+      .post(`/api/v1/users/password/reset/${faketoken}`)
+      .send(testData.passwordReset)
+      .expect(401)
+      .end((error, res) => {
+        expect(res.body.message).to.equal('Invaild or expired reset token');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('change password when reset tokem is vaild', (done) => {
+    User.findOne({
+      where: {
+        email: 'testuser@example.com'
+      }
+    }).then((user) => {
+      const resetToken = user.resetPasswordToken;
+      request(server)
+        .post(`/api/v1/users/password/reset/${resetToken}`)
+        .send(testData.passwordReset)
+        .expect(200)
+        .end((error, res) => {
+          expect(res.body.message).to.equal('Password Changed. You can Login with your new password');
+          if (error) done(error);
+          done();
+        });
+    });
+  });
 });
+
+
+export {
+  testUserToken,
+  testUser
+};

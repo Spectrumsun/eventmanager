@@ -167,7 +167,7 @@ class Users {
           bcrypt.hash(data, 10)
             .then(hash => user.update({
               password: hash,
-              confirmassword: req.body.confirmPassword,
+              confirmPassword: req.body.confirmPassword,
               resetPasswordToken: null,
               resetPasswordExpires: null
             }));
@@ -175,7 +175,7 @@ class Users {
             message: 'Password Changed. You can Login with your new password'
           });
         } else {
-          res.status(400).json({
+          res.status(401).json({
             message: 'Invaild or expired reset token'
           });
         }

@@ -7,11 +7,19 @@ module.exports = {
     database: process.env.configDatabase,
     host: process.env.configHost,
     dialect: process.env.configDialect,
-    port: 5432,
+    port: process.env.configPort,
   },
   test: {
-    url: process.env.DATABASE_URL_TEST,
-    dialect: process.env.configDialect
+    // url: process.env.DATABASE_URL_TEST,
+    // dialect: process.env.configDialect
+    username: process.env.configUsername,
+    password: process.env.configPassword,
+    database: process.env.configDatabasetest,
+    host: process.env.configHost,
+    dialect: process.env.configDialect,
+    port: process.env.configPort,
+
+
   },
   production: {
     url: process.env.configEnvVar,

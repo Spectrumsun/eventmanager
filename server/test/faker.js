@@ -1,25 +1,34 @@
 import faker from 'faker';
 
 const fake = {
+  invalidToken: 'invalidtoken',
   singupUser: {
-    fullname: faker.name.findName(),
-    email: faker.internet.email(),
-    password: '12345',
-    confirmPassword: '12345'
+    fullname: 'johndoe',
+    email: 'johndoe@example.com',
+    password: '1234567',
+    confirmPassword: '1234567'
   },
   singupUser1: {
     fullname: 'Test User',
     email: 'testuser@example.com',
-    password: '12345',
-    confirmPassword: '12345'
+    password: '1234567',
+    confirmPassword: '1234567'
   },
   loginUser: {
-    email: faker.internet.email(),
-    password: '12345',
+    email: 'johndoe@example.com',
+    password: '123445455',
   },
   loginUser1: {
     email: 'testuser@example.com',
     password: '12345',
+  },
+  loginUser2: {
+    email: 'testuser@example.com',
+    password: '1234567',
+  },
+  loginUser3: {
+    email: 'kaka@example.com',
+    password: '1234567',
   },
   missingPass: {
     email: faker.internet.email(),

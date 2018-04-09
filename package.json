@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production sequelize db:migrate && npm run build && npm run webpack:build && node build/server",
     "test": "NODE_ENV=test npm run migrations && nyc --reporter=html --reporter=text mocha --exit --require babel-core/register server/test/**/*.test.js",
-    "migrations": "cross-env NODE_ENV=test sequelize db:migrate:undo:all && sequelize db:migrate",
+    "migrations": "NODE_ENV=test sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
     "dev": "cross-env NODE_ENV=development npm run dev:start",

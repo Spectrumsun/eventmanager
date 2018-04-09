@@ -10,16 +10,8 @@ module.exports = {
     port: process.env.configPort,
   },
   test: {
-    // url: process.env.DATABASE_URL_TEST,
-    // dialect: process.env.configDialect
-    username: process.env.configUsername,
-    password: process.env.configPassword,
-    database: process.env.configDatabasetest,
-    host: process.env.configHost,
-    dialect: process.env.configDialect,
-    port: process.env.configPort,
-
-
+    url: process.env.DATABASE_URL_TEST,
+    dialect: process.env.configDialect
   },
   production: {
     url: process.env.configEnvVar,

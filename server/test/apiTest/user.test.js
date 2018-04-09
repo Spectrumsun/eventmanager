@@ -192,9 +192,8 @@ describe('Event Manager User Test', () => {
         email: 'testuser@example.com'
       }
     }).then((user) => {
-      const resetToken = user.resetPasswordToken;
       request(server)
-        .post(`/api/v1/users/password/reset/${resetToken}`)
+        .post(`/api/v1/users/password/reset/${user.resetPasswordToken}`)
         .send(testData.passwordReset)
         .expect(200)
         .end((error, res) => {

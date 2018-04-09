@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-const fake = {
+const userfake = {
   invalidToken: 'invalidtoken',
   singupUser: {
     fullname: 'johndoe',
@@ -93,4 +93,4 @@ const fake = {
   }
 };
 
-export default fake;
+export default userfake;

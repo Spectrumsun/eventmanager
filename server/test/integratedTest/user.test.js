@@ -3,10 +3,10 @@ import chai from 'chai';
 import jwtDecode from 'jsonwebtoken';
 import server from '../../server';
 import { User } from '../../models';
-import testData from '../faker';
+import testData from '../Faker/userFaker';
 
 const { expect } = chai;
-const testUserToken = {};
+const validToken = {};
 const testUser = {};
 
 
@@ -207,8 +207,8 @@ describe('Event Manager User Test', () => {
       .send(testData.loginUser2)
       .expect(200)
       .end((err, res) => {
-        testUserToken.token = res.body.token;
-        expect(testUserToken.token);
+        validToken.token = res.body.token;
+        expect(validToken.token);
         expect(res.body.message).to.equal(`Welcome ${testData.singupUser1.fullname} `);
         if (err) return done(err);
         done();
@@ -269,10 +269,9 @@ describe('Event Manager User Test', () => {
         });
     });
   });
+
+  
 });
 
 
-export {
-  testUserToken,
-  testUser
-};
+export { validToken, testUser };

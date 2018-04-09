@@ -1,9 +1,25 @@
 language: node
 language: node_js
 node_js: node
-script: 
+before_script: 
       - cd server && npm install && npm test
+      - npm install -g codeclimate-test-reporter
+      - psql -c 'create database eventtestdb;' -U postgres
+      - ./node_modules/.bin/sequelize db:migrate
+cache:
+  directories:
+    - "node_modules"
+script: 
+  - npm test 
+
 after_success:
     -  npm run coverage
     - codeclimate-test-reporter < ./coverage/lcov.info
-       
+
+addons:
+  postgresql: "9.6"
+  
+
+
+    
+  

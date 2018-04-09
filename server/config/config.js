@@ -7,7 +7,7 @@ module.exports = {
     database: process.env.configDatabase,
     host: process.env.configHost,
     dialect: process.env.configDialect,
-    port: 5432,
+    port: process.env.configPort,
   },
   test: {
     url: process.env.DATABASE_URL_TEST,

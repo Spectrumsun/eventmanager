@@ -21,21 +21,29 @@ class Users {
         role: req.body.role,
         emailVerfication: crypto.randomBytes(20).toString('hex'),
         emailVerficationExpires: Date.now()
-      })).then(user =>
-      // send a mail to the user after a successfull signup
-        emailVerfication({
-          user,
-          subject: 'Email Verification',
-          emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
-          name: user.fullname
-        }))
-      .then(users =>
+      }))
+      .then((user) => {
+        if (user) {
+          // send a mail to the user after a successfull signup
+          emailVerfication({
+            user,
+            subject: 'Email Verification',
+            emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
+            name: user.fullname
+          });
+        }
         res.status(201).send({
-          message: 'Account successfully created. Check your mail to confirm your account '
-        }))
+          message: 'Account successfully created. Check your mail to confirm your account ',
+          user: {
+            email: user.email,
+            fullname: user.fullname
+          }
+        });
+      })
       .catch(error =>
-        res.status(400).send({
-          message: 'Email already used !!'
+        res.status(409).send({
+          message: 'Email already used !!',
+          error
         }));
   }
 
@@ -63,16 +71,16 @@ class Users {
                 });
             }
             return res
-              .status(400)
+              .status(409)
               .json({
-                message: 'email or password incorrect'
+                message: 'Email or password incorrect'
               });
           });
         } else {
           res
             .status(404)
             .json({
-              message: 'email or password incorrect'
+              message: 'Email or password incorrect'
             });
         }
       });
@@ -87,7 +95,7 @@ class Users {
             emailVerfication: null,
           });
           res.status(200).json({
-            message: '💃 Nice! Email Confirmed You are can now login! '
+            message: 'Nice! Email Confirmed You are can now login!'
           });
         } else {
           res.status(400).json({
@@ -159,7 +167,7 @@ class Users {
           bcrypt.hash(data, 10)
             .then(hash => user.update({
               password: hash,
-              confirmassword: req.body.confirmPassword,
+              confirmPassword: req.body.confirmPassword,
               resetPasswordToken: null,
               resetPasswordExpires: null
             }));
@@ -167,7 +175,7 @@ class Users {
             message: 'Password Changed. You can Login with your new password'
           });
         } else {
-          res.status(400).json({
+          res.status(401).json({
             message: 'Invaild or expired reset token'
           });
         }

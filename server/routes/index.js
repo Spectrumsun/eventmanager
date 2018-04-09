@@ -29,7 +29,6 @@ router.post(
 router.post(
   '/users/login',
   validator.validatelogin,
-  userController.isConfirmEmail,
   userController.login
 );
 

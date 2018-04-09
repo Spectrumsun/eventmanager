@@ -43,7 +43,6 @@ class Users {
       .catch(error =>
         res.status(409).send({
           message: 'Email already used !!',
-          error
         }));
   }
 
@@ -51,10 +50,17 @@ class Users {
   static login(req, res) {
     User.findOne({
       where: {
-        email: req.body.email
+        email: req.body.email,
       },
     })
       .then((user) => {
+        // check if user has confirm email address before they can login
+        if (user && user.emailVerfication !== null) {
+          return res.status(400).json({
+            message: 'You have to first confirm Your Email'
+          });
+        }
+
         if (user) {
           bcrypt.compare(req.body.password, user.password, (err, response) => {
             if (response) {
@@ -108,22 +114,6 @@ class Users {
       }));
   }
 
-  // check if user has confirm email address before they can login
-  static isConfirmEmail(req, res, next) {
-    User.findOne({ where: { email: req.body.email } })
-      .then((user) => {
-        if (!user) {
-          next();
-          return;
-        }
-        if (user.emailVerfication !== null) {
-          return res.status(400).json({
-            message: 'You have to first confirm Your Email'
-          });
-        }
-        next();
-      });
-  }
 
   // reset user password and send them a email link to a url token
   static forgotpassword(req, res) {

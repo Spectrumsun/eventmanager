@@ -23,36 +23,6 @@ describe('Event Manager Api end Point', () => {
   });
 
 
-  it('responds with status 200 for events', (done) => {
-    chai
-      .request(server)
-      .get('/api/v1/events')
-      .set('Content-Type', 'application/json')
-      .end((err, res) => {
-        res
-          .should
-          .have
-          .status(200);
-
-        done();
-      });
-  });
-
-  it('responds with status 200 for centers', (done) => {
-    chai
-      .request(server)
-      .get('/api/v1/centers')
-      .set('Content-Type', 'application/json')
-      .end((err, res) => {
-        res
-          .should
-          .have
-          .status(200);
-        done();
-      });
-  });
-
-
   it('validator should responds with status 400 if body is not filed correctly when user try to login', (done) => {
     chai
       .request(server)

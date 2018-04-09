@@ -23,6 +23,72 @@ describe('Event Manager User Test', () => {
       });
   });
 
+  it('return error if email field is empty on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('That Email is not valid!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is empty on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is less thab six character on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password does not match confrim password field', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Oops! Your passwords do not match');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if email field is empty on login', (done) => {
+    request(server).post('/api/v1/users/login')
+      .send(testData.loginerror1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('That Email is not valid!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is empty on login', (done) => {
+    request(server).post('/api/v1/users/login')
+      .send(testData.loginerror2)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank!');
+        if (error) done(error);
+        done();
+      });
+  });
+
   it('creates a new user', (done) => {
     request(server)
       .post('/api/v1/users')

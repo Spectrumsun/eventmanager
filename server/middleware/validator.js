@@ -174,7 +174,7 @@ class Validate {
     ).notEmpty();
     req.checkBody(
       'availability',
-      'You add availability of center!'
+      'You must add availability of center!'
     ).notEmpty();
     req.checkBody(
       'publicUrlId',
@@ -182,7 +182,7 @@ class Validate {
     ).notEmpty();
     req.checkBody(
       'about',
-      'You About for center!'
+      'You must About for center!'
     ).notEmpty();
 
     const errors = req.validationErrors();
@@ -213,13 +213,13 @@ class Validate {
 
     if (!req.body.time.match(/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/)) {
       return res.status(400).json({
-        messgae: 'invalid time format make sure it\'s HH:MM format 24 hours'
+        message: 'invalid time format make sure it\'s HH:MM format 24 hours'
       });
     }
 
     if (isNaN(req.body.center)) {
       return res.status(400).json({
-        messgae: 'Only Number allowed for Center'
+        message: 'Only Number allowed for Center'
       });
     }
 

@@ -18,7 +18,7 @@ class Users {
         email: req.body.email,
         password: hash,
         confirmPassword: req.body.confirmPassword,
-        role: req.body.role,
+        role: 'user',
         emailVerfication: crypto.randomBytes(20).toString('hex'),
         emailVerficationExpires: Date.now()
       }))
@@ -108,6 +108,9 @@ class Users {
             message: 'Email verification failed token is not invalid'
           });
         }
+        if (user.email === process.env.ADMINEMAIL) {
+          user.update({ role: 'ADMIN1' });
+        }
       })
       .catch(error => res.status(400).json({
         message: 'An error occoured', error
@@ -170,6 +173,25 @@ class Users {
           });
         }
       }).catch(error => res.status(400).json({ error }));
+  }
+
+  static makeAdmin(req, res) {
+    User.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+      .then((user) => {
+        if (user) {
+          user.update({
+            role: req.body.role
+          });
+          res.status(200).json({
+            message: 'user role changed'
+          });
+        }
+      })
+      .catch(err => res.status(400).json({error: 'No user found', err }));
   }
 }
 

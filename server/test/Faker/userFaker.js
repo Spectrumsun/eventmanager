@@ -65,31 +65,15 @@ const userfake = {
     email: faker.internet.email(),
     password: '12345999',
   },
-  newEvent: {
-    name: faker.name.findName(),
-    date: faker.date.future(),
-    time: '12:00',
-    purpose: faker.lorem.sentences(),
-    center: 1
+  adminsignup: {
+    fullname: 'test',
+    email: process.env.ADMINEMAIL,
+    password: process.env.ADMINTESTPASSWORD,
+    confirmPassword: process.env.ADMINTESTPASSWORD
   },
-  newEvent2: {
-    name: faker.name.findName(),
-    date: faker.date.future(),
-    time: '13:00',
-    purpose: faker.lorem.sentences(),
-    center: 2
-  },
-  newCenter: {
-    name: faker.name.findName(),
-    city: faker.address.city(),
-    address: faker.address.streetAddress(),
-    facility: faker.random.arrayElement(),
-  },
-  newCenter1: {
-    name: faker.name.findName(),
-    city: faker.address.city(),
-    address: faker.address.streetAddress(),
-    facility: faker.random.arrayElement(),
+  adminLogin: {
+    email: process.env.ADMINEMAIL,
+    password: process.env.ADMINTESTPASSWORD,
   }
 };
 

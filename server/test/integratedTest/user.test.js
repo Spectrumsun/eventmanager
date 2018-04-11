@@ -1,13 +1,15 @@
 import request from 'supertest';
 import chai from 'chai';
-import jwtDecode from 'jsonwebtoken';
 import server from '../../server';
 import { User } from '../../models';
-import testData from '../faker';
+import testData from '../Faker/userFaker';
 
 const { expect } = chai;
-const testUserToken = {};
+const validToken = {};
+const adminToken = {};
 const testUser = {};
+const testAdmin = {};
+
 
 
 describe('Event Manager User Test', () => {
@@ -19,6 +21,72 @@ describe('Event Manager User Test', () => {
         if (err) {
           done(err);
         }
+        done();
+      });
+  });
+
+  it('return error if email field is empty on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('That Email is not valid!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is empty on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is less thab six character on signup', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password does not match confrim password field', (done) => {
+    request(server).post('/api/v1/users')
+      .send(testData.wronginfo1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Oops! Your passwords do not match');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if email field is empty on login', (done) => {
+    request(server).post('/api/v1/users/login')
+      .send(testData.loginerror1)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('That Email is not valid!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if password field is empty on login', (done) => {
+    request(server).post('/api/v1/users/login')
+      .send(testData.loginerror2)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank!');
+        if (error) done(error);
         done();
       });
   });
@@ -35,6 +103,23 @@ describe('Event Manager User Test', () => {
         expect(testUser.user).to.have.property('email');
         expect(res.body.user.email).to.equal(testData.singupUser1.email);
         expect(res.body.user.fullname).to.equal(testData.singupUser1.fullname);
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('creates a admin new user', (done) => {
+    request(server)
+      .post('/api/v1/users')
+      .set('Content-Type', 'application/json')
+      .send(testData.adminsignup)
+      .expect(201)
+      .end((err, res) => {
+        testAdmin.user = res.body.user;
+        expect(testAdmin.user).to.have.property('fullname');
+        expect(testAdmin.user).to.have.property('email');
+        expect(res.body.user.email).to.equal(testData.adminsignup.email);
+        expect(res.body.user.fullname).to.equal(testData.adminsignup.fullname);
         if (err) return done(err);
         done();
       });
@@ -99,6 +184,23 @@ describe('Event Manager User Test', () => {
     });
   });
 
+  it('verify admin email', (done) => {
+    User.findOne({
+      where: {
+        email: testData.adminLogin.email
+      },
+    }).then((user) => {
+      request(server)
+        .get(`/api/v1/users/email/${user.emailVerfication}`)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Nice! Email Confirmed You are can now login!');
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
   it('user cant login if the password is not correct', (done) => {
     request(server)
       .post('/api/v1/users/login')
@@ -135,15 +237,29 @@ describe('Event Manager User Test', () => {
       });
   });
 
-  it('return a token whren user successful signin', (done) => {
+  it('return a token when user successful signin', (done) => {
     request(server)
       .post('/api/v1/users/login')
       .send(testData.loginUser2)
       .expect(200)
       .end((err, res) => {
-        testUserToken.token = res.body.token;
-        expect(testUserToken.token);
+        validToken.token = res.body.token;
+        expect(validToken.token);
         expect(res.body.message).to.equal(`Welcome ${testData.singupUser1.fullname} `);
+        if (err) return done(err);
+        done();
+      });
+  });
+
+  it('return a token when admin successful signin', (done) => {
+    request(server)
+      .post('/api/v1/users/login')
+      .send(testData.adminLogin)
+      .expect(200)
+      .end((err, res) => {
+        adminToken.token = res.body.token;
+        expect(adminToken.token);
+        expect(res.body.message).to.equal(`Welcome ${testData.adminsignup.fullname} `);
         if (err) return done(err);
         done();
       });
@@ -203,10 +319,8 @@ describe('Event Manager User Test', () => {
         });
     });
   });
+
 });
 
 
-export {
-  testUserToken,
-  testUser
-};
+export { validToken, adminToken };

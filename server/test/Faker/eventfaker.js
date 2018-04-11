@@ -1,0 +1,117 @@
+import faker from 'faker';
+
+const userfake = {
+  newEvent: {
+    name: faker.name.findName(),
+    date: '2018-05-05',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent1: {
+    name: '',
+    date: faker.date.future(),
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent2: {
+    name: faker.name.findName(),
+    date: '',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent3: {
+    name: faker.name.findName(),
+    date: faker.date.future(),
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent4: {
+    name: faker.name.findName(),
+    date: faker.date.future(),
+    time: '12:00',
+    purpose: '',
+    center: 1,
+  },
+  newEvent5: {
+    name: faker.name.findName(),
+    date: faker.date.future(),
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: '',
+  },
+  newEvent6: {
+    name: faker.name.findName(),
+    date: '2017-10-11',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent7: {
+    name: faker.name.findName(),
+    date: '10-2018-11',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent8: {
+    name: faker.name.findName(),
+    date: '2018-06-05',
+    time: 'toy',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent88: {
+    name: faker.name.findName(),
+    date: '2018-06-05',
+    time: '12:03',
+    purpose: faker.lorem.sentences(),
+    center: 'rer',
+  },
+  newEvent9: {
+    name: faker.name.findName(),
+    date: '2018-06-05',
+    time: 1,
+    purpose: faker.lorem.sentences(),
+    center: 9,
+  },
+  newEvent10: {
+    name: faker.name.findName(),
+    date: '2018-06-05',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 2,
+  },
+  newEvent11: {
+    name: faker.name.findName(),
+    date: '2018-07-05',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 1,
+  },
+  newEvent12: {
+    name: faker.name.findName(),
+    date: '2018-06-15',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 2,
+  },
+  newEvent13: {
+    name: faker.name.findName(),
+    date: '2018-08-05',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 2,
+  },
+  newEvent14: {
+    name: faker.name.findName(),
+    date: '2019-06-05',
+    time: '12:00',
+    purpose: faker.lorem.sentences(),
+    center: 2,
+  },
+};
+
+export default userfake;

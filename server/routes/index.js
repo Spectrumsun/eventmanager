@@ -29,7 +29,6 @@ router.post(
 router.post(
   '/users/login',
   validator.validatelogin,
-  userController.isConfirmEmail,
   userController.login
 );
 
@@ -40,6 +39,12 @@ router.post(
   userController.forgotpassword
 );
 
+router.post(
+  '/users/setadmin',
+  auth.verifyToken,
+  validator.validateAdmin,
+  userController.makeAdmin
+);
 // all user to change password
 router.post(
   '/users/password/reset/:token',

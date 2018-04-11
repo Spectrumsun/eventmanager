@@ -6,7 +6,7 @@ import { validToken, adminToken } from '../../test/integratedTest/user.test';
 
 const { expect } = chai;
 
-describe('Event Manager Center Test', () => {
+describe('Event Manager Event Test', () => {
   it('loads the api home page', (done) => {
     request(server)
       .get('/api/v1/')

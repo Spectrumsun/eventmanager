@@ -237,6 +237,7 @@ describe('Event Manager Center Test', () => {
       .send(testData.newCenter6)
       .set('Authorization', adminToken.token)
       .end((error, res) => {
+        console.log('return error for center not found++++++++++++', res.body)
         expect(400);
         expect(res.body.message).to.include('center not found');
         if (error) done(error);
@@ -284,7 +285,7 @@ describe('Event Manager Center Test', () => {
       });
   });
 
-  it('return errrr if center is not found in db wehn deleteing delete center', (done) => {
+  it('return error if center is not found in db when deleteing delete center', (done) => {
     request(server)
       .delete('/api/v1/centers/13')
       .set('Authorization', adminToken.token)
@@ -298,15 +299,16 @@ describe('Event Manager Center Test', () => {
 
 
   it('delete center if login user is an admin', (done) => {
+    console.log(adminToken.token)
     request(server)
       .delete('/api/v1/centers/3')
       .set('Authorization', adminToken.token)
       .end((error, res) => {
-        expect(400);
+        console.log('deleting log ++++++++++++++++++', res.body)
+        expect(400)
         expect(res.body.message).to.include('center successfully deleted!');
         if (error) done(error);
         done();
       });
   });
-
 });

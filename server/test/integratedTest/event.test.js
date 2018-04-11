@@ -174,6 +174,7 @@ describe('Event Manager Event Test', () => {
       .send(testData.newEvent)
       .set('Authorization', validToken.token)
       .end((error, res) => {
+        console.log(res.body)
         expect(201);
         expect(res.body.message).to.include('successfully created');
         if (error) done(error);

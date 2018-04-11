@@ -246,8 +246,6 @@ describe('Event Manager Center Test', () => {
       });
   });
 
- g
-
 
   it('return error if login user is not an admin when deleting center', (done) => {
     request(server)

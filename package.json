@@ -3,6 +3,53 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "jest": {
+    "verbose": true,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/template/",
+      "/sever/",
+      "/build/",
+      "/.github/",
+      "/.nyc_output/",
+      "/covrage/",
+      "/client/src/App",
+      "/client/src/static",
+      "/client/coverage",
+      "client/test/mock"
+    ],
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "./node_modules/react"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "rootDir": "client",
+    "testEnvironment": "jsdom",
+    "roots": [
+      "<rootDir>"
+    ],
+    "setupFiles": [
+      "<rootDir>/test/testConfig.js",
+      "<rootDir>/test/mocks/localStorage.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$": "<rootDir>/tests/mocks/fileMock.js",
+      "\\.(css)$": "<rootDir>/tests/mocks/styleMock.js"
+    }
+  },
   "scripts": {
     "start": "NODE_ENV=production sequelize db:migrate && npm run build && npm run webpack:build && node build/server",
     "test": "NODE_ENV=test npm run migrations && NODE_ENV=test nyc --reporter=html --reporter=text mocha --timeout 20000 --exit --require  babel-core/register server/test/**/*.test.js",
@@ -36,8 +83,6 @@
     "cors": "^2.8.4",
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
     "express-validator": "^4.3.0",
     "file-loader": "^1.1.6",
@@ -57,6 +102,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-test-renderer": "^16.3.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.37.5",
@@ -69,20 +115,17 @@
     "webpack": "^3.10.0"
   },
   "devDependencies": {
-    "istanbul": "^0.4.5",
-    "style-loader": "^0.19.1",
-    "coveralls": "^3.0.0",
-    "nyc": "^11.3.0",
     "babel-eslint": "^8.0.2",
-    "istanbul-coveralls": "^1.0.3",
-    "concurrently": "^3.5.1",
-    "morgan": "^1.9.0",
-    "jest": "^22.4.3",
     "babel-preset-stage-1": "^6.24.1",
-    "css-loader": "^0.28.7",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
+    "concurrently": "^3.5.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.1.4",
+    "css-loader": "^0.28.7",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-compat": "^2.1.0",
@@ -92,8 +135,14 @@
     "eslint-plugin-react": "^7.5.1",
     "faker": "^4.1.0",
     "file-loader": "^1.1.6",
+    "istanbul": "^0.4.5",
+    "istanbul-coveralls": "^1.0.3",
+    "jest": "^22.4.3",
     "mocha": "^4.0.1",
-    "nodemon": "^1.12.1"
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.1",
+    "nyc": "^11.3.0",
+    "style-loader": "^0.19.1"
   },
   "engines": {
     "node": "8.9.1"

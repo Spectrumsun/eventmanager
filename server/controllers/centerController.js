@@ -103,7 +103,6 @@ class Centers {
     Center.findOne({
       where: {
         id: req.params.id,
-        userId: req.user.id
       }
     })
       .then((center) => {

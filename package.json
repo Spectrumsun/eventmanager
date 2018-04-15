@@ -58,7 +58,7 @@
     "start": "NODE_ENV=production sequelize db:migrate && npm run build && npm run webpack:build && node build/server",
     "test": "NODE_ENV=test npm run migrations && NODE_ENV=test npm run start:test",
     "nyc:run": "nyc --reportrer=html --reporter=text",
-    "start:test": "nyc --reportrer=html --reporter=text mocha --timeout 30000 --exit --require babel-core/register server/test/**/*.test.js",
+    "start:test": "nyc --reportrer=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "coverage": "nyc --report=lcov --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",

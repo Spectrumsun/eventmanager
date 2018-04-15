@@ -10,7 +10,7 @@ class Centers {
         message: 'success',
         center
       }))
-      .catch(error => res.status(200).json(error));
+      .catch(error => res.status(400).json(error));
   }
 
   // return just one center that the id matches the parmas id
@@ -71,7 +71,6 @@ class Centers {
       }
     })
       .then((center) => {
-        if (center) {
           center.update({
             centerName: req.body.name,
             city: req.body.city,
@@ -86,14 +85,9 @@ class Centers {
             message: 'updated',
             center
           });
-        } else {
-          res.status(404).json({
-            message: 'center not found'
-          });
-        }
       })
       .catch(err => res.status(400).json({
-        message: 'You dont have permissions',
+        message: 'You dont own any center with that id',
         err
       }));
   }
@@ -107,20 +101,15 @@ class Centers {
       }
     })
       .then((center) => {
-        if (center) {
+        console.log(center.imageId)
           deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
           res.status(200).json({
             message: 'center successfully deleted!'
           });
-        } else {
-          res.status(404).json({
-            message: 'You dont own any center with that id'
-          });
-        }
-      })
+        })
       .catch(err => res.status(400).json({
-        message: 'Error',
+        message: 'You dont own any center with that id',
         err
       }));
   }

@@ -341,6 +341,7 @@ describe('Event Manager Event Test', () => {
           facility: ['car pack', 'free wifi', 'sound system'],
           about: 'this is a test',
           availability: 'availability',
+          
           imageurl: 'pictue.png',
           publicUrlId: 'picture'
         })
@@ -348,7 +349,7 @@ describe('Event Manager Event Test', () => {
         .end((error, res) => {
           console.log('return error for center not found++++++++++++', res.body);
           expect(400);
-          expect(res.body.message).to.include('center not found');
+          expect(res.body.message).to.include('You dont own any center with that id');
           if (error) done(error);
           done();
         });

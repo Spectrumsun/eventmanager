@@ -2,7 +2,7 @@ import { Event } from '../models';
 
 require('dotenv').config();
 
-// use rcpress validator to verify input
+// use excpress validator to verify input
 class Validate {
   // check if current signin is a user or admin
   static validateAdmin(req, res, next) {

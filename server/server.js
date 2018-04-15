@@ -14,13 +14,16 @@ require('dotenv').config();
 
 const app = express();
 
-
 app.use(cors());
 
 app.use(morgan('dev'));
 
 app.use(bodyParser.json({ type: 'application/json', limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit: 50000
+}));
 app.use(expressValidator());
 
 app.use(express.static(path.join(__dirname, '/../client/public')));

@@ -47,7 +47,7 @@
     "collectCoverage": false,
     "collectCoverageFrom": [
       "**/*.{js}",
-    "!**/node_modules/**"
+      "!**/node_modules/**"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$": "<rootDir>/tests/mocks/fileMock.js",
@@ -116,6 +116,7 @@
     "sequelize": "^4.37.5",
     "sequelize-cli": "^4.0.0",
     "supertest": "^3.0.0",
+    "swagger-jsdoc": "^1.9.7",
     "swagger-ui-express": "^2.0.15",
     "toastr": "^2.1.4",
     "url-loader": "^0.6.2",

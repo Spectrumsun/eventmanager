@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
+require('dotenv').config();
+
 const BUILD_DIR = path.resolve(__dirname, './client/public');
 const APP_DIR = path.resolve(__dirname, './client/src');
 
@@ -21,7 +23,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'env', 'stage-1']
+            presets: ['react', 'env', 'stage-2']
           },
         },
       },

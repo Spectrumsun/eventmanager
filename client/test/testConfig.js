@@ -1,24 +1,9 @@
-import { configure, shallow, mount } from 'enzyme';
+import Enzyme, { shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import $ from 'jquery';
+// import $ from 'jquery';
 
-configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
 
 global.shallow = shallow;
+global.render = render;
 global.mount = mount;
-const result = [{ secure_url: 'http://cloudinary/img/123.png' }];
-global.cloudinary = {
-  openUploadWidget: (params, cb) => {
-    cb(null, result);
-  }
-};
-global.customHistory = {
-  push: jest.fn(),
-};
-global.$ = $;
-$.prototype.modal = () => { };
-
-console.error = (message) => {
-  throw new Error(message);
-};
-jest.mock('react-router');

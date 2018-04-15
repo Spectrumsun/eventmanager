@@ -100,22 +100,22 @@ class Centers {
 
   // admin can delete a center
   static deleteCenter(req, res) {
-    Center.findOne({ 
+    Center.findOne({
       where: {
         id: req.params.id,
         userId: req.user.id
-      } 
+      }
     })
       .then((center) => {
         if (center) {
           deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
-          res.status(200).json({ 
+          res.status(200).json({
             message: 'center successfully deleted!'
           });
         } else {
-          res.status(404).json({ 
-            message: 'center not found' 
+          res.status(404).json({
+            message: 'center not found'
           });
         }
       })

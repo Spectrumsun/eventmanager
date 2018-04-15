@@ -21,4 +21,3 @@ class MockLocalStorage {
 }
 
 global.localStorage = new MockLocalStorage();
-

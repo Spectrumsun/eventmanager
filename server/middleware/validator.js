@@ -177,8 +177,12 @@ class Validate {
       'You must add availability of center!'
     ).notEmpty();
     req.checkBody(
+      'imageurl',
+      'You must add imageurl form cloudinary!'
+    ).notEmpty();
+    req.checkBody(
       'publicUrlId',
-      'You add public Id of picture!'
+      'You add public Id from cloudinary!'
     ).notEmpty();
     req.checkBody(
       'about',

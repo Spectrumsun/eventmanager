@@ -20,31 +20,38 @@ describe('Event Manager Event Test', () => {
   });
 
 
-  it('return error if token is not present when adding new event', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent)
-      .end((error, res) => {
-        expect(403);
-        expect(res.body.message).to.include('You need to sign up or login');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `return error if token is not
+      present when adding new event`
+    , (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send(testData.newEvent)
+        .end((error, res) => {
+          expect(403);
+          expect(res.body.message).to
+            .include('You need to sign up or login');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
 
-  it('return error if token is not vaild when adding new event', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent)
-      .set('Authorization', 'jdjdjdjdjdj')
-      .end((error, res) => {
-        expect(403);
-        expect(res.body.message).to.include('Authentication failed');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(`return error if token is not 
+  vaild when adding new event`, (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send(testData.newEvent)
+        .set('Authorization', 'jdjdjdjdjdj')
+        .end((error, res) => {
+          expect(403);
+          expect(res.body.message)
+            .to.include('Authentication failed');
+          if (error) done(error);
+          done();
+        });
+    });
 
 
   it('return error if user is login and event name is empty', (done) => {
@@ -54,7 +61,8 @@ describe('Event Manager Event Test', () => {
       .set('Authorization', validToken.token)
       .end((error, res) => {
         expect(400);
-        expect(res.body.errorMessage).to.include('You must supply an Event name!');
+        expect(res.body.errorMessage).to
+          .include('You must supply an Event name!');
         if (error) done(error);
         done();
       });
@@ -121,87 +129,146 @@ describe('Event Manager Event Test', () => {
       .set('Authorization', validToken.token)
       .end((error, res) => {
         expect(403);
-        expect(res.body.message).to.include('You cant set a Past date for the event');
+        expect(res.body.message).to
+          .include('You cant set a Past date for the event');
         if (error) done(error);
         done();
       });
   });
 
-  it('return error if user is login and event date is in not well formated', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent7)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(403);
-        expect(res.body.message).to.include('invalid date format make sure it\'s YYYY-MM-DD format');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(`return error if user is login and
+      'event date is in not well formated`, (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send(testData.newEvent7)
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(403);
+          expect(res.body.message).to
+            .include('invalid date format make sure it\'s YYYY-MM-DD format');
+          if (error) done(error);
+          done();
+        });
+    });
 
 
-  it('return error if user is login and event time is in not well formated', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent8)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('invalid time format make sure it\'s HH:MM format 24 hours');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `return error if user is login and
+    event time is in not well formated`,
+    (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send(testData.newEvent8)
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(400);
+          expect(res.body.message).to
+            .include('invalid time format make sure it\'s HH:MM format 24 hours');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
 
-  it('return error if user is login and event center is not number', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent88)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('Only Number allowed for Center');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `return error if user is login and
+    event center is not number`,
+    (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send(testData.newEvent88)
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(400);
+          expect(res.body.message)
+            .to.include('Only Number allowed for Center');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
-  it('save event to database if user is login and all fields are filed corrctly', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        console.log(res.body);
-        expect(201);
-        expect(res.body.message).to.include('successfully created');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `save event to database if user is
+    login and all fields are filed corrctly`,
+    (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send({
+          name: 'wedding party 2',
+          date: '2018-05-05',
+          time: '12:00',
+          purpose: 'love',
+          center: 2,
+        })
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to
+            .include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
 
-  it('save another event to database if user is login and all fields are filed corrctly', (done) => {
-    request(server)
-      .post('/api/v1/events')
-      .send(testData.newEvent10)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('successfully created');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `save another event to database if user
+    is login and all fields are filed corrctly`,
+    (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send({
+          name: 'dance dance',
+          date: '2018-06-05',
+          time: '12:00',
+          purpose: 'dacing hahha!!!',
+          center: 2,
+        })
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to
+            .include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
+    `save another event to database if user
+    is login and all fields are filed corrctly`,
+    (done) => {
+      request(server)
+        .post('/api/v1/events')
+        .send({
+          name: 'dance dance',
+          date: '2018-08-05',
+          time: '12:00',
+          purpose: 'dacing hahha!!!',
+          center: 2,
+        })
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to
+            .include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   it('return all the event in the database', (done) => {
     request(server)
       .get('/api/v1/events')
       .end((error, res) => {
         expect(201);
-        expect(res.body.message).to.include('success');
+        expect(res.body.message)
+          .to.include('success');
         if (error) done(error);
         done();
       });
@@ -223,38 +290,48 @@ describe('Event Manager Event Test', () => {
       .get('/api/v1/events/23')
       .end((error, res) => {
         expect(201);
-        expect(res.body.message).to.include('event not found');
+        expect(res.body.message).to
+          .include('event not found');
         if (error) done(error);
         done();
       });
   });
 
 
-  it('return error if edited event date is already taken by another event save another event', (done) => {
-    request(server)
-      .put('/api/v1/events/1')
-      .send(testData.newEvent10)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('Center booked for that date already');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `return error if edited event date is already
+     taken by another event save another event`,
+    (done) => {
+      request(server)
+        .put('/api/v1/events/1')
+        .send(testData.newEvent10)
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to
+            .include('Center booked for that date already');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
-  it('update event in database if user is login and all fields are filed corrctly', (done) => {
-    request(server)
-      .put('/api/v1/events/2')
-      .send(testData.newEvent10)
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('updated');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    `update event in database if user is
+    login and all fields are filed corrctly`,
+    (done) => {
+      request(server)
+        .put('/api/v1/events/2')
+        .send(testData.newEvent10)
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to.include('updated');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   it('return error when u edit an event you dont own', (done) => {
     request(server)
@@ -263,22 +340,25 @@ describe('Event Manager Event Test', () => {
       .set('Authorization', adminToken.token)
       .end((error, res) => {
         expect(404);
-        expect(res.body.message).to.include('You dont own any event with that id!!');
+        expect(res.body.message)
+          .to.include('You dont own any event with that id!!');
         if (error) done(error);
         done();
       });
   });
 
-  it('return error if you try to delete an event when not login', (done) => {
-    request(server)
-      .delete('/api/v1/events/1')
-      .end((error, res) => {
-        expect(404);
-        expect(res.body.message).to.include('You need to sign up or login');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(`return error if you try to 
+    delete an event when not login`, (done) => {
+      request(server)
+        .delete('/api/v1/events/1')
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('You need to sign up or login');
+          if (error) done(error);
+          done();
+        });
+    });
 
   it('return error if you try to delete an with fake token', (done) => {
     request(server)
@@ -286,70 +366,24 @@ describe('Event Manager Event Test', () => {
       .set('Authorization', 'faketoken')
       .end((error, res) => {
         expect(404);
-        expect(res.body.message).to.include('Authentication failed');
-        if (error) done(error);
-        done();
-      });
-  });
-
-  it('delete an with when user signin is the sane has the event userid', (done) => {
-    request(server)
-      .delete('/api/v1/events/1')
-      .set('Authorization', validToken.token)
-      .end((error, res) => {
-        expect(404);
-        expect(res.body.message).to.include('Event successfully deleted!');
-        if (error) done(error);
-        done();
-      });
-  });
-
-  it('delete center if login user is an admin', (done) => {
-    request(server)
-      .delete('/api/v1/centers/3')
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('center successfully deleted!');
-        if (error) done(error);
-        done();
-      });
-  });
-
-  it('return error if center is not found in db when deleteing delete center', (done) => {
-    request(server)
-      .delete('/api/v1/centers/33')
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('You dont own any center with that id');
+        expect(res.body.message).to
+          .include('Authentication failed');
         if (error) done(error);
         done();
       });
   });
 
   it(
-    'return error if center to edit is not found in database' +
-  'if login is admin and and body is filed correctly',
+    'delete event when user is signin in' +
+    'with the same userId has the event userid',
     (done) => {
       request(server)
-        .put('/api/v1/centers/15')
-        .send({
-          name: 'center name updated',
-          city: 'lagos island',
-          address: 'No 22 Lagos island',
-          facility: ['car pack', 'free wifi', 'sound system'],
-          about: 'this is a test',
-          availability: 'availability',
-          
-          imageurl: 'pictue.png',
-          publicUrlId: 'picture'
-        })
-        .set('Authorization', adminToken.token)
+        .delete('/api/v1/events/1')
+        .set('Authorization', validToken.token)
         .end((error, res) => {
-          console.log('return error for center not found++++++++++++', res.body);
-          expect(400);
-          expect(res.body.message).to.include('You dont own any center with that id');
+          expect(404);
+          expect(res.body.message)
+            .to.include('Event successfully deleted!');
           if (error) done(error);
           done();
         });

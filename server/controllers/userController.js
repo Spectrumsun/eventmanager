@@ -23,7 +23,6 @@ class Users {
         emailVerficationExpires: Date.now()
       }))
       .then((user) => {
-        if (user) {
           // send a mail to the user after a successfull signup
           emailVerfication({
             user,
@@ -31,7 +30,6 @@ class Users {
             emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
             name: user.fullname
           });
-        }
         res.status(201).send({
           message: 'Account successfully created. Check your mail to confirm your account ',
           user: {
@@ -109,12 +107,9 @@ class Users {
           });
         }
         if (user.email === process.env.ADMINEMAIL) {
-          user.update({ role: 'ADMIN1' });
+          user.update({ role: process.env.ADMIN });
         }
       })
-      .catch(error => res.status(400).json({
-        message: 'An error occoured', error
-      }));
   }
 
 
@@ -143,7 +138,7 @@ class Users {
           });
         }
       })
-      .catch(error => res.status(400).json({ message: 'An error occoured', error }));
+     
   }
 
   // verify if reset password token is same as reset password in db then change the password
@@ -172,7 +167,7 @@ class Users {
             message: 'Invaild or expired reset token'
           });
         }
-      }).catch(error => res.status(400).json({ error }));
+      })
   }
 
   static makeAdmin(req, res) {
@@ -182,16 +177,14 @@ class Users {
       }
     })
       .then((user) => {
-        if (user) {
           user.update({
             role: req.body.role
           });
           res.status(200).json({
             message: 'user role changed'
           });
-        }
       })
-      .catch(err => res.status(400).json({error: 'No user found', err }));
+      .catch(err => res.status(400).json({ error: 'No user found', err }));
   }
 }
 

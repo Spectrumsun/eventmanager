@@ -6,7 +6,7 @@ const userfake = {
     date: '2018-05-05',
     time: '12:00',
     purpose: faker.lorem.sentences(),
-    center: 1,
+    center: 2,
   },
   newEvent1: {
     name: '',

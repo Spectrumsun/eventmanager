@@ -33,6 +33,7 @@ class Events {
         }
       });
   }
+
   // a sign in user can create a new event
   static createEvent(req, res) {
     Event.create({
@@ -48,7 +49,7 @@ class Events {
         event
       }))
       .catch(error => res.status(400).json({
-        message: 'center not found!!',
+        message: 'Error adding event',
         error
       }));
   }
@@ -62,7 +63,6 @@ class Events {
       }
     })
       .then((event) => {
-        if (event) {
           event.update({
             eventName: req.body.name,
             eventdate: req.body.date,
@@ -74,13 +74,11 @@ class Events {
             message: 'updated',
             event
           });
-        } else {
-          res.status(404).json({
-            message: 'You dont own any event with that id!!'
-          });
-        }
       })
-      .catch(err => res.status(400).json(err));
+      .catch(err => res.status(400).json({ 
+        message: 'You dont own any event with that id!!', 
+        err 
+      }));
   }
 
   // a sign in user can delete events they add
@@ -92,18 +90,12 @@ class Events {
       }
     })
       .then((event) => {
-        if (event) {
           res.status(200).json({
             message: 'Event successfully deleted!'
           });
-        } else {
-          res.status(404).json({
-            message: 'You dont own any event with that id!!'
-          });
-        }
       })
       .catch(err => res.status(400).json({
-        message: 'Event not found',
+        message: 'You dont own any event with that id!!',
         err
       }));
   }

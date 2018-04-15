@@ -2,19 +2,6 @@ import jwt from 'jsonwebtoken';
 
 require('dotenv').config();
 
-/**
-   * @description auth method serves  as middleware for authentication
-   * it verifies token.
-   *
-   * @function auth
-   *
-   * @param {object} req HTTP request
-   * @param {object} res HTTP response
-   * @param {function} next
-   *
-   * @returns { object } response message object
-   */
-
 class Auth {
   // confirm if toekn exist and is valid
   static verifyToken(req, res, next) {

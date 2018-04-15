@@ -291,4 +291,83 @@ describe('Event Manager Center Test', () => {
         done();
       });
   });
+
+  it('return error if center is not found in db when deleteing delete center', (done) => {
+    request(server)
+      .delete('/api/v1/centers/33')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('You dont own any center with that id');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it(
+    'save new centerto database if login is' +
+    'admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message)
+            .to.include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it('delete center if login user is an admin', (done) => {
+    request(server)
+      .delete('/api/v1/centers/6')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('center successfully deleted!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+
+  it(
+    'return error if center to edit is not found in database' +
+  'if login is admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .put('/api/v1/centers/15')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          console.log('return error for center not found++++++++++++', res.body);
+          expect(400);
+          expect(res.body.message).to.include('You dont own any center with that id');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 });

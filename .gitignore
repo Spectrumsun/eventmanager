@@ -1,8 +1,10 @@
 /node_modules/
 /.env
+/.DS_Store
 /coverage/
 /.nyc_output/
 /.eslintignore
 /.process.env/
 /.vscode/
+/client/coverage/
 /build/

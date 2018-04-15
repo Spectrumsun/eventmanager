@@ -2,7 +2,7 @@ import { Event } from '../models';
 
 require('dotenv').config();
 
-// use rcpress validator to verify input
+// use excpress validator to verify input
 class Validate {
   // check if current signin is a user or admin
   static validateAdmin(req, res, next) {
@@ -177,8 +177,12 @@ class Validate {
       'You must add availability of center!'
     ).notEmpty();
     req.checkBody(
+      'imageurl',
+      'You must add imageurl form cloudinary!'
+    ).notEmpty();
+    req.checkBody(
       'publicUrlId',
-      'You add public Id of picture!'
+      'You add public Id from cloudinary!'
     ).notEmpty();
     req.checkBody(
       'about',

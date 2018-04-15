@@ -1,11 +1,14 @@
-language: node
-language: node_js
-node_js: node
+language: 
+    - node_js
+node_js: 
+    - node
+before_script:
+    - npm install -g codecov
 
 script: 
       - cd server && npm install && npm test
 
 
 after_success:
-    -  npm run coverage
+    - npm run coverages
     - codeclimate-test-reporter < ./coverage/lcov.info

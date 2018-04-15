@@ -1,7 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { validator, auth } from '../middleware';
-import { eventController, centerController, userController } from '../controllers';
+import {
+  eventController,
+  centerController,
+  userController
+} from '../controllers';
 
 const router = express.Router();
 
@@ -12,7 +16,7 @@ dotenv.config();
 
 router.get('/', (req, res) => {
   res.status(200)
-    .send({ message: 'welcome to Event Manager' });
+    .json({ message: 'welcome to Event Manager' });
 });
 
 

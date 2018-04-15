@@ -21,7 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
-            presets: ['react', 'env', 'stage-1']
+            presets: ['react', 'env', 'stage-2']
           },
         },
       },

@@ -337,7 +337,7 @@ describe('Event Manager Center Test', () => {
       .set('Authorization', adminToken.token)
       .end((error, res) => {
         expect(400);
-        expect(res.body.message).to.include('center successfully deleted!');
+        expect(res.body.message).to.include('Center successfully deleted!');
         if (error) done(error);
         done();
       });
@@ -345,8 +345,8 @@ describe('Event Manager Center Test', () => {
 
 
   it(
-    'return error if center to edit is not found in database' +
-  'if login is admin and and body is filed correctly',
+    `return error if center to edit is not found in database 
+      if login is admin and and body is filed correctly`,
     (done) => {
       request(server)
         .put('/api/v1/centers/15')

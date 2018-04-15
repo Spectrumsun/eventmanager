@@ -27,7 +27,7 @@ class Events {
             event
           });
         } else {
-          res.status(400).send({
+          res.status(404).send({
             message: 'event not found'
           });
         }
@@ -75,7 +75,7 @@ class Events {
             event
           });
       })
-      .catch(err => res.status(400).json({ 
+      .catch(err => res.status(404).json({ 
         message: 'You dont own any event with that id!!', 
         err 
       }));
@@ -90,14 +90,15 @@ class Events {
       }
     })
       .then((event) => {
+        if(event){
           res.status(200).json({
             message: 'Event successfully deleted!'
           });
-      })
-      .catch(err => res.status(400).json({
-        message: 'You dont own any event with that id!!',
-        err
-      }));
+        }else{
+          res.status(404).json({
+            message: 'You dont own any event with that id!!',
+          })
+        }})
   }
 }
 

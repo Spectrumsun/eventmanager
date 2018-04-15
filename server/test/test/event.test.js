@@ -374,6 +374,24 @@ describe('Event Manager Event Test', () => {
   });
 
   it(
+    `should return error when deleting event not found in 
+      database when user is login with the same userId has 
+      the event userid`,
+    (done) => {
+      request(server)
+        .delete('/api/v1/events/111')
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('You dont own any event with that id!!');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
     'delete event when user is signin in' +
     'with the same userId has the event userid',
     (done) => {

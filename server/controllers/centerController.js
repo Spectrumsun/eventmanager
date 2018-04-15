@@ -86,7 +86,7 @@ class Centers {
             center
           });
       })
-      .catch(err => res.status(400).json({
+      .catch(err => res.status(404).json({
         message: 'You dont own any center with that id',
         err
       }));
@@ -94,25 +94,28 @@ class Centers {
 
   // admin can delete a center
   static deleteCenter(req, res) {
-    Center.findOne({
+    Center.destroy({
       where: {
         id: req.params.id,
         userId: req.user.id
       }
     })
       .then((center) => {
-        console.log(center.imageId)
-          deletePicture(center.imageId, 'publicUrlId');
-          center.destroy();
+        deletePicture(center.imageId, 'publicUrlId');
+        if(center){
           res.status(200).json({
-            message: 'center successfully deleted!'
+            message: 'Center successfully deleted!'
           });
-        })
-      .catch(err => res.status(400).json({
-        message: 'You dont own any center with that id',
-        err
-      }));
-  }
+        }else{
+          res.status(404).json({
+            message: 'You dont own any center with that id!!'
+          })
+        }
+         
+      })
+    }
 }
 
 export default Centers;
+
+          

@@ -11,7 +11,6 @@ const testUser = {};
 const testAdmin = {};
 
 
-
 describe('Event Manager User Test', () => {
   it('loads the api home page', (done) => {
     request(server)
@@ -313,13 +312,13 @@ describe('Event Manager User Test', () => {
         .send(testData.passwordReset)
         .expect(200)
         .end((error, res) => {
-          expect(res.body.message).to.equal('Password Changed. You can Login with your new password');
+          expect(res.body.message).to
+            .equal('Password Changed. You can Login with your new password');
           if (error) done(error);
           done();
         });
     });
   });
-
 });
 
 

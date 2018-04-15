@@ -7,7 +7,7 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database event-test-db;' -U postgres
+  - psql -c 'create database eventTest;' -U postgres
   - npm install -g codecov
 
 script: 

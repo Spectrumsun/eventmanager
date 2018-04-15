@@ -62,7 +62,7 @@ const userfake = {
     publicUrlId: 'picture'
   },
   newCenter6: {
-    name: 'center name updated' ,
+    name: 'center name updated',
     city: faker.address.city(),
     address: faker.address.streetAddress(),
     facility: ['car pack', 'free wifi', 'sound system'],

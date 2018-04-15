@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/11</span>
+        <span class='fraction'>2/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/10</span>
+        <span class='fraction'>2/6</span>
       </div>
     </div>
     <p class="quiet">
@@ -86,14 +86,9 @@
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -101,14 +96,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -121,22 +111,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, { Component } from 'react';</span>
-<span class="cstat-no" title="statement not covered" >import { connect } from 'react-redux';</span>
-<span class="cstat-no" title="statement not covered" >import PropTypes from 'prop-types'; </span>
-<span class="cstat-no" title="statement not covered" >import * as action from '../../store/actions/index';</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'; 
+import * as action from '../../store/actions/index';
 &nbsp;
 class EmailVerify extends Component {
-  componentWillMount() {
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillMount() {
 <span class="cstat-no" title="statement not covered" >    this.props.initemailverify(this.props.match.params.token, this.props.history);</span>
   }
 &nbsp;
-  render() {
+<span class="fstat-no" title="function not covered" >  re</span>nder() {
     const isLoading = (
 <span class="cstat-no" title="statement not covered" >      &lt;div className="loader" /&gt;</span>
     );
@@ -151,7 +151,7 @@ class EmailVerify extends Component {
 }
 &nbsp;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >EmailVerify.propTypes = {</span>
+EmailVerify.propTypes = {
   initemailverify: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
@@ -161,8 +161,8 @@ class EmailVerify extends Component {
   }).isRequired,
 };
 &nbsp;
-const <span class="fstat-no" title="function not covered" >mapDispatchToProps = <span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >d</span>ispatch =&gt; ({</span></span>
-  initemailverify: <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>token, history) =&gt; dispatch(action.initemailverify(token, history)),</span>
+const mapDispatchToProps = <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  initemailverify: <span class="fstat-no" title="function not covered" >(t</span>oken, history) =&gt; <span class="cstat-no" title="statement not covered" >dispatch(action.initemailverify(token, history)),</span>
 });
 &nbsp;
 export default connect(null, mapDispatchToProps)(EmailVerify);
@@ -172,7 +172,7 @@ export default connect(null, mapDispatchToProps)(EmailVerify);
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Apr 12 2018 22:26:42 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 15 2018 00:07:57 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

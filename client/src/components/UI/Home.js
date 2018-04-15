@@ -1,7 +1,5 @@
 import React from 'react';
 import Centers from '../Center/ViewCenters';
-import Footer from './Footer';
-
 
 const home = () => (
   <div>

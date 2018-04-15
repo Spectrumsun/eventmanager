@@ -1,25 +1,21 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import render from 'react-test-renderer';
-import { BrowserRouter } from 'react-router-dom';
+import { shallow } from 'enzyme';
 import Home from '../../src/components/UI/Home';
 
-const testRender = render.create(
-  <BrowserRouter>
-    <Provider>
-      <Home />
-    </Provider>
-  </BrowserRouter>);
+describe('<Home />', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<Home />);
+  });
 
-describe('<Homepage/>', () => {
-  const wrapper = mount(
-    <BrowserRouter>
-      <Provider>
-        <Home />
-      </Provider>
-    </BrowserRouter>);
-  it('renders <Homepage/> component', () => {
-    expect(testRender).toMatchSnapshot();
+  it('should render the HomePage', () => {
+    shallow(<Home />);
+  });
+
+  it('should render initial layout of HomePage', () => {
+    expect(wrapper.getElements()).toMatchSnapshot();
+  });
+  it('should have three image on layout', () => {
+    expect(wrapper.find('img').length).toEqual(3);
   });
 });

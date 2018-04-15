@@ -291,47 +291,4 @@ describe('Event Manager Center Test', () => {
         done();
       });
   });
-
-
-  it('delete center if login user is an admin', (done) => {
-    request(server)
-      .delete(`/api/v1/centers/3?token=${adminToken.token}`)
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('center successfully deleted!');
-        if (error) done(error);
-        done();
-      });
-  });
-
-  it('return error if center is not found in db when deleteing delete center', (done) => {
-    request(server)
-      .delete('/api/v1/centers/3')
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(400);
-        expect(res.body.message).to.include('center not found');
-        if (error) done(error);
-        done();
-      });
-  });
-
-  it(
-    'return error if center to edit is not found in database' +
-  'if login is admin and and body is filed correctly',
-    (done) => {
-      request(server)
-        .put('/api/v1/centers/15')
-        .send(testData.newCenter6)
-        .set('Authorization', adminToken.token)
-        .end((error, res) => {
-          console.log('return error for center not found++++++++++++', res.body);
-          expect(400);
-          expect(res.body.message).to.include('center not found');
-          if (error) done(error);
-          done();
-        });
-    }
-  );
 });

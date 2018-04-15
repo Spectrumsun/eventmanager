@@ -86,7 +86,7 @@ describe('Event Manager Event Test', () => {
         done();
       });
   });
-  
+
 
   it('return error if user is login and event purpose is empty', (done) => {
     request(server)
@@ -174,14 +174,14 @@ describe('Event Manager Event Test', () => {
       .send(testData.newEvent)
       .set('Authorization', validToken.token)
       .end((error, res) => {
-        console.log(res.body)
+        console.log(res.body);
         expect(201);
         expect(res.body.message).to.include('successfully created');
         if (error) done(error);
         done();
       });
   });
-  
+
 
   it('save another event to database if user is login and all fields are filed corrctly', (done) => {
     request(server)
@@ -254,7 +254,7 @@ describe('Event Manager Event Test', () => {
         if (error) done(error);
         done();
       });
-  });  
+  });
 
   it('return error when u edit an event you dont own', (done) => {
     request(server)
@@ -267,7 +267,7 @@ describe('Event Manager Event Test', () => {
         if (error) done(error);
         done();
       });
-  });  
+  });
 
   it('return error if you try to delete an event when not login', (done) => {
     request(server)
@@ -278,7 +278,7 @@ describe('Event Manager Event Test', () => {
         if (error) done(error);
         done();
       });
-  });  
+  });
 
   it('return error if you try to delete an with fake token', (done) => {
     request(server)
@@ -290,7 +290,7 @@ describe('Event Manager Event Test', () => {
         if (error) done(error);
         done();
       });
-  });  
+  });
 
   it('delete an with when user signin is the sane has the event userid', (done) => {
     request(server)
@@ -302,6 +302,56 @@ describe('Event Manager Event Test', () => {
         if (error) done(error);
         done();
       });
-  });  
+  });
 
+  it('delete center if login user is an admin', (done) => {
+    request(server)
+      .delete('/api/v1/centers/3')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('center successfully deleted!');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if center is not found in db when deleteing delete center', (done) => {
+    request(server)
+      .delete('/api/v1/centers/33')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('You dont own any center with that id');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it(
+    'return error if center to edit is not found in database' +
+  'if login is admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .put('/api/v1/centers/15')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          console.log('return error for center not found++++++++++++', res.body);
+          expect(400);
+          expect(res.body.message).to.include('center not found');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 });

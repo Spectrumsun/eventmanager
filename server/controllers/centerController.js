@@ -103,6 +103,7 @@ class Centers {
     Center.findOne({
       where: {
         id: req.params.id,
+        userId: req.user.id
       }
     })
       .then((center) => {
@@ -114,12 +115,12 @@ class Centers {
           });
         } else {
           res.status(404).json({
-            message: 'center not found'
+            message: 'You dont own any center with that id'
           });
         }
       })
       .catch(err => res.status(400).json({
-        message: 'You dont have permissions',
+        message: 'Error',
         err
       }));
   }

@@ -2,8 +2,14 @@ language:
     - node_js
 node_js: 
     - node
+ervices:
+  - postgresql
+
 before_script:
-    - npm install -g codecov
+    psql -c 'create database event-test-db;' -U postgres
+  - sequelize db:migrate
+  - npm install -g codecov
+
 
 script: 
       - cd server && npm install && npm test

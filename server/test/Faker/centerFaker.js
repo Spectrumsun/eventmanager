@@ -34,7 +34,7 @@ const userfake = {
   newCenter3: {
     name: faker.name.findName(),
     city: faker.address.city(),
-    address: '',
+    address: 'no 3 adestreet',
     facility: faker.random.arrayElement(),
     about: 'this is a test',
     availability: 'availability',
@@ -70,7 +70,17 @@ const userfake = {
     availability: 'availability',
     imageurl: 'pictue.png',
     publicUrlId: 'picture'
-  }
+  },
+  newCenter33: {
+    name: faker.name.findName(),
+    city: faker.address.city(),
+    address: 'no 3 adestreet',
+    facility: faker.random.arrayElement(),
+    about: 'this is a test',
+    availability: 'availability',
+    imageurl: '',
+    publicUrlId: 'pictue.png'
+  },
 };
 
 export default userfake;

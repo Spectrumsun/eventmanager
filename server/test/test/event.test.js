@@ -2,7 +2,7 @@ import request from 'supertest';
 import chai from 'chai';
 import server from '../../server';
 import testData from '../Faker/eventfaker';
-import { validToken, adminToken } from '../../test/integratedTest/user.test';
+import { validToken, adminToken } from '../../test/test/user.test';
 
 const { expect } = chai;
 

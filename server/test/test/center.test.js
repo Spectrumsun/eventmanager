@@ -2,7 +2,7 @@ import request from 'supertest';
 import chai from 'chai';
 import server from '../../server';
 import testData from '../Faker/centerFaker';
-import { validToken, adminToken } from '../../test/integratedTest/user.test';
+import { validToken, adminToken } from '../../test/test/user.test';
 
 const { expect } = chai;
 
@@ -101,18 +101,38 @@ describe('Event Manager Center Test', () => {
       });
   });
 
-  it('return error if login is admin and center publicUrlId is empty', (done) => {
-    request(server)
-      .post('/api/v1/centers')
-      .send(testData.newCenter3)
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(403);
-        expect(res.body.errorMessage).to.include('You add public Id of picture!');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    'return error if login is admin and center publicUrlId is empty',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send(testData.newCenter3)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(403);
+          expect(res.body.errorMessage).to.include('You add public Id from cloudinary!');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
+    'return error if login is admin and center publicUrlId is empty',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send(testData.newCenter33)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(403);
+          expect(res.body.errorMessage)
+            .to.include('You must add imageurl form cloudinary!');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   it('return error if login is admin and center about is empty', (done) => {
     request(server)
@@ -127,44 +147,58 @@ describe('Event Manager Center Test', () => {
       });
   });
 
-  it('save center 3 to database if login is admin and and body is filed correctly', (done) => {
-    request(server)
-      .post('/api/v1/centers')
-      .send(testData.newCenter5)
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('successfully created');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    'save center 3 to database if login is' +
+    'admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send(testData.newCenter5)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message)
+            .to.include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
-  it('save center 4 to database if login is admin and and body is filed correctly', (done) => {
-    request(server)
-      .post('/api/v1/centers')
-      .send(testData.newCenter5)
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('successfully created');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    'save center 4 to database if login is' +
+    'admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send(testData.newCenter5)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message)
+            .to.include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
-  it('save center 5 to database if login is admin and and body is filed correctly', (done) => {
-    request(server)
-      .post('/api/v1/centers')
-      .send(testData.newCenter5)
-      .set('Authorization', adminToken.token)
-      .end((error, res) => {
-        expect(201);
-        expect(res.body.message).to.include('successfully created');
-        if (error) done(error);
-        done();
-      });
-  });
+  it(
+    'save center 5 to database if login is' +
+    'admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send(testData.newCenter5)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message).to.include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   it('save center to database if login is admin and and body is filed correctly', (done) => {
     request(server)
@@ -231,8 +265,6 @@ describe('Event Manager Center Test', () => {
   });
 
 
- 
-
   it('return error if login user is not an admin when updateing center', (done) => {
     request(server)
       .put('/api/v1/centers/1')
@@ -272,6 +304,35 @@ describe('Event Manager Center Test', () => {
       });
   });
 
+  it('delete center if login user is an admin', (done) => {
+    console.log(adminToken.token);
+    request(server)
+      .delete('/api/v1/centers/3')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        console.log('deleting log ++++++++++++++++++', res.body);
+        expect(400);
+        expect(res.body.message).to.include('center successfully deleted!');
+        if (error) done(error);
+        done();
+      });
+  });
 
-  
+  it(
+    'return error if center to edit is not found in database' +
+  'if login is admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .put('/api/v1/centers/11')
+        .send(testData.newCenter6)
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          console.log('return error for center not found++++++++++++', res.body);
+          expect(400);
+          expect(res.body.message).to.include('center not found');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 });

@@ -304,32 +304,32 @@ describe('Event Manager Center Test', () => {
   //     });
   // });
 
-  // it(
-  //   'save new centerto database if login is' +
-  //   'admin and and body is filed correctly',
-  //   (done) => {
-  //     request(server)
-  //       .post('/api/v1/centers')
-  //       .send({
-  //         name: 'center name updated',
-  //         city: 'lagos island',
-  //         address: 'No 22 Lagos island',
-  //         facility: ['car pack', 'free wifi', 'sound system'],
-  //         about: 'this is a test',
-  //         availability: 'availability',
-  //         imageurl: 'pictue.png',
-  //         publicUrlId: 'picture'
-  //       })
-  //       .set('Authorization', adminToken.token)
-  //       .end((error, res) => {
-  //         expect(201);
-  //         expect(res.body.message)
-  //           .to.include('successfully created');
-  //         if (error) done(error);
-  //         done();
-  //       });
-  //   }
-  // );
+  it(
+    'save new centerto database if login is' +
+    'admin and and body is filed correctly',
+    (done) => {
+      request(server)
+        .post('/api/v1/centers')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message)
+            .to.include('successfully created');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   // it('delete center if login user is an admin', (done) => {
   //   request(server)

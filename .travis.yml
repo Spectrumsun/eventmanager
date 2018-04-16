@@ -8,6 +8,7 @@ services:
 
 before_script:
   - psql -c 'create database eventTest;' -U postgres
+  - sequelize db:migrate
   - npm install -g codecov
 
 script: 

@@ -292,17 +292,6 @@ describe('Event Manager Center Test', () => {
       });
   });
 
-  // it('return error if center is not found in db when deleteing delete center', (done) => {
-  //   request(server)
-  //     .delete('/api/v1/centers/33')
-  //     .set('Authorization', adminToken.token)
-  //     .end((error, res) => {
-  //       expect(400);
-  //       expect(res.body.message).to.include('You dont own any center with that id');
-  //       if (error) done(error);
-  //       done();
-  //     });
-  // });
 
   it(
     'save new centerto database if login is' +
@@ -329,19 +318,31 @@ describe('Event Manager Center Test', () => {
           done();
         });
     }
-  );
+);
 
-  // it('delete center if login user is an admin', (done) => {
+  // it('return error if center is not found in db when deleteing delete center', (done) => {
   //   request(server)
-  //     .delete('/api/v1/centers/6')
+  //     .delete('/api/v1/centers/33')
   //     .set('Authorization', adminToken.token)
   //     .end((error, res) => {
   //       expect(400);
-  //       expect(res.body.message).to.include('Center successfully deleted!');
+  //       expect(res.body.message).to.include('You dont own any center with that id');
   //       if (error) done(error);
   //       done();
   //     });
   // });
+
+  it('delete center if login user is an admin', (done) => {
+    request(server)
+      .delete('/api/v1/centers/6')
+      .set('Authorization', adminToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('Center successfully deleted!');
+        if (error) done(error);
+        done();
+      });
+  });
 
 
   // it(

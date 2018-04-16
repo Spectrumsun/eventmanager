@@ -9,7 +9,7 @@
     "nyc:run": "nyc --reportrer=html --reporter=text",
     "start:test": "nyc --reportrer=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
-    "coverage": "nyc --report=lcov --reporter=text-lcov | coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
     "dev": "cross-env NODE_ENV=development npm run dev:start",
     "dev:start": "concurrently --kill-others \"npm run webpack:watch\" \"nodemon --ignore lib --exec  babel-node server/server\"",

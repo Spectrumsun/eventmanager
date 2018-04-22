@@ -13,7 +13,9 @@ class Events {
    * @returns {void}
    */
   static getEvent(req, res) {
-    Event.all()
+    Event.all({
+      include: [{ model: Center, as: 'centers' }],
+    })
       .then(event => res.status(200).send({
         message: 'success',
         event

@@ -5,7 +5,11 @@ import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
-
+/**
+ * @class Signup
+ *
+ * @extends {React.Component}
+ */
 class Signup extends Component {
   state = {
     fullname: '',
@@ -14,10 +18,28 @@ class Signup extends Component {
     confirmPassword: '',
   }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof Signup
+   *
+   * @returns {void}
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * @description vaildate data in state
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof Login
+   *
+   * @returns {void}
+   */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.fullname === '') {
@@ -38,10 +60,16 @@ class Signup extends Component {
     }
   };
 
-
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof Signup
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     return (
-      <div className="container" style={{ paddingTop: '100px' }}>
+      <div className="container" style={{ paddingTop: '200px' }}>
         <div className="card loginCard" style={{ width: '40rem' }}>
           <div className="card-header">
             <h3>Sign up</h3>
@@ -88,12 +116,21 @@ class Signup extends Component {
 
                 <div className="form-check">
                   <label className="form-check-label">
-                    <input type="checkbox" className="form-check-input form-control-lg" required />
-                    <small> Have read and accepted the terms and conditions ?</small>
+                    <input
+                      type="checkbox"
+                      className="form-check-input form-control-lg"
+                      required
+                    />
+                    <small>
+                    Have read and accepted the terms and conditions ?
+                    </small>
                   </label>
                 </div>
                 <div className="text-center">
-                  <button className="btn btn-outline-dark">Submit</button>
+                  <button
+                    className="btn btn-outline-dark"
+                  >Submit
+                  </button>
                 </div>
               </form>
             </div>

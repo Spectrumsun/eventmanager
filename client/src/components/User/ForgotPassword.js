@@ -5,15 +5,38 @@ import PropTypes from 'prop-types';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class ForgotPassword
+ *
+ * @extends {React.Component}
+ */
 class ForgotPassword extends Component {
   state = {
     email: '',
   }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof ForgotPassword
+   *
+   * @returns {void}
+   */
   onChange =(e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * @description sends state to api with action dispatch
+   *
+   * @param {any} event
+   *
+   * @memberof ForgotPassword
+   *
+   * @returns {void}
+   */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.email === '') {
@@ -23,10 +46,17 @@ class ForgotPassword extends Component {
     }
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof ForgotPassword
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     return (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="container" style={{ paddingTop: '200px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Password Reset</h3>
@@ -43,7 +73,11 @@ class ForgotPassword extends Component {
                     placeholder="Vaild Email"
                   />
                   <div className="text-center">
-                    <button type="submit" className="btn btn-outline-dark">Email me a recovery link</button>
+                    <button
+                      type="submit"
+                      className="btn btn-outline-dark"
+                    >Email me a recovery link
+                    </button>
                   </div>
                 </form>
               </div>
@@ -61,7 +95,8 @@ ForgotPassword.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initconfirmPassword: (user, history) => dispatch(action.initconfirmPassword(user, history)),
+  initconfirmPassword: (user, history) =>
+    dispatch(action.initconfirmPassword(user, history)),
 });
 
 export default connect(null, mapDispatchToProps)(ForgotPassword);

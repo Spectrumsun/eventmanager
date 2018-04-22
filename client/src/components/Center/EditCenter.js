@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import toast from 'toastr';
 import axios from 'axios';
@@ -6,7 +7,12 @@ import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
 
-class AddCenter extends Component {
+/**
+ * @class EditCenter
+ *
+ * @extends {React.Component}
+ */
+class EditCenter extends Component {
     state = {
       name: this.props.loadedCenter.centerName,
       city: this.props.loadedCenter.city,
@@ -23,68 +29,127 @@ class AddCenter extends Component {
       oldpublicId: this.props.loadedCenter.imageId
     }
 
-
+  /**
+   * @description update facility state
+   *
+   * @param {any} event
+   *
+   * @memberof EditCenter
+   *
+   * @returns {void}
+   */
     onClick = () => {
-      this.setState({ facility: this.state.facility.concat([this.state.values]) });
+      this.setState({
+        facility:
+        this.state.facility.concat([this.state.values])
+      });
       this.setState({ values: '' });
     }
 
-
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof EditCenter
+   *
+   * @returns {void}
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-   onSubmit = (e) => {
-     if (e.target.type != 'textarea' && e.which === 13) {
-       e.preventDefault();
-     }
-     e.preventDefault();
-     if (this.state.name === '') {
-       toast.error('Center Name cannot be blank');
-     } else if (this.state.date === '') {
-       toast.error('Center city cannot be blank');
-     } else if (this.state.address === '') {
-       toast.error('Center Address cannot be blank');
-     } else if (this.state.availability === '') {
-       toast.error('Center Availability must be set');
-     } else {
-       const fd = new FormData();
-       const id = `${Date.now()}-${this.state.image.name}`;
-       fd.append('file', this.state.image);
-       fd.append('public_id', id);
-       fd.append('upload_preset', 'eventmanager');
-       if (this.state.image === '') {
-         this.props.initEditCenter(
-           this.props.match.params.id,
-           this.state, this.props.history
-         );
-       } else {
-         axios.post('https://api.cloudinary.com/v1_1/skybound/image/upload', fd, {
-           onUploadProgress: (progressEvent) => {
-             const level = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
-             this.setState({ progress: level });
-           }
-         })
-           .then((response) => {
-             this.setState({
-               imageurl: response.data.secure_url,
-               publicUrlId: response.data.public_id,
-               image: null,
-               preview: null
-             });
-             this.props.initEditCenter(
-               this.props.match.params.id,
-               this.state,
-               this.props.history
-             );
-           })
-           .catch((err) => {
-             toast.error('Unable to upload. Check your internet');
-           });
-       }
-     }
-   }
+  /**
+   * @description vaildate data in state and upload the image
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof EditCenter
+   *
+   * @returns {void}
+   */
+  onSubmit = (e) => {
+    if (e.target.type != 'textarea' && e.which === 13) {
+      e.preventDefault();
+    }
+    e.preventDefault();
+    if (this.state.name === '') {
+      toast.error('Center Name cannot be blank');
+    } else if (this.state.date === '') {
+      toast.error('Center city cannot be blank');
+    } else if (this.state.address === '') {
+      toast.error('Center Address cannot be blank');
+    } else if (this.state.availability === '') {
+      toast.error('Center Availability must be set');
+    } else if (this.state.facility.length < 1) {
+      toast.error('Center facility must be set');
+    } else {
+      const fd = new FormData();
+      const id = `${Date.now()}-${this.state.image.name}`;
+      fd.append('file', this.state.image);
+      fd.append('public_id', id);
+      fd.append('upload_preset', 'eventmanager');
+      if (this.state.image === '') {
+        this.props.initEditCenter(
+          this.props.match.params.id,
+          this.state, this.props.history
+        );
+      } else {
+        axios
+          .post(
+            'https://api.cloudinary.com/v1_1/skybound/image/upload',
+            fd, {
+              onUploadProgress: (progressEvent) => {
+                const level = `${Math.round(progressEvent.loaded
+                  / progressEvent.total * 100)}%`;
+                this.setState({ progress: level });
+              }
+            }
+          )
+          .then((response) => {
+            this.setState({
+              imageurl: response.data.secure_url,
+              publicUrlId: response.data.public_id,
+              image: null,
+              preview: null
+            });
+            this.props.initEditCenter(
+              this.props.match.params.id,
+              this.state,
+              this.props.history
+            );
+          })
+          .catch((err) => {
+            toast.error('Unable to upload. Check your internet');
+          });
+      }
+    }
+  }
 
+  /**
+   * @description prefent the enter key from submitting the form
+   *
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
+  onKeyPress = (e) => {
+    if (e.target.type !== 'textarea' && e.which === 13 /* Enter */) {
+      e.preventDefault();
+    }
+  }
+
+  /**
+   * @description upload image and return url
+   * sends set state to image url
+   * @param {any} event
+   *
+   * @memberof EditCenter
+   *
+   * @returns {void}
+   */
     handleImageChange = (e) => {
       e.preventDefault();
       const reader = new FileReader();
@@ -98,18 +163,37 @@ class AddCenter extends Component {
       reader.readAsDataURL(file);
     }
 
+    /**
+   * @description remove add Facility
+   *
+   * @param {any} event
+   *
+   * @memberof EditCenter
+   *
+   * @returns {void}
+   */
     removeFacility = (i) => {
       const array = this.state.facility;
       array.splice(i, 1);
       this.setState({ facility: array });
     }
 
-
+    /**
+   * @description renders component to the DOM
+   *
+   * @memberof EditCenter
+   *
+   * @returns {JSX} JSX representation of component
+   */
     render() {
       const { preview } = this.state;
       let imagePreview = null;
       if (preview) {
-        imagePreview = (<img src={preview} alt="ImagePreview" className="imgPre" />);
+        imagePreview = (<img
+          src={preview}
+          alt="ImagePreview"
+          className="imgPre"
+        />);
       }
 
       return (
@@ -141,7 +225,7 @@ class AddCenter extends Component {
     }
 }
 
-AddCenter.propTypes = {
+EditCenter.propTypes = {
   initEditCenter: PropTypes.func.isRequired,
   loadedCenter: PropTypes.shape({
     centerName: PropTypes.string.isRequired,
@@ -151,6 +235,7 @@ AddCenter.propTypes = {
     facility: PropTypes.array.isRequired,
     imageurl: PropTypes.string.isRequired,
     imageId: PropTypes.string.isRequired,
+    about: PropTypes.string.isRequired,
   }),
   history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
@@ -161,7 +246,7 @@ AddCenter.propTypes = {
 };
 
 
-AddCenter.defaultProps = {
+EditCenter.defaultProps = {
   loadedCenter: PropTypes.shape({
     userId: 1,
     eventName: 'eventName',
@@ -178,8 +263,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  initEditCenter: (id, input, history) => dispatch(action.initEditCenter(id, input, history)),
+  initEditCenter: (id, input, history) =>
+    dispatch(action.initEditCenter(id, input, history)),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddCenter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditCenter);

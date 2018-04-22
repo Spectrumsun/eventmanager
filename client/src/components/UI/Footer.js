@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * @description renders component to the DOM
+ *
+ * @function footer
+ *
+ * @returns {JSX} JSX component for the footer
+ */
 const footer = () => (
   <div className="center">
     <footer>

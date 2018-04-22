@@ -6,29 +6,69 @@ import Display from './getEvent';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
 
+const imageurl = 'https://res.cloudinary.com/skybound/image/upload/s--FNAPSR5p--/v1524387956/eventmanager/1524387954621-99fa41ccf131724-a-nw-p.jpg.jpg';
 
+/**
+ * @class ViewEvent
+ *
+ * @extends {React.Component}
+ */
 class ViewEvent extends Component {
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props.params.token
+   *
+   * @memberof EditEvent
+   */
   componentDidMount() {
     this.props.onInitEvent();
   }
+
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof EditEvent
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     const isLoading = (
       <div>
         <div className="loader" />
-        <p className="center-item shadow" >Unable to connect. Refresh your browser or check your internet connection</p>
+        <p
+          className="center-item shadow"
+        >
+        Unable to connect.
+        Refresh your browser or check your internet connection
+        </p>
       </div>
     );
-
-    const events = this.props.events === undefined || this.props.error != false ? isLoading : this.props.events.map(event =>
-      (<Link to={`/events/${event.id}`} key={event.id} style={{ color: 'black' }}>
-        <Display
-          eventName={event.eventName}
-          eventdate={event.eventdate}
-          purpose={event.purpose}
-        />
-      </Link>
-      ));
-
+    const events = this.props.events ===
+     undefined || this.props.error != false ?
+      isLoading : this.props.events.map(event =>
+        (<Link
+          to={`/events/${event.id}`}
+          key={event.id}
+          style={{ color: 'black' }}
+        >
+          <Display
+            eventName={event.eventName}
+            eventdate={event.eventdate}
+            purpose={event.purpose}
+            centerImage={event.centers === null ?
+              imageurl : event.centers.imageurl
+            }
+          />
+         </Link>
+        ));
+    /**
+   * @description renders component to the DOM
+   *
+   * @memberof AddEvent
+   *
+   * @returns {JSX} JSX representation of component
+   */
     return (
       <div>
         <div className="center thebody" >
@@ -58,4 +98,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewEvent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ViewEvent);

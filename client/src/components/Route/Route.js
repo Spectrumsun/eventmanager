@@ -23,20 +23,76 @@ import afterLogin from '../Auth/afterLogin';
 const routers = () => (
   <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/pickcenter" exact component={RequireAuth(pickCenter)} />
-    <Route path="/events" exact component={ViewEvents} />
-    <Route path="/addevent" exact component={RequireAuth(AddEvent)} />
-    <Route path="/events/:id" exact component={EventInfo} />
-    <Route path="/events/edit/:id" exact component={RequireAuth(EditEvent)} />
-    <Route path="/addcenter" exact component={IsAdmin(AddCenter)} />
-    <Route path="/centers" exact component={ViewCenters} />
-    <Route path="/centers/:id" exact component={CenterInfo} />
-    <Route path="/centers/edit/:id" exact component={IsAdmin(EditCenter)} />
-    <Route path="/signup" exact component={afterLogin(Signup)} />
-    <Route path="/login" exact component={afterLogin(Login)} />
-    <Route path="/forgotpassword" exact component={afterLogin(ForgotPassword)} />
-    <Route path="/user/password/reset/:token" exact component={afterLogin(PasswordReset)} />
-    <Route path="/users/email/:token" exact component={EmailCheck} />
+    <Route
+      path="/pickcenter"
+      exact
+      component={RequireAuth(pickCenter)}
+    />
+    <Route
+      path="/events"
+      exact
+      component={ViewEvents}
+    />
+    <Route
+      path="/addevent"
+      exact
+      component={RequireAuth(AddEvent)}
+    />
+    <Route
+      path="/events/:id"
+      exact
+      component={EventInfo}
+    />
+    <Route
+      path="/events/edit/:id"
+      exact
+      component={RequireAuth(EditEvent)}
+    />
+    <Route
+      path="/addcenter"
+      exact
+      component={IsAdmin(AddCenter)}
+    />
+    <Route
+      path="/centers"
+      exact
+      component={ViewCenters}
+    />
+    <Route
+      path="/centers/:id"
+      exact
+      component={CenterInfo}
+    />
+    <Route
+      path="/centers/edit/:id"
+      exact
+      component={IsAdmin(EditCenter)}
+    />
+    <Route
+      path="/signup"
+      exact
+      component={afterLogin(Signup)}
+    />
+    <Route
+      path="/login"
+      exact
+      component={afterLogin(Login)}
+    />
+    <Route
+      path="/forgotpassword"
+      exact
+      component={afterLogin(ForgotPassword)}
+    />
+    <Route
+      path="/user/password/reset/:token"
+      exact
+      component={afterLogin(PasswordReset)}
+    />
+    <Route
+      path="/users/email/:token"
+      exact
+      component={EmailCheck}
+    />
     <Route component={NotFound} />
   </Switch>
 );

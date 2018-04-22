@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class EmailVerify
+ *
+ * @extends {React.Component}
+ */
 class EmailVerify extends Component {
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props.params.token
+   *
+   * @memberof Signup
+   */
   componentWillMount() {
-    this.props.initemailverify(this.props.match.params.token, this.props.history);
+    this.props.initemailverify(
+      this.props.match.params.token,
+      this.props.history
+    );
   }
 
+
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof EmailVerify
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     const isLoading = (
       <div className="loader" />
@@ -34,7 +57,8 @@ EmailVerify.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initemailverify: (token, history) => dispatch(action.initemailverify(token, history)),
+  initemailverify: (token, history) =>
+    dispatch(action.initemailverify(token, history)),
 });
 
 export default connect(null, mapDispatchToProps)(EmailVerify);

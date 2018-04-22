@@ -275,7 +275,7 @@ class Validate {
   static checkDate(req, res, next) {
     // check date is not in the past
     if ((new Date(req.body.date) - Date.now()) < 0) {
-  	  return res.status(400).json({
+      return res.status(400).json({
         message: 'You cant set a Past date for the event'
       });
     }

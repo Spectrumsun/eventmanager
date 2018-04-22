@@ -5,16 +5,39 @@ import { connect } from 'react-redux';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class PasswordReset
+ *
+ * @extends {React.Component}
+ */
 class PasswordReset extends Component {
   state = {
     password: '',
     confirmPassword: ''
   }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof PasswordReset
+   *
+   * @returns {void}
+   */
   onChange =(e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * @description vaildate data in state
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof PasswordReset
+   *
+   * @returns {void}
+   */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.password === '') {
@@ -31,10 +54,17 @@ class PasswordReset extends Component {
     }
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof PasswordReset
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     return (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="container" style={{ paddingTop: '200px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Password Reset</h3>
@@ -83,7 +113,8 @@ PasswordReset.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initpasswordreset: (token, user, history) => dispatch(action.initpasswordreset(token, user, history)),
+  initpasswordreset: (token, user, history) =>
+    dispatch(action.initpasswordreset(token, user, history)),
 });
 
 export default connect(null, mapDispatchToProps)(PasswordReset);

@@ -4,11 +4,30 @@ import PropTypes from 'prop-types';
 import Display from './pickCenterProp';
 import * as actions from '../../store/actions/index';
 
+/**
+ * @class Centers
+ *
+ * @extends {React.Component}
+ */
 class Centers extends Component {
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props
+   *
+   * @memberof Centers
+   */
   componentWillMount() {
     this.props.onInitCenters();
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof Centers
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     const centers = this.props.center.map(center =>
       (
@@ -22,6 +41,7 @@ class Centers extends Component {
           availability={center.availability}
           facility={center.facility}
           selectCenter={id => this.props.selectCenter(id)}
+          all={center}
         />
       ));
     return (

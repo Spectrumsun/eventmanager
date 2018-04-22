@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const getCenter = props => (
   <div
     onClick={props.clicked}

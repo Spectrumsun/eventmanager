@@ -10,7 +10,7 @@ const secret = process.env.SECRET;
 /** Class Users */
 class Users {
   /**
-   * signup mnew users
+   * signup new users
    *
    * @param {Object} req HTTP request object
    * @param {Object} res HTTP response object
@@ -78,26 +78,30 @@ class Users {
         }
 
         if (user) {
-          bcrypt.compare(req.body.password, user.password, (err, response) => {
-            if (response) {
-              const token = jwt.sign({
-                id: user.id,
-                fullname: user.fullname,
-                role: user.role
-              }, secret, { expiresIn: '200h' });
-              return res
-                .status(200)
-                .json({
-                  message: `Welcome ${user.fullname} `,
-                  token
-                });
-            }
-            return res
-              .status(409)
-              .json({
-                message: 'Email or password incorrect'
-              });
-          });
+          bcrypt
+            .compare(
+              req.body.password, user.password,
+              (err, response) => {
+                if (response) {
+                  const token = jwt.sign({
+                    id: user.id,
+                    fullname: user.fullname,
+                    role: user.role
+                  }, secret, { expiresIn: '200h' });
+                  return res
+                    .status(200)
+                    .json({
+                      message: `Welcome ${user.fullname} `,
+                      token
+                    });
+                }
+                return res
+                  .status(409)
+                  .json({
+                    message: 'Email or password incorrect'
+                  });
+              }
+            );
         } else {
           res
             .status(404)
@@ -119,24 +123,29 @@ class Users {
    */
   static confirmEmail(req, res) {
     // confirm if new email verfication token in parmas is valid
-    User.findOne({ where: { emailVerfication: req.params.token } })
+    User.findOne({
+      where: {
+        emailVerfication: req.params.token
+      }
+    })
       .then((user) => {
-        if (user) {
-          user.update({
-            emailVerfication: null,
-          });
-          res.status(200).json({
-            message: 'Nice! Email Confirmed You are can now login!'
-          });
-        } else {
-          res.status(400).json({
-            message: 'Email verification failed token is not invalid'
-          });
-        }
+        user.update({
+          emailVerfication: null,
+        });
+        res.status(200).json({
+          message: 'Nice! Email Confirmed You are can now login!'
+        });
         if (user.email === process.env.ADMINEMAIL) {
-          user.update({ role: process.env.ADMIN });
+          user.update({
+            role: process.env.ADMIN
+          });
         }
-      });
+        return user;
+      })
+      .catch(err => res.status(400).json({
+        message: 'Email verification failed token is not invalid',
+        err
+      }));
   }
 
 

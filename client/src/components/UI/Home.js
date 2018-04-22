@@ -1,13 +1,34 @@
 import React from 'react';
 import Centers from '../Center/ViewCenters';
 
+/**
+ * @description renders component to the DOM
+ *
+ * @function home
+ *
+ * @returns {JSX} JSX component for the home
+ */
 const home = () => (
   <div>
-    <div id="carouselExampleSlidesOnly" className="carousel slide shift" data-ride="carousel">
+    <div
+      id="carouselExampleSlidesOnly"
+      className="carousel slide shift"
+      data-ride="carousel"
+    >
       <ol className="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active" />
-        <li data-target="#carouselExampleIndicators" data-slide-to="1" />
-        <li data-target="#carouselExampleIndicators" data-slide-to="2" />
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="0"
+          className="active"
+        />
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="1"
+        />
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="2"
+        />
       </ol>
       <div className="carousel-inner">
         <div className="carousel-item active">
@@ -45,27 +66,47 @@ const home = () => (
         </div>
         <div>
           <div className="list-group-item list-group-item-secondary">
-            <h1 className="center-item shadow" style={{ marginTop: '40px' }}>The Best</h1>
-            <p className="container read" style={{ textAlign: 'justify' }}>
+            <h1
+              className="center-item shadow"
+              style={{ marginTop: '40px' }}
+            >The Best
+            </h1>
+            <p
+              className="container read"
+              style={{ textAlign: 'justify' }}
+            >
                 Manage your events easily.
                 Pick from our different centers to host your events.
-                Each center has different facility. projectors, car pack, swimming pools.
-                We have centers for all types of events you want to organize.
-                Easily check if a center is book up while you plan your event.
-                It’s that easy and simple just create an account and browse
+                Each center has different facility. 
+                projectors, car pack, swimming pools.
+                We have centers for all types
+                of events you want to organize.
+                Easily check if a center is
+                book up while you plan your event.
+                It’s that easy and simple just
+                create an account and browse
                 through all our center and pick the one you like.
                 Lorem ipsum dolor sit amet,
                 consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                sed diam nonumy eirmod tempor
+                invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua. At vero eos et accusam et
+                justo duo dolores et ea rebum.
+                Stet clita kasd gubergren, no sea takimata
+                \sanctus est Lorem ipsum dolor sit amet.
+                Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr,sed diam nonumy eirmod tempor
+                invidunt ut labore et dolore magna aliquyam erat,
+                sed diam voluptua. At vero eos et accusam et justo
+                duo dolores et ea rebum. Stet clita kasd gubergren, no
+                sea takimata sanctus est Lorem ipsum dolor sit amet.
+                Lorem ipsum dolor sit amet, consetetur
+                sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna
+                aliquyam erat, sed diam voluptua. At vero
+                eos et accusam et justo duo dolores et ea
+                rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolor sit amet.
             </p>
           </div>
         </div>

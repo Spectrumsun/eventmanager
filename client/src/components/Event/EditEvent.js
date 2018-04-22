@@ -5,7 +5,12 @@ import toast from 'toastr';
 import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
 
-class EventCenter extends Component {
+/**
+ * @class EditEvent
+ *
+ * @extends {React.Component}
+ */
+class EditEvent extends Component {
    state = {
      name: this.props.loadedEvent.eventName,
      date: this.props.loadedEvent.eventdate,
@@ -14,14 +19,40 @@ class EventCenter extends Component {
      center: this.props.loadedEvent.centerId
    }
 
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props.params.token
+   *
+   * @memberof EditEvent
+   */
    componentWillMount() {
      this.props.onOneEvent(this.props.match.params.id);
    }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof EditEvent
+   *
+   * @returns {void}
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
+  /**
+   * @description vaildate data in state
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof EditEvent
+   *
+   * @returns {void}
+   */
    onSubmit = (e) => {
      e.preventDefault();
      if (this.state.name === '') {
@@ -41,11 +72,25 @@ class EventCenter extends Component {
        );
      }
    }
-
+   /**
+   * @description get selectCenter id and state state
+   * @param {any} event
+   *
+   * @memberof EditEvent
+   *
+   * @returns {void}
+   */
    selectCenter = (id) => {
      this.state.center = id;
    }
 
+   /**
+   * @description renders component to the DOM
+   *
+   * @memberof EditEvent
+   *
+   * @returns {JSX} JSX representation of component
+   */
    render() {
      return (
        <div className="container" style={{ paddingTop: '100px' }}>
@@ -68,24 +113,24 @@ class EventCenter extends Component {
    }
 }
 
-EventCenter.propTypes = {
-  onOneEvent: PropTypes.func.isRequired,
-  initEditEvent: PropTypes.func.isRequired,
-  loadedEvent: PropTypes.shape({
-    eventName: PropTypes.string,
-    eventdate: PropTypes.string,
-    purpose: PropTypes.string,
-    time: PropTypes.string,
-    userId: PropTypes.number,
-    centerId: PropTypes.number,
-  }).isRequired,
-  history: PropTypes.shape({}).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
-};
+// EditEvent.propTypes = {
+//   onOneEvent: PropTypes.func.isRequired,
+//   initEditEvent: PropTypes.func.isRequired,
+//   loadedEvent: PropTypes.shape({
+//     eventName: PropTypes.string,
+//     eventdate: PropTypes.string,
+//     purpose: PropTypes.string,
+//     time: PropTypes.string,
+//     userId: PropTypes.number,
+//     centerId: PropTypes.number,
+//   }).isRequired,
+//   history: PropTypes.shape({}).isRequired,
+//   match: PropTypes.shape({
+//     params: PropTypes.shape({
+//       id: PropTypes.string,
+//     }),
+//   }).isRequired,
+// };
 
 
 const mapStateToProps = state => ({
@@ -95,9 +140,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
-  initEditEvent: (id, events, history) => dispatch(action.initEditEvent(id, events, history)),
+  initEditEvent: (id, events, history) =>
+    dispatch(action.initEditEvent(id, events, history)),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventCenter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditEvent);
 

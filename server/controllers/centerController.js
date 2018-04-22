@@ -91,7 +91,6 @@ class Centers {
     Center.findOne({
       where: {
         id: req.params.id,
-        userId: req.user.id
       }
     })
       .then((center) => {
@@ -124,17 +123,17 @@ class Centers {
    * @returns {void}
    */
   static deleteCenter(req, res) {
-    Center.destroy({
+    Center.findOne({
       where: {
         id: req.params.id,
-        userId: req.user.id
       }
     })
       .then((center) => {
-        deletePicture(center.imageId, 'publicUrlId');
         if (center) {
+          deletePicture(center.imageId, 'publicUrlId');
+          center.destroy();
           res.status(200).json({
-            message: 'Center successfully deleted!'
+            message: 'center successfully deleted!'
           });
         } else {
           res.status(404).json({
@@ -142,8 +141,8 @@ class Centers {
           });
         }
       });
+    // .catch(err => res.status(400).json(err));
   }
 }
 
 export default Centers;
-

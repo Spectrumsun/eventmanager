@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import toast from 'toastr';
@@ -6,7 +7,11 @@ import PropTypes from 'prop-types';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
 
-
+/**
+ * @class AddCenter
+ *
+ * @extends {React.Component}
+ */
 class AddCenter extends Component {
     state = {
       name: '',
@@ -23,15 +28,44 @@ class AddCenter extends Component {
       progress: `${0}%`
     }
 
+  /**
+   * @description update facility state
+   *
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
   onClick = () => {
-    this.setState({ facility: this.state.facility.concat([this.state.values]) });
+    this.setState({
+      facility: this.state.facility.concat([this.state.values])
+    });
     this.setState({ values: '' });
   }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
    onChange = (e) => {
      this.setState({ [e.target.name]: e.target.value });
    }
 
+  /**
+   * @description vaildate data in state and upload the image
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
    onSubmit = (e) => {
      e.preventDefault();
      if (this.state.name === '') {
@@ -46,18 +80,25 @@ class AddCenter extends Component {
        toast.error('Add about');
      } else if (this.state.purpose === '') {
        toast.error('Center Availability must be set');
+     } else if (this.state.facility.length < 1) {
+       toast.error('Center facility must be set');
      } else {
        const fd = new FormData();
        const id = `${Date.now()}-${this.state.image.name}`;
        fd.append('file', this.state.image);
        fd.append('public_id', id);
        fd.append('upload_preset', 'eventmanager');
-       axios.post('https://api.cloudinary.com/v1_1/skybound/image/upload', fd, {
-         onUploadProgress: (progressEvent) => {
-           const level = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
-           this.setState({ progress: level });
-         }
-       })
+       axios
+         .post(
+           'https://api.cloudinary.com/v1_1/skybound/image/upload',
+           fd, {
+             onUploadProgress: (progressEvent) => {
+               const level = `${Math.round(progressEvent.loaded /
+                progressEvent.total * 100)}%`;
+               this.setState({ progress: level });
+             }
+           }
+         )
          .then((response) => {
            this.setState({
              imageurl: response.data.secure_url,
@@ -76,6 +117,30 @@ class AddCenter extends Component {
      }
    }
 
+   /**
+   * @description prefent the enter key from submitting the form
+   *
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
+   onKeyPress = (e) => {
+     if (e.target.type !== 'textarea' && e.which === 13 /* Enter */) {
+       e.preventDefault();
+     }
+   }
+
+  /**
+   * @description upload image and return url
+   * sends set state to image url
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
     handleImageChange = (e) => {
       e.preventDefault();
       const reader = new FileReader();
@@ -89,17 +154,38 @@ class AddCenter extends Component {
       reader.readAsDataURL(file);
     }
 
+
+  /**
+   * @description remove add Facility
+   *
+   * @param {any} event
+   *
+   * @memberof AddCenter
+   *
+   * @returns {void}
+   */
     removeFacility = (i) => {
       const array = this.state.facility;
       array.splice(i, 1);
       this.setState({ facility: array });
     }
 
+    /**
+   * @description renders component to the DOM
+   *
+   * @memberof AddCenter
+   *
+   * @returns {JSX} JSX representation of component
+   */
     render() {
       const { preview } = this.state;
       let imagePreview = null;
       if (preview) {
-        imagePreview = (<img src={preview} alt="ImagePreview" className="imgPre" />);
+        imagePreview = (<img
+          src={preview}
+          alt="ImagePreview"
+          className="imgPre"
+        />);
       }
 
       return (
@@ -125,6 +211,7 @@ class AddCenter extends Component {
                 about={this.state.about}
                 disabled={this.state.values}
                 progress={this.state.progress}
+                onKeyPress={this.onKeyPress}
               />
             </div>
           </div>
@@ -139,7 +226,8 @@ AddCenter.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  initPostCenters: (input, history) => dispatch(action.initPostCenters(input, history)),
+  initPostCenters: (input, history) =>
+    dispatch(action.initPostCenters(input, history)),
 });
 
 export default connect(null, mapDispatchToProps)(AddCenter);

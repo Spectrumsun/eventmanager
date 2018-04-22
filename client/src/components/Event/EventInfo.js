@@ -5,16 +5,47 @@ import PropTypes from 'prop-types';
 import Footer from '../UI/Footer';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class EventInfo
+ *
+ * @extends {React.Component}
+ */
 class EventInfo extends Component {
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props.params.token
+   *
+   * @memberof EventInfo
+   */
   componentWillMount() {
     this.props.onOneEvent(this.props.match.params.id);
   }
 
+  /**
+   * @description deleteEvent a event when the delete button is clicked
+   *
+   * @param {any} event
+   *
+   * @memberof EditEvent
+   *
+   * @returns {void}
+   */
   deleteEvent = (e) => {
     e.preventDefault();
-    this.props.onDeleteEvent(this.props.match.params.id, this.props.history);
+    this.props.onDeleteEvent(
+      this.props.match.params.id,
+      this.props.history
+    );
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof EditEvent
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     const isLoading = (
       <div>
@@ -24,7 +55,12 @@ class EventInfo extends Component {
               <h1 className="color">Event Info</h1>
             </div>
             <div className="loader" />
-            <p className="center-item shadow" >Unable to connect. Refresh your browser or check your internet connection</p>
+            <p
+              className="center-item shadow"
+            >
+              Unable to connect.
+              Refresh your browser or check your internet connection
+            </p>
           </div>
         </div>
       </div>
@@ -34,13 +70,22 @@ class EventInfo extends Component {
       eventName,
       eventdate,
       time,
-      purpose
+      purpose,
     } = this.props.events;
 
     const eventOwner = (
       <div>
-        <Link to={`/events/edit/${this.props.match.params.id}`} key={this.props.match.params.id} style={{ color: '#35434A' }}>
-          <button type="submit" className="btn btn-dark" style={{ float: 'left' }}>Edit</button>
+        <Link
+          to={`/events/edit/${this.props.match.params.id}`}
+          key={this.props.match.params.id}
+          style={{ color: '#35434A' }}
+        >
+          <button
+            type="submit"
+            className="btn btn-dark"
+            style={{ float: 'left' }}
+          >Edit
+          </button>
         </Link>
         <button
           type="button"
@@ -51,30 +96,67 @@ class EventInfo extends Component {
         >
                   Delete
         </button>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            className="modal-dialog"
+            role="document"
+          >
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Delete Event</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <h5
+                  className="modal-title"
+                  id="exampleModalLabel"
+                >Delete Event
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div className="modal-body">
-                <h6>Are you sure you want to delete <strong>{eventName} ?</strong></h6>
+                <h6>
+                  Are you sure you want to delete
+                  <strong>{eventName} ?</strong>
+                </h6>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.deleteEvent}>Yes</button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  data-dismiss="modal"
+                  onClick={this.deleteEvent}
+                >Yes
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-    const { isAuthenticated, user } = this.props.auth;
-    const id = this.props.auth.user === null ? 'nouser' : this.props.auth.user.id;
-    const centers = new Object(this.props.events && this.props.events.centers && this.props.events.centers);
+    const { isAuthenticated } = this.props.auth;
+    const id = this.props.auth.user === null ?
+      'nouser' : this.props.auth.user.id;
+
+    const centers = new Object(this.props.events &&
+       this.props.events.centers &&
+       this.props.events.centers);
 
     const load = (
       <div>
@@ -99,12 +181,26 @@ class EventInfo extends Component {
                 <br />
                 <h5><strong>Center</strong></h5>
                 <ul className="list-group col-md-6">
-                  <Link to={`/centers/${centers.id}`} key={centers.id} style={{ color: '#35434A' }}>
-                    <h6><li className="list-group-item centerlist">{centers.centerName}</li></h6>
+                  <Link
+                    to={`/centers/${centers.id}`}
+                    key={centers.id}
+                    style={{ color: '#35434A' }}
+                  >
+                    <h6>
+                      <li
+                        className="list-group-item centerlist"
+                      >{centers.centerName}
+                      </li>
+                    </h6>
                   </Link>
                 </ul>
                 <br />
-                { this.props.events.userId !== id || !isAuthenticated ? null : eventOwner }
+                {
+                  this.props.events.userId !== id ||
+                  !isAuthenticated ?
+                  null :
+                  eventOwner
+                  }
               </div>
             </div>
           </div>
@@ -114,7 +210,13 @@ class EventInfo extends Component {
     );
     return (
       <div>
-        { this.props.events === undefined || this.props.error != false ? isLoading : load }
+        {
+          this.props.events ===
+          undefined ||
+          this.props.error !=
+          false ?
+          isLoading : load
+          }
       </div>
     );
   }
@@ -123,7 +225,7 @@ class EventInfo extends Component {
 EventInfo.propTypes = {
   onOneEvent: PropTypes.func.isRequired,
   onDeleteEvent: PropTypes.func.isRequired,
- /*  events: PropTypes.shape({
+  /*  events: PropTypes.shape({
      userId: PropTypes.number,
     eventName: PropTypes.string,
     eventdate: PropTypes.string,
@@ -170,7 +272,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
-  onDeleteEvent: (id, history) => dispatch(action.initDeleteEvent(id, history))
+  onDeleteEvent: (id, history) =>
+    dispatch(action.initDeleteEvent(id, history))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventInfo);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EventInfo);

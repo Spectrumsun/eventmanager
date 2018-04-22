@@ -10,15 +10,37 @@ const styles = {
   backgroundColor: '#35434a',
 };
 
+/**
+ * @class NavBar
+ *
+ * @extends {React.Component}
+ */
 class NavBar extends Component {
+  /**
+   * @description delete token
+  * log user out and redirect to home
+   * @param {any} event
+   *
+   * @memberof NavBar
+   *
+   * @returns {void}
+   */
   logout = (e) => {
     e.preventDefault();
     this.props.onLogOut(this.props.history);
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof NavBar
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     const { isAuthenticated } = this.props.auth;
-    const admin = this.props.auth.user === null ? 'nouser' : this.props.auth.user.role;
+    const admin = this.props.auth.user === null ?
+      'nouser' : this.props.auth.user.role;
 
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
@@ -66,10 +88,21 @@ class NavBar extends Component {
         >
                 Center
         </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link to="/addcenter" className="dropdown-item">Add Center</Link>
+        <div
+          className="dropdown-menu"
+          aria-labelledby="navbarDropdown"
+        >
+          <Link
+            to="/addcenter"
+            className="dropdown-item"
+          >Add Center
+          </Link>
           <div className="dropdown-menu" />
-          <Link to="/centers" className="dropdown-item">View Centers</Link>
+          <Link
+            to="/centers"
+            className="dropdown-item"
+          >View Centers
+          </Link>
         </div>
       </li>
     );
@@ -115,12 +148,27 @@ class NavBar extends Component {
                 >
                 Events
                 </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link to="/addevent" className="dropdown-item">Add Event</Link>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <Link
+                    to="/addevent"
+                    className="dropdown-item"
+                  >Add Event
+                  </Link>
                   <div className="dropdown-divider" />
-                  <Link to="/events"className="dropdown-item">View Events</Link>
+                  <Link
+                    to="/events"
+                    className="dropdown-item"
+                  >View Events
+                  </Link>
                   <div className="dropdown-divider" />
-                  <Link to="/centers" className="dropdown-item">View Centers</Link>
+                  <Link
+                    to="/centers"
+                    className="dropdown-item"
+                  >View Centers
+                  </Link>
                 </div>
               </li>
 
@@ -154,7 +202,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLogOut: history => dispatch(action.initUserLogout(history))
+  onLogOut: history =>
+    dispatch(action.initUserLogout(history))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar));

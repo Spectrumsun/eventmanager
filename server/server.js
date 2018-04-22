@@ -18,7 +18,10 @@ app.use(cors());
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.json({ type: 'application/json', limit: '50mb' }));
+app.use(bodyParser.json({
+  type: 'application/json',
+  limit: '50mb'
+}));
 app.use(bodyParser.urlencoded({
   limit: '50mb',
   extended: true,
@@ -33,7 +36,11 @@ app.use(express.static(path.join(__dirname, '/../client/src')));
 app.use('/api/v1/', routes);
 
 // base usl for documentation
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(
+  '/api/v1/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+);
 
 app.get('*', (req, res) => {
   // user express serve to load react

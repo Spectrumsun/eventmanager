@@ -49,20 +49,14 @@ class EventInfo extends Component {
   render() {
     const isLoading = (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
-          <div className="card loginCard" style={{ width: '45rem' }}>
-            <div className="card-header dark">
-              <h1 className="color">Event Info</h1>
-            </div>
-            <div className="loader" />
-            <p
-              className="center-item shadow"
-            >
+        <div className="container" style={{ paddingTop: '250px' }} />
+        <div className="loader" />
+        <p
+          className="center-item shadow"
+        >
               Unable to connect.
               Refresh your browser or check your internet connection
-            </p>
-          </div>
-        </div>
+        </p>
       </div>
     );
 
@@ -72,7 +66,6 @@ class EventInfo extends Component {
       time,
       purpose,
     } = this.props.events;
-
     const eventOwner = (
       <div>
         <Link
@@ -181,7 +174,7 @@ class EventInfo extends Component {
                 <br />
                 <h5><strong>Center</strong></h5>
                 <ul className="list-group col-md-6">
-                  <Link
+                  { <Link
                     to={`/centers/${centers.id}`}
                     key={centers.id}
                     style={{ color: '#35434A' }}
@@ -192,7 +185,7 @@ class EventInfo extends Component {
                       >{centers.centerName}
                       </li>
                     </h6>
-                  </Link>
+                    </Link> }
                 </ul>
                 <br />
                 {
@@ -225,17 +218,6 @@ class EventInfo extends Component {
 EventInfo.propTypes = {
   onOneEvent: PropTypes.func.isRequired,
   onDeleteEvent: PropTypes.func.isRequired,
-  /*  events: PropTypes.shape({
-     userId: PropTypes.number,
-    eventName: PropTypes.string,
-    eventdate: PropTypes.string,
-    time: PropTypes.string,
-    purpose: PropTypes.string,
-    centers: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      centerName: PropTypes.string.isRequired
-    })
-  }), */
   error: PropTypes.bool.isRequired,
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
@@ -250,10 +232,16 @@ EventInfo.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  events: PropTypes.shape({
+    id: PropTypes.number,
+    eventName: PropTypes.string,
+    eventdate: PropTypes.string,
+    time: PropTypes.string,
+    purpose: PropTypes.string,
+  }),
 };
 
-
-/* EventInfo.defaultProps = {
+EventInfo.defaultProps = {
   events: PropTypes.shape({
     userId: 1,
     eventName: 'eventName',
@@ -262,7 +250,7 @@ EventInfo.propTypes = {
     purpose: 'fun'
   }),
 };
- */
+
 
 const mapStateToProps = state => ({
   events: state.events.loadedEvent,

@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from './UI/Footer';
 
-
 /**
  * @description renders component to the DOM
  *

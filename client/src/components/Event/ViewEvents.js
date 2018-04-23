@@ -6,7 +6,11 @@ import Display from './getEvent';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
 
-const imageurl = 'https://res.cloudinary.com/skybound/image/upload/s--FNAPSR5p--/v1524387956/eventmanager/1524387954621-99fa41ccf131724-a-nw-p.jpg.jpg';
+const imageurl = 'https://res.cloudinary.com/skybound/' +
+                'image/upload/s--FNAPSR5p--' +
+                '/v1524387956/eventmanager/' +
+                '1524387954621-99fa41ccf13172' +
+                '4-a-nw-p.jpg.jpg';
 
 /**
  * @class ViewEvent
@@ -83,8 +87,7 @@ class ViewEvent extends Component {
 
 ViewEvent.propTypes = {
   onInitEvent: PropTypes.func.isRequired,
-  events: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-
+  events: PropTypes.array.isRequired,
   error: PropTypes.bool.isRequired
 };
 

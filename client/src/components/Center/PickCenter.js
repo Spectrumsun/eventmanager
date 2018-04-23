@@ -35,6 +35,7 @@ class Centers extends Component {
           key={center.id}
           id={center.id}
           centerName={center.centerName}
+          about={center.about}
           address={center.address}
           city={center.city}
           image={center.imageurl}
@@ -57,12 +58,7 @@ class Centers extends Component {
 
 Centers.propTypes = {
   onInitCenters: PropTypes.func.isRequired,
-  center: PropTypes.shape({
-    centerName: PropTypes.string,
-    centeraddress: PropTypes.string,
-    availability: PropTypes.string,
-    facility: PropTypes.string,
-  }).isRequired,
+  center: PropTypes.array.isRequired,
   selectCenter: PropTypes.func.isRequired,
 };
 

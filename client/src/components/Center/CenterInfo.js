@@ -79,19 +79,14 @@ class CenterInfo extends Component {
     const set = this.props.loadedCenter;
     const isLoading = (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
-          <div className="card loginCard" style={{ width: '45rem' }}>
-            <div className="card-header dark">
-              <h1 className="color">Center Info</h1>
-            </div>
-            <div className="loader" />
-            <p className="center-item shadow" >
-              Unable to connect.
-              Refresh your browser or check your internet connection
-            </p>
-          </div>
-        </div>
+        <div className="container" style={{ paddingTop: '300px' }} />
+        <div className="loader" />
+        <p className="center-item shadow" >
+        Unable to connect Resource Not Found or invalid Url.
+        Refresh your browser or check your internet connection
+        </p>
       </div>
+
     );
 
     const center = (
@@ -158,10 +153,13 @@ class CenterInfo extends Component {
                     key={eve.id}
                     style={{ color: 'black' }}
                   >
-                    <div className="card d-lg-inline-block" style={{ width: '15rem' }}>
+                    <div
+                      className="card d-lg-inline-block"
+                      style={{ width: '15rem' }}
+                    >
                       <img
                         className="card-img-top"
-                        src="https://res.cloudinary.com/skybound/image/upload/v1522444977/eventmanager/static/image1.jpg"
+                        src={set.imageurl}
                         alt="Card cap"
                       />
                       <div className="card-body">
@@ -175,7 +173,7 @@ class CenterInfo extends Component {
                         </p>
                       </div>
                     </div>
-                   </Link>))}
+                  </Link>))}
             <br />
             {admin === 'ADMIN1' ? showbutton : null}
           </div>
@@ -187,13 +185,52 @@ class CenterInfo extends Component {
     return (
       <div>
         {
-          this.props.loadedCenter === undefined || 
+          this.props.loadedCenter === undefined ||
           this.props.error != false ? isLoading : center
         }
       </div>
     );
   }
 }
+
+CenterInfo.propTypes = {
+  onDeleteCenter: PropTypes.func.isRequired,
+  onFetOneCenters: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      role: PropTypes.string,
+    })
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.string,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+
+  loadedCenter: PropTypes.shape({
+    id: PropTypes.number,
+    eventName: PropTypes.string,
+    eventdate: PropTypes.string,
+    time: PropTypes.string,
+    purpose: PropTypes.string,
+  }),
+};
+
+CenterInfo.defaultProps = {
+  loadedCenter: PropTypes.shape({
+    userId: 1,
+    centerName: 'eventName',
+    address: '2018-10-02',
+    time: '11:00',
+    purpose: 'fun'
+  }),
+};
 
 
 const mapStateToProps = state => ({

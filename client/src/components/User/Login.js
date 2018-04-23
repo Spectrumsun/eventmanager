@@ -96,7 +96,11 @@ class Login extends Component {
                   </small>
 
                   <div className="text-center">
-                    <button type="submit" className="btn btn-outline-dark">Submit</button>
+                    <button
+                      type="submit"
+                      className="btn btn-outline-dark"
+                    >Submit
+                    </button>
                   </div>
                 </form>
               </div>
@@ -120,7 +124,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  initUserLogin: (user, history) => dispatch(action.initUserLogin(user, history)),
+  initUserLogin: (user, history) =>
+    dispatch(action.initUserLogin(user, history)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

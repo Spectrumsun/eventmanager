@@ -75,16 +75,6 @@ const eventForm = props => (
       >
              Select Center
       </button>
-
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-toggle="modal"
-        data-target=".bd-example-modal-lg"
-      >
-             View
-      </button>
-
       <div
         className="modal fade bd-example-modal-lg"
         tabIndex="-1"

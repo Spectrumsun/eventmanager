@@ -20,7 +20,7 @@ export default function (ComposedComponent) {
    * @memberof Signup
    */
       componentWillMount(){
-          if(this.props.auth.user.role !== 'ADMIN1'){
+          if(!this.props.auth.isAuthenticated || this.props.auth.user.role !== 'ADMIN1'){
            this.props.history.push("/")
             toast.error('Only Admins allowed')
         }

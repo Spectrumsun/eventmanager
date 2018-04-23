@@ -407,4 +407,20 @@ describe('Event Manager Event Test', () => {
         });
     }
   );
+
+  it(
+    'return error for imvalied url imvent event when user is signin in',
+    (done) => {
+      request(server)
+        .get('/api/v1/events/1swew')
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('Invalid Parameter In Url');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 });

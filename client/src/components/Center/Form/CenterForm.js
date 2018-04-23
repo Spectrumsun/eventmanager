@@ -162,14 +162,20 @@ centerFrom.propTypes = {
   onClick: PropTypes.func.isRequired,
   progress: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   handleImageChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
   city: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   values: PropTypes.string.isRequired,
   facility: PropTypes.array.isRequired,
+  imagePreview: PropTypes.object
+};
+
+centerFrom.defaultProps = {
+  name: 'trest',
+  imagePreview: {}
 };
 
 export default centerFrom;

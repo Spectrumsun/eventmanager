@@ -33,10 +33,10 @@ class Centers extends Component {
    */
   render() {
     const isLoading = (
-      <div>
+      <div className="container" style={{ paddingTop: '250px' }}>
         <div className="loader" />
         <p className="center-item shadow">
-        Unable to connect.
+        Unable to connect Reaource Not Found or invalid Url.
         Refresh your browser or check your internet connection
         </p>
       </div>
@@ -70,7 +70,7 @@ class Centers extends Component {
 
 Centers.propTypes = {
   onInitCenters: PropTypes.func.isRequired,
-  center: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  center: PropTypes.array.isRequired,
   error: PropTypes.bool.isRequired
 };
 

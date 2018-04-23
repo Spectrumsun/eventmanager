@@ -45,7 +45,10 @@ class Centers {
             message: 'center not found'
           });
         }
-      });
+      })
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
   }
 
   /**
@@ -140,8 +143,10 @@ class Centers {
             message: 'You dont own any center with that id!!'
           });
         }
-      });
-    // .catch(err => res.status(400).json(err));
+      })
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
   }
 }
 

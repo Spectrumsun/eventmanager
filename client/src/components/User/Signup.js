@@ -68,6 +68,7 @@ class Signup extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
+    console.log(this.props.history)
     return (
       <div className="container" style={{ paddingTop: '200px' }}>
         <div className="card loginCard" style={{ width: '40rem' }}>
@@ -152,7 +153,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  onUserCreate: (user, history) => dispatch(action.initUser(user, history))
+  onUserCreate: (user, history) =>
+    dispatch(action.initUser(user, history))
 });
 
 

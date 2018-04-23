@@ -45,7 +45,10 @@ class Events {
             message: 'event not found'
           });
         }
-      });
+      })
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
   }
 
   /**
@@ -131,7 +134,10 @@ class Events {
             message: 'You dont own any event with that id!!',
           });
         }
-      });
+      })
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
   }
 }
 

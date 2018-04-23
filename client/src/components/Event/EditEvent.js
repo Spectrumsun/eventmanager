@@ -113,24 +113,24 @@ class EditEvent extends Component {
    }
 }
 
-// EditEvent.propTypes = {
-//   onOneEvent: PropTypes.func.isRequired,
-//   initEditEvent: PropTypes.func.isRequired,
-//   loadedEvent: PropTypes.shape({
-//     eventName: PropTypes.string,
-//     eventdate: PropTypes.string,
-//     purpose: PropTypes.string,
-//     time: PropTypes.string,
-//     userId: PropTypes.number,
-//     centerId: PropTypes.number,
-//   }).isRequired,
-//   history: PropTypes.shape({}).isRequired,
-//   match: PropTypes.shape({
-//     params: PropTypes.shape({
-//       id: PropTypes.string,
-//     }),
-//   }).isRequired,
-// };
+EditEvent.propTypes = {
+  onOneEvent: PropTypes.func.isRequired,
+  initEditEvent: PropTypes.func.isRequired,
+  loadedEvent: PropTypes.shape({
+    eventName: PropTypes.string,
+    eventdate: PropTypes.string,
+    purpose: PropTypes.string,
+    time: PropTypes.string,
+    userId: PropTypes.number,
+    centerId: PropTypes.number,
+  }).isRequired,
+  history: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 
 const mapStateToProps = state => ({

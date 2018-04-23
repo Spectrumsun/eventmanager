@@ -218,6 +218,7 @@ class EditCenter extends Component {
               imagePreview={imagePreview}
               disabled={this.state.values}
               progress={this.state.progress}
+              onKeyPress={this.onKeyPress}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   center: [],
-  loadedCenter: [],
+  loadedCenter: {},
   newCenter: [],
   editCenter: [],
   error: false

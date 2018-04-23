@@ -4,10 +4,23 @@ import { connect } from 'react-redux';
 import toast from 'toastr';
 import {withRouter} from "react-router-dom";
 
+
 export default function (ComposedComponent) {
+  /**
+ * @class IsAdmin
+ *
+ * @extends {React.Component}
+ */
   class IsAdmin extends Component {
+  /**
+   * @description run action on component verify if user is Admin
+   *
+   * @param {any} props.params.token
+   *
+   * @memberof Signup
+   */
       componentWillMount(){
-          if(this.props.auth.user.role !== 'ADMIN1'){
+          if(!this.props.auth.isAuthenticated || this.props.auth.user.role !== 'ADMIN1'){
            this.props.history.push("/")
             toast.error('Only Admins allowed')
         }
@@ -22,7 +35,10 @@ export default function (ComposedComponent) {
     auth: state.auth
 })
 
-    return withRouter(connect(mapStateToProps)(IsAdmin));
+    return withRouter(
+      connect(mapStateToProps)
+      (IsAdmin)
+    );
 }
 
 

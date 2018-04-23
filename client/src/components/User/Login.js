@@ -6,16 +6,39 @@ import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class Login
+ *
+ * @extends {React.Component}
+ */
 class Login extends Component {
   state = {
     email: '',
     password: '',
   }
 
+  /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof Login
+   *
+   * @returns {void}
+   */
   onChange =(e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * @description vaildate data in state
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof Login
+   *
+   * @returns {void}
+   */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.email === '') {
@@ -30,10 +53,17 @@ class Login extends Component {
     }
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof ForgotPassword
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     return (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="container" style={{ paddingTop: '200px' }}>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Login</h3>
@@ -58,10 +88,19 @@ class Login extends Component {
                     type="password"
                     placeholder="Password"
                   />
-                  <small ><Link to="/forgotpassword" className="center-item">Forgot password?</Link></small>
+                  <small ><Link
+                    to="/forgotpassword"
+                    className="center-item"
+                  >Forgot password?
+                  </Link>
+                  </small>
 
                   <div className="text-center">
-                    <button type="submit" className="btn btn-outline-dark">Submit</button>
+                    <button
+                      type="submit"
+                      className="btn btn-outline-dark"
+                    >Submit
+                    </button>
                   </div>
                 </form>
               </div>
@@ -85,7 +124,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  initUserLogin: (user, history) => dispatch(action.initUserLogin(user, history)),
+  initUserLogin: (user, history) =>
+    dispatch(action.initUserLogin(user, history)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -78,7 +78,9 @@ export const initPostCenters = (inputs, history) => {
       })
       .catch((error) => {
         const newError = error.response.data.errorMessage;
-        newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+        newError ? newError.map(err => 
+          toast.error(err)) : toast.error(
+            error.response.data.message);
         dispatch(centerError(error))
       });
   };
@@ -95,7 +97,8 @@ export const initEditCenter = (id, center, history) => {
           })
           .catch((error) => {
             const newError = error.response.data.errorMessage;
-            newError ? newError.map(err => toast.error(err)) : toast.error(error.response.data.message);
+            newError ? newError.map(err => 
+              toast.error(err)) : toast.error(error.response.data.message);
             dispatch(centerError(error))
           }
       )

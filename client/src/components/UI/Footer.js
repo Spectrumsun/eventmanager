@@ -1,10 +1,17 @@
 import React from 'react';
 
+/**
+ * @description renders component to the DOM
+ *
+ * @function footer
+ *
+ * @returns {JSX} JSX component for the footer
+ */
 const footer = () => (
   <div className="center">
     <footer>
       <div><h3 className="center" >Event Manager</h3></div>
-      <div style={{ display: 'inline-block',  textAlign: "left" }}>
+      <div style={{ display: 'inline-block', textAlign: 'left' }}>
         <div>
           <div className="float-left">
             <a className="navbar-brand" href="/"><img
@@ -36,8 +43,14 @@ const footer = () => (
               <p className="footerTitle">About</p>
               <li className="footerColor">desgin by Taiwo Sunday</li>
               <li className="footerColor">+2348038512455</li>
-              <li className="footerColor">https://github.com/Spectrumsun</li>
-              <li className="footerColor">taiwo.sunday@outlook.com</li>
+              <li
+                className="footerColor"
+              >https://github.com/Spectrumsun
+              </li>
+              <li
+                className="footerColor"
+              >taiwo.sunday@outlook.com
+              </li>
             </ul>
           </div>
           <div className="float-left">

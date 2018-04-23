@@ -7,9 +7,18 @@ import { User } from '../models';
 
 const secret = process.env.SECRET;
 
+/** Class Users */
 class Users {
-  // signup a new user and save the inforamtion to db
+  /**
+   * signup new users
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static signup(req, res) {
+    // signup a new user and save the inforamtion to db
     const data = req.body.password;
     // hash user password with bcrypt
     bcrypt.hash(data, 10)
@@ -23,13 +32,13 @@ class Users {
         emailVerficationExpires: Date.now()
       }))
       .then((user) => {
-          // send a mail to the user after a successfull signup
-          emailVerfication({
-            user,
-            subject: 'Email Verification',
-            emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
-            name: user.fullname
-          });
+        // send a mail to the user after a successfull signup
+        emailVerfication({
+          user,
+          subject: 'Email Verification',
+          emailVerfication: `http://${req.headers.host}/users/email/${user.emailVerfication}`,
+          name: user.fullname
+        });
         res.status(201).send({
           message: 'Account successfully created. Check your mail to confirm your account ',
           user: {
@@ -44,8 +53,17 @@ class Users {
         }));
   }
 
-  // login a user and trow error if user does not exisit or password is wrong
+
+  /**
+   * login in exisiting user to t=and return a token
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static login(req, res) {
+    // login a user and trow error if user does not exisit or password is wrong
     User.findOne({
       where: {
         email: req.body.email,
@@ -60,26 +78,30 @@ class Users {
         }
 
         if (user) {
-          bcrypt.compare(req.body.password, user.password, (err, response) => {
-            if (response) {
-              const token = jwt.sign({
-                id: user.id,
-                fullname: user.fullname,
-                role: user.role
-              }, secret, { expiresIn: '200h' });
-              return res
-                .status(200)
-                .json({
-                  message: `Welcome ${user.fullname} `,
-                  token
-                });
-            }
-            return res
-              .status(409)
-              .json({
-                message: 'Email or password incorrect'
-              });
-          });
+          bcrypt
+            .compare(
+              req.body.password, user.password,
+              (err, response) => {
+                if (response) {
+                  const token = jwt.sign({
+                    id: user.id,
+                    fullname: user.fullname,
+                    role: user.role
+                  }, secret, { expiresIn: '200h' });
+                  return res
+                    .status(200)
+                    .json({
+                      message: `Welcome ${user.fullname} `,
+                      token
+                    });
+                }
+                return res
+                  .status(409)
+                  .json({
+                    message: 'Email or password incorrect'
+                  });
+              }
+            );
         } else {
           res
             .status(404)
@@ -90,30 +112,51 @@ class Users {
       });
   }
 
-  // confirm if new email verfication token in parmas is valid
+
+  /**
+   * confirmEmail for new users that just sign up
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static confirmEmail(req, res) {
-    User.findOne({ where: { emailVerfication: req.params.token } })
+    // confirm if new email verfication token in parmas is valid
+    User.findOne({
+      where: {
+        emailVerfication: req.params.token
+      }
+    })
       .then((user) => {
-        if (user) {
-          user.update({
-            emailVerfication: null,
-          });
-          res.status(200).json({
-            message: 'Nice! Email Confirmed You are can now login!'
-          });
-        } else {
-          res.status(400).json({
-            message: 'Email verification failed token is not invalid'
-          });
-        }
+        user.update({
+          emailVerfication: null,
+        });
+        res.status(200).json({
+          message: 'Nice! Email Confirmed You are can now login!'
+        });
         if (user.email === process.env.ADMINEMAIL) {
-          user.update({ role: process.env.ADMIN });
+          user.update({
+            role: process.env.ADMIN
+          });
         }
+        return user;
       })
+      .catch(err => res.status(400).json({
+        message: 'Email verification failed token is not invalid',
+        err
+      }));
   }
 
 
-  // reset user password and send them a email link to a url token
+  /**
+   * send forgotpassword mail user to reset password
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static forgotpassword(req, res) {
     User.findOne({ where: { email: req.body.email } })
       .then((user) => {
@@ -137,11 +180,18 @@ class Users {
             message: 'Check your email for a password reset link'
           });
         }
-      })
-     
+      });
   }
 
-  // verify if reset password token is same as reset password in db then change the password
+
+  /**
+   * verify if reset password token in params
+   * is same as reset password in db then cha
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static passwordReset(req, res) {
     User.findOne({
       where: {
@@ -167,9 +217,17 @@ class Users {
             message: 'Invaild or expired reset token'
           });
         }
-      })
+      });
   }
 
+  /**
+   * make new admin
+   * is same as reset password in db then cha
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static makeAdmin(req, res) {
     User.findOne({
       where: {
@@ -177,12 +235,12 @@ class Users {
       }
     })
       .then((user) => {
-          user.update({
-            role: req.body.role
-          });
-          res.status(200).json({
-            message: 'user role changed'
-          });
+        user.update({
+          role: req.body.role
+        });
+        res.status(200).json({
+          message: 'user role changed'
+        });
       })
       .catch(err => res.status(400).json({ error: 'No user found', err }));
   }

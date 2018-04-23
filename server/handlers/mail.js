@@ -4,6 +4,7 @@ import path from 'path';
 
 require('dotenv').config();
 
+// add the config for the mail
 const transport = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -12,13 +13,15 @@ const transport = nodemailer.createTransport({
   }
 });
 
-
+// convert the templete for the email to html
 const handlebarsOptions = {
   viewEngine: 'handlebars',
   viewPath: path.join(__dirname, '../../template/email'),
   extName: '.html'
 };
 
+
+// send the mail for the server
 const transports = (mailOptions) => {
   transport.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -31,6 +34,7 @@ const transports = (mailOptions) => {
 
 transport.use('compile', hbs(handlebarsOptions));
 
+// mail for rsestpassword
 exports.resetpassword = (options) => {
   const mailOptions = {
     from: 'Event Manager <noreply@eventmanager.com>',
@@ -45,7 +49,7 @@ exports.resetpassword = (options) => {
   transports(mailOptions);
 };
 
-
+// semd the mail verification
 exports.emailVerfication = (options) => {
   const mailOptions = {
     from: 'Event Manager <noreply@eventmanager.com>',

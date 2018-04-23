@@ -1,9 +1,15 @@
 import { Event, Center } from '../models';
 import deletePicture from '../handlers/deleteImage';
 
-
+/** Class Users */
 class Centers {
-  // return a list of cennters in the db
+  /**
+   * return a list of centers in the db
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static getCenter(req, res) {
     Center.all()
       .then(center => res.status(200).json({
@@ -13,7 +19,13 @@ class Centers {
       .catch(error => res.status(400).json(error));
   }
 
-  // return just one center that the id matches the parmas id
+  /**
+   * return just one center that the id matches the parmas id
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static getOneCenter(req, res) {
     Center.findById(req.params.id, {
       include: [{
@@ -33,10 +45,19 @@ class Centers {
             message: 'center not found'
           });
         }
-      });
+      })
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
   }
 
-  // Admin can add new center to the db
+  /**
+   * create new center just one center that the id matches the parmas id
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static createCenter(req, res) {
     Center.create({
       centerName: req.body.name,
@@ -60,31 +81,36 @@ class Centers {
   }
 
 
-  // Admin can edit a center
+  /**
+   *  Admin can add new center to the db
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static editCenter(req, res) {
     const { oldpublicId, publicUrlId } = req.body;
     deletePicture(oldpublicId, publicUrlId);
     Center.findOne({
       where: {
         id: req.params.id,
-        userId: req.user.id
       }
     })
       .then((center) => {
-          center.update({
-            centerName: req.body.name,
-            city: req.body.city,
-            address: req.body.address,
-            about: req.body.about,
-            facility: req.body.facility,
-            availability: req.body.availability,
-            imageurl: req.body.imageurl,
-            imageId: req.body.publicUrlId,
-          });
-          res.status(200).json({
-            message: 'updated',
-            center
-          });
+        center.update({
+          centerName: req.body.name,
+          city: req.body.city,
+          address: req.body.address,
+          about: req.body.about,
+          facility: req.body.facility,
+          availability: req.body.availability,
+          imageurl: req.body.imageurl,
+          imageId: req.body.publicUrlId,
+        });
+        res.status(200).json({
+          message: 'updated',
+          center
+        });
       })
       .catch(err => res.status(404).json({
         message: 'You dont own any center with that id',
@@ -92,30 +118,36 @@ class Centers {
       }));
   }
 
-  // admin can delete a center
+  /**
+   * admin can delete a center
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static deleteCenter(req, res) {
-    Center.destroy({
+    Center.findOne({
       where: {
         id: req.params.id,
-        userId: req.user.id
       }
     })
       .then((center) => {
-        deletePicture(center.imageId, 'publicUrlId');
-        if(center){
+        if (center) {
+          deletePicture(center.imageId, 'publicUrlId');
+          center.destroy();
           res.status(200).json({
-            message: 'Center successfully deleted!'
+            message: 'center successfully deleted!'
           });
-        }else{
+        } else {
           res.status(404).json({
             message: 'You dont own any center with that id!!'
-          })
+          });
         }
-         
       })
-    }
+      .catch(err => res.status(400).json({
+        message: 'Invalid Parameter In Url'
+      }));
+  }
 }
 
 export default Centers;
-
-          

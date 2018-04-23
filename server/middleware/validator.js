@@ -2,9 +2,17 @@ import { Event } from '../models';
 
 require('dotenv').config();
 
-// use excpress validator to verify input
+/** Class Validate. */
 class Validate {
-  // check if current signin is a user or admin
+  /**
+   * verify the current user is a Admin
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static validateAdmin(req, res, next) {
     const roles = req.user.role;
     if (roles != process.env.ADMIN) {
@@ -15,8 +23,18 @@ class Validate {
     next();
   }
 
-  // check input to see if user filled the correct inforamtion for signup route
+  /**
+   * verify the validateSigup body
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static validateSigup(req, res, next) {
+    // check input to see if user
+    // filled the correct inforamtion for signup route
     req.sanitizeBody('fullname');
     req.checkBody(
       'fullname',
@@ -57,6 +75,15 @@ class Validate {
   }
 
   // check req,body for user input
+  /**
+   * verify the validatelogin body
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static validatelogin(req, res, next) {
     req.checkBody(
       'email',
@@ -86,6 +113,15 @@ class Validate {
   }
 
   // cheeck req.body when user add a event
+  /**
+   * verify the validateCreateEvent body
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static validateCreateEvent(req, res, next) {
     req.checkBody(
       'name',
@@ -120,6 +156,15 @@ class Validate {
   }
 
   // cheeck req.body for password  reset
+  /**
+   * verify the validateAdmin adds attatched on every request
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static passwordReset(req, res, next) {
     req.checkBody(
       'password',
@@ -141,7 +186,15 @@ class Validate {
     }
     next();
   }
-
+  /**
+   * verify the validateAdmin adds attatched on every request
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static forgetPassword(req, res, next) {
     req.checkBody(
       'email',
@@ -159,6 +212,15 @@ class Validate {
     next();
   }
 
+  /**
+   * verify the validateAdmin adds attatched on every request
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static validateCreateCenter(req, res, next) {
     req.checkBody(
       'name',
@@ -201,33 +263,45 @@ class Validate {
     next();
   }
 
-
+  /**
+   * verify added date input in the body
+   *
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *  @param {Object} next HTTP response object
+   *
+   * @returns {void}
+   */
   static checkDate(req, res, next) {
+    // check date is not in the past
     if ((new Date(req.body.date) - Date.now()) < 0) {
-  	  return res.status(400).json({
+      return res.status(400).json({
         message: 'You cant set a Past date for the event'
       });
     }
 
+    // check data is in the correct format
     if (isNaN(new Date(req.body.date))) {
       return res.status(400).json({
         message: 'invalid date format make sure it\'s YYYY-MM-DD format'
       });
     }
 
+    // check the time is in the correct format
     if (!req.body.time.match(/^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/)) {
       return res.status(400).json({
         message: 'invalid time format make sure it\'s HH:MM format 24 hours'
       });
     }
 
+    // check the center is a number
     if (isNaN(req.body.center)) {
       return res.status(400).json({
         message: 'Only Number allowed for Center'
       });
     }
 
-
+    // make sure not event add to the center is the same date
     Event.findOne({
       where: {
         centerId: req.body.center,

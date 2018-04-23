@@ -2,9 +2,16 @@ import React from 'react';
 import uuid from 'uuid-random';
 import PropTypes from 'prop-types';
 
+/**
+ * @description renders component to the DOM
+ *
+ * @function centerFrom
+ *
+ * @returns {JSX} JSX component for the form input
+ */
 const centerFrom = props => (
   <div className="card-body" >
-    <form onSubmit={props.onSubmit}>
+    <form onSubmit={props.onSubmit} onKeyPress={props.onKeyPress}>
       <div className="form-row">
         <div className="form-group col-md-12">
           <h5><label htmlFor="inputEmail4">Center Name</label></h5>
@@ -29,7 +36,11 @@ const centerFrom = props => (
           />
         </div>
         <div className="form-group col-md-6">
-          <h5><label htmlFor="inputPassword4">Availability</label></h5>
+          <h5>
+            <label htmlFor="inputPassword4">
+            Availability
+            </label>
+          </h5>
           <input
             type="text"
             value={props.availability}
@@ -40,7 +51,10 @@ const centerFrom = props => (
           />
         </div>
         <div className="form-group col-md-12">
-          <h5><label htmlFor="inputPassword4">Address</label></h5>
+          <h5>
+            <label htmlFor="inputPassword4">Address
+            </label>
+          </h5>
           <input
             type="text"
             value={props.address}
@@ -51,20 +65,25 @@ const centerFrom = props => (
           />
         </div>
         <div className="form-group col-md-12">
-          <h5><label htmlFor="inputPassword4">About</label></h5>
+          <h5>
+            <label htmlFor="inputPassword4">About
+            </label>
+          </h5>
           <textarea
             type="text"
             value={props.about}
             onChange={props.onChange}
             name="about"
-            id="exampleFormControlTextarea1" 
+            id="exampleFormControlTextarea1"
             rows="5"
             className="form-control form-control-lg"
             required
           />
         </div>
         <div className="form-group col-md-12">
-          <h5><label htmlFor="inputPassword4">Add Image</label></h5>
+          <h5>
+            <label htmlFor="inputPassword4">Add Image</label>
+          </h5>
           <input
             type="file"
             onChange={props.handleImageChange}
@@ -101,13 +120,25 @@ const centerFrom = props => (
       <br />
       <ul className="list-group col-md-6">
         {props.facility.map((list, i) =>
-          (<li className="list-group-item d-flex justify-content-between align-items-center" key={uuid()}>
+          (<li
+            className="list-group-item d-flex justify-content-between align-items-center"
+            key={uuid()}
+          >
             {list}
-            <span className="badge badge-danger badge-pill point" onClick={() => props.removeFacility(i)}>X</span>
+            <span
+              className="badge badge-danger badge-pill point"
+              onClick={() =>
+            props.removeFacility(i)}
+            >X
+            </span>
            </li>))}
       </ul>
       <br />
-      <button type="submit" className="btn btn-primary btn-lg">Submit</button>
+      <button
+        type="submit"
+        className="btn btn-primary btn-lg"
+      >Submit
+      </button>
       <br />
       <br />
       <div className="progress">
@@ -131,14 +162,20 @@ centerFrom.propTypes = {
   onClick: PropTypes.func.isRequired,
   progress: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   handleImageChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
   city: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   values: PropTypes.string.isRequired,
   facility: PropTypes.array.isRequired,
+  imagePreview: PropTypes.object
+};
+
+centerFrom.defaultProps = {
+  name: 'trest',
+  imagePreview: {}
 };
 
 export default centerFrom;

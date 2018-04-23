@@ -7,8 +7,20 @@ import {withRouter} from "react-router-dom";
 
 
 export default function (ComposedComponent) {
+/**
+   * @class Authenticate
+   *
+   * @extends {React.Component}
+ */
   class Authenticate extends Component {
-      componentWillMount(){
+  /**
+     * @description run action on component 
+     * verify if user is sign in or not
+     * @param {any} props.isAuthenticated
+     *
+     * @memberof Signup
+   */
+    componentWillMount(){
           if(this.props.isAuthenticated){
             this.props.history.push("/")
         }
@@ -23,7 +35,10 @@ export default function (ComposedComponent) {
     isAuthenticated: state.auth.isAuthenticated
 })
 
-    return withRouter(connect(mapStateToProps)(Authenticate));
+    return withRouter(
+      connect(mapStateToProps)
+      (Authenticate)
+    );
 }
 
 

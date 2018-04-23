@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PickCenter from '../../Center/PickCenter';
 
+/**
+ * @description renders component to the DOM
+ *
+ * @function eventForm
+ *
+ * @returns {JSX} component for the form input
+ */
 const eventForm = props => (
   <div className="card-body" >
     <form onSubmit={props.onSubmit}>
@@ -42,7 +49,13 @@ const eventForm = props => (
       </div>
 
       <div className="form-group">
-        <h5><label htmlFor="exampleFormControlTextarea1">purpose</label></h5>
+        <h5>
+          <label
+            htmlFor="exampleFormControlTextarea1"
+          >
+          purpose
+          </label>
+        </h5>
         <textarea
           className="form-control"
           value={props.purpose}
@@ -62,7 +75,6 @@ const eventForm = props => (
       >
              Select Center
       </button>
-
       <div
         className="modal fade bd-example-modal-lg"
         tabIndex="-1"
@@ -79,7 +91,11 @@ const eventForm = props => (
       </div>
       <br />
       <br />
-      <button type="submit" className="btn btn-primary btn-lg">Submit</button>
+      <button
+        type="submit"
+        className="btn btn-primary btn-lg"
+      >Submit
+      </button>
     </form>
   </div>
 

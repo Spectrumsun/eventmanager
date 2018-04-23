@@ -318,7 +318,23 @@ describe('Event Manager Center Test', () => {
           done();
         });
     }
-);
+  );
+
+  it(
+    'return error for imvalied url imvent event when user is signin in',
+    (done) => {
+      request(server)
+        .get('/api/v1/centers/1swew')
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('Invalid Parameter In Url');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
 
   // it('return error if center is not found in db when deleteing delete center', (done) => {
   //   request(server)

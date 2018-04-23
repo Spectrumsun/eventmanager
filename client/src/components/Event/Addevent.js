@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
 
+/**
+ * @class AddEvent
+ *
+ * @extends {React.Component}
+ */
 class AddEvent extends Component {
    state = {
      name: '',
@@ -14,10 +19,29 @@ class AddEvent extends Component {
      center: ''
    }
 
+   /**
+   * @description update component state with current value in dom
+   *
+   * @param {any} event
+   *
+   * @memberof AddEvent
+   *
+   * @returns {void}
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
+  /**
+   * @description vaildate data in state
+   * sends state to api with action dispatch
+   * @param {any} event
+   *
+   * @memberof AddEvent
+   *
+   * @returns {void}
+   */
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.name === '') {
@@ -38,10 +62,25 @@ class AddEvent extends Component {
     }
   }
 
+  /**
+   * @description get selectCenter id and state state
+   * @param {any} event
+   *
+   * @memberof AddEvent
+   *
+   * @returns {void}
+   */
   selectCenter = (id) => {
     this.state.center = id;
   }
 
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof AddEvent
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
     return (
       <div className="container" style={{ paddingTop: '100px' }}>
@@ -71,7 +110,8 @@ AddEvent.propTypes = {
 
 
 const mapDispatchToProps = dispatch => ({
-  initPostEvent: (input, history) => dispatch(action.initPostEvent(input, history)),
+  initPostEvent: (input, history) =>
+    dispatch(action.initPostEvent(input, history)),
 });
 
 

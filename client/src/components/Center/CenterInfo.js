@@ -6,11 +6,32 @@ import uuid from 'uuid-random';
 import * as action from '../../store/actions/index';
 import Footer from '../UI/Footer';
 
+/**
+ * @class CenterInfo
+ *
+ * @extends {React.Component}
+ */
 class CenterInfo extends Component {
+  /**
+   * @description run action on component mount to reload data
+   *
+   * @param {any} props.params.id
+   *
+   * @memberof CenterInfo
+   */
   componentDidMount() {
     this.props.onFetOneCenters(this.props.match.params.id);
   }
 
+  /**
+   * @description deletecCenter a event when the delete button is clicked
+   *
+   * @param {any} event
+   *
+   * @memberof CenterInfo
+   *
+   * @returns {void}
+   */
   deleteCenter = (e) => {
     e.preventDefault();
     this.props.onDeleteCenter(
@@ -19,9 +40,17 @@ class CenterInfo extends Component {
     );
   }
 
-
+  /**
+   * @description renders component to the DOM
+   *
+   * @memberof CenterInfo
+   *
+   * @returns {JSX} JSX representation of component
+   */
   render() {
-    const admin = this.props.auth.user === null ? 'nouser' : this.props.auth.user.role;
+    const admin = this.props.auth.user === null
+      ? 'nouser' :
+      this.props.auth.user.role;
     const showbutton = (
       <div>
         <Link
@@ -50,24 +79,24 @@ class CenterInfo extends Component {
     const set = this.props.loadedCenter;
     const isLoading = (
       <div>
-        <div className="container" style={{ paddingTop: '100px' }}>
-          <div className="card loginCard" style={{ width: '45rem' }}>
-            <div className="card-header dark">
-              <h1 className="color">Center Info</h1>
-            </div>
-            <div className="loader" />
-            <p className="center-item shadow" >
-              Unable to connect. Refresh your browser or check your internet connection
-            </p>
-          </div>
-        </div>
+        <div className="container" style={{ paddingTop: '300px' }} />
+        <div className="loader" />
+        <p className="center-item shadow" >
+        Unable to connect Resource Not Found or invalid Url.
+        Refresh your browser or check your internet connection
+        </p>
       </div>
+
     );
 
     const center = (
       <div style={{ paddingTop: '60px', backgroundColor: 'white' }}>
         <div className="card-header dark">
-          <h1 className="container color centerTitle">Center Info {set.centerName}</h1>
+          <h1
+            className="container color centerTitle"
+          >
+          Center Info {set.centerName}
+          </h1>
         </div>
         <img
           className="card-img-top"
@@ -76,8 +105,13 @@ class CenterInfo extends Component {
           alt="center"
         />
         <div>
-          <div className="container card-body" style={{ width: '45rem' }}>
-            <h1><strong>{set.centerName}</strong></h1>
+          <div
+            className="container card-body"
+            style={{ width: '45rem' }}
+          >
+            <h1>
+              <strong>{set.centerName}</strong>
+            </h1>
             <h6 className="list-group-item">{set.address}</h6>
             <br />
             <div className="list-group-item centerlist" >
@@ -88,37 +122,58 @@ class CenterInfo extends Component {
             </div>
             <br />
             <h1><strong>City</strong></h1>
-            <h6 className="list-group-item col-md-4">{set.city}</h6>
+            <h6
+              className="list-group-item col-md-4"
+            >{set.city}
+            </h6>
             <br />
             <h5 ><strong>Availability</strong></h5>
-            <h6 className="list-group-item col-md-4">{set.availability}</h6>
+            <h6
+              className="list-group-item col-md-4"
+            >{set.availability}
+            </h6>
             <br />
-            <h5><strong>Avaliable Facilities</strong></h5>
+            <h5><strong>
+              Avaliable Facilities
+            </strong>
+            </h5>
             <ul className="list-group col-md-4 text-capitalize">
               {set && set.facility && set.facility.map(list =>
-                    (<li
-                      className="list-group-item centerlist"
-                      key={uuid()}
-                    >
-                      {list}
-                     </li>))}
+                (<li
+                  className="list-group-item centerlist"
+                  key={uuid()}
+                >{list}
+                </li>))}
             </ul>
             <br />
             <h5><strong>Events</strong></h5>
             {set && set.events && set.events.map(eve =>
-                  (<Link to={`/events/${eve.id}`} key={eve.id} style={{ color: 'black' }}>
-                    <div className="card d-lg-inline-block" style={{ width: '15rem' }}>
+                  (<Link
+                    to={`/events/${eve.id}`}
+                    key={eve.id}
+                    style={{ color: 'black' }}
+                  >
+                    <div
+                      className="card d-lg-inline-block"
+                      style={{ width: '15rem' }}
+                    >
                       <img
                         className="card-img-top"
-                        src="https://res.cloudinary.com/skybound/image/upload/v1522444977/eventmanager/static/image1.jpg"
+                        src={set.imageurl}
                         alt="Card cap"
                       />
                       <div className="card-body">
-                        <h4 className="card-title">{eve.eventName}</h4>
-                        <p className="card-text">{eve.eventdate}</p>
+                        <h4
+                          className="card-title"
+                        >{eve.eventName}
+                        </h4>
+                        <p
+                          className="card-text"
+                        >{eve.eventdate}
+                        </p>
                       </div>
                     </div>
-                   </Link>))}
+                  </Link>))}
             <br />
             {admin === 'ADMIN1' ? showbutton : null}
           </div>
@@ -127,14 +182,55 @@ class CenterInfo extends Component {
       </div>
     );
 
-
     return (
       <div>
-        { this.props.loadedCenter === undefined || this.props.error != false ? isLoading : center}
+        {
+          this.props.loadedCenter === undefined ||
+          this.props.error != false ? isLoading : center
+        }
       </div>
     );
   }
 }
+
+CenterInfo.propTypes = {
+  onDeleteCenter: PropTypes.func.isRequired,
+  onFetOneCenters: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      role: PropTypes.string,
+    })
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.string,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+
+  loadedCenter: PropTypes.shape({
+    id: PropTypes.number,
+    eventName: PropTypes.string,
+    eventdate: PropTypes.string,
+    time: PropTypes.string,
+    purpose: PropTypes.string,
+  }),
+};
+
+CenterInfo.defaultProps = {
+  loadedCenter: PropTypes.shape({
+    userId: 1,
+    centerName: 'eventName',
+    address: '2018-10-02',
+    time: '11:00',
+    purpose: 'fun'
+  }),
+};
 
 
 const mapStateToProps = state => ({
@@ -144,9 +240,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFetOneCenters: id => dispatch(action.getOneCenter(id)),
-  onDeleteCenter: (id, history) => dispatch(action.initDeleteCenter(id, history))
+  onFetOneCenters: id =>
+    dispatch(action.getOneCenter(id)),
+  onDeleteCenter: (id, history) =>
+    dispatch(action.initDeleteCenter(id, history))
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CenterInfo);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CenterInfo);

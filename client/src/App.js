@@ -1,7 +1,12 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+  compose,
+  combineReducers
+} from 'redux';
 import thunk from 'redux-thunk';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
@@ -19,11 +24,12 @@ import { setUser } from './store/actions/userAction';
 
 require('bootstrap');
 
-// axios.defaults.baseURL = 'http://localhost:8000/api/v1';
-axios.defaults.baseURL = 'https://eventappmanager.herokuapp.com/api/v1';
+axios.defaults.baseURL = 'http://localhost:8000/api/v1';
+// const baseUrl = 'https://eventappmanager.herokuapp.com/api/v1';
+// axios.defaults.baseURL = baseUrl;
 
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const tool = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = tool;
 const rootReducer = combineReducers({
   centers: centerReducer,
   users: userReducer,
@@ -31,7 +37,10 @@ const rootReducer = combineReducers({
   auth: authReducer
 });
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 store.dispatch(setUser(jwt.decode(localStorage.jwtToken)));
 
 

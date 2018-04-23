@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   events: [],
-  loadedEvent: [],
+  loadedEvent: {},
   addEvent: [],
   editEvent: [],
   delete: [],

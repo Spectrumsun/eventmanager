@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
+/**
+ * @description renders component to the DOM
+ *
+ * @function display
+ *
+ * @returns {JSX} JSX component to disply the event
+ */
 const display = props => (
   <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
     <img
       className="card-img-top"
-      src="https://res.cloudinary.com/skybound/image/upload/v1522444977/eventmanager/static/image1.jpg"
+      src={props.centerImage}
       style={{ objectFit: 'cover', height: '15rem' }}
       alt="Card cap"
     />
@@ -23,6 +29,7 @@ display.propTypes = {
   eventName: PropTypes.string.isRequired,
   eventdate: PropTypes.string.isRequired,
   purpose: PropTypes.string.isRequired,
+  centerImage: PropTypes.string.isRequired
 };
 
 export default display;

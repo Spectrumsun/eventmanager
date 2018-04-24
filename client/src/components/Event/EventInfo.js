@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Footer from '../UI/Footer';
+import Loading from '../UI/Loading';
 import * as action from '../../store/actions/index';
 
 /**
@@ -47,19 +48,6 @@ class EventInfo extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
-    const isLoading = (
-      <div>
-        <div className="container" style={{ paddingTop: '250px' }} />
-        <div className="loader" />
-        <p
-          className="center-item shadow"
-        >
-              Unable to connect.
-              Refresh your browser or check your internet connection
-        </p>
-      </div>
-    );
-
     const {
       eventName,
       eventdate,
@@ -185,7 +173,7 @@ class EventInfo extends Component {
                       >{centers.centerName}
                       </li>
                     </h6>
-                    </Link> }
+                  </Link> }
                 </ul>
                 <br />
                 {
@@ -208,7 +196,7 @@ class EventInfo extends Component {
           undefined ||
           this.props.error !=
           false ?
-          isLoading : load
+            <Loading /> : load
           }
       </div>
     );

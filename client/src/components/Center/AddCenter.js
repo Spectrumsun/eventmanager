@@ -88,6 +88,7 @@ class AddCenter extends Component {
        fd.append('file', this.state.image);
        fd.append('public_id', id);
        fd.append('upload_preset', 'eventmanager');
+       console.log(fd)
        axios
          .post(
            'https://api.cloudinary.com/v1_1/skybound/image/upload',

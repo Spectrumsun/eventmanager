@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Display from './getEvent';
+import Loading from '../UI/Loading';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
 
@@ -37,35 +38,24 @@ class ViewEvent extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
-    const isLoading = (
-      <div>
-        <div className="loader" />
-        <p
-          className="center-item shadow"
-        >
-        Unable to connect.
-        Refresh your browser or check your internet connection
-        </p>
-      </div>
-    );
     const events = this.props.events ===
      undefined || this.props.error != false ?
-      isLoading : this.props.events.map(event =>
-        (<Link
-          to={`/events/${event.id}`}
-          key={event.id}
-          style={{ color: 'black' }}
-        >
-          <Display
-            eventName={event.eventName}
-            eventdate={event.eventdate}
-            purpose={event.purpose}
-            centerImage={event.centers === null ?
+       <Loading /> : this.props.events.map(event =>
+         (<Link
+           to={`/events/${event.id}`}
+           key={event.id}
+           style={{ color: 'black' }}
+         >
+           <Display
+             eventName={event.eventName}
+             eventdate={event.eventdate}
+             purpose={event.purpose}
+             centerImage={event.centers === null ?
               imageurl : event.centers.imageurl
             }
-          />
-         </Link>
-        ));
+           />
+          </Link>
+         ));
     /**
    * @description renders component to the DOM
    *

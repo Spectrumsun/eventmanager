@@ -197,7 +197,7 @@ describe('Event Manager Event Test', () => {
         .post('/api/v1/events')
         .send({
           name: 'wedding party 2',
-          date: '2018-05-05',
+          date: '2018-08-10',
           time: '12:00',
           purpose: 'love',
           center: 2,
@@ -222,7 +222,7 @@ describe('Event Manager Event Test', () => {
         .post('/api/v1/events')
         .send({
           name: 'dance dance',
-          date: '2018-06-05',
+          date: '2018-10-05',
           time: '12:00',
           purpose: 'dacing hahha!!!',
           center: 2,
@@ -304,7 +304,13 @@ describe('Event Manager Event Test', () => {
     (done) => {
       request(server)
         .put('/api/v1/events/1')
-        .send(testData.newEvent10)
+        .send({
+          name: 'dance dance',
+          date: '2018-08-05',
+          time: '12:00',
+          purpose: 'dacing hahha!!!',
+          center: 2,
+        })
         .set('Authorization', validToken.token)
         .end((error, res) => {
           expect(201);

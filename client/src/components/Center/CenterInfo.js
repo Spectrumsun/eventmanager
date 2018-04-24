@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import uuid from 'uuid-random';
 import * as action from '../../store/actions/index';
 import Footer from '../UI/Footer';
-
+import Loading from '../UI/Loading';
 /**
  * @class CenterInfo
  *
@@ -74,21 +74,7 @@ class CenterInfo extends Component {
         </Link>
       </div>
     );
-
-
     const set = this.props.loadedCenter;
-    const isLoading = (
-      <div>
-        <div className="container" style={{ paddingTop: '300px' }} />
-        <div className="loader" />
-        <p className="center-item shadow" >
-        Unable to connect Resource Not Found or invalid Url.
-        Refresh your browser or check your internet connection
-        </p>
-      </div>
-
-    );
-
     const center = (
       <div style={{ paddingTop: '60px', backgroundColor: 'white' }}>
         <div className="card-header dark">

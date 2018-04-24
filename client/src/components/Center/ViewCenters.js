@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Loading from '../UI/Loading';
 import Display from './getCenter';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
@@ -32,18 +33,9 @@ class Centers extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
-    const isLoading = (
-      <div className="container" style={{ paddingTop: '250px' }}>
-        <div className="loader" />
-        <p className="center-item shadow">
-        Unable to connect Reaource Not Found or invalid Url.
-        Refresh your browser or check your internet connection
-        </p>
-      </div>
-    );
     const centers = this.props.center ===
     undefined || this.props.error != false ?
-      isLoading : this.props.center.map(center =>
+      <Loading /> : this.props.center.map(center =>
         (<Link
           to={`/centers/${center.id}`}
           key={center.id}

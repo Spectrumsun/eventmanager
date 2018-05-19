@@ -17,6 +17,8 @@ export const getSingleCenter = (center) => {
   }
 } 
 
+
+
 export const addCenters = (center) => {
   return {
     type: actionTypes.ADD_CENTER,
@@ -40,11 +42,21 @@ export const centerError = (error) => {
 };
 
 
-export const initCenters = () => {
+
+export const pagenation = (pagination) => {
+  return {
+    type: actionTypes.PAGE_NATION,
+    pagination: pagination
+  }
+}
+
+
+export const initCenters = (limit, page) => {
   return dispatch => {
-    return axios.get('/centers')
+     axios.get('/centers?limit='+limit+'&page='+page)
       .then((res) => {
-        dispatch(getAllCenters(res.data.center));
+        dispatch(getAllCenters(res.data.result));
+        dispatch(pagenation(res.data))
       })
       .catch((error) => {
         dispatch(centerError(error))
@@ -104,7 +116,6 @@ export const initEditCenter = (id, center, history) => {
       )
   }
 }
-
 
 
 

@@ -104,6 +104,7 @@ router.get(
   centerController.getCenter
 );
 
+
 // GET a single  Center with events added to the center
 router.get(
   '/centers/:id',
@@ -135,5 +136,11 @@ router.delete(
   validator.validateAdmin,
   centerController.deleteCenter
 );
+
+// A catch-all routes
+router.use('*', (req, res) =>
+  res.status(404).json({
+    message: 'That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫',
+  }));
 
 export default router;

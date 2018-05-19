@@ -10,12 +10,64 @@ class Centers {
    *
    * @returns {void}
    */
+  // static getCenter(req, res) {
+  //   // const { limit, offset, searchString } = request.query;
+  //   Center.findAndCountAll({
+  //     attributes: ['id', 'centerName', 'city', 'address',
+  //       'availability', 'imageurl', 'imageId', 'about', 'facility'],
+  //     limit: 2,
+  //     order: [['createdAt', 'DESC']],
+  //     offset: 5,
+  //   })
+  //     .then(center => res.status(200).json({
+  //       message: 'success',
+  //       center
+  //     }))
+  //     .catch(error => res.status(400).json(error));
+  // }
+
+
+  /**
+   * return a list of centers in the db
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
   static getCenter(req, res) {
-    Center.all()
-      .then(center => res.status(200).json({
-        message: 'success',
-        center
-      }))
+    let { limit, page } = req.query;
+    if (limit === undefined && page === undefined) {
+      limit = 6;
+      page = 1;
+    }
+
+    if (Number.isNaN(parseInt(limit, 10)) ||
+        Number.isNaN(parseInt(page, 10))) {
+      return res.status(400).json({
+        message: 'Limit or Page must be a number',
+      });
+    }
+
+    const offset = limit * (page - 1);
+    Center.findAndCountAll({
+      attributes: {
+        exclude: ['updatedAt', 'createdAt']
+      },
+      limit,
+      order: [['createdAt', 'DESC']],
+      offset,
+    })
+      .then((data) => {
+        const pages = Math.ceil(data.count / limit);
+
+        const users = data.rows;
+        res.status(200).json({
+          message: 'success',
+          result: users,
+          count: data.count,
+          pages
+        });
+      })
       .catch(error => res.status(400).json(error));
   }
 
@@ -28,11 +80,17 @@ class Centers {
    */
   static getOneCenter(req, res) {
     Center.findById(req.params.id, {
-      include: [{
-        model: Event,
-        as:
-        'events'
-      }],
+      attributes: ['centerName', 'city', 'id',
+        'address', 'availability', 'imageurl',
+        'imageId', 'about', 'facility'],
+      include: [
+        {
+          model: Event,
+          as: 'events',
+          attributes: ['eventdate']
+
+        }
+      ],
     })
       .then((center) => {
         if (center) {

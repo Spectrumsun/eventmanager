@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
   center: [],
+  pagination: {},
   loadedCenter: {},
   newCenter: [],
   editCenter: [],
@@ -15,6 +16,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         center: action.center,
         error: false
+      };
+    case actionTypes.PAGE_NATION:
+      return {
+        ...state,
+        pagination: action.pagination,
       };
     case actionTypes.GET_SINGLE_CENTER:
       return {

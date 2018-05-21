@@ -13,6 +13,10 @@ export const CENTER_ERROR = 'CENTER_ERROR';
 export const CENTER_ID = 'CENTER_ID';
 export const PAGE_NATION = 'PAGE_NATION';
 
+
+export const SEARCH_RESULT = 'SEARCH_RESULT';
+export const SEARCH_ERROR = 'SEARCH_ERROR';
+
 export const GET_ALL_EVENT = 'GET_ALL_EVENT';
 export const GET_SINGLE_EVENT = 'GET_SINGLE_EVENT';
 export const ADD_EVENT = 'ADD_EVENT';

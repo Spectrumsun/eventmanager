@@ -16,7 +16,11 @@ class EditEvent extends Component {
      date: this.props.loadedEvent.eventdate,
      time: this.props.loadedEvent.time,
      purpose: this.props.loadedEvent.purpose,
-     center: this.props.loadedEvent.centerId
+     center: this.props.loadedEvent.centerId,
+     totalPage: '',
+     next: 1,
+     centerName: '',
+     pageNmber: ''
    }
 
   /**
@@ -72,7 +76,34 @@ class EditEvent extends Component {
        );
      }
    }
-   /**
+
+   getCenter = (e) => {
+     this.props.onInitCenters(3, 1);
+   }
+
+   add = () => {
+     this.setState({ totalPage: this.props.page.pages });
+     this.state.totalPage = this.props.page.pages;
+     if (this.state.next < this.state.totalPage) {
+       const me = ++this.state.next;
+       this.state.pageNmber = me;
+       this.setState({ pageNmber: me });
+       this.setState({ next: me });
+       this.props.onInitCenters(3, me);
+     }
+   }
+
+
+  minus = () => {
+    const limit = 1;
+    if (limit < this.state.next) {
+      const me = --this.state.next;
+      this.state.pageNmber = me;
+      this.setState({ pageNmber: me });
+      this.props.onInitCenters(3, me);
+    }
+  }
+  /**
    * @description get selectCenter id and state state
    * @param {any} event
    *
@@ -80,19 +111,36 @@ class EditEvent extends Component {
    *
    * @returns {void}
    */
-   selectCenter = (id) => {
-     this.state.center = id;
-   }
+  selectCenter = (id, myCenter) => {
+    this.state.center = id;
+    this.setState({ centerName: myCenter });
+  }
 
-   /**
+  /**
    * @description renders component to the DOM
    *
    * @memberof EditEvent
    *
    * @returns {JSX} JSX representation of component
    */
-   render() {
-     return (
+  render() {
+    const numberOfPages = (
+       <li className="page-item">
+         <a className="page-link">
+                Page {this.state.pageNmber} of {this.state.totalPage}
+         </a>
+       </li>);
+    const numberOfPages1 = (
+       <li className="page-item">
+         <a className="page-link">
+                  Page 1  of {this.props.page.pages }
+         </a>
+       </li>);
+    const showCenterNane = (
+       <h6 className="list-group-item col-md-9">
+        Center Name : {this.state.centerName}
+       </h6>);
+    return (
        <div className="container" style={{ paddingTop: '100px' }}>
          <div className="card card w-50 loginCard">
            <div className="card-header dark">
@@ -105,12 +153,20 @@ class EditEvent extends Component {
              date={this.state.date}
              time={this.state.time}
              purpose={this.state.purpose}
-             selectCenter={id => this.selectCenter(id)}
+             getCenter={this.getCenter}
+             selectCenter={(id, myCenter) => this.selectCenter(id, myCenter)}
+             add={this.add}
+             minus={this.minus}
+             centerName={this.state.centerName}
+             numberOfPages={numberOfPages}
+             totalPage={this.state.totalPage}
+             numberOfPages1={numberOfPages1}
+             showCenterNane={showCenterNane}
            />
          </div>
        </div>
-     );
-   }
+    );
+  }
 }
 
 EditEvent.propTypes = {
@@ -130,11 +186,13 @@ EditEvent.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  onInitCenters: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = state => ({
   loadedEvent: state.events.loadedEvent,
+  page: state.centers.pagination,
   error: state.events.error
 });
 
@@ -142,6 +200,8 @@ const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
   initEditEvent: (id, events, history) =>
     dispatch(action.initEditEvent(id, events, history)),
+  onInitCenters: (limit, page) =>
+    dispatch(action.initCenters(limit, page))
 });
 
 

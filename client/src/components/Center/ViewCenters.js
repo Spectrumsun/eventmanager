@@ -15,8 +15,9 @@ import * as actions from '../../store/actions/index';
  */
 class Centers extends Component {
   state = {
-    totalPage: 5,
-    next: 1
+    totalPage: '',
+    next: 1,
+    pageNmber: ''
   }
 
 
@@ -34,8 +35,10 @@ class Centers extends Component {
 
   add = () => {
     this.setState({ totalPage: this.props.page.pages });
+    this.state.totalPage = this.props.page.pages;
     if (this.state.next < this.state.totalPage) {
       const me = ++this.state.next;
+      this.setState({ pageNmber: me });
       this.setState({ next: me });
       this.props.onInitCenters(6, me);
     }
@@ -46,26 +49,10 @@ class Centers extends Component {
     const limit = 1;
     if (limit < this.state.next) {
       const me = --this.state.next;
+      this.setState({ pageNmber: me });
       this.props.onInitCenters(6, me);
     }
   }
-
-
-  /**
-   * @description run action on component mount to reload data
-   *
-   * @param {any} props.params.token
-   *
-    * @memberof EditEvent
-   */
-  _page(event, previous) {
-    if (previous) {
-      this._getUsers(this.state.topId, previous);
-    } else {
-      this._getUsers(this.state.bottomId, previous);
-    }
-  }
-
 
   /**
    * @description renders component to the DOM
@@ -88,8 +75,20 @@ class Centers extends Component {
             address={center.address}
             image={center.imageurl}
           />
-         </Link>
+        </Link>
         ));
+    const numberOfPages = (
+      <li className="page-item">
+          <a className="page-link">
+                Page {this.state.pageNmber} of {this.state.totalPage}
+            </a>
+        </li>);
+    const numberOfPages1 = (
+      <li className="page-item">
+        <a className="page-link">
+                Page 1  of {this.props.page.pages }
+        </a>
+      </li>);
     return (
       <div>
         <div className="center " style={{ paddingTop: '100px' }}>
@@ -99,8 +98,9 @@ class Centers extends Component {
             <li className="page-item" onClick={this.minus}>
               <a className="page-link" >Previous</a>
             </li>
+            {this.state.totalPage === '' ? numberOfPages1 : numberOfPages}
             <li className="page-item" onClick={this.add}>
-              <a className="page-link">Next</a>
+              <a className="page-link">Next </a>
             </li>
           </ul>
         </div>
@@ -113,7 +113,8 @@ class Centers extends Component {
 Centers.propTypes = {
   onInitCenters: PropTypes.func.isRequired,
   center: PropTypes.array.isRequired,
-  error: PropTypes.bool.isRequired
+  error: PropTypes.object.isRequired,
+  page: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

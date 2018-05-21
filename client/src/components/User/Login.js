@@ -63,7 +63,8 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div className="container" style={{ paddingTop: '200px' }}>
+        <div className="container" style={{ paddingTop: '150px' }}>
+          <h3 className="center">Event Manager</h3>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Login</h3>
@@ -92,7 +93,7 @@ class Login extends Component {
                     to="/forgotpassword"
                     className="center-item"
                   >Forgot password?
-                  </Link>
+                          </Link>
                   </small>
 
                   <div className="text-center">

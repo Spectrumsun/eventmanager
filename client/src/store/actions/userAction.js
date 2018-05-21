@@ -75,6 +75,20 @@ export const initUserLogin = (inputs, history) => {
   };
 };
 
+export const initaddAdmin = ( state, history) => {
+  return dispatch => {
+    axios.post( '/users/setadmin?token='+localStorage.jwtToken, state)
+    .then((res) => {
+      toast.success(res.data.message)
+      history.push('/')
+    })
+    .catch((error) => {
+      toast.error(error.response.data.error)
+      //history.replace('/');
+    })
+  }
+}
+
 
 export const initUserLogout = (history) => {
   return dispatch => {

@@ -121,7 +121,7 @@ class CenterInfo extends Component {
             <br />
             <h5><strong>
               Avaliable Facilities
-            </strong>
+                </strong>
             </h5>
             <ul className="list-group col-md-4 text-capitalize">
               {set && set.facility && set.facility.map(list =>
@@ -129,37 +129,23 @@ class CenterInfo extends Component {
                   className="list-group-item centerlist"
                   key={uuid()}
                 >{list}
-                </li>))}
+                 </li>))}
             </ul>
             <br />
             <h5><strong>Events</strong></h5>
             {set && set.events && set.events.map(eve =>
-                  (<Link
-                    to={`/events/${eve.id}`}
-                    key={eve.id}
-                    style={{ color: 'black' }}
+                  (<div
+                    key={Math.floor(Math.random() * 10906) + 30}
+                    className="card d-lg-inline-block"
+                    style={{ width: '15rem' }}
                   >
-                    <div
-                      className="card d-lg-inline-block"
-                      style={{ width: '15rem' }}
-                    >
-                      <img
-                        className="card-img-top"
-                        src={set.imageurl}
-                        alt="Card cap"
-                      />
-                      <div className="card-body">
-                        <h4
-                          className="card-title"
-                        >{eve.eventName}
-                        </h4>
-                        <p
-                          className="card-text"
-                        >{eve.eventdate}
-                        </p>
-                      </div>
+                    <div className="card-body">
+                      <p className="card-text">
+                        {eve.eventdate}
+                      </p>
                     </div>
-                  </Link>))}
+                   </div>
+                ))}
             <br />
             {admin === 'ADMIN1' ? showbutton : null}
           </div>
@@ -191,7 +177,7 @@ CenterInfo.propTypes = {
     })
   }).isRequired,
   history: PropTypes.shape({
-    push: PropTypes.string,
+    push: PropTypes.func,
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

@@ -65,6 +65,7 @@ router.get(
 // GET Events
 router.get(
   '/events',
+  auth.verifyToken,
   eventController.getEvent
 );
 
@@ -104,6 +105,10 @@ router.get(
   centerController.getCenter
 );
 
+router.get(
+  '/centers/search',
+  centerController.searchCenter
+);
 
 // GET a single  Center with events added to the center
 router.get(

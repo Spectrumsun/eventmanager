@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import toast from 'toastr';
 import PropTypes from 'prop-types';
 import Router from '../Route/Route';
 import * as action from '../../store/actions/index';
@@ -16,6 +17,26 @@ const styles = {
  * @extends {React.Component}
  */
 class NavBar extends Component {
+  state = {
+    search: '',
+  }
+
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.search === '') {
+      toast.error('Search box cant be empty');
+    } else {
+      this.props.onSearch(this.state.search, 6, 1).then((done) => {
+        this.props.history.push('/searchcenter');
+      });
+    }
+  }
+
   /**
    * @description delete token
   * log user out and redirect to home
@@ -42,6 +63,14 @@ class NavBar extends Component {
     const admin = this.props.auth.user === null ?
       'nouser' : this.props.auth.user.role;
 
+    const myEvent = (
+      <Link
+        to="/events"
+        className="dropdown-item"
+      >My Event
+      </Link>
+
+    );
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
@@ -103,6 +132,12 @@ class NavBar extends Component {
             className="dropdown-item"
           >View Centers
           </Link>
+          <div className="dropdown-menu" />
+          <Link
+            to="/addAdmin"
+            className="dropdown-item"
+          >Add Admin
+          </Link>
         </div>
       </li>
     );
@@ -118,6 +153,7 @@ class NavBar extends Component {
             width="30"
             height="30"
             alt=""
+            className="d-inline-block align-top"
           />
           </a>
           <button
@@ -134,7 +170,22 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link to="/" className="nav-link" >Home<span className="sr-only">(current)</span></Link>
+                <Link to="/" className="nav-link" >
+                Event Manager<span className="sr-only">
+                (current)
+                </span>
+                </Link>
+              </li>
+              <li className="nav-item active">
+                <Link
+                  to="/"
+                  className="nav-link"
+                >
+                Home
+                  <span className="sr-only">
+                (current)
+                  </span>
+                </Link>
               </li>
               <li className="nav-item dropdown">
                 <a
@@ -158,11 +209,7 @@ class NavBar extends Component {
                   >Add Event
                   </Link>
                   <div className="dropdown-divider" />
-                  <Link
-                    to="/events"
-                    className="dropdown-item"
-                  >View Events
-                  </Link>
+                  { isAuthenticated ? myEvent : null }
                   <div className="dropdown-divider" />
                   <Link
                     to="/centers"
@@ -171,11 +218,29 @@ class NavBar extends Component {
                   </Link>
                 </div>
               </li>
-
               {admin === 'ADMIN1' ? center : null}
-              <br />
             </ul>
             { isAuthenticated ? userLink : guessLink }
+            <form
+              className="form-inline my-2 my-lg-0"
+              style={{ marginRight: '15px' }}
+              onSubmit={this.onSubmit}
+            >
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                name="search"
+                placeholder="by name or location"
+                aria-label="Search"
+                onChange={this.onChange}
+              />
+              <button
+                className="btn btn-outline-light my-2 my-sm-0"
+                type="submit"
+              >
+              Search Centers
+              </button>
+            </form>
           </div>
         </nav>
         <Router />
@@ -186,7 +251,9 @@ class NavBar extends Component {
 
 NavBar.propTypes = {
   onLogOut: PropTypes.func.isRequired,
-  history: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired,
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
     user: PropTypes.shape({
@@ -194,6 +261,7 @@ NavBar.propTypes = {
       role: PropTypes.string,
     })
   }).isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 
@@ -203,7 +271,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onLogOut: history =>
-    dispatch(action.initUserLogout(history))
+    dispatch(action.initUserLogout(history)),
+
+  onSearch: (search, totalPage, next, history) =>
+    dispatch(action.initSearchCenters(search, totalPage, next))
 });
 
 export default withRouter(connect(

@@ -16,8 +16,13 @@ class AddEvent extends Component {
      date: '',
      time: '',
      purpose: '',
-     center: ''
+     center: '',
+     totalPage: '',
+     next: 1,
+     centerName: '',
+     pageNmber: ''
    }
+
 
    /**
    * @description update component state with current value in dom
@@ -62,6 +67,34 @@ class AddEvent extends Component {
     }
   }
 
+  getCenter = (e) => {
+    this.props.onInitCenters(3, 1);
+  }
+
+
+  add = () => {
+    this.setState({ totalPage: this.props.page.pages });
+    this.state.totalPage = this.props.page.pages;
+    if (this.state.next < this.state.totalPage) {
+      const me = ++this.state.next;
+      this.state.pageNmber = me;
+      this.setState({ pageNmber: me });
+      this.setState({ next: me });
+      this.props.onInitCenters(3, me);
+    }
+  }
+
+
+  minus = () => {
+    const limit = 1;
+    if (limit < this.state.next) {
+      const me = --this.state.next;
+      this.state.pageNmber = me;
+      this.setState({ pageNmber: me });
+      this.props.onInitCenters(3, me);
+    }
+  }
+
   /**
    * @description get selectCenter id and state state
    * @param {any} event
@@ -70,8 +103,9 @@ class AddEvent extends Component {
    *
    * @returns {void}
    */
-  selectCenter = (id) => {
+  selectCenter = (id, myCenter) => {
     this.state.center = id;
+    this.setState({ centerName: myCenter });
   }
 
   /**
@@ -82,6 +116,23 @@ class AddEvent extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
+    const numberOfPages = (
+      <li className="page-item">
+        <a className="page-link">
+                Page {this.state.pageNmber} of {this.state.totalPage}
+        </a>
+      </li>);
+    const numberOfPages1 = (
+        <li className="page-item">
+          <a className="page-link">
+                  Page 1  of {this.props.page.pages }
+          </a>
+        </li>);
+    const showCenterNane = (
+      <h6 className="list-group-item col-md-9">
+        Center Name : {this.state.centerName}
+      </h6>)
+
     return (
       <div className="container" style={{ paddingTop: '100px' }}>
         <div className="card card w-50 loginCard">
@@ -95,7 +146,15 @@ class AddEvent extends Component {
             date={this.state.date}
             time={this.state.time}
             purpose={this.state.purpose}
-            selectCenter={id => this.selectCenter(id)}
+            getCenter={this.getCenter}
+            selectCenter={(id, myCenter) => this.selectCenter(id, myCenter)}
+            add={this.add}
+            minus={this.minus}
+            centerName={this.state.centerName}
+            numberOfPages={numberOfPages}
+            totalPage={this.state.totalPage}
+            numberOfPages1={numberOfPages1}
+            showCenterNane={showCenterNane}
           />
         </div>
       </div>
@@ -106,14 +165,22 @@ class AddEvent extends Component {
 AddEvent.propTypes = {
   initPostEvent: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired,
+  onInitCenters: PropTypes.func.isRequired,
+  page: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = state => ({
+  page: state.centers.pagination,
+});
 
 
 const mapDispatchToProps = dispatch => ({
   initPostEvent: (input, history) =>
     dispatch(action.initPostEvent(input, history)),
+  onInitCenters: (limit, page) =>
+    dispatch(action.initCenters(limit, page))
 });
 
 
-export default connect(null, mapDispatchToProps)(AddEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEvent);
 

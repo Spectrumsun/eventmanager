@@ -10,30 +10,6 @@ class Centers {
    *
    * @returns {void}
    */
-  // static getCenter(req, res) {
-  //   // const { limit, offset, searchString } = request.query;
-  //   Center.findAndCountAll({
-  //     attributes: ['id', 'centerName', 'city', 'address',
-  //       'availability', 'imageurl', 'imageId', 'about', 'facility'],
-  //     limit: 2,
-  //     order: [['createdAt', 'DESC']],
-  //     offset: 5,
-  //   })
-  //     .then(center => res.status(200).json({
-  //       message: 'success',
-  //       center
-  //     }))
-  //     .catch(error => res.status(400).json(error));
-  // }
-
-
-  /**
-   * return a list of centers in the db
-   * @param {Object} req HTTP request object
-   * @param {Object} res HTTP response object
-   *
-   * @returns {void}
-   */
   static getCenter(req, res) {
     let { limit, page } = req.query;
     if (limit === undefined && page === undefined) {
@@ -47,7 +23,6 @@ class Centers {
         message: 'Limit or Page must be a number',
       });
     }
-
     const offset = limit * (page - 1);
     Center.findAndCountAll({
       attributes: {
@@ -172,6 +147,61 @@ class Centers {
       })
       .catch(err => res.status(404).json({
         message: 'You dont own any center with that id',
+        err
+      }));
+  }
+
+  /**
+   *  Admin can add new center to the db
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
+  static searchCenter(req, res) {
+    const { searchString, limit, page, } = req.query;
+    const offset = limit * (page - 1);
+    Center.findAndCountAll({
+      attributes: {
+        exclude: ['updatedAt', 'createdAt', 'userId']
+      },
+      limit,
+      order: [['createdAt', 'DESC']],
+      offset,
+      where: {
+        $or: [
+          {
+            centerName: {
+              $iLike: `%${searchString}%`
+            }
+          },
+          {
+            city: {
+              $iLike: `%${searchString}%`
+            }
+          },
+          {
+            availability: {
+              $iLike: `%${searchString}%`
+            }
+          }
+        ]
+      }
+    })
+      .then((data) => {
+        const pages = Math.ceil(data.count / limit);
+        const users = data.rows;
+        res.status(200).json({
+          message: 'found',
+          match: `${data.count} Found that Match Your Search`,
+          searchString: req.query.searchString,
+          result: users,
+          count: data.count,
+          pages,
+        });
+      })
+      .catch(err => res.status(404).json({
+        error: 'An error occured',
         err
       }));
   }

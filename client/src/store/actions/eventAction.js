@@ -48,7 +48,7 @@ export const eventError = (error) => {
 
 export const initEvents = () => {
   return dispatch => {
-    axios.get('/events')
+    axios.get('/events?token='+localStorage.jwtToken)
       .then((res) => {
         dispatch(getAllEvent(res.data.event));
       })

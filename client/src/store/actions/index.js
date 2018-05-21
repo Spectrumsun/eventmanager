@@ -9,7 +9,7 @@ export { getAllCenters,
   initEditCenter,
   initDeleteCenter,
   centerId,
-  pickCenterId
+  pickCenterId,
 } from './centerAction';
 
 export {
@@ -22,7 +22,8 @@ export {
   initconfirmPassword,
   initemailverify,
   passwordRest,
-  initpasswordreset
+  initpasswordreset,
+  initaddAdmin
 } from './userAction';
 
 export {
@@ -38,3 +39,7 @@ export {
   initDeleteEvent,
   initEditEvent
 } from './eventAction';
+
+export {
+  initSearchCenters
+} from './search';

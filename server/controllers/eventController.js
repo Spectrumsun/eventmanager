@@ -14,12 +14,29 @@ class Events {
    */
   static getEvent(req, res) {
     Event.all({
-      include: [{ model: Center, as: 'centers' }],
+      where: {
+        userId: req.user.id
+      },
+      include: [{
+        model: Center,
+        as: 'centers',
+        attributes: ['centerName', 'imageurl', 'id']
+      }],
     })
-      .then(event => res.status(200).send({
-        message: 'success',
-        event
-      }))
+      .then((event) => {
+        if (event.length < 1) {
+          res.status(200).send({
+            message: 'success',
+            myevent: 'You dont have any event Yet',
+            event
+          });
+        } else {
+          res.status(200).send({
+            message: 'success',
+            event
+          });
+        }
+      })
       .catch(error => res.status(200).send(error));
   }
 

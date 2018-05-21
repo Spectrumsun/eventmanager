@@ -19,6 +19,8 @@ import RequireAuth from '../Auth/authHOC';
 import IsAdmin from '../Auth/adminHOC';
 import EmailCheck from '../User/EmailVerify';
 import afterLogin from '../Auth/afterLogin';
+import addAmin from '../User/addAmin';
+import searchCenter from '../Center/SearchCenter';
 
 const routers = () => (
   <Switch>
@@ -29,9 +31,14 @@ const routers = () => (
       component={RequireAuth(pickCenter)}
     />
     <Route
+      path="/searchcenter"
+      exact
+      component={searchCenter}
+    />
+    <Route
       path="/events"
       exact
-      component={ViewEvents}
+      component={RequireAuth(ViewEvents)}
     />
     <Route
       path="/addevent"
@@ -92,6 +99,11 @@ const routers = () => (
       path="/users/email/:token"
       exact
       component={EmailCheck}
+    />
+    <Route
+      path="/addadmin"
+      exact
+      component={IsAdmin(addAmin)}
     />
     <Route component={NotFound} />
   </Switch>

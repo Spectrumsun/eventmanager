@@ -4,18 +4,16 @@ const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, './client/public');
 const APP_DIR = path.resolve(__dirname, './client/src');
 
-
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
   entry: `${APP_DIR}/index.js`,
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js?$/,
+        test: /\.js$/,
         include: APP_DIR,
         exclude: /node_modules/,
         use: {
@@ -23,7 +21,7 @@ module.exports = {
           query: {
             presets: ['react', 'env', 'stage-2']
           },
-        },
+        }
       },
       {
         test: /\.css$/,
@@ -41,8 +39,8 @@ module.exports = {
             options: { limit: 10000 }
           }
         ]
-      },
-    ],
+      }
+    ]
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -57,5 +55,5 @@ module.exports = {
         API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
       },
     }),
-  ],
+  ]
 };

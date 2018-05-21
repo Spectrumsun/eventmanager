@@ -18,7 +18,7 @@ class Centers extends Component {
    * @memberof Centers
    */
   componentWillMount() {
-    this.props.onInitCenters();
+    this.props.onInitCenters(3, 1);
   }
 
   /**
@@ -41,7 +41,8 @@ class Centers extends Component {
           image={center.imageurl}
           availability={center.availability}
           facility={center.facility}
-          selectCenter={(id, myCenter) => this.props.selectCenter(id, myCenter)}
+          selectCenter={(id, myCenter) =>
+            this.props.selectCenter(id, myCenter)}
           all={center}
         />
       ));
@@ -67,7 +68,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onInitCenters: () => dispatch(actions.initCenters())
+  onInitCenters: (limit, page) =>
+    dispatch(actions.initCenters(3, 1))
 });
 
 

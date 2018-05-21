@@ -31,9 +31,8 @@ class NavBar extends Component {
     if (this.state.search === '') {
       toast.error('Search box cant be empty');
     } else {
-      this.props.onSearch(this.state.search, 6, 1).then((done) => {
-        this.props.history.push('/searchcenter');
-      });
+      this.props.onSearch(this.state.search, 6, 1)
+        .then(() => this.props.history.push('/searchcenter'));
     }
   }
 
@@ -173,7 +172,7 @@ class NavBar extends Component {
                 <Link to="/" className="nav-link" >
                 Event Manager<span className="sr-only">
                 (current)
-                </span>
+                             </span>
                 </Link>
               </li>
               <li className="nav-item active">

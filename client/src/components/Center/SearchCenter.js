@@ -28,10 +28,6 @@ class Centers extends Component {
    *
     * @memberof EditEvent
    */
-  componentDidMount() {
-    this.props.onSearch('toy', 6, 1);
-  }
-
 
   add = () => {
     this.setState({ totalPage: this.props.searchResult.pages });

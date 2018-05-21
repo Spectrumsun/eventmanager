@@ -19,7 +19,7 @@ const getCenter = props => (
       <h6
         className="card-subtitle mb-2 text-muted"
       >
-        {props.address}
+        {props.city}
       </h6>
       <h5 className="card-link">View More</h5>
     </div>
@@ -28,7 +28,7 @@ const getCenter = props => (
 
 getCenter.propTypes = {
   centerName: PropTypes.string.isRequired,
-  address: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired
 };
 

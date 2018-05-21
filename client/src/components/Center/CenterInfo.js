@@ -76,12 +76,12 @@ class CenterInfo extends Component {
     );
     const set = this.props.loadedCenter;
     const center = (
-      <div style={{ paddingTop: '60px', backgroundColor: 'white' }}>
+      <div style={{ paddingTop: '55px', backgroundColor: 'white' }}>
         <div className="card-header dark">
           <h1
             className="container color centerTitle"
           >
-          Center Info {set.centerName}
+         {set.centerName}
           </h1>
         </div>
         <img

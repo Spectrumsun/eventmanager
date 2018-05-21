@@ -164,7 +164,7 @@ centerFrom.propTypes = {
   about: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   handleImageChange: PropTypes.func.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   availability: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
@@ -174,7 +174,6 @@ centerFrom.propTypes = {
 };
 
 centerFrom.defaultProps = {
-  name: 'trest',
   imagePreview: {}
 };
 

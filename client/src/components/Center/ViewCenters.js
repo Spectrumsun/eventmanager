@@ -72,7 +72,7 @@ class Centers extends Component {
         >
           <Display
             centerName={center.centerName}
-            address={center.address}
+            city={center.city}
             image={center.imageurl}
           />
         </Link>

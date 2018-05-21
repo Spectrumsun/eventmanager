@@ -199,7 +199,7 @@ class AddCenter extends Component {
               <CenterFrom
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}
-                centerName={this.state.name}
+                name={this.state.name}
                 city={this.state.city}
                 address={this.state.address}
                 availability={this.state.availability}

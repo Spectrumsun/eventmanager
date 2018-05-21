@@ -19,14 +19,15 @@ import centerReducer from './store/reducers/centerReducer';
 import userReducer from './store/reducers/userReducer';
 import eventReducer from './store/reducers/eventReducer';
 import authReducer from './store/reducers/authReducer';
+import searchReducer from './store/reducers/searchReducer';
 import { setUser } from './store/actions/userAction';
 
 
 require('bootstrap');
 
-// axios.defaults.baseURL = 'http://localhost:8000/api/v1';
-const baseUrl = 'https://eventappmanager.herokuapp.com/api/v1';
-axios.defaults.baseURL = baseUrl;
+axios.defaults.baseURL = 'http://localhost:5000/api/v1';
+// const baseUrl = 'https://eventappmanager.herokuapp.com/api/v1';
+// axios.defaults.baseURL = baseUrl;
 
 const tool = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const composeEnhancers = tool;
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
   centers: centerReducer,
   users: userReducer,
   events: eventReducer,
-  auth: authReducer
+  auth: authReducer,
+  search: searchReducer
 });
 
 const store = createStore(

@@ -14,15 +14,44 @@ import * as actions from '../../store/actions/index';
  * @extends {React.Component}
  */
 class Centers extends Component {
+  state = {
+    totalPage: '',
+    next: 1,
+    pageNmber: ''
+  }
+
+
   /**
    * @description run action on component mount to reload data
    *
    * @param {any} props.params.token
    *
-   * @memberof EditEvent
+    * @memberof EditEvent
    */
   componentDidMount() {
-    this.props.onInitCenters();
+    this.props.onInitCenters(6, 1);
+  }
+
+
+  add = () => {
+    this.setState({ totalPage: this.props.page.pages });
+    this.state.totalPage = this.props.page.pages;
+    if (this.state.next < this.state.totalPage) {
+      const me = ++this.state.next;
+      this.setState({ pageNmber: me });
+      this.setState({ next: me });
+      this.props.onInitCenters(6, me);
+    }
+  }
+
+
+  minus = () => {
+    const limit = 1;
+    if (limit < this.state.next) {
+      const me = --this.state.next;
+      this.setState({ pageNmber: me });
+      this.props.onInitCenters(6, me);
+    }
   }
 
   /**
@@ -46,13 +75,34 @@ class Centers extends Component {
             address={center.address}
             image={center.imageurl}
           />
-         </Link>
+        </Link>
         ));
+    const numberOfPages = (
+      <li className="page-item">
+          <a className="page-link">
+                Page {this.state.pageNmber} of {this.state.totalPage}
+            </a>
+        </li>);
+    const numberOfPages1 = (
+      <li className="page-item">
+        <a className="page-link">
+                Page 1  of {this.props.page.pages }
+        </a>
+      </li>);
     return (
       <div>
         <div className="center " style={{ paddingTop: '100px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
           <div>{centers}</div>
+          <ul className="pagination nav justify-content-center">
+            <li className="page-item" onClick={this.minus}>
+              <a className="page-link" >Previous</a>
+            </li>
+            {this.state.totalPage === '' ? numberOfPages1 : numberOfPages}
+            <li className="page-item" onClick={this.add}>
+              <a className="page-link">Next </a>
+            </li>
+          </ul>
         </div>
         <Footer />
       </div>
@@ -63,16 +113,19 @@ class Centers extends Component {
 Centers.propTypes = {
   onInitCenters: PropTypes.func.isRequired,
   center: PropTypes.array.isRequired,
-  error: PropTypes.bool.isRequired
+  error: PropTypes.object.isRequired,
+  page: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   center: state.centers.center,
+  page: state.centers.pagination,
   error: state.centers.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  onInitCenters: () => dispatch(actions.initCenters())
+  onInitCenters: (limit, page) =>
+    dispatch(actions.initCenters(limit, page))
 });
 
 

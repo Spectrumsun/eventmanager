@@ -41,7 +41,7 @@ class Centers extends Component {
           image={center.imageurl}
           availability={center.availability}
           facility={center.facility}
-          selectCenter={id => this.props.selectCenter(id)}
+          selectCenter={(id, myCenter) => this.props.selectCenter(id, myCenter)}
           all={center}
         />
       ));

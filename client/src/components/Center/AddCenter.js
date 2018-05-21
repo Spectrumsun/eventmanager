@@ -88,7 +88,7 @@ class AddCenter extends Component {
        fd.append('file', this.state.image);
        fd.append('public_id', id);
        fd.append('upload_preset', 'eventmanager');
-       console.log(fd)
+       console.log(fd);
        axios
          .post(
            'https://api.cloudinary.com/v1_1/skybound/image/upload',
@@ -213,6 +213,7 @@ class AddCenter extends Component {
                 disabled={this.state.values}
                 progress={this.state.progress}
                 onKeyPress={this.onKeyPress}
+               
               />
             </div>
           </div>

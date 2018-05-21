@@ -64,7 +64,8 @@ class PasswordReset extends Component {
   render() {
     return (
       <div>
-        <div className="container" style={{ paddingTop: '200px' }}>
+        <div className="container" style={{ paddingTop: '1500px' }}>
+          <h3 className="center">Event Manager</h3>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Password Reset</h3>

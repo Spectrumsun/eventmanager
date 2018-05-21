@@ -11,11 +11,38 @@ class Centers {
    * @returns {void}
    */
   static getCenter(req, res) {
-    Center.all()
-      .then(center => res.status(200).json({
-        message: 'success',
-        center
-      }))
+    let { limit, page } = req.query;
+    if (limit === undefined && page === undefined) {
+      limit = 6;
+      page = 1;
+    }
+
+    if (Number.isNaN(parseInt(limit, 10)) ||
+        Number.isNaN(parseInt(page, 10))) {
+      return res.status(400).json({
+        message: 'Limit or Page must be a number',
+      });
+    }
+    const offset = limit * (page - 1);
+    Center.findAndCountAll({
+      attributes: {
+        exclude: ['updatedAt', 'createdAt']
+      },
+      limit,
+      order: [['createdAt', 'DESC']],
+      offset,
+    })
+      .then((data) => {
+        const pages = Math.ceil(data.count / limit);
+
+        const users = data.rows;
+        res.status(200).json({
+          message: 'success',
+          result: users,
+          count: data.count,
+          pages
+        });
+      })
       .catch(error => res.status(400).json(error));
   }
 
@@ -28,11 +55,17 @@ class Centers {
    */
   static getOneCenter(req, res) {
     Center.findById(req.params.id, {
-      include: [{
-        model: Event,
-        as:
-        'events'
-      }],
+      attributes: ['centerName', 'city', 'id',
+        'address', 'availability', 'imageurl',
+        'imageId', 'about', 'facility'],
+      include: [
+        {
+          model: Event,
+          as: 'events',
+          attributes: ['eventdate']
+
+        }
+      ],
     })
       .then((center) => {
         if (center) {
@@ -114,6 +147,61 @@ class Centers {
       })
       .catch(err => res.status(404).json({
         message: 'You dont own any center with that id',
+        err
+      }));
+  }
+
+  /**
+   *  Admin can add new center to the db
+   * @param {Object} req HTTP request object
+   * @param {Object} res HTTP response object
+   *
+   * @returns {void}
+   */
+  static searchCenter(req, res) {
+    const { searchString, limit, page, } = req.query;
+    const offset = limit * (page - 1);
+    Center.findAndCountAll({
+      attributes: {
+        exclude: ['updatedAt', 'createdAt', 'userId']
+      },
+      limit,
+      order: [['createdAt', 'DESC']],
+      offset,
+      where: {
+        $or: [
+          {
+            centerName: {
+              $iLike: `%${searchString}%`
+            }
+          },
+          {
+            city: {
+              $iLike: `%${searchString}%`
+            }
+          },
+          {
+            availability: {
+              $iLike: `%${searchString}%`
+            }
+          }
+        ]
+      }
+    })
+      .then((data) => {
+        const pages = Math.ceil(data.count / limit);
+        const users = data.rows;
+        res.status(200).json({
+          message: 'found',
+          match: `${data.count} Found that Match Your Search`,
+          searchString: req.query.searchString,
+          result: users,
+          count: data.count,
+          pages,
+        });
+      })
+      .catch(err => res.status(404).json({
+        error: 'An error occured',
         err
       }));
   }

@@ -36,7 +36,7 @@ const eventForm = props => (
         </div>
 
         <div className="form-group col-md-6">
-          <h5><label htmlFor="inputPassword4">Time</label></h5>
+          <h5><label htmlFor="inputPassword4">Start Time</label></h5>
           <input
             type="time"
             value={props.time}
@@ -65,16 +65,21 @@ const eventForm = props => (
           placeholder="Tell people more about the event"
         />
       </div>
+      <br />
 
-
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-toggle="modal"
-        data-target=".bd-example-modal-lg"
-      >
-             Select Center
-      </button>
+      <div className="form-inline" >
+        <button
+          type="button"
+          className="btn btn-dark btn-mm"
+          style={{ marginRight: '20px' }}
+          data-toggle="modal"
+          data-target=".bd-example-modal-lg"
+          onClick={props.getCenter}
+        >
+             Add Center
+        </button>
+        {props.centerName === '' ? null : props.showCenterNane}
+      </div>
       <div
         className="modal fade bd-example-modal-lg"
         tabIndex="-1"
@@ -85,7 +90,17 @@ const eventForm = props => (
 
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
-            <PickCenter selectCenter={id => props.selectCenter(id)} />
+            <PickCenter selectCenter={(id, myCenter) => props.selectCenter(id, myCenter)} />
+            <ul className="pagination nav justify-content-center">
+              <li className="page-item" onClick={props.minus}>
+                <a className="page-link" >Previous</a>
+              </li>
+              { props.totalPage === '' ? props.numberOfPages1 : props.numberOfPages}
+              <li className="page-item" onClick={props.add}>
+                <a className="page-link">Next</a>
+              </li>
+            </ul>
+            <br />
           </div>
         </div>
       </div>
@@ -108,7 +123,12 @@ eventForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
+  showCenterNane: PropTypes.object.isRequired,
+  numberOfPages: PropTypes.object.isRequired,
+  numberOfPages1: PropTypes.object.isRequired,
   purpose: PropTypes.string.isRequired,
+  centerName: PropTypes.string.isRequired,
+  getCenter: PropTypes.func.isRequired
 };
 
 

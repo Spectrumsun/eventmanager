@@ -242,7 +242,7 @@ class Users {
           message: 'user role changed'
         });
       })
-      .catch(err => res.status(400).json({ error: 'No user found', err }));
+      .catch(err => res.status(404).json({ error: 'No user found', err }));
   }
 }
 

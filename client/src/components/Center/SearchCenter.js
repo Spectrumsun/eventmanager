@@ -13,7 +13,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class Centers extends Component {
+class Search extends Component {
   state = {
     totalPage: '',
     next: 1,
@@ -114,12 +114,11 @@ class Centers extends Component {
   }
 }
 
-// Centers.propTypes = {
-//   onInitCenters: PropTypes.func.isRequired,
-//   center: PropTypes.array.isRequired,
-//   error: PropTypes.bool.isRequired,
-//   page: PropTypes.object.isRequired
-// };
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
+  searchResult: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
   searchResult: state.search.searchReuslt,
@@ -127,7 +126,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSearch: (search, totalPage, next, history) =>
+  onSearch: (search, totalPage, next) =>
     dispatch(action.initSearchCenters(search, totalPage, next))
 });
 
@@ -135,4 +134,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Centers);
+)(Search);

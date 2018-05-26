@@ -217,7 +217,7 @@ class NavBar extends Component {
                   </Link>
                 </div>
               </li>
-              {admin === 'ADMIN1' ? center : null}
+              {admin === process.env.VALUE ? center : null}
             </ul>
             { isAuthenticated ? userLink : guessLink }
             <form
@@ -272,7 +272,7 @@ const mapDispatchToProps = dispatch => ({
   onLogOut: history =>
     dispatch(action.initUserLogout(history)),
 
-  onSearch: (search, totalPage, next, history) =>
+  onSearch: (search, totalPage, next) =>
     dispatch(action.initSearchCenters(search, totalPage, next))
 });
 

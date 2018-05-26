@@ -29,7 +29,7 @@ class Centers extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
-    const centers = this.props.center == undefined ? [] : this.props.center.map(center =>
+    const centers = this.props.center === undefined ? [] : this.props.center.map(center =>
       (
         <Display
           key={center.id}

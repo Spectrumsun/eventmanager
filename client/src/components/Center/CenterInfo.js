@@ -81,7 +81,7 @@ class CenterInfo extends Component {
           <h1
             className="container color centerTitle"
           >
-         {set.centerName}
+            {set.centerName}
           </h1>
         </div>
         <img
@@ -147,7 +147,7 @@ class CenterInfo extends Component {
                    </div>
                 ))}
             <br />
-            {admin === 'ADMIN1' ? showbutton : null}
+            {admin === process.env.VALUE ? showbutton : null}
           </div>
         </div>
         <Footer />
@@ -158,7 +158,7 @@ class CenterInfo extends Component {
       <div>
         {
           this.props.loadedCenter === undefined ||
-          this.props.error != false ? isLoading : center
+          this.props.error !== false ? Loading : center
         }
       </div>
     );

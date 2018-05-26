@@ -113,7 +113,7 @@ class Centers extends Component {
 Centers.propTypes = {
   onInitCenters: PropTypes.func.isRequired,
   center: PropTypes.array.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.bool.isRequired,
   page: PropTypes.object.isRequired
 };
 

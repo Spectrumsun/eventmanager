@@ -37,7 +37,7 @@ export const userError = (error) => {
 
 export const initUser = (inputs, history) => {
   return dispatch => {
-       axios.post('/users', inputs)
+    return axios.post('/users', inputs)
         .then((res) => {
           toast.success(res.data.message)
           dispatch(signUpUser(res))
@@ -56,7 +56,7 @@ export const initUser = (inputs, history) => {
 
 export const initUserLogin = (inputs, history) => {
   return dispatch => {
-       axios.post('/users/login', inputs)
+    return axios.post('/users/login', inputs)
         .then((res) => {
           toast.success(res.data.message)
           history.push('/')
@@ -77,7 +77,7 @@ export const initUserLogin = (inputs, history) => {
 
 export const initaddAdmin = ( state, history) => {
   return dispatch => {
-    axios.post( '/users/setadmin?token='+localStorage.jwtToken, state)
+    return axios.post( '/users/setadmin?token='+localStorage.jwtToken, state)
     .then((res) => {
       toast.success(res.data.message)
       history.push('/')
@@ -102,7 +102,7 @@ export const initUserLogout = (history) => {
 
 export const initconfirmPassword = (user, history) => {
    return dispatch => {
-       axios.post('/users/forgotpassword', user)
+    return axios.post('/users/forgotpassword', user)
         .then((res) => {
           toast.success(res.data.message)
           history.push('/')
@@ -120,7 +120,7 @@ export const initconfirmPassword = (user, history) => {
 
 export const initpasswordreset = (token, input, history) => {
   return dispatch => {
-      axios.post(`/users/password/reset/${token}`, input)
+    return axios.post(`/users/password/reset/${token}`, input)
       .then((res) => {
         toast.success(res.data.message)
         history.push('/login')

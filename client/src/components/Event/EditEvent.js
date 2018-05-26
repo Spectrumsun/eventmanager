@@ -20,7 +20,8 @@ class EditEvent extends Component {
      totalPage: '',
      next: 1,
      centerName: '',
-     pageNmber: ''
+     pageNmber: '',
+     check: false
    }
 
   /**
@@ -59,6 +60,7 @@ class EditEvent extends Component {
    */
    onSubmit = (e) => {
      e.preventDefault();
+     this.setState({ check: true });
      if (this.state.name === '') {
        toast.error('Event Name cannot be blank');
      } else if (this.state.date === '') {
@@ -73,9 +75,11 @@ class EditEvent extends Component {
        this.props.initEditEvent(
          this.props.match.params.id, this.state,
          this.props.history
-       );
+       ).then(() =>
+         this.setState({ check: false }));
      }
    }
+
 
    getCenter = (e) => {
      this.props.onInitCenters(3, 1);
@@ -125,46 +129,47 @@ class EditEvent extends Component {
    */
   render() {
     const numberOfPages = (
-       <li className="page-item">
-         <a className="page-link">
+      <li className="page-item">
+        <a className="page-link">
                 Page {this.state.pageNmber} of {this.state.totalPage}
-         </a>
-       </li>);
+        </a>
+      </li>);
     const numberOfPages1 = (
-       <li className="page-item">
-         <a className="page-link">
+      <li className="page-item">
+        <a className="page-link">
                   Page 1  of {this.props.page.pages }
-         </a>
-       </li>);
+        </a>
+      </li>);
     const showCenterNane = (
-       <h6 className="list-group-item col-md-9">
+      <h6 className="list-group-item col-md-9">
         Center Name : {this.state.centerName}
-       </h6>);
+      </h6>);
     return (
-       <div className="container" style={{ paddingTop: '100px' }}>
-         <div className="card card w-50 loginCard">
-           <div className="card-header dark">
-             <h1 className="color">Edit Event</h1>
-           </div>
-           <EventForm
-             onChange={this.onChange}
-             onSubmit={this.onSubmit}
-             name={this.state.name}
-             date={this.state.date}
-             time={this.state.time}
-             purpose={this.state.purpose}
-             getCenter={this.getCenter}
-             selectCenter={(id, myCenter) => this.selectCenter(id, myCenter)}
-             add={this.add}
-             minus={this.minus}
-             centerName={this.state.centerName}
-             numberOfPages={numberOfPages}
-             totalPage={this.state.totalPage}
-             numberOfPages1={numberOfPages1}
-             showCenterNane={showCenterNane}
-           />
-         </div>
-       </div>
+      <div className="container" style={{ paddingTop: '100px' }}>
+        <div className="card card w-50 loginCard">
+          <div className="card-header dark">
+            <h1 className="color">Edit Event</h1>
+          </div>
+          <EventForm
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            name={this.state.name}
+            date={this.state.date}
+            time={this.state.time}
+            purpose={this.state.purpose}
+            getCenter={this.getCenter}
+            selectCenter={(id, myCenter) => this.selectCenter(id, myCenter)}
+            add={this.add}
+            minus={this.minus}
+            centerName={this.state.centerName}
+            numberOfPages={numberOfPages}
+            totalPage={this.state.totalPage}
+            numberOfPages1={numberOfPages1}
+            showCenterNane={showCenterNane}
+            check={this.state.check}
+          />
+        </div>
+      </div>
     );
   }
 }

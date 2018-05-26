@@ -107,7 +107,7 @@ class EventInfo extends Component {
               </div>
               <div className="modal-body">
                 <h6>
-                  Are you sure you want to delete
+                  Are you sure you want to delete ->
                   <strong>{eventName} ?</strong>
                 </h6>
               </div>

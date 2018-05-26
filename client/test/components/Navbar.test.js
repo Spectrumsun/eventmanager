@@ -21,3 +21,4 @@ describe('<NavBar />', () => {
     expect(wrapper.contains(<NavBar />)).toEqual(false);
   });
 });
+

@@ -2,11 +2,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import toast from 'toastr';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
-
+import uploadImage from './ImageUpload';
 /**
  * @class AddCenter
  *
@@ -25,7 +24,8 @@ class AddCenter extends Component {
       preview: '',
       imageurl: '',
       publicUrlId: '',
-      progress: `${0}%`
+      progress: `${0}%`,
+      check: false
     }
 
   /**
@@ -68,6 +68,7 @@ class AddCenter extends Component {
    */
    onSubmit = (e) => {
      e.preventDefault();
+     this.setState({check: true });
      if (this.state.name === '') {
        toast.error('Center Name cannot be blank');
      } else if (this.state.date === '') {
@@ -88,31 +89,26 @@ class AddCenter extends Component {
        fd.append('file', this.state.image);
        fd.append('public_id', id);
        fd.append('upload_preset', 'eventmanager');
-       console.log(fd);
-       axios
-         .post(
-           'https://api.cloudinary.com/v1_1/skybound/image/upload',
-           fd, {
-             onUploadProgress: (progressEvent) => {
-               const level = `${Math.round(progressEvent.loaded /
-                progressEvent.total * 100)}%`;
-               this.setState({ progress: level });
-             }
-           }
-         )
-         .then((response) => {
+       const fileProgress = {
+         onUploadProgress: (progressEvent) => {
+           const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
+           this.setState({ progress: progressMeter });
+         }
+       };
+       uploadImage(fd, fileProgress)
+         .then((res) => {
            this.setState({
-             imageurl: response.data.secure_url,
-             publicUrlId: response.data.public_id,
+             imageurl: res.data.secure_url,
+             publicUrlId: res.data.public_id,
              image: null,
-             preview: null
+             preview: null,
            });
            this.props.initPostCenters(
              this.state,
              this.props.history
            );
          })
-         .catch((err) => {
+         .catch(() => {
            toast.error('Unable to upload. Check your internet');
          });
      }
@@ -213,7 +209,8 @@ class AddCenter extends Component {
                 disabled={this.state.values}
                 progress={this.state.progress}
                 onKeyPress={this.onKeyPress}
-               
+                check={this.state.check}
+
               />
             </div>
           </div>

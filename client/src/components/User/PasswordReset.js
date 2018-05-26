@@ -13,7 +13,8 @@ import * as action from '../../store/actions/index';
 class PasswordReset extends Component {
   state = {
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    check: false
   }
 
   /**
@@ -40,6 +41,7 @@ class PasswordReset extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({ check: true });
     if (this.state.password === '') {
       toast.error('Password cannot be blank');
     } else if (this.state.password !== this.state.confirmPassword) {
@@ -50,7 +52,8 @@ class PasswordReset extends Component {
       this.props.initpasswordreset(
         this.props.match.params.token,
         this.state, this.props.history
-      );
+      ).then(() =>
+        this.setState({ check: false }));
     }
   }
 
@@ -91,7 +94,13 @@ class PasswordReset extends Component {
                     placeholder="confirm Password"
                   />
                   <div className="text-center">
-                    <button type="submit" className="btn btn-outline-dark">Submit</button>
+                    <button
+                      type="submit"
+                      className="btn btn-outline-dark"
+                      disabled={this.state.check}
+                    >
+                    Submit
+                    </button>
                   </div>
                 </form>
               </div>

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  * @returns {JSX} JSX component for the form input
  */
 const centerFrom = props => (
-  <div className="card-body" >
+  <div className="card-body">
     <form onSubmit={props.onSubmit} onKeyPress={props.onKeyPress}>
       <div className="form-row">
         <div className="form-group col-md-12">
@@ -137,6 +137,7 @@ const centerFrom = props => (
       <button
         type="submit"
         className="btn btn-primary btn-lg"
+        disabled={props.check}
       >Submit
       </button>
       <br />
@@ -170,7 +171,8 @@ centerFrom.propTypes = {
   address: PropTypes.string.isRequired,
   values: PropTypes.string.isRequired,
   facility: PropTypes.array.isRequired,
-  imagePreview: PropTypes.object
+  imagePreview: PropTypes.object,
+  check: PropTypes.bool.isRequired
 };
 
 centerFrom.defaultProps = {

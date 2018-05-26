@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import toast from 'toastr';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
+import uploadImage from './ImageUpload';
 
 /**
  * @class EditCenter
@@ -26,7 +26,8 @@ class EditCenter extends Component {
       imageurl: this.props.loadedCenter.imageurl,
       publicUrlId: this.props.loadedCenter.imageId,
       progress: `${0}%`,
-      oldpublicId: this.props.loadedCenter.imageId
+      oldpublicId: this.props.loadedCenter.imageId,
+      check: false
     }
 
   /**
@@ -73,6 +74,7 @@ class EditCenter extends Component {
       e.preventDefault();
     }
     e.preventDefault();
+    this.setState({ check: true });
     if (this.state.name === '') {
       toast.error('Center Name cannot be blank');
     } else if (this.state.date === '') {
@@ -95,17 +97,13 @@ class EditCenter extends Component {
           this.state, this.props.history
         );
       } else {
-        axios
-          .post(
-            'https://api.cloudinary.com/v1_1/skybound/image/upload',
-            fd, {
-              onUploadProgress: (progressEvent) => {
-                const level = `${Math.round(progressEvent.loaded
-                  / progressEvent.total * 100)}%`;
-                this.setState({ progress: level });
-              }
-            }
-          )
+        const fileProgress = {
+          onUploadProgress: (progressEvent) => {
+            const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
+            this.setState({ progress: progressMeter });
+          }
+        };
+        uploadImage(fd, fileProgress)
           .then((response) => {
             this.setState({
               imageurl: response.data.secure_url,

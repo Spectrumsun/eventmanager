@@ -16,6 +16,7 @@ class Signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
+    check: false
   }
 
   /**
@@ -42,6 +43,7 @@ class Signup extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({ check: true });
     if (this.state.fullname === '') {
       toast.error('Full Name cannot be blank');
     } else if (this.state.email === '') {
@@ -56,7 +58,8 @@ class Signup extends Component {
       this.props.onUserCreate(
         this.state,
         this.props.history
-      );
+      ).then(() =>
+        this.setState({ check: false }));
     }
   };
 
@@ -68,7 +71,6 @@ class Signup extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
-    console.log(this.props.history);
     return (
       <div className="container" style={{ paddingTop: '150px' }}>
         <h3 className="center">Event Manager</h3>
@@ -131,6 +133,7 @@ class Signup extends Component {
                 <div className="text-center">
                   <button
                     className="btn btn-outline-dark"
+                    disabled={this.state.check}
                   >Submit
                   </button>
                 </div>

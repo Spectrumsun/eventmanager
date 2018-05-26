@@ -75,7 +75,7 @@ export const initGetOneEvent = (id) => {
 
 export const initPostEvent = (event, history) => {
   return dispatch => {
-    axios.post('/events?token='+localStorage.jwtToken, event)
+    return axios.post('/events?token='+localStorage.jwtToken, event)
       .then((res) => {
         toast.success(res.data.message)
         history.push('/events')

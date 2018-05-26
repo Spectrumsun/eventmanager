@@ -22,12 +22,12 @@ import authReducer from './store/reducers/authReducer';
 import searchReducer from './store/reducers/searchReducer';
 import { setUser } from './store/actions/userAction';
 
-
 require('bootstrap');
 
-// axios.defaults.baseURL = 'http://localhost:5000/api/v1';
-const baseUrl = 'https://eventappmanager.herokuapp.com/api/v1';
-axios.defaults.baseURL = baseUrl;
+
+axios.defaults.baseURL = process.env.API_BASE_URL_PROD;
+
+console.log(axios.defaults.baseURL)
 
 const tool = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const composeEnhancers = tool;

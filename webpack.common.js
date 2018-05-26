@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
+
+require('dotenv').config();
 
 const BUILD_DIR = path.resolve(__dirname, './client/public');
 const APP_DIR = path.resolve(__dirname, './client/src');
@@ -43,17 +46,23 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv({
+      path: path.resolve('./.env'),
+      safe: false,
+      systemvars: true,
+      silent: false
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default'],
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
-      },
-    }),
+    // new webpack.DefinePlugin({
+    //   'process.env': {
+    //     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    //     API_BASE_URL_DEV: JSON.stringify(process.env.API_BASE_URL_DEV),
+    //   },
+    // }),
   ]
 };

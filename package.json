@@ -43,6 +43,7 @@
     "cors": "^2.8.4",
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.5",
     "express": "^4.16.2",
     "express-validator": "^4.3.0",
     "file-loader": "^1.1.6",
@@ -108,55 +109,5 @@
   "engines": {
     "node": "8.9.1"
   },
-  "jest": {
-    "verbose": true,
-    "rootDir": "client",
-    "roots": [
-      "<rootDir>"
-    ],
-    "setupFiles": [
-      "<rootDir>/test/testConfig.js",
-      "<rootDir>/test/mocks/localStorage.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/template/",
-      "/sever/",
-      "/build/",
-      "/.github/",
-      "/.nyc_output/",
-      "/covrage/",
-      "<rootDir>/coverage/",
-      "<rootDir>/src/index",
-      "<rootDir>/src/store/actions/index",
-      "<rootDir>/src/static",
-      "<rootDir>/src/public"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/coverage/",
-      "<rootDir>/src/index",
-      "<rootDir>/src/store/actions/index",
-      "<rootDir>/test/",
-      "<rootDir>/public"
-    ],
-    "unmockedModulePathPatterns": [
-      "./node_modules/react"
-    ],
-    "testEnvironment": "jsdom",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "collectCoverage": false,
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/**"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$": "<rootDir>/tests/mocks/fileMock.js",
-      "\\.(css)$": "<rootDir>/tests/mocks/styleMock.js"
-    }
-  }
+  "jest": {}
 }

@@ -15,6 +15,7 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
+    check: false
   }
 
   /**
@@ -41,6 +42,7 @@ class Login extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({ check: true });
     if (this.state.email === '') {
       toast.error('Email cannot be blank');
     } else if (this.state.password === '') {
@@ -49,7 +51,8 @@ class Login extends Component {
       this.props.initUserLogin(
         this.state,
         this.props.history
-      );
+      ).then(() =>
+        this.setState({ check: false }));
     }
   }
 
@@ -100,6 +103,7 @@ class Login extends Component {
                     <button
                       type="submit"
                       className="btn btn-outline-dark"
+                      disabled={this.state.check}
                     >Submit
                     </button>
                   </div>

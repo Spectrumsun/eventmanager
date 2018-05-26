@@ -20,7 +20,8 @@ class AddEvent extends Component {
      totalPage: '',
      next: 1,
      centerName: '',
-     pageNmber: ''
+     pageNmber: '',
+     check: false
    }
 
 
@@ -49,6 +50,7 @@ class AddEvent extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({ check: true });
     if (this.state.name === '') {
       toast.error('Event Name cannot be blank');
     } else if (this.state.date === '') {
@@ -63,7 +65,8 @@ class AddEvent extends Component {
       this.props.initPostEvent(
         this.state,
         this.props.history
-      );
+      ).then(() =>
+        this.setState({ check: false }));
     }
   }
 
@@ -123,15 +126,15 @@ class AddEvent extends Component {
         </a>
       </li>);
     const numberOfPages1 = (
-        <li className="page-item">
-          <a className="page-link">
+      <li className="page-item">
+        <a className="page-link">
                   Page 1  of {this.props.page.pages }
-          </a>
-        </li>);
+        </a>
+      </li>);
     const showCenterNane = (
       <h6 className="list-group-item col-md-9">
         Center Name : {this.state.centerName}
-      </h6>)
+      </h6>);
 
     return (
       <div className="container" style={{ paddingTop: '100px' }}>
@@ -147,7 +150,8 @@ class AddEvent extends Component {
             time={this.state.time}
             purpose={this.state.purpose}
             getCenter={this.getCenter}
-            selectCenter={(id, myCenter) => this.selectCenter(id, myCenter)}
+            selectCenter={(id, myCenter) =>
+              this.selectCenter(id, myCenter)}
             add={this.add}
             minus={this.minus}
             centerName={this.state.centerName}
@@ -155,6 +159,7 @@ class AddEvent extends Component {
             totalPage={this.state.totalPage}
             numberOfPages1={numberOfPages1}
             showCenterNane={showCenterNane}
+            check={this.state.check}
           />
         </div>
       </div>

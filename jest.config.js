@@ -39,7 +39,7 @@ module.exports = {
   moduleFileExtensions: [
     'js'
   ],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     '**/*.{js}',
     '!**/node_modules/**'

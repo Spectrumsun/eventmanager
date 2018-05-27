@@ -110,6 +110,7 @@ class AddCenter extends Component {
          })
          .catch(() => {
            toast.error('Unable to upload. Check your internet');
+           this.setState({check: false });
          });
      }
    }
@@ -210,7 +211,6 @@ class AddCenter extends Component {
                 progress={this.state.progress}
                 onKeyPress={this.onKeyPress}
                 check={this.state.check}
-
               />
             </div>
           </div>

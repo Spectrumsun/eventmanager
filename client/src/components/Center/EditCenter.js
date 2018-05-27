@@ -119,6 +119,7 @@ class EditCenter extends Component {
           })
           .catch((err) => {
             toast.error('Unable to upload. Check your internet');
+            this.setState({check: false });
           });
       }
     }
@@ -217,6 +218,7 @@ class EditCenter extends Component {
               disabled={this.state.values}
               progress={this.state.progress}
               onKeyPress={this.onKeyPress}
+              check={this.state.check}
             />
           </div>
         </div>

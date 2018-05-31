@@ -3,4 +3,5 @@ exclude_paths:
 - "server/migrations"
 - "client/public/bundle.js"
 - "server/test"
-- "client"
+- "server/model"
+- "server"

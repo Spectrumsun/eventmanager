@@ -1,6 +1,6 @@
 /node_modules/
 /.env
-/.DS_Store
+/.DS_Store/
 /coverage/
 /.nyc_output/
 /.eslintignore
@@ -8,3 +8,5 @@
 /.vscode/
 /client/coverage/
 /build/
+.DS_Store
+/client/public/bundle.js

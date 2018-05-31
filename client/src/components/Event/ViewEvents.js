@@ -38,6 +38,11 @@ class ViewEvent extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
+    const noEvent = (
+      <div className="thetitle">
+        <h3 className="noevent"> You dont have any event event</h3>
+      </div>
+    );
     const events = this.props.events ===
      undefined || this.props.error != false ?
        <Loading /> : this.props.events.map(event =>
@@ -54,7 +59,7 @@ class ViewEvent extends Component {
               imageurl : event.centers.imageurl
             }
            />
-          </Link>
+         </Link>
          ));
     /**
    * @description renders component to the DOM
@@ -63,11 +68,12 @@ class ViewEvent extends Component {
    *
    * @returns {JSX} JSX representation of component
    */
+    console.log(this.props.events);
     return (
       <div>
         <div className="center thebody" >
           <h1 style={{ textAlign: 'center' }}>Events</h1>
-          {events}
+          {this.props.events.length === 0 ? noEvent : events }
         </div>
         <Footer />
       </div>

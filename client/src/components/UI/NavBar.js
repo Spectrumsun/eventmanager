@@ -66,9 +66,11 @@ class NavBar extends Component {
       <Link
         to="/events"
         className="dropdown-item"
-      >My Event
-      </Link>
 
+      >
+        <div className="dropdown-divider" />
+      My Event
+      </Link>
     );
     const userLink = (
       <ul className=" nav navbar-nav navbar-right">
@@ -207,7 +209,6 @@ class NavBar extends Component {
                     className="dropdown-item"
                   >Add Event
                   </Link>
-                  <div className="dropdown-divider" />
                   { isAuthenticated ? myEvent : null }
                   <div className="dropdown-divider" />
                   <Link

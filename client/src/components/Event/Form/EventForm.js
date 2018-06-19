@@ -109,7 +109,7 @@ const eventForm = props => (
       <button
         type="submit"
         className="btn btn-primary btn-lg"
-        disabled={props.check}
+        disabled={props.formValid}
       >Submit
       </button>
     </form>
@@ -130,7 +130,7 @@ eventForm.propTypes = {
   purpose: PropTypes.string.isRequired,
   centerName: PropTypes.string.isRequired,
   getCenter: PropTypes.func.isRequired,
-  check: PropTypes.bool.isRequired
+  formValid: PropTypes.bool.isRequired
 };
 
 

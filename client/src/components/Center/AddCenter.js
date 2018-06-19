@@ -25,7 +25,7 @@ class AddCenter extends Component {
       imageurl: '',
       publicUrlId: '',
       progress: `${0}%`,
-      check: false
+      formValid: false,
     }
 
   /**
@@ -68,7 +68,7 @@ class AddCenter extends Component {
    */
    onSubmit = (e) => {
      e.preventDefault();
-     this.setState({check: true });
+     this.setState({ formValid: false });
      if (this.state.name === '') {
        toast.error('Center Name cannot be blank');
      } else if (this.state.date === '') {
@@ -86,6 +86,7 @@ class AddCenter extends Component {
      } else {
        const fd = new FormData();
        const id = `${Date.now()}-${this.state.image.name}`;
+       this.setState({ formValid: true });
        fd.append('file', this.state.image);
        fd.append('public_id', id);
        fd.append('upload_preset', 'eventmanager');
@@ -102,6 +103,7 @@ class AddCenter extends Component {
              publicUrlId: res.data.public_id,
              image: null,
              preview: null,
+             formValid: true
            });
            this.props.initPostCenters(
              this.state,
@@ -110,7 +112,7 @@ class AddCenter extends Component {
          })
          .catch(() => {
            toast.error('Unable to upload. Check your internet');
-           this.setState({check: false });
+           this.setState({ formValid: false });
          });
      }
    }
@@ -210,7 +212,7 @@ class AddCenter extends Component {
                 disabled={this.state.values}
                 progress={this.state.progress}
                 onKeyPress={this.onKeyPress}
-                check={this.state.check}
+                formValid={this.state.formValid}
               />
             </div>
           </div>

@@ -13,7 +13,6 @@ import * as action from '../../store/actions/index';
 class ForgotPassword extends Component {
   state = {
     email: '',
-    check: false
   }
 
   /**
@@ -40,13 +39,10 @@ class ForgotPassword extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({ check: true });
     if (this.state.email === '') {
       toast.error('Email cannot be blank');
     } else {
-      this.props.initconfirmPassword(this.state, this.props.history)
-        .then(() =>
-          this.setState({ check: false }));
+      this.props.initconfirmPassword(this.state, this.props.history);
     }
   }
 
@@ -81,7 +77,6 @@ class ForgotPassword extends Component {
                     <button
                       type="submit"
                       className="btn btn-outline-dark"
-                      disabled={this.state.check}
                     >Email me a recovery link
                     </button>
                   </div>

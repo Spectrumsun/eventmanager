@@ -15,7 +15,8 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    check: false
+    formValid: false,
+
   }
 
   /**
@@ -42,17 +43,19 @@ class Login extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({ check: true });
+    this.setState({ formValid: false });
     if (this.state.email === '') {
       toast.error('Email cannot be blank');
     } else if (this.state.password === '') {
       toast.error('Password cannot be blank');
     } else {
+      this.setState({ formValid: true });
       this.props.initUserLogin(
         this.state,
         this.props.history
-      ).then(() =>
-        this.setState({ check: false }));
+      ).then(() => {
+        this.setState({ formValid: false });
+      });
     }
   }
 
@@ -96,14 +99,14 @@ class Login extends Component {
                     to="/forgotpassword"
                     className="center-item"
                   >Forgot password?
-                          </Link>
+                  </Link>
                   </small>
 
                   <div className="text-center">
                     <button
                       type="submit"
                       className="btn btn-outline-dark"
-                      disabled={this.state.check}
+                      disabled={this.state.formValid}
                     >Submit
                     </button>
                   </div>

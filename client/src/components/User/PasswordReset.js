@@ -14,7 +14,6 @@ class PasswordReset extends Component {
   state = {
     password: '',
     confirmPassword: '',
-    check: false
   }
 
   /**
@@ -41,7 +40,6 @@ class PasswordReset extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({ check: true });
     if (this.state.password === '') {
       toast.error('Password cannot be blank');
     } else if (this.state.password !== this.state.confirmPassword) {
@@ -52,8 +50,7 @@ class PasswordReset extends Component {
       this.props.initpasswordreset(
         this.props.match.params.token,
         this.state, this.props.history
-      ).then(() =>
-        this.setState({ check: false }));
+      );
     }
   }
 
@@ -97,7 +94,6 @@ class PasswordReset extends Component {
                     <button
                       type="submit"
                       className="btn btn-outline-dark"
-                      disabled={this.state.check}
                     >
                     Submit
                     </button>

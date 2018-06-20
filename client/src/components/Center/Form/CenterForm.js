@@ -137,7 +137,7 @@ const centerFrom = props => (
       <button
         type="submit"
         className="btn btn-primary btn-lg"
-        disabled={props.check}
+        disabled={props.formValid}
       >Submit
       </button>
       <br />

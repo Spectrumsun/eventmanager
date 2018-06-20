@@ -16,7 +16,7 @@ class Signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    check: false
+    formValid: false
   }
 
   /**
@@ -43,9 +43,12 @@ class Signup extends Component {
    */
   onSubmit = (e) => {
     e.preventDefault();
-    this.setState({ check: true });
+    this.setState({ formValid: false });
+    const reWhiteSpace = new RegExp(/^\s+$/);
     if (this.state.fullname === '') {
       toast.error('Full Name cannot be blank');
+    } else if (reWhiteSpace.test(this.state.fullname) === true) {
+      toast.error('Full Name cannot white space');
     } else if (this.state.email === '') {
       toast.error('Email cannot be blank');
     } else if (this.state.password === '') {
@@ -55,13 +58,15 @@ class Signup extends Component {
     } else if (this.state.password.length < 6) {
       toast.error('Password cannot be less than 6 Charaters');
     } else {
+      this.setState({ formValid: true });
       this.props.onUserCreate(
         this.state,
         this.props.history
-      ).then(() =>
-        this.setState({ check: false }));
+      ).then(() => {
+        this.setState({ formValid: false });
+      });
     }
-  };
+  }
 
   /**
    * @description renders component to the DOM
@@ -116,8 +121,6 @@ class Signup extends Component {
                   type="password"
                   placeholder="Password"
                 />
-
-
                 <div className="form-check">
                   <label className="form-check-label">
                     <input
@@ -133,7 +136,7 @@ class Signup extends Component {
                 <div className="text-center">
                   <button
                     className="btn btn-outline-dark"
-                    disabled={this.state.check}
+                    disabled={this.state.formValid}
                   >Submit
                   </button>
                 </div>

@@ -15,7 +15,6 @@ class AddAmin extends Component {
   state = {
     email: '',
     role: '',
-    check: false
   }
 
   /**
@@ -50,8 +49,7 @@ class AddAmin extends Component {
       this.props.initaddAdmin(
         this.state,
         this.props.history
-      ).then(() =>
-        this.setState({ check: false }));
+      );
     }
   }
 
@@ -95,7 +93,6 @@ class AddAmin extends Component {
                     <button
                       type="submit"
                       className="btn btn-outline-dark"
-                      disabled={this.state.check}
                     >Submit
                     </button>
                   </div>

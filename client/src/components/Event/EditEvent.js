@@ -21,7 +21,7 @@ class EditEvent extends Component {
      next: 1,
      centerName: '',
      pageNmber: '',
-     check: false
+     formValid: false,
    }
 
   /**
@@ -60,9 +60,12 @@ class EditEvent extends Component {
    */
    onSubmit = (e) => {
      e.preventDefault();
-     this.setState({ check: true });
+     this.setState({ formValid: false });
+     const reWhiteSpace = new RegExp(/^\s+$/);
      if (this.state.name === '') {
        toast.error('Event Name cannot be blank');
+     } else if (reWhiteSpace.test(this.state.fullname) === true) {
+       toast.error('Event Name cannot white space');
      } else if (this.state.date === '') {
        toast.error('Event Date cannot be blank');
      } else if (this.state.time === '') {
@@ -72,16 +75,17 @@ class EditEvent extends Component {
      } else if (this.state.center === '') {
        toast.error('You have to choose a Center');
      } else {
+       this.setState({ formValid: true });
        this.props.initEditEvent(
          this.props.match.params.id, this.state,
          this.props.history
        ).then(() =>
-         this.setState({ check: false }));
+         this.setState({ formValid: false }));
      }
    }
 
 
-   getCenter = (e) => {
+   getCenter = () => {
      this.props.onInitCenters(3, 1);
    }
 
@@ -166,7 +170,7 @@ class EditEvent extends Component {
             totalPage={this.state.totalPage}
             numberOfPages1={numberOfPages1}
             showCenterNane={showCenterNane}
-            check={this.state.check}
+            formValid={this.state.formValid}
           />
         </div>
       </div>

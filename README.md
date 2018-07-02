@@ -7,9 +7,9 @@
 # Event Manager
 Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​
 center  /​ ​facilities,​ ​and​ ​will​ ​either​ ​decline​ ​events​ ​when​ ​the​ ​proposed day is already taken,
-or suggest an  available day 
+or suggest an  available day
 
-## View App
+# View App
     * template ui   https://spectrumsun.github.io/eventmanager/
     * React ui      https://eventappmanager.herokuapp.com/
     * backend APi   https://eventappmanager.herokuapp.com/api/v1/
@@ -19,10 +19,11 @@ or suggest an  available day 
 # Technologies Used
    * Front-end: React/Redux + Bootstrap
    * Back-end: Node/Expressjs + Sequelize/Postgres
-   * Libraries: ES6, Babel-CLI, eslint, Mocha/Chai, expesss, sequelize, jwt
-   * Postman
+   * Test: Mocha/Chai for server test, jest for front end test
+   * Authentication: Json web token
+   * Libraries: ES6, Babel-CLI, eslint,  express, sequelize, jwt
 
-## Features
+# Features
    * A User can signup and signin 
    * A page where an authenticated user can add a new event
    * A page, section or view where an authenticated user can Modify the event he/she added
@@ -32,31 +33,33 @@ or suggest an  available day 
    * A page showing  a single center and the events slated for that center
 
 
- ## Api Endpoints
-    * POST -    To sign up a new user -             /api/v1/users
-    * POST -    To login in an exsisitng user -     /api/v1/login
-    * GET -     To get all the list of events -     /api/v1/events
-    * GET -     To get a single event -             /api/v1/events/<eventID>
-    * POST -    To add a new event -                /api/v1/events
-    * PUT -     To edit existing event -            /api/v1/events/<eventID>
-    * DELETE -  To delete a single existing event   /ap/v1/events/<eventID>
-    * GET -     To get all the centers -            /api/v1/centers
-    * GET -     To get a single center with the events added to the center - /api/v1/centers/<centerID>
-    * POST -    To add a new center -               /api/v1/centers
-    * PUT -     To edit existing center -           /api/centers/<enterID>
-    * DELETE -  To delete a single center -         /api/centers/<centerID>
-
-  
-
 # To Install
-* Download or clone 
+* Download or clone the repo
 * open terminal inside root directory of cloned folder
-* type npm install to install the dependencies
-* type sequelize db:migrate to add migration if using Postgres locally 
+* type npm install to install the  all dependencies
+* type sequelize db:migrate to add migration if using Postgres locally
 * npm start to run the app in production mode
-* npm test - to run the test suits on the app
 * npm dev:start to run the app in development mode
 
+# Test
+To run test navigate to app folder in the command line and type
+* npm test - to run server test
+* npm run test:client - to run client test
 
 
-`
+# FAQs
+* Contact spectrumsun@hotmail.com
+
+# Set Default Admin
+Add the email address to the env file "ADMINEMAIL=" to set that email as the default admin after signnup
+
+# Limitations
+The limitations with the current version of event manager
+* No payment system when users book a center
+
+
+
+# LICENSE
+* [MIT](./LICENSE) © [Taiwo Sunday]
+
+Copyright (c) 2018 Taiwo Sunday

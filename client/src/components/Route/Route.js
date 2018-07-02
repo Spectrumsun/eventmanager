@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../UI/Home';
 import Signup from '../User/Signup';
-import Login from '../User//Login';
+import Login from '../User/Login';
 import AddCenter from '../Center/AddCenter';
 import ViewCenters from '../Center/ViewCenters';
 import AddEvent from '../Event/Addevent';

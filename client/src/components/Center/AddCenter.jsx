@@ -53,8 +53,8 @@ class AddCenter extends Component {
    *
    * @returns {void}
    */
-   onChange = (e) => {
-     this.setState({ [e.target.name]: e.target.value });
+   onChange = (event) => {
+     this.setState({ [event.target.name]: event.target.value });
    }
 
   /**
@@ -66,8 +66,8 @@ class AddCenter extends Component {
    *
    * @returns {void}
    */
-   onSubmit = (e) => {
-     e.preventDefault();
+   onSubmit = (event) => {
+     event.preventDefault();
      this.setState({ formValid: false });
      if (this.state.name === '') {
        toast.error('Center Name cannot be blank');
@@ -126,9 +126,9 @@ class AddCenter extends Component {
    *
    * @returns {void}
    */
-   onKeyPress = (e) => {
-     if (e.target.type !== 'textarea' && e.which === 13 /* Enter */) {
-       e.preventDefault();
+   onKeyPress = (event) => {
+     if (event.target.type !== 'textarea' && event.which === 13 /* Enter */) {
+       event.preventDefault();
      }
    }
 
@@ -141,10 +141,10 @@ class AddCenter extends Component {
    *
    * @returns {void}
    */
-    handleImageChange = (e) => {
-      e.preventDefault();
+    handleImageChange = (event) => {
+      event.preventDefault();
       const reader = new FileReader();
-      const file = e.target.files[0];
+      const file = event.target.files[0];
       reader.onloadend = () => {
         this.setState({
           image: file,

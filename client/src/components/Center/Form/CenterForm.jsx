@@ -128,7 +128,7 @@ const centerFrom = props => (
             <span
               className="badge badge-danger badge-pill point"
               onClick={() =>
-            props.removeFacility(i)}
+            props.removeFacility(remove)}
             >X
             </span>
            </li>))}

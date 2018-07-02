@@ -8,13 +8,27 @@ const BUILD_DIR = path.resolve(__dirname, './client/public');
 const APP_DIR = path.resolve(__dirname, './client/src');
 
 module.exports = {
-  entry: `${APP_DIR}/App.js`,
+  entry: `${APP_DIR}/App.jsx`,
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: APP_DIR,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          query: {
+            presets: ['react', 'env', 'stage-2']
+          },
+        }
+      },
       {
         test: /\.js$/,
         include: APP_DIR,

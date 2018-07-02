@@ -28,8 +28,8 @@ class Signup extends Component {
    *
    * @returns {void}
    */
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -41,8 +41,8 @@ class Signup extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     this.setState({ formValid: false });
     const reWhiteSpace = new RegExp(/^\s+$/);
     if (this.state.fullname === '') {

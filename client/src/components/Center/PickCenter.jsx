@@ -39,7 +39,6 @@ class Centers extends Component {
           address={center.address}
           city={center.city}
           image={center.imageurl}
-          availability={center.availability}
           facility={center.facility}
           selectCenter={(id, myCenter) =>
             this.props.selectCenter(id, myCenter)}
@@ -50,7 +49,11 @@ class Centers extends Component {
       <div>
         <div className="container" style={{ paddingTop: '10px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
-          {centers}
+          <div>
+            <div className="fixModel">
+              {centers}
+            </div>
+          </div>
         </div>
       </div>
     );

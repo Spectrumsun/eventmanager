@@ -51,7 +51,7 @@ class CenterInfo extends Component {
     const admin = this.props.auth.user === null
       ? 'nouser' :
       this.props.auth.user.role;
-    const showbutton = (
+    const showButton = (
       <div>
         <Link
           to={`/centers/edit/${this.props.match.params.id}`}
@@ -74,19 +74,19 @@ class CenterInfo extends Component {
         </Link>
       </div>
     );
-    const set = this.props.loadedCenter;
+    const { loadedCenter } = this.props;
     const center = (
       <div style={{ paddingTop: '55px', backgroundColor: 'white' }}>
         <div className="card-header dark">
           <h1
             className="container color centerTitle"
           >
-            {set.centerName}
+            {loadedCenter.centerName}
           </h1>
         </div>
         <img
           className="card-img-top"
-          src={set.imageurl}
+          src={loadedCenter.imageurl}
           style={{ height: '600px', width: '100%' }}
           alt="center"
         />
@@ -96,27 +96,27 @@ class CenterInfo extends Component {
             style={{ width: '45rem' }}
           >
             <h1>
-              <strong>{set.centerName}</strong>
+              <strong>{loadedCenter.centerName}</strong>
             </h1>
-            <h6 className="list-group-item">{set.address}</h6>
+            <h6 className="list-group-item">{loadedCenter.address}</h6>
             <br />
             <div className="list-group-item centerlist" >
               <h3>About</h3>
               <p className="read" style={{ textAlign: 'justify' }}>
-                {set.about}
+                {loadedCenter.about}
               </p>
             </div>
             <br />
             <h1><strong>City</strong></h1>
             <h6
               className="list-group-item col-md-4"
-            >{set.city}
+            >{loadedCenter.city}
             </h6>
             <br />
             <h5 ><strong>Availability</strong></h5>
             <h6
               className="list-group-item col-md-4"
-            >{set.availability}
+            >{loadedCenter.availability}
             </h6>
             <br />
             <h5><strong>
@@ -124,7 +124,7 @@ class CenterInfo extends Component {
                 </strong>
             </h5>
             <ul className="list-group col-md-4 text-capitalize">
-              {set && set.facility && set.facility.map(list =>
+              {loadedCenter && loadedCenter.facility && loadedCenter.facility.map(list =>
                 (<li
                   className="list-group-item centerlist"
                   key={uuid()}
@@ -133,7 +133,7 @@ class CenterInfo extends Component {
             </ul>
             <br />
             <h5><strong>Events</strong></h5>
-            {set && set.events && set.events.map(eventDate =>
+            {loadedCenter && loadedCenter.events && loadedCenter.events.map(eventDate =>
                   (<div
                     key={Math.floor(Math.random() * 10906) + 30}
                     className="card d-lg-inline-block"
@@ -147,7 +147,7 @@ class CenterInfo extends Component {
                    </div>
                 ))}
             <br />
-            {admin === process.env.VALUE ? showbutton : null}
+            {admin === process.env.VALUE ? showButton : null}
           </div>
         </div>
         <Footer />

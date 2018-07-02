@@ -32,8 +32,8 @@ class EventInfo extends Component {
    *
    * @returns {void}
    */
-  deleteEvent = (e) => {
-    e.preventDefault();
+  deleteEvent = (event) => {
+    event.preventDefault();
     this.props.onDeleteEvent(
       this.props.match.params.id,
       this.props.history
@@ -227,7 +227,8 @@ EventInfo.propTypes = {
   events: PropTypes.shape({
     id: PropTypes.number,
     eventName: PropTypes.string,
-    eventdate: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
     time: PropTypes.string,
     purpose: PropTypes.string,
   }),
@@ -237,7 +238,8 @@ EventInfo.defaultProps = {
   events: PropTypes.shape({
     userId: 1,
     eventName: 'eventName',
-    eventdate: '2018-10-02',
+    startDate: '2018-10-02',
+    endDate: '2018-10-02',
     time: '11:00',
     purpose: 'fun'
   }),

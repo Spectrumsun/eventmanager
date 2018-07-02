@@ -21,7 +21,7 @@ class AddEvent extends Component {
      totalPage: '',
      next: 1,
      centerName: '',
-     pageNmber: '',
+     pageNumber: '',
      formValid: false,
    }
 
@@ -35,8 +35,8 @@ class AddEvent extends Component {
    *
    * @returns {void}
    */
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
 
@@ -49,8 +49,8 @@ class AddEvent extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     this.setState({ formValid: false });
     const reWhiteSpace = new RegExp(/^\s+$/);
     if (this.state.name === '') {
@@ -89,11 +89,11 @@ class AddEvent extends Component {
     this.setState({ totalPage: this.props.page.pages });
     this.state.totalPage = this.props.page.pages;
     if (this.state.next < this.state.totalPage) {
-      const me = ++this.state.next;
-      this.state.pageNmber = me;
-      this.setState({ pageNmber: me });
-      this.setState({ next: me });
-      this.props.onInitCenters(3, me);
+      const nextPage = ++this.state.next;
+      this.state.pageNumber = nextPage;
+      this.setState({ pageNumber: nextPage });
+      this.setState({ next: nextPage });
+      this.props.onInitCenters(3, nextPage);
     }
   }
 
@@ -101,10 +101,10 @@ class AddEvent extends Component {
   minus = () => {
     const limit = 1;
     if (limit < this.state.next) {
-      const me = --this.state.next;
-      this.state.pageNmber = me;
-      this.setState({ pageNmber: me });
-      this.props.onInitCenters(3, me);
+      const nextPage = --this.state.next;
+      this.state.pageNumber = nextPage;
+      this.setState({ pageNumber: nextPage });
+      this.props.onInitCenters(3, nextPage);
     }
   }
 
@@ -132,7 +132,7 @@ class AddEvent extends Component {
     const numberOfPages = (
       <li className="page-item">
         <a className="page-link">
-                Page {this.state.pageNmber} of {this.state.totalPage}
+                Page {this.state.pageNumber} of {this.state.totalPage}
         </a>
       </li>);
     const numberOfPages1 = (

@@ -17,7 +17,7 @@ class Centers extends Component {
   state = {
     totalPage: '',
     next: 1,
-    pageNmber: ''
+    pageNumber: ''
   }
 
 
@@ -37,10 +37,10 @@ class Centers extends Component {
     this.setState({ totalPage: this.props.page.pages });
     this.state.totalPage = this.props.page.pages;
     if (this.state.next < this.state.totalPage) {
-      const me = ++this.state.next;
-      this.setState({ pageNmber: me });
-      this.setState({ next: me });
-      this.props.onInitCenters(6, me);
+      const nextPage = ++this.state.next;
+      this.setState({ pageNumber: nextPage });
+      this.setState({ next: nextPage });
+      this.props.onInitCenters(6, nextPage);
     }
   }
 
@@ -48,9 +48,9 @@ class Centers extends Component {
   minus = () => {
     const limit = 1;
     if (limit < this.state.next) {
-      const me = --this.state.next;
-      this.setState({ pageNmber: me });
-      this.props.onInitCenters(6, me);
+      const nextPage = --this.state.next;
+      this.setState({ pageNumber: nextPage });
+      this.props.onInitCenters(6, nextPage);
     }
   }
 
@@ -80,7 +80,7 @@ class Centers extends Component {
     const numberOfPages = (
       <li className="page-item">
           <a className="page-link">
-                Page {this.state.pageNmber} of {this.state.totalPage}
+                Page {this.state.pageNumber} of {this.state.totalPage}
             </a>
         </li>);
     const numberOfPages1 = (

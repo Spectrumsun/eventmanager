@@ -274,3 +274,36 @@ ul {
     transform: rotate(360deg);
   }
 }
+
+.fixModel {
+  display: flex;
+}
+
+.fixModel img {
+  width: 190px;
+  height: 171px;
+}
+.fixModel card {
+  height: 200px;
+}
+
+.buttingFix {
+  margin-bottom: 20px;
+  padding: 10px; 
+}
+
+.scrollbar {
+  height: 100px;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+}
+
+.scrollbar2 {
+  height: 100px;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+}
+
+.theHeight {
+  height: 200px;
+}

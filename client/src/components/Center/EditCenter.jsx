@@ -56,8 +56,8 @@ class EditCenter extends Component {
    *
    * @returns {void}
    */
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -69,8 +69,8 @@ class EditCenter extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     this.setState({ check: false });
     if (this.state.name === '') {
       toast.error('Center Name cannot be blank');
@@ -133,9 +133,9 @@ class EditCenter extends Component {
    *
    * @returns {void}
    */
-  onKeyPress = (e) => {
-    if (e.target.type !== 'textarea' && e.which === 13 /* Enter */) {
-      e.preventDefault();
+  onKeyPress = (event) => {
+    if (event.target.type !== 'textarea' && event.which === 13 /* Enter */) {
+      event.preventDefault();
     }
   }
 
@@ -148,10 +148,10 @@ class EditCenter extends Component {
    *
    * @returns {void}
    */
-    handleImageChange = (e) => {
-      e.preventDefault();
+    handleImageChange = (event) => {
+      event.preventDefault();
       const reader = new FileReader();
-      const file = e.target.files[0];
+      const file = event.target.files[0];
       reader.onloadend = () => {
         this.setState({
           image: file,
@@ -170,9 +170,9 @@ class EditCenter extends Component {
    *
    * @returns {void}
    */
-    removeFacility = (i) => {
+    removeFacility = (remove) => {
       const array = this.state.facility;
-      array.splice(i, 1);
+      array.splice(remove, 1);
       this.setState({ facility: array });
     }
 
@@ -250,7 +250,8 @@ EditCenter.defaultProps = {
   loadedCenter: PropTypes.shape({
     userId: 1,
     eventName: 'eventName',
-    eventdate: '2018-10-02',
+    startDate: '2018-10-02',
+    endDate: '2018-10-02',
     time: '11:00',
     purpose: 'fun',
     facility: ['example']

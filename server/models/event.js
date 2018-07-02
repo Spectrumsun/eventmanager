@@ -4,9 +4,13 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    eventdate: {
+    startDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+    },
+    endDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
     },
     time: {
       type: DataTypes.STRING,

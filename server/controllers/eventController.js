@@ -78,7 +78,8 @@ class Events {
   static createEvent(req, res) {
     Event.create({
       eventName: req.body.name,
-      eventdate: req.body.date,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
       time: req.body.time,
       purpose: req.body.purpose,
       centerId: parseInt(req.body.center, 10),
@@ -111,7 +112,8 @@ class Events {
       .then((event) => {
         event.update({
           eventName: req.body.name,
-          eventdate: req.body.date,
+          startDate: req.body.startDate,
+          endDate: req.body.endDate,
           time: req.body.time,
           purpose: req.body.purpose,
           centerId: parseInt(req.body.center, 10),

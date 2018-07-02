@@ -1,4 +1,8 @@
+
+import Sequelize from 'sequelize';
 import { Event } from '../models';
+
+const { Op } = Sequelize;
 
 require('dotenv').config();
 
@@ -128,8 +132,12 @@ class Validate {
       'You must supply an Event name!'
     ).notEmpty();
     req.checkBody(
-      'date',
-      'You must supply a date !'
+      'startDate',
+      'You must supply the Start Date!'
+    ).notEmpty();
+    req.checkBody(
+      'endDate',
+      'You must supply the End Date!'
     ).notEmpty();
     req.checkBody(
       'time',
@@ -274,14 +282,32 @@ class Validate {
    */
   static checkDate(req, res, next) {
     // check date is not in the past
-    if ((new Date(req.body.date) - Date.now()) < 0) {
+    if ((new Date(req.body.startDate) - Date.now()) < 0) {
       return res.status(400).json({
         message: 'You cant set a Past date for the event'
       });
     }
 
+    if ((new Date(req.body.endDate) - Date.now()) < 0) {
+      return res.status(400).json({
+        message: 'You cant set a Past date for the event'
+      });
+    }
+
+    if (new Date(req.body.endDate) < new Date(req.body.startDate)) {
+      return res.status(400).json({
+        message: 'End Date can not be behind Start Date'
+      });
+    }
+
     // check data is in the correct format
-    if (isNaN(new Date(req.body.date))) {
+    if (isNaN(new Date(req.body.startDate))) {
+      return res.status(400).json({
+        message: 'invalid date format make sure it\'s YYYY-MM-DD format'
+      });
+    }
+
+    if (isNaN(new Date(req.body.endDate))) {
       return res.status(400).json({
         message: 'invalid date format make sure it\'s YYYY-MM-DD format'
       });
@@ -301,16 +327,30 @@ class Validate {
       });
     }
 
-    // make sure not event add to the center is the same date
+    const startDate = new Date(req.body.startDate).toISOString();
+    const endDate = new Date(req.body.endDate).toISOString();
+
+    // make sure a center cannot be booked if an event is booked for that day already
     Event.findOne({
       where: {
         centerId: req.body.center,
-        eventdate: new Date(req.body.date).toISOString(),
+        [Op.or]: [
+          {
+            startDate: {
+              $between: [startDate, endDate]
+            }
+          },
+          {
+            endDate: {
+              $between: [startDate, endDate]
+            }
+          }
+        ]
       }
     }).then((event) => {
       if (event && event.id != req.params.id) {
         return res.status(409).json({
-          message: 'Center booked for that date already'
+          message: `Center booked from: ${event.startDate} to ${event.endDate}`
         });
       }
       next();
@@ -320,3 +360,4 @@ class Validate {
 
 
 export default Validate;
+

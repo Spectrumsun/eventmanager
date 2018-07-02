@@ -12,9 +12,13 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    eventdate: {
+    startDate: {
       type: Sequelize.DATEONLY,
       allowNull: false,
+    },
+    endDate: {
+      type: Sequelize.DATEONLY,
+      allowNull: true,
     },
     time: {
       type: Sequelize.STRING,

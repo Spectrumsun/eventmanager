@@ -48,7 +48,7 @@ const routers = () => (
     <Route
       path="/events/:id"
       exact
-      component={EventInfo}
+      component={RequireAuth(EventInfo)}
     />
     <Route
       path="/events/edit/:id"

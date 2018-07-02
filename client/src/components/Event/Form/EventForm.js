@@ -25,12 +25,23 @@ const eventForm = props => (
         </div>
 
         <div className="form-group col-md-6">
-          <h5><label htmlFor="inputPassword4">Date</label></h5>
+          <h5><label htmlFor="inputPassword4">Start Date</label></h5>
           <input
             type="date"
-            value={props.date}
+            value={props.startDate}
             onChange={props.onChange}
-            name="date"
+            name="startDate"
+            className="form-control form-control-lg"
+          />
+        </div>
+
+        <div className="form-group col-md-6">
+          <h5><label htmlFor="inputPassword4">End Date</label></h5>
+          <input
+            type="date"
+            value={props.endDate}
+            onChange={props.onChange}
+            name="endDate"
             className="form-control form-control-lg"
           />
         </div>
@@ -122,7 +133,8 @@ eventForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  date: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   showCenterNane: PropTypes.object.isRequired,
   numberOfPages: PropTypes.object.isRequired,

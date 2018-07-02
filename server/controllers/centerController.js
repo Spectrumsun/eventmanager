@@ -62,8 +62,7 @@ class Centers {
         {
           model: Event,
           as: 'events',
-          attributes: ['eventdate']
-
+          attributes: ['startDate', 'endDate']
         }
       ],
     })

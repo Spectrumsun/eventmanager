@@ -50,7 +50,8 @@ class EventInfo extends Component {
   render() {
     const {
       eventName,
-      eventdate,
+      startDate,
+      endDate,
       time,
       purpose,
     } = this.props.events;
@@ -151,8 +152,11 @@ class EventInfo extends Component {
                 <h5 ><strong>Event Name</strong></h5>
                 <h6 className="list-group-item">{eventName}</h6>
                 <br />
-                <h5><strong>Date</strong></h5>
-                <h6 className="list-group-item">{eventdate}</h6>
+                <h5><strong>Start Date</strong></h5>
+                <h6 className="list-group-item">{startDate}</h6>
+                <br />
+                <h5><strong>End Date</strong></h5>
+                <h6 className="list-group-item">{endDate}</h6>
                 <br />
                 <h5><strong>Time</strong></h5>
                 <h6 className="list-group-item">{time}</h6>

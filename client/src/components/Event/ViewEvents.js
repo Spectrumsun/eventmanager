@@ -68,7 +68,6 @@ class ViewEvent extends Component {
    *
    * @returns {JSX} JSX representation of component
    */
-    console.log(this.props.events);
     return (
       <div>
         <div className="center thebody" >

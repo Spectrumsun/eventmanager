@@ -133,16 +133,16 @@ class CenterInfo extends Component {
             </ul>
             <br />
             <h5><strong>Events</strong></h5>
-            {set && set.events && set.events.map(eve =>
+            {set && set.events && set.events.map(eventDate =>
                   (<div
                     key={Math.floor(Math.random() * 10906) + 30}
                     className="card d-lg-inline-block"
                     style={{ width: '15rem' }}
                   >
                     <div className="card-body">
-                      <p className="card-text">
-                        {eve.eventdate}
-                      </p>
+                      <h6 className="card-text">
+                        {eventDate.startDate} To {eventDate.endDate}
+                      </h6>
                     </div>
                    </div>
                 ))}
@@ -188,7 +188,8 @@ CenterInfo.propTypes = {
   loadedCenter: PropTypes.shape({
     id: PropTypes.number,
     eventName: PropTypes.string,
-    eventdate: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
     time: PropTypes.string,
     purpose: PropTypes.string,
   }),

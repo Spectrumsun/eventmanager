@@ -25,8 +25,8 @@ class PasswordReset extends Component {
    *
    * @returns {void}
    */
-  onChange =(e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange =(event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -38,8 +38,8 @@ class PasswordReset extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     if (this.state.password === '') {
       toast.error('Password cannot be blank');
     } else if (this.state.password !== this.state.confirmPassword) {

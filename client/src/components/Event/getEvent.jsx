@@ -18,7 +18,7 @@ const display = props => (
     />
     <div className="card-body">
       <h4 className="card-title">{props.eventName}</h4>
-      <p className="card-text">{props.eventdate}</p>
+      <span className="card-text">{props.startDate}</span> To <span className="card-text">{props.endDate}</span>
       <h6 className="card-text">{props.purpose}</h6>
       <h6 className="btn btn-primary">View more</h6>
     </div>
@@ -27,7 +27,8 @@ const display = props => (
 
 display.propTypes = {
   eventName: PropTypes.string.isRequired,
-  eventdate: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string.isRequired,
   purpose: PropTypes.string.isRequired,
   centerImage: PropTypes.string.isRequired
 };

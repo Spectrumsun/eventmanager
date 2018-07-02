@@ -7,7 +7,7 @@ import Loading from '../UI/Loading';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
 
-const imageurl = 'https://res.cloudinary.com/skybound/' +
+const imageUrl = 'https://res.cloudinary.com/skybound/' +
                 'image/upload/s--FNAPSR5p--' +
                 '/v1524387956/eventmanager/' +
                 '1524387954621-99fa41ccf13172' +
@@ -53,10 +53,11 @@ class ViewEvent extends Component {
          >
            <Display
              eventName={event.eventName}
-             eventdate={event.eventdate}
+             startDate={event.startDate}
+             endDate={event.endDate}
              purpose={event.purpose}
              centerImage={event.centers === null ?
-              imageurl : event.centers.imageurl
+              imageUrl : event.centers.imageurl
             }
            />
          </Link>

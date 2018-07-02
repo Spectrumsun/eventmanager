@@ -31,7 +31,7 @@ class Display extends Component {
   render() {
     return (
       <div
-        className="card d-lg-inline-block"
+        className="card"
         style={{ width: '12rem' }}
       >
         <img
@@ -40,6 +40,7 @@ class Display extends Component {
           style={{ width: '20', height: '10' }}
           alt="Card cap"
         />
+        <div className="theHeight">
         <div className="card-body text-capitalize">
           <h6>
             <Link
@@ -53,22 +54,25 @@ class Display extends Component {
           <h6>
             {this.props.address}
           </h6>
-          <h6>Availability: {this.props.availability}</h6>
+          <div className="scrollbar">
           <h6><strong>Facility</strong></h6>
           <ul className="list-group text-capitalize">
             {this.props.facility.map(list =>
                 (<li key={Math.floor(Math.random() * 10906) + 5}>
                   {list}
-                 </li>))
+                </li>))
             }
           </ul>
+          </div>
           <br />
+        </div>
+        </div>
+        <div className="buttingFix">
           <button
             type="button"
             className="btn btn-primary btn-sm"
             data-dismiss="modal"
             onClick={this.clicked}
-            style={{ marginLeft: '20px' }}
           >Select
           </button>
         </div>
@@ -81,7 +85,6 @@ Display.propTypes = {
   centerName: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  availability: PropTypes.string.isRequired,
   facility: PropTypes.arrayOf(PropTypes.string).isRequired,
   id: PropTypes.number.isRequired,
   selectCenter: PropTypes.func.isRequired,

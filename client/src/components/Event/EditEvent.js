@@ -13,7 +13,8 @@ import * as action from '../../store/actions/index';
 class EditEvent extends Component {
    state = {
      name: this.props.loadedEvent.eventName,
-     date: this.props.loadedEvent.eventdate,
+     startDate: this.props.loadedEvent.startDate,
+     endDate: this.props.loadedEvent.endDate,
      time: this.props.loadedEvent.time,
      purpose: this.props.loadedEvent.purpose,
      center: this.props.loadedEvent.centerId,
@@ -66,8 +67,12 @@ class EditEvent extends Component {
        toast.error('Event Name cannot be blank');
      } else if (reWhiteSpace.test(this.state.fullname) === true) {
        toast.error('Event Name cannot white space');
-     } else if (this.state.date === '') {
-       toast.error('Event Date cannot be blank');
+     } else if (this.state.startDate === '') {
+       toast.error('Event start date cannot be blank');
+     } else if (this.state.endDate === '') {
+       toast.error('Event end date cannot be blank');
+     } else if (this.state.endDate < this.state.startDate) {
+       toast.error('!Event end date cannot be behind event start date');
      } else if (this.state.time === '') {
        toast.error('Event Time cannot be blank');
      } else if (this.state.purpose === '') {
@@ -158,7 +163,8 @@ class EditEvent extends Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             name={this.state.name}
-            date={this.state.date}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
             time={this.state.time}
             purpose={this.state.purpose}
             getCenter={this.getCenter}
@@ -183,7 +189,8 @@ EditEvent.propTypes = {
   initEditEvent: PropTypes.func.isRequired,
   loadedEvent: PropTypes.shape({
     eventName: PropTypes.string,
-    eventdate: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.endDate,
     purpose: PropTypes.string,
     time: PropTypes.string,
     userId: PropTypes.number,

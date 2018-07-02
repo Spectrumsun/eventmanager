@@ -344,6 +344,15 @@ class Validate {
             endDate: {
               $between: [startDate, endDate]
             }
+          },
+          {
+            startDate: {
+              $lte: startDate
+            }
+          }, {
+            endDate: {
+              $gte: endDate
+            }
           }
         ]
       }

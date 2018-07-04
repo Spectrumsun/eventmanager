@@ -27,7 +27,7 @@
     "no-plusplu": "off",
      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
      "react/forbid-prop-types": ["<enabled>"],
-     
+     "sourceType": "module",
      "jsx-ally/href-no-hash": "off",
      "jsx-a11y/anchor-is-valid": "off",
     "import/no-extraneous-dependencies": "off",

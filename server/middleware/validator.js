@@ -346,10 +346,6 @@ class Validate {
             }
           },
           {
-            startDate: {
-              $lte: startDate
-            }
-          }, {
             endDate: {
               $gte: endDate
             }
@@ -359,7 +355,7 @@ class Validate {
     }).then((event) => {
       if (event && event.id != req.params.id) {
         return res.status(409).json({
-          message: `Center booked from: ${event.startDate} to ${event.endDate}`
+          message: `Center booked from: ${event.startDate} to ${event.endDate}`,
         });
       }
       next();

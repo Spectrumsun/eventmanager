@@ -20,7 +20,7 @@
     "webpack:watch": "webpack --watch --config webpack.dev.config.js",
     "webpack:build": "webpack --config webpack.prod.config.js --progress --profile --color",
     "test:client": "jest && codecov",
-    "coverages": "npm run coverage "
+    "coverages": "npm run coverage && npm run test:client"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

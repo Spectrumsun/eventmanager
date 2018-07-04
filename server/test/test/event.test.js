@@ -68,14 +68,14 @@ describe('Event Manager Event Test', () => {
       });
   });
 
-  it('return error if user is login and event date is empty', (done) => {
+  it('return error if user is login and event start date is empty', (done) => {
     request(server)
       .post('/api/v1/events')
       .send(testData.newEvent2)
       .set('Authorization', validToken.token)
       .end((error, res) => {
         expect(400);
-        expect(res.body.errorMessage).to.include('You must supply a date !');
+        expect(res.body.errorMessage).to.include('You must supply the Start Date!');
         if (error) done(error);
         done();
       });
@@ -122,7 +122,7 @@ describe('Event Manager Event Test', () => {
       });
   });
 
-  it('return error if user is login and event date is in the past', (done) => {
+  it('return error if user is login and start event date is in the past', (done) => {
     request(server)
       .post('/api/v1/events')
       .send(testData.newEvent6)
@@ -131,6 +131,48 @@ describe('Event Manager Event Test', () => {
         expect(403);
         expect(res.body.message).to
           .include('You cant set a Past date for the event');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if user is login and end event date is in the past', (done) => {
+    request(server)
+      .post('/api/v1/events')
+      .send({
+        name: 'wedding party 2',
+        startDate: '2019-08-10',
+        endDate: '2017-08-20',
+        time: '12:00',
+        purpose: 'love',
+        center: 2,
+      })
+      .set('Authorization', validToken.token)
+      .end((error, res) => {
+        expect(403);
+        expect(res.body.message).to
+          .include('You cant set a Past date for the event');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if user is login and event end date is behind start date', (done) => {
+    request(server)
+      .post('/api/v1/events')
+      .send({
+        name: 'wedding party 2',
+        startDate: '2019-08-10',
+        endDate: '2018-08-20',
+        time: '12:00',
+        purpose: 'love',
+        center: 2,
+      })
+      .set('Authorization', validToken.token)
+      .end((error, res) => {
+        expect(403);
+        expect(res.body.message).to
+          .include('End Date can not be behind Start Date');
         if (error) done(error);
         done();
       });
@@ -191,13 +233,14 @@ describe('Event Manager Event Test', () => {
 
   it(
     `save event to database if user is
-    login and all fields are filed corrctly`,
+    login and all fields are filed correctly`,
     (done) => {
       request(server)
         .post('/api/v1/events')
         .send({
           name: 'wedding party 2',
-          date: '2018-08-10',
+          startDate: '2019-08-10',
+          endDate: '2019-08-20',
           time: '12:00',
           purpose: 'love',
           center: 2,
@@ -216,13 +259,14 @@ describe('Event Manager Event Test', () => {
 
   it(
     `save another event to database if user
-    is login and all fields are filed corrctly`,
+    is login and all fields are filed correctly`,
     (done) => {
       request(server)
         .post('/api/v1/events')
         .send({
           name: 'dance dance',
-          date: '2018-10-05',
+          startDate: '2020-3-15',
+          endDate: '2020-4-16',
           time: '12:00',
           purpose: 'dacing hahha!!!',
           center: 2,
@@ -240,13 +284,14 @@ describe('Event Manager Event Test', () => {
 
   it(
     `save another event to database if user
-    is login and all fields are filed corrctly`,
+    is login and all fields are filed correctly`,
     (done) => {
       request(server)
         .post('/api/v1/events')
         .send({
           name: 'dance dance',
-          date: '2018-08-05',
+          startDate: '2023-7-05',
+          endDate: '2023-8-08',
           time: '12:00',
           purpose: 'dacing hahha!!!',
           center: 2,
@@ -262,11 +307,24 @@ describe('Event Manager Event Test', () => {
     }
   );
 
-  it('return all the event in the database', (done) => {
+  it('return error if user is not sign in whats to view the event in the database', (done) => {
     request(server)
       .get('/api/v1/events')
       .end((error, res) => {
-        expect(201);
+        expect(200);
+        expect(res.body.message)
+          .to.include('You need to sign up or login');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return all the event in the database if user is signed in', (done) => {
+    request(server)
+      .get('/api/v1/events')
+      .set('Authorization', validToken.token)
+      .end((error, res) => {
+        expect(200);
         expect(res.body.message)
           .to.include('success');
         if (error) done(error);
@@ -274,7 +332,7 @@ describe('Event Manager Event Test', () => {
       });
   });
 
-  it('return 1 all the event in the database', (done) => {
+  it('return 1 event in the database', (done) => {
     request(server)
       .get('/api/v1/events/1')
       .end((error, res) => {
@@ -300,13 +358,14 @@ describe('Event Manager Event Test', () => {
 
   it(
     `return error if edited event date is already
-     taken by another event save another event`,
+     taken by another event`,
     (done) => {
       request(server)
         .put('/api/v1/events/1')
         .send({
           name: 'dance dance',
-          date: '2018-08-05',
+          startDate: '2023-7-05',
+          endDate: '2023-8-08',
           time: '12:00',
           purpose: 'dacing hahha!!!',
           center: 2,
@@ -315,7 +374,7 @@ describe('Event Manager Event Test', () => {
         .end((error, res) => {
           expect(201);
           expect(res.body.message).to
-            .include('Center booked for that date already');
+            .include('Center booked from: 2023-07-05 to 2023-08-08');
           if (error) done(error);
           done();
         });
@@ -324,7 +383,7 @@ describe('Event Manager Event Test', () => {
 
   it(
     `update event in database if user is
-    login and all fields are filed corrctly`,
+    login and all fields are filed correctly`,
     (done) => {
       request(server)
         .put('/api/v1/events/2')
@@ -339,7 +398,7 @@ describe('Event Manager Event Test', () => {
     }
   );
 
-  it('return error when u edit an event you dont own', (done) => {
+  it('return error when you edit an event you dont own', (done) => {
     request(server)
       .put('/api/v1/events/1')
       .send(testData.newEvent14)

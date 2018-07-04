@@ -57,7 +57,7 @@ class ForgotPassword extends Component {
     return (
       <div>
         <div className="container" style={{ paddingTop: '150px' }}>
-          <h3 classNmae="center">Event Manager</h3>
+          <h3 className="center">Event Manager</h3>
           <div className="card loginCard" style={{ width: '30rem' }}>
             <div className="card-header">
               <h3>Password Reset</h3>

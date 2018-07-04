@@ -223,7 +223,8 @@ class Centers {
           deletePicture(center.imageId, 'publicUrlId');
           center.destroy();
           res.status(200).json({
-            message: 'center successfully deleted!'
+            message: 'center successfully deleted!',
+            deletedCenter: center
           });
         } else {
           res.status(404).json({

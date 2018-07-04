@@ -9,12 +9,10 @@ export const searchCenter = searchResult => ({
   searchReuslt: searchResult
 });
 
-
-export const centerError = error => ({
+export const searchError = error => ({
   type: actionTypes.SEARCH_ERROR,
   error
 });
-
 
 export const initSearchCenters =
 (search, limit, page) => (dispatch) => {
@@ -24,8 +22,7 @@ export const initSearchCenters =
       dispatch(searchCenter(res.data));
     })
     .catch((error) => {
-      dispatch(centerError(error));
-      console.log(error)
+      dispatch(searchError(error));
       toast.error(error.data.error);
     });
 };

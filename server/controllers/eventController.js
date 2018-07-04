@@ -146,7 +146,8 @@ class Events {
       .then((event) => {
         if (event) {
           res.status(200).json({
-            message: 'Event successfully deleted!'
+            message: 'Event successfully deleted!',
+            deletedEvent: event
           });
         } else {
           res.status(404).json({

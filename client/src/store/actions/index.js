@@ -4,6 +4,7 @@ export { getAllCenters,
   getOneCenter,
   addCenters,
   editCenter,
+  deleteCenter,
   centerError,
   initPostCenters,
   initEditCenter,
@@ -17,8 +18,12 @@ export {
   userError,
   initUser,
   logIn,
+  addAdmin,
+  confirmPassword,
   initUserLogin,
   initUserLogout,
+  passwordReset,
+  emailVerify,
   initconfirmPassword,
   initemailverify,
   passwordRest,
@@ -41,5 +46,6 @@ export {
 } from './eventAction';
 
 export {
-  initSearchCenters
+  initSearchCenters,
+  searchError
 } from './search';

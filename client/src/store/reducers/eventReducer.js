@@ -5,7 +5,7 @@ const initialState = {
   loadedEvent: {},
   addEvent: [],
   editEvent: [],
-  delete: [],
+  deleteEvent: [],
   error: false
 
 };
@@ -39,7 +39,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_EVENT: {
       return {
         ...state,
-        delete: action.deleteEvent
+        deleteEvent: action.deleteEvent,
+        error: false,
       };
     }
     case actionTypes.EVENT_ERROR:

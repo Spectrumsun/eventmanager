@@ -12,70 +12,160 @@ const center = {
     userId: 18,
   },
 
+  message: 'successfully created',
+
   allCenter: {
     message: 'success',
-    center: {
-      id: 1,
-      centerName: 'Yaba center',
-      city: 'Surulere',
-      address: 'No 22, Yaba Road',
-      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-      facility: [
-        'table', 'chair', 'sound system'
-      ],
-      availability: 'yes',
-      imageurl: 'https://res.cloudinary.com/skybound/image/upload/v1522444978/eventmanager/static/image2.jpg',
-      imageId: 'image2.jpg',
-      userId: 18,
-      updatedAt: '2018-04-14T20:13:39.729Z',
-      createdAt: '2018-04-14T20:13:39.729Z'
-    }
+    result: [
+      {
+        id: 1,
+        centerName: 'Epic Towers',
+        city: 'lagos',
+        address: 'No 22 Tomato Street Lagos',
+        availability: 'Yes',
+        imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+        imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+        about: 'Lorem ipsum dolor sit amet, consetetur amet.',
+        facility: [
+          'sound system',
+          'free wifi',
+          'car pack',
+          'projector'
+        ],
+        userId: 18
+      },
+      {
+        id: 2,
+        centerName: 'Towers Centers',
+        city: 'lagos',
+        address: 'No 22 Tomato Street Lagos',
+        availability: 'No',
+        imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+        imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+        about: 'Lorem ipsum dolor sit amet, consetetur amet.',
+        facility: [
+          'sound system',
+          'free wifi',
+          'car pack',
+          'projector'
+        ],
+        userId: 18
+      },
+    ],
+    count: 1,
+    pages: 1
   },
 
   oneCenter: {
     message: 'Center',
     center: {
-      id: 1,
-      centerName: 'Yaba center',
-      city: 'Surulere',
-      address: 'No 22, Yaba Road',
-      availability: 'yes',
-      imageurl: 'https://res.cloudinary.com/skybound/image/upload/v1522444978/eventmanager/static/image2.jpg',
-      imageId: 'image2.jpg',
-      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-      facility: null,
-      createdAt: '2018-04-14T20:13:39.729Z',
-      updatedAt: '2018-04-14T20:13:39.729Z',
-      userId: 18,
+      centerName: 'Epic Towers',
+      city: 'lagos',
+      id: 2,
+      address: 'No 22 Tomato Street Lagos',
+      availability: 'Yes',
+      imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+      imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      facility: [
+        'sound system',
+        'free wifi',
+        'car pack',
+        'projector'
+      ],
       events: [
         {
-          id: 1,
-          eventName: 'Wedding Party',
-          eventdate: '2018-06-11',
-          time: '12:00',
-          purpose: 'for love',
-          createdAt: '2018-04-14T20:19:04.584Z',
-          updatedAt: '2018-04-14T20:19:04.584Z',
-          centerId: 1,
-          userId: 18
+          startDate: '2018-07-03',
+          endDate: '2018-07-05'
         }
       ]
     }
   },
 
+  addedCenter: {
+    message: 'successfully created',
+    center: {
+      centerName: 'Epic Towers',
+      city: 'lagos',
+      id: 2,
+      address: 'No 22 Tomato Street Lagos',
+      availability: 'Yes',
+      imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+      imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      facility: [
+        'sound system',
+        'free wifi',
+        'car pack',
+        'projector'
+      ]
+    }
+  },
+
+  editCenterDetails: {
+    centerName: 'Epic Towers',
+    city: 'Yaba',
+    id: 2,
+    address: 'No 22 Tomato Street Lagos',
+    availability: 'Yes',
+    imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+    imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+    about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    facility: [
+      'sound system',
+      'free wifi',
+      'car pack',
+      'projector'
+    ],
+  },
+
   editCenter: {
-    centerName: 'Island center',
-    city: 'Lagos Island',
-    address: 'No 22, Marina Road',
-    about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr',
-    facility: ['table', 'chair', 'sound system'],
-    availability: 'yes',
-    imageurl: 'https://res.cloudinary.com/skybound/image/upload/v1522444978/eventmanager/static/image2.jpg',
-    imageId: 'image2.jpg',
-    userId: 18,
+    message: 'updated',
+    center: {
+      centerName: 'Epic Towers',
+      city: 'Yaba',
+      id: 2,
+      address: 'No 22 Tomato Street Lagos',
+      availability: 'Yes',
+      imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+      imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      facility: [
+        'sound system',
+        'free wifi',
+        'car pack',
+        'projector'
+      ],
+      events: [
+        {
+          startDate: '2018-07-03',
+          endDate: '2018-07-05'
+        }
+      ]
+    }
   },
   deleteCenter: {
-    message: 'center successfully deleted!'
+    message: 'center successfully deleted!',
+    deletedCenter: {
+      centerName: 'Epic Towers',
+      city: 'Yaba',
+      id: 2,
+      address: 'No 22 Tomato Street Lagos',
+      availability: 'Yes',
+      imageurl: 'https://res.cloudinary.com/skybound/image/upload/s--hNcvVc0X--/v1530533763/eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg.jpg',
+      imageId: 'eventmanager/1530533759981-big_2db9ca1873c31f7922dfd1366b7a56068f28e44b.jpg',
+      about: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      facility: [
+        'sound system',
+        'free wifi',
+        'car pack',
+        'projector'
+      ],
+    },
+  },
+
+  error: {
+    data: 'errorMessage'
   }
 
 

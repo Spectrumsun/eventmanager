@@ -26,6 +26,8 @@ module.exports = {
     '<rootDir>/coverage/',
     '<rootDir>/src/index',
     '<rootDir>/src/store/actions/index',
+    '<rootDir>/src/store/reducers/index',
+    '<rootDir>/src/store/storeConfig',
     '<rootDir>/test/',
     '<rootDir>/public'
   ],
@@ -37,11 +39,11 @@ module.exports = {
     'enzyme-to-json/serializer'
   ],
   moduleFileExtensions: [
-    'js'
+    'js', 'jsx'
   ],
-  collectCoverage: false,
+  collectCoverage: true,
   collectCoverageFrom: [
-    '**/*.{js}',
+    '**/*.{js,jsx}',
     '!**/node_modules/**'
   ],
   moduleNameMapper: {

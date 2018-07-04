@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
+import Terms from './termsandcondition';
 
 /**
  * @class Signup
@@ -129,7 +130,27 @@ class Signup extends Component {
                       required
                     />
                     <small>
-                    Have read and accepted the terms and conditions ?
+                      <span data-toggle="modal" data-target="#exampleModalLong" style={{ cursor: 'pointer' }}>Have read and accepted the terms and conditions ?</span>
+
+                      <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5 className="modal-title" id="exampleModalLongTitle">Terms and Conditions</h5>
+                              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div className="modal-body">
+                              <Terms />
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </small>
                   </label>
                 </div>

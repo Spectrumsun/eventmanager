@@ -294,7 +294,7 @@ describe('Event Manager Center Test', () => {
 
 
   it(
-    'save new centerto database if login is' +
+    'save new center to database if login if' +
     'admin and and body is filed correctly',
     (done) => {
       request(server)
@@ -321,7 +321,7 @@ describe('Event Manager Center Test', () => {
   );
 
   it(
-    'return error for imvalied url imvent event when user is signin in',
+    'return error for invalid url invent event when user is signing in',
     (done) => {
       request(server)
         .get('/api/v1/centers/1swew')
@@ -336,7 +336,7 @@ describe('Event Manager Center Test', () => {
     }
   );
 
-  it('return error if center is not found in db when deleteing delete center', (done) => {
+  it('return error if center is not found in db when deleting delete center', (done) => {
     request(server)
       .delete('/api/v1/centers/33')
       .set('Authorization', adminToken.token)
@@ -347,5 +347,16 @@ describe('Event Manager Center Test', () => {
         done();
       });
   });
-});
 
+  it('return search result for search center', (done) => {
+    request(server)
+      .post('/api/v1/centers/search?searchString=center')
+      .send(testData.newCenter)
+      .end((error, res) => {
+        expect(200);
+        expect(res.body.result).to.include([]);
+        if (error) done(error);
+        done();
+      });
+  });
+});

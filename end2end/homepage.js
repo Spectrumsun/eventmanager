@@ -1,18 +1,17 @@
 module.exports = {
-  'Demo test Google': function (client) {
-    client
-      .url('http://www.google.com')
-      .waitForElementVisible('body', 1000)
-      .assert.title('Google')
-      .assert.visible('input[type=text]')
-      .setValue('input[type=text]', 'rembrandt van rijn')
-      .waitForElementVisible('button[name=btnG]', 1000)
-      .click('button[name=btnG]')
-      .pause(1000)
-      .assert.containsText(
-'ol#rso li:first-child',
-        'Rembrandt - Wikipedia'
-)
-      .end();
+  'Display homepage and ensure all elements are available': (browser) => {
+    browser
+      .windowMaximize()
+      .url('http://localhost:5000')
+      .waitForElementVisible('body', 5000)
+      .pause(3000)
+      .assert.containsText('.login', 'Login')
+      .assert.containsText('.signup', 'Sign up')
+      .assert.containsText('#logo', 'Event Manager')
+      .assert.containsText('#home', 'Home')
+      .assert.containsText('#navbarDropdown', 'Events')
+      .assert.containsText('#addevent', 'Add Event')
+      .assert.containsText('#viewCenter', 'View Center')
   }
+
 };

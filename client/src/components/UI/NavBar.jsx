@@ -86,17 +86,19 @@ class NavBar extends Component {
     );
 
     const guessLink = (
-      <ul className=" nav navbar-nav navbar-right">
+      <ul className=" nav navbar-nav navbar-right login">
         <li className="nav-item">
           <Link
             to="/login"
             className="btn btn-outline-light"
+            id="login"
           >Login
           </Link>
         </li>
         <br />
-        <li className="nav-item">
+        <li className="nav-item signup">
           <Link
+            id="sigup"
             to="/signup"
             className="btn btn-outline-light"
           >Sign up
@@ -171,7 +173,7 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link to="/" className="nav-link" >
+                <Link to="/" className="nav-link" id="logo">
                 Event Manager<span className="sr-only">
                 (current)
                              </span>
@@ -179,6 +181,7 @@ class NavBar extends Component {
               </li>
               <li className="nav-item active">
                 <Link
+                  id="home"
                   to="/"
                   className="nav-link"
                 >
@@ -212,6 +215,7 @@ class NavBar extends Component {
                   { isAuthenticated ? myEvent : null }
                   <div className="dropdown-divider" />
                   <Link
+                    id="viewCenter"
                     to="/centers"
                     className="dropdown-item"
                   >View Centers

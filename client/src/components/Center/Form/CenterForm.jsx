@@ -172,7 +172,6 @@ centerFrom.propTypes = {
   values: PropTypes.string.isRequired,
   facility: PropTypes.array.isRequired,
   imagePreview: PropTypes.object,
-  check: PropTypes.bool.isRequired
 };
 
 centerFrom.defaultProps = {

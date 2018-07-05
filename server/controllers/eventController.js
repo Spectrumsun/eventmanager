@@ -27,11 +27,11 @@ class Events {
         if (event.length < 1) {
           res.status(200).send({
             message: 'success',
-            myevent: 'You dont have any event Yet',
+            myEvent: 'You dont have any event Yet',
             event
           });
         } else {
-          res.status(400).send({
+          res.status(200).send({
             message: 'success',
             event
           });
@@ -119,7 +119,7 @@ class Events {
         });
         res.status(200).json({
           message: 'updated',
-          event
+          updatedEvent: event
         });
       })
       .catch(err => res.status(404).json({
@@ -136,17 +136,18 @@ class Events {
    * @returns {void}
    */
   static deleteEvent(req, res) {
-    Event.destroy({
+    Event.findOne({
       where: {
         id: req.params.id,
         userId: req.user.id
       }
     })
-      .then((event) => {
-        if (event) {
+      .then((events) => {
+        if (events) {
+          events.destroy();
           res.status(200).json({
             message: 'Event successfully deleted!',
-            deletedEvent: event
+            deletedEvent: events
           });
         } else {
           res.status(404).json({

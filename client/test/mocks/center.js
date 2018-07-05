@@ -119,9 +119,9 @@ const center = {
     ],
   },
 
-  editCenter: {
+  updatedCenter: {
     message: 'updated',
-    center: {
+    updatedCenter: {
       centerName: 'Epic Towers',
       city: 'Yaba',
       id: 2,
@@ -166,6 +166,10 @@ const center = {
 
   error: {
     data: 'errorMessage'
+  },
+
+  deleteCenterId: {
+    id: 2
   }
 
 

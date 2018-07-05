@@ -98,13 +98,13 @@ describe('Test for Center action', () => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: center.editCenter,
+        response: center.updatedCenter,
       });
     });
     const expectedActions = [
       {
         type: actionTypes.EDIT_CENTER,
-        editCenter: center.editCenter.center
+        editCenter: center.updatedCenter.updatedCenter
       }
     ];
     const store = mockStore({});

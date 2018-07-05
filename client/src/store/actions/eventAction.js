@@ -104,7 +104,7 @@ export const initEditEvent = (id, events, history) => {
           .then((response) => {
             toast.success(response.data.message)
             history.push('/events')
-            dispatch(editEvent(response.data.event))
+            dispatch(editEvent(response.data.updatedEvent))
           })
           .catch((error) => {
             errorHandler(error)
@@ -121,7 +121,7 @@ export const initDeleteEvent = (id, history) => {
           .then((response) => {
             toast.success(response.data.message)
             history.push('/events')
-            dispatch(deleteEvent(response.data))
+            dispatch(deleteEvent(response.data.deletedEvent))
           })
           .catch((error) => {
             dispatch(eventError(error))

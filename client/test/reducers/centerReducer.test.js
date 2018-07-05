@@ -19,14 +19,14 @@ describe('Center Reducer', () => {
     done();
   });
 
-  it('should retrun all centers when action of type GET_ALL_CENTERS is called', (done) => {
+  it('should return all centers when action of type GET_ALL_CENTERS is called', (done) => {
     const action = {
       type: actionTypes.GET_ALL_CENTERS,
-      center: center.allCenter,
+      center: center.allCenter.result,
       error: false,
     };
     const newState = centerReducer(initialState, action);
-    expect(newState.center).toEqual(center.allCenter);
+    expect(newState.center).toEqual(center.allCenter.result);
     done();
   });
 
@@ -76,22 +76,28 @@ describe('Center Reducer', () => {
   it('should edit center when action of type EDIT_CENTER is called', (done) => {
     const action = {
       type: actionTypes.EDIT_CENTER,
-      editCenter: center.editCenterDetails,
+      editCenter: center.allCenter.result,
       error: false,
     };
-    const newState = centerReducer(initialState, action);
-    expect(newState.editCenter).toEqual(center.editCenterDetails);
+    const newState = centerReducer({
+      center: center.allCenter.result,
+      editCenter: []
+    }, action);
+    expect(newState.editCenter).toEqual(center.allCenter.result);
     done();
   });
 
   it('should delete center when action of type DELETE_CENTER is called', (done) => {
     const action = {
       type: actionTypes.DELETE_CENTER,
-      deleteCenter: center.deleteCenter,
+      deleteCenter: center.allCenter.result,
       error: false,
     };
-    const newState = centerReducer(initialState, action);
-    expect(newState.deleteCenter).toEqual(center.deleteCenter);
+    const newState = centerReducer({
+      center: center.allCenter.result,
+      deleteCenter: []
+    }, action);
+    expect(newState.deleteCenter).toEqual(center.allCenter.result);
     done();
   });
 

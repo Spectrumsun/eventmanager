@@ -27,6 +27,30 @@ const event = {
         updatedAt: '2018-04-14T20:19:04.584Z',
         centerId: 1,
         userId: 18
+      },
+      {
+        id: 20,
+        eventName: 'Wedding Party',
+        startDate: '2018-11-10',
+        endDate: '2018-11-15',
+        time: '12:00',
+        purpose: 'for love',
+        createdAt: '2018-04-14T20:19:04.584Z',
+        updatedAt: '2018-04-14T20:19:04.584Z',
+        centerId: 1,
+        userId: 18
+      },
+      {
+        id: 9,
+        eventName: 'Wedding Party',
+        startDate: '2018-11-10',
+        endDate: '2018-11-15',
+        time: '12:00',
+        purpose: 'for love',
+        createdAt: '2018-04-14T20:19:04.584Z',
+        updatedAt: '2018-04-14T20:19:04.584Z',
+        centerId: 1,
+        userId: 18
       }
     ]
   },

@@ -40,7 +40,7 @@ class Users {
           name: user.fullname
         });
         res.status(201).send({
-          message: 'Account successfully created. Check your mail to confirm your account ',
+          message: 'Account successfully created. Check your mail to confirm your account',
           user: {
             email: user.email,
             fullname: user.fullname

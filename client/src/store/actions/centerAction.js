@@ -40,10 +40,12 @@ export const editCenter = center => ({
   editCenter: center
 });
 
-export const deleteCenter = center => ({
-  type: actionTypes.DELETE_CENTER,
-  deleteCenter: center
-});
+export const deleteCenter = (center) => {
+  return {
+    type: actionTypes.DELETE_CENTER,
+    deleteCenter: center
+  };
+};
 
 export const centerError = error => ({
   type: actionTypes.CENTER_ERROR,
@@ -99,7 +101,7 @@ export const initEditCenter = (id, center, history) => (dispatch) => {
     .then((response) => {
       toast.success(response.data.message);
       history.push('/centers');
-      dispatch(editCenter(response.data.center));
+      dispatch(editCenter(response.data.updatedCenter));
     })
     .catch((error) => {
       errorHandler(error);

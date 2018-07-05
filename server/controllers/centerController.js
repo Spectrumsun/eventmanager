@@ -136,7 +136,7 @@ class Centers {
         });
         res.status(200).json({
           message: 'updated',
-          center
+          updatedCenter: center
         });
       })
       .catch(err => res.status(404).json({

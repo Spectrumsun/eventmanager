@@ -50,25 +50,29 @@ describe('Event Reducer', () => {
     done();
   });
 
-  it('should edit center when action of type EDIT_CENTER is called', (done) => {
+  it('should edit event when action of type EDIT_EVENT is called', (done) => {
     const action = {
       type: actionTypes.EDIT_EVENT,
-      editEvent: events.editEvent,
+      editEvent: events.allEvent.event,
       error: false,
     };
-    const newState = eventReducer(initialState, action);
-    expect(newState.editEvent).toEqual(events.editEvent);
+    const newState = eventReducer({
+      events: events.allEvent.event,
+    }, action);
+    expect(newState.editEvent).toEqual(events.allEvent.event);
     done();
   });
 
   it('should delete event when action of type DELETE_EVENT is called', (done) => {
     const action = {
       type: actionTypes.DELETE_EVENT,
-      deleteEvent: events.deleteEvent,
+      deleteEvent: events.allEvent.event,
       error: false,
     };
-    const newState = eventReducer(initialState, action);
-    expect(newState.deleteEvent).toEqual(events.deleteEvent);
+    const newState = eventReducer({
+      events: events.allEvent.event
+    }, action);
+    expect(newState.deleteEvent).toEqual(events.allEvent.event);
     done();
   });
 

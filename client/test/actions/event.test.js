@@ -124,7 +124,7 @@ describe('Test for Event action', () => {
     const expectedActions = [
       {
         type: actionTypes.DELETE_EVENT,
-        deleteEvent: events.deleteEvent
+        deleteEvent: events.deleteEvent.deletedEvent
       }
     ];
     const store = mockStore({});

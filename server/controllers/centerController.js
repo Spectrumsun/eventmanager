@@ -42,8 +42,7 @@ class Centers {
           count: data.count,
           pages
         });
-      })
-      .catch(error => res.status(400).json(error));
+      });
   }
 
   /**
@@ -105,10 +104,6 @@ class Centers {
       .then(center => res.status(201).json({
         message: 'successfully created',
         center
-      }))
-      .catch(error => res.status(400).json({
-        message: 'Unable to create Center! ',
-        error
       }));
   }
 

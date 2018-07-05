@@ -200,6 +200,23 @@ describe('Event Manager User Test', () => {
     });
   });
 
+  it('return error with fake verification token', (done) => {
+    User.findOne({
+      where: {
+        email: testData.adminLogin.email
+      },
+    }).then((user) => {
+      request(server)
+        .get('/api/v1/users/email/oijhbj3')
+        .expect(400)
+        .end((err, res) => {
+          expect(res.body.message).to.equal('Email verification failed token is not invalid');
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
+
   it('user cant login if the password is not correct', (done) => {
     request(server)
       .post('/api/v1/users/login')
@@ -318,6 +335,22 @@ describe('Event Manager User Test', () => {
           done();
         });
     });
+  });
+
+  it('return error if user mot found in db', (done) => {
+    request(server)
+      .post('/api/v1/users/setadmin')
+      .send({
+        email: 'kakak@ksks.com',
+        role: 'master'
+      })
+      .set('Authorization', adminToken.token)
+      .expect(404)
+      .end((err, res) => {
+        expect(res.body.error).to.equal('No user found');
+        if (err) return done(err);
+        done();
+      });
   });
 });
 

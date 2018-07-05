@@ -31,13 +31,12 @@ class Events {
             event
           });
         } else {
-          res.status(200).send({
+          res.status(400).send({
             message: 'success',
             event
           });
         }
-      })
-      .catch(error => res.status(200).send(error));
+      });
   }
 
   /**

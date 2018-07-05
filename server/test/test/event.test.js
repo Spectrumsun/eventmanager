@@ -68,6 +68,19 @@ describe('Event Manager Event Test', () => {
       });
   });
 
+  it('return no event if user does not have event', (done) => {
+    request(server)
+      .get('/api/v1/events')
+      .set('Authorization', validToken.token)
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.myevent).to
+          .include('ou dont have any event Yet');
+        if (error) done(error);
+        done();
+      });
+  });
+
   it('return error if user is login and event start date is empty', (done) => {
     request(server)
       .post('/api/v1/events')
@@ -457,6 +470,23 @@ describe('Event Manager Event Test', () => {
   );
 
   it(
+    'should return error when deleting id is invalided',
+    (done) => {
+      request(server)
+        .delete('/api/v1/events/jsfa')
+        .set('Authorization', validToken.token)
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('Invalid Parameter In Url');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+
+  it(
     'delete event when user is signin in' +
     'with the same userId has the event userid',
     (done) => {
@@ -474,7 +504,7 @@ describe('Event Manager Event Test', () => {
   );
 
   it(
-    'return error for imvalied url imvent event when user is signin in',
+    'return error for invalided url event when user is signin in',
     (done) => {
       request(server)
         .get('/api/v1/events/1swew')

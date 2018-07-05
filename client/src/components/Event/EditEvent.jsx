@@ -10,7 +10,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class EditEvent extends Component {
+export class EditEvent extends Component {
    state = {
      name: this.props.loadedEvent.eventName,
      startDate: this.props.loadedEvent.startDate,

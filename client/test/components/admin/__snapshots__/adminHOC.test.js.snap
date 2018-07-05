@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: IsAdminenticate Admin Protected Routes test suite Redirects user to homepage they are not Admin 1`] = `
+<AddCenter
+  auth={
+    Object {
+      "isAuthenticated": true,
+      "user": Object {
+        "id": 1,
+        "role": "user",
+      },
+    }
+  }
+  history={
+    Object {
+      "push": [MockFunction] {
+        "calls": Array [
+          Array [
+            "/",
+          ],
+        ],
+      },
+    }
+  }
+  isAuthenticated={false}
+/>
+`;

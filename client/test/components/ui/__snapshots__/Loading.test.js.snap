@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> should render initial layout of HomePage 1`] = `
+Array [
+  <div
+    className="container"
+    style={
+      Object {
+        "paddingTop": "100px",
+      }
+    }
+  >
+    <div
+      className="loader"
+    />
+    <p
+      className="center-item shadow"
+    >
+      Unable to connect Resource Not Found or invalid Url. Refresh your browser or check your internet connection
+    </p>
+    <div
+      className="container"
+      style={
+        Object {
+          "paddingTop": "200px",
+        }
+      }
+    />
+  </div>,
+]
+`;

@@ -18,7 +18,7 @@ const imageUrl = 'https://res.cloudinary.com/skybound/' +
  *
  * @extends {React.Component}
  */
-class ViewEvent extends Component {
+export class ViewEvent extends Component {
   /**
    * @description run action on component mount to reload data
    *

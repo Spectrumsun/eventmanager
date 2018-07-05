@@ -11,12 +11,11 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class Login extends Component {
+export class Login extends Component {
   state = {
     email: '',
     password: '',
-    formValid: false,
-
+    formValid: false
   }
 
   /**
@@ -28,8 +27,8 @@ class Login extends Component {
    *
    * @returns {void}
    */
-  onChange =(e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange =(event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
@@ -41,8 +40,8 @@ class Login extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     this.setState({ formValid: false });
     if (this.state.email === '') {
       toast.error('Email cannot be blank');
@@ -104,6 +103,7 @@ class Login extends Component {
 
                   <div className="text-center">
                     <button
+                      id="login"
                       type="submit"
                       className="btn btn-outline-dark"
                       disabled={this.state.formValid}
@@ -126,14 +126,9 @@ Login.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
-  error: state.users.error
-});
-
-
 const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) =>
     dispatch(action.initUserLogin(user, history)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

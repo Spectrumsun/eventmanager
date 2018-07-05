@@ -12,7 +12,7 @@ import uploadImage from './ImageUpload';
  *
  * @extends {React.Component}
  */
-class EditCenter extends Component {
+export class EditCenter extends Component {
     state = {
       name: this.props.loadedCenter.centerName,
       city: this.props.loadedCenter.city,

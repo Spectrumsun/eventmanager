@@ -1,0 +1,421 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search /> Component should match component snapshot 1`] = `
+<div>
+  <div
+    className="center "
+    style={
+      Object {
+        "paddingTop": "100px",
+      }
+    }
+  >
+    <h1
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      lol
+    </h1>
+    <div>
+      <a
+        href="/centers/29"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+          }
+        }
+      >
+        <div
+          className="card d-lg-inline-block"
+          onClick={undefined}
+          style={
+            Object {
+              "width": "14rem",
+            }
+          }
+        >
+          <img
+            alt="Card cap"
+            className="card-img-top"
+            src="llal"
+            style={
+              Object {
+                "height": "15rem",
+                "objectFit": "cover",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <h4
+              className="card-title"
+            >
+              farm center
+            </h4>
+            <h6
+              className="card-subtitle mb-2 text-muted"
+            >
+              Yaba
+            </h6>
+            <h5
+              className="card-link"
+            >
+              View More
+            </h5>
+          </div>
+        </div>
+      </a>
+      <a
+        href="/centers/9"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+          }
+        }
+      >
+        <div
+          className="card d-lg-inline-block"
+          onClick={undefined}
+          style={
+            Object {
+              "width": "14rem",
+            }
+          }
+        >
+          <img
+            alt="Card cap"
+            className="card-img-top"
+            src="llal"
+            style={
+              Object {
+                "height": "15rem",
+                "objectFit": "cover",
+              }
+            }
+          />
+          <div
+            className="card-body"
+          >
+            <h4
+              className="card-title"
+            >
+              farm center
+            </h4>
+            <h6
+              className="card-subtitle mb-2 text-muted"
+            >
+              Yaba
+            </h6>
+            <h5
+              className="card-link"
+            >
+              View More
+            </h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <ul
+      className="pagination nav justify-content-center"
+    >
+      <li
+        className="page-item"
+        onClick={[Function]}
+      >
+        <a
+          className="page-link"
+        >
+          Previous
+        </a>
+      </li>
+      <li
+        className="page-item"
+      >
+        <a
+          className="page-link"
+        >
+          Page 1  of 
+          2
+        </a>
+      </li>
+      <li
+        className="page-item"
+        onClick={[Function]}
+      >
+        <a
+          className="page-link"
+        >
+          Next
+        </a>
+      </li>
+    </ul>
+    <div
+      style={
+        Object {
+          "marginBottom": "100px",
+        }
+      }
+    />
+  </div>
+  <div
+    className="center"
+  >
+    <footer>
+      <div>
+        <h3
+          className="center"
+        >
+          Event Manager
+        </h3>
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "left",
+          }
+        }
+      >
+        <div>
+          <div
+            className="float-left"
+          >
+            <a
+              className="navbar-brand"
+              href="/"
+            >
+              <img
+                alt=""
+                height="30"
+                src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+                width="30"
+              />
+            </a>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Social Media
+              </p>
+              <li
+                className="footerColor"
+              >
+                facebook
+              </li>
+              <li
+                className="footerColor"
+              >
+                twitter
+              </li>
+              <li
+                className="footerColor"
+              >
+                instargram
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Event manager
+              </p>
+              <li
+                className="footerColor"
+              >
+                Questions
+              </li>
+              <li
+                className="footerColor"
+              >
+                Jobs
+              </li>
+              <li
+                className="footerColor"
+              >
+                Help
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                About
+              </p>
+              <li
+                className="footerColor"
+              >
+                desgin by Taiwo Sunday
+              </li>
+              <li
+                className="footerColor"
+              >
+                +2348038512455
+              </li>
+              <li
+                className="footerColor"
+              >
+                https://github.com/Spectrumsun
+              </li>
+              <li
+                className="footerColor"
+              >
+                taiwo.sunday@outlook.com
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Site
+              </p>
+              <li
+                className="footerColor"
+              >
+                Home
+              </li>
+              <li
+                className="footerColor"
+              >
+                Centers
+              </li>
+              <li
+                className="footerColor"
+              >
+                Events
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p
+        className="center"
+      >
+        Event Managment © 2017
+      </p>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`<Search /> Component should render initial layout of <Search /> 1`] = `
+Array [
+  <div>
+    <div
+      className="center "
+      style={
+        Object {
+          "paddingTop": "100px",
+        }
+      }
+    >
+      <h1
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        lol
+      </h1>
+      <div>
+        <Link
+          replace={false}
+          style={
+            Object {
+              "color": "black",
+            }
+          }
+          to="/centers/29"
+        >
+          <getCenter
+            address="No 33, yaba road lagos"
+            centerName="farm center"
+            city="Yaba"
+            image="llal"
+          />
+        </Link>
+        <Link
+          replace={false}
+          style={
+            Object {
+              "color": "black",
+            }
+          }
+          to="/centers/9"
+        >
+          <getCenter
+            address="No 33, yaba road lagos"
+            centerName="farm center"
+            city="Yaba"
+            image="llal"
+          />
+        </Link>
+      </div>
+      <ul
+        className="pagination nav justify-content-center"
+      >
+        <li
+          className="page-item"
+          onClick={[Function]}
+        >
+          <a
+            className="page-link"
+          >
+            Previous
+          </a>
+        </li>
+        <li
+          className="page-item"
+        >
+          <a
+            className="page-link"
+          >
+            Page 1  of 
+            2
+          </a>
+        </li>
+        <li
+          className="page-item"
+          onClick={[Function]}
+        >
+          <a
+            className="page-link"
+          >
+            Next
+          </a>
+        </li>
+      </ul>
+      <div
+        style={
+          Object {
+            "marginBottom": "100px",
+          }
+        }
+      />
+    </div>
+    <footer />
+  </div>,
+]
+`;

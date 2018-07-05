@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component:  isAuthenticated User Protected Login Page after logging in test suite Redirects user to homepage if they access rhe login page after logging in 1`] = `
+<Login
+  auth={
+    Object {
+      "isAuthenticated": true,
+      "user": Object {
+        "id": "jame",
+        "role": "user",
+      },
+    }
+  }
+  history={
+    Object {
+      "push": [MockFunction] {
+        "calls": Array [
+          Array [
+            "/",
+          ],
+        ],
+      },
+    }
+  }
+  isAuthenticated={true}
+/>
+`;

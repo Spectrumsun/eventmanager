@@ -10,7 +10,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class AddEvent extends Component {
+export class AddEvent extends Component {
    state = {
      name: '',
      startDate: '',

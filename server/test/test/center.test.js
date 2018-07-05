@@ -338,7 +338,6 @@ describe('Event Manager Center Test', () => {
         })
         .set('Authorization', adminToken.token)
         .end((error, res) => {
-          console.log(">>>>>>" , res.body);
           expect(201);
           expect(res.body)
             .to.include({});

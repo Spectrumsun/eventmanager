@@ -16,7 +16,7 @@ const styles = {
  *
  * @extends {React.Component}
  */
-class NavBar extends Component {
+export class NavBar extends Component {
   state = {
     search: '',
   }
@@ -45,8 +45,8 @@ class NavBar extends Component {
    *
    * @returns {void}
    */
-  logout = (e) => {
-    e.preventDefault();
+  logout = (event) => {
+    event.preventDefault();
     this.props.onLogOut(this.props.history);
   }
 
@@ -76,6 +76,7 @@ class NavBar extends Component {
       <ul className=" nav navbar-nav navbar-right">
         <li className="nav-item">
           <Link
+            id="logout"
             to="/logout"
             className="btn btn-outline-light"
             onClick={this.logout}
@@ -86,17 +87,19 @@ class NavBar extends Component {
     );
 
     const guessLink = (
-      <ul className=" nav navbar-nav navbar-right">
+      <ul className=" nav navbar-nav navbar-right login">
         <li className="nav-item">
           <Link
             to="/login"
             className="btn btn-outline-light"
+            id="login"
           >Login
           </Link>
         </li>
         <br />
-        <li className="nav-item">
+        <li className="nav-item signup">
           <Link
+            id="sigup"
             to="/signup"
             className="btn btn-outline-light"
           >Sign up
@@ -171,7 +174,7 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link to="/" className="nav-link" >
+                <Link to="/" className="nav-link" id="logo">
                 Event Manager<span className="sr-only">
                 (current)
                              </span>
@@ -179,6 +182,7 @@ class NavBar extends Component {
               </li>
               <li className="nav-item active">
                 <Link
+                  id="home"
                   to="/"
                   className="nav-link"
                 >
@@ -207,11 +211,13 @@ class NavBar extends Component {
                   <Link
                     to="/addevent"
                     className="dropdown-item"
+                    id="addEvent"
                   >Add Event
                   </Link>
                   { isAuthenticated ? myEvent : null }
                   <div className="dropdown-divider" />
                   <Link
+                    id="viewCenter"
                     to="/centers"
                     className="dropdown-item"
                   >View Centers
@@ -237,6 +243,7 @@ class NavBar extends Component {
               <button
                 className="btn btn-outline-light my-2 my-sm-0"
                 type="submit"
+                id="search"
               >
               Search Centers
               </button>

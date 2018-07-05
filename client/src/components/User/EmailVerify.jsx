@@ -8,12 +8,13 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class EmailVerify extends Component {
+export class EmailVerify extends Component {
   /**
    * @description run action on component mount to reload data
    *
    * @param {any} props.params.token
    *
+export class EmailVerify extends Component {
    * @memberof Signup
    */
   componentWillMount() {

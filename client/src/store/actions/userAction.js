@@ -67,7 +67,6 @@ export const emailVerify = (message) => {
     type: actionTypes.EMAIL_VERIFY,
     message: message
   }
-  
 }
 
 export const initUser = (inputs, history) => {

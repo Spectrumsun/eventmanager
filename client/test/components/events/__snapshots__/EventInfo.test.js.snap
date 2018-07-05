@@ -1,0 +1,504 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EventInfo /> Component should have three div element match snap 1`] = `
+Array [
+  <div>
+    <div>
+      <div
+        className="container"
+        style={
+          Object {
+            "paddingTop": "100px",
+          }
+        }
+      >
+        <div
+          className="container"
+          style={
+            Object {
+              "width": "45rem",
+            }
+          }
+        >
+          <div
+            className="card loginCard"
+          >
+            <div
+              className="card-header dark"
+            >
+              <h1
+                className="color"
+              >
+                Event Info
+              </h1>
+            </div>
+            <div
+              className="card-body"
+            >
+              <h5>
+                <strong>
+                  Event Name
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Start Date
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  End Date
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Time
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Purpose
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Center
+                </strong>
+              </h5>
+              <ul
+                className="list-group col-md-6"
+              >
+                <Link
+                  replace={false}
+                  style={
+                    Object {
+                      "color": "#35434A",
+                    }
+                  }
+                  to="/centers/undefined"
+                >
+                  <h6>
+                    <li
+                      className="list-group-item centerlist"
+                    />
+                  </h6>
+                </Link>
+              </ul>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer />
+    </div>
+  </div>,
+]
+`;
+
+exports[`<EventInfo /> Component should match component snapshot 1`] = `
+<div>
+  <div>
+    <div
+      className="container"
+      style={
+        Object {
+          "paddingTop": "100px",
+        }
+      }
+    >
+      <div
+        className="container"
+        style={
+          Object {
+            "width": "45rem",
+          }
+        }
+      >
+        <div
+          className="card loginCard"
+        >
+          <div
+            className="card-header dark"
+          >
+            <h1
+              className="color"
+            >
+              Event Info
+            </h1>
+          </div>
+          <div
+            className="card-body"
+          >
+            <h5>
+              <strong>
+                Event Name
+              </strong>
+            </h5>
+            <h6
+              className="list-group-item"
+            />
+            <br />
+            <h5>
+              <strong>
+                Start Date
+              </strong>
+            </h5>
+            <h6
+              className="list-group-item"
+            >
+              2018-10-20
+            </h6>
+            <br />
+            <h5>
+              <strong>
+                End Date
+              </strong>
+            </h5>
+            <h6
+              className="list-group-item"
+            >
+              2018-10-23
+            </h6>
+            <br />
+            <h5>
+              <strong>
+                Time
+              </strong>
+            </h5>
+            <h6
+              className="list-group-item"
+            >
+              10:00
+            </h6>
+            <br />
+            <h5>
+              <strong>
+                Purpose
+              </strong>
+            </h5>
+            <h6
+              className="list-group-item"
+            >
+              for test
+            </h6>
+            <br />
+            <h5>
+              <strong>
+                Center
+              </strong>
+            </h5>
+            <ul
+              className="list-group col-md-6"
+            >
+              <a
+                href="/centers/undefined"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "color": "#35434A",
+                  }
+                }
+              >
+                <h6>
+                  <li
+                    className="list-group-item centerlist"
+                  />
+                </h6>
+              </a>
+            </ul>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="center"
+    >
+      <footer>
+        <div>
+          <h3
+            className="center"
+          >
+            Event Manager
+          </h3>
+        </div>
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+              "textAlign": "left",
+            }
+          }
+        >
+          <div>
+            <div
+              className="float-left"
+            >
+              <a
+                className="navbar-brand"
+                href="/"
+              >
+                <img
+                  alt=""
+                  height="30"
+                  src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+                  width="30"
+                />
+              </a>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Social Media
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  facebook
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  twitter
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  instargram
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Event manager
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Questions
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Jobs
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Help
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  About
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  desgin by Taiwo Sunday
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  +2348038512455
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  https://github.com/Spectrumsun
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  taiwo.sunday@outlook.com
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Site
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Home
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Centers
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Events
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p
+          className="center"
+        >
+          Event Managment © 2017
+        </p>
+      </footer>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EventInfo /> Component should render initial layout of <EventInfo /> 1`] = `
+Array [
+  <div>
+    <div>
+      <div
+        className="container"
+        style={
+          Object {
+            "paddingTop": "100px",
+          }
+        }
+      >
+        <div
+          className="container"
+          style={
+            Object {
+              "width": "45rem",
+            }
+          }
+        >
+          <div
+            className="card loginCard"
+          >
+            <div
+              className="card-header dark"
+            >
+              <h1
+                className="color"
+              >
+                Event Info
+              </h1>
+            </div>
+            <div
+              className="card-body"
+            >
+              <h5>
+                <strong>
+                  Event Name
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Start Date
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  End Date
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Time
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Purpose
+                </strong>
+              </h5>
+              <h6
+                className="list-group-item"
+              />
+              <br />
+              <h5>
+                <strong>
+                  Center
+                </strong>
+              </h5>
+              <ul
+                className="list-group col-md-6"
+              >
+                <Link
+                  replace={false}
+                  style={
+                    Object {
+                      "color": "#35434A",
+                    }
+                  }
+                  to="/centers/undefined"
+                >
+                  <h6>
+                    <li
+                      className="list-group-item centerlist"
+                    />
+                  </h6>
+                </Link>
+              </ul>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer />
+    </div>
+  </div>,
+]
+`;

@@ -15,12 +15,13 @@ module.exports = {
     '/build/',
     '/.github/',
     '/.nyc_output/',
-    '/covrage/',
+    '/coverage/',
     '<rootDir>/coverage/',
     '<rootDir>/src/index',
     '<rootDir>/src/store/actions/index',
     '<rootDir>/src/static',
-    '<rootDir>/src/public'
+    '<rootDir>/public',
+    '<rootDir>/src/App'
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/coverage/',
@@ -29,7 +30,8 @@ module.exports = {
     '<rootDir>/src/store/reducers/index',
     '<rootDir>/src/store/storeConfig',
     '<rootDir>/test/',
-    '<rootDir>/public'
+    '<rootDir>/public',
+    '<rootDir>/src/App'
   ],
   unmockedModulePathPatterns: [
     './node_modules/react'

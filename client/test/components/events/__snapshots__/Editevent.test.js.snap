@@ -1,0 +1,550 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EditEvent /> Component should have three div element match snap 1`] = `
+Array [
+  <div
+    className="container"
+    style={
+      Object {
+        "paddingTop": "100px",
+      }
+    }
+  >
+    <div
+      className="card card w-50 loginCard"
+    >
+      <div
+        className="card-header dark"
+      >
+        <h1
+          className="color"
+        >
+          Edit Event
+        </h1>
+      </div>
+      <eventForm
+        add={[Function]}
+        centerName=""
+        endDate="2018-10-23"
+        formValid={false}
+        getCenter={[Function]}
+        minus={[Function]}
+        name="tom"
+        numberOfPages={
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+            >
+              Page 
+              
+               of 
+              
+            </a>
+          </li>
+        }
+        numberOfPages1={
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+            >
+              Page 1  of 
+            </a>
+          </li>
+        }
+        onChange={[Function]}
+        onSubmit={[Function]}
+        purpose="for test"
+        selectCenter={[Function]}
+        showCenterNane={
+          <h6
+            className="list-group-item col-md-9"
+          >
+            Center Name : 
+            
+          </h6>
+        }
+        startDate="2018-10-20"
+        time="10:00"
+        totalPage=""
+      />
+    </div>
+  </div>,
+]
+`;
+
+exports[`<EditEvent /> Component should match component snapshot 1`] = `
+<div
+  className="container"
+  style={
+    Object {
+      "paddingTop": "100px",
+    }
+  }
+>
+  <div
+    className="card card w-50 loginCard"
+  >
+    <div
+      className="card-header dark"
+    >
+      <h1
+        className="color"
+      >
+        Edit Event
+      </h1>
+    </div>
+    <div
+      className="card-body"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-row"
+        >
+          <div
+            className="form-group col-md-12"
+          >
+            <h5>
+              <label
+                htmlFor="inputEmail4"
+              >
+                Event Name
+              </label>
+            </h5>
+            <input
+              className="form-control form-control-lg"
+              name="name"
+              onChange={[Function]}
+              type="text"
+              value="tom"
+            />
+          </div>
+          <div
+            className="form-group col-md-6"
+          >
+            <h5>
+              <label
+                htmlFor="inputPassword4"
+              >
+                Start Date
+              </label>
+            </h5>
+            <input
+              className="form-control form-control-lg"
+              name="startDate"
+              onChange={[Function]}
+              type="date"
+              value="2018-10-20"
+            />
+          </div>
+          <div
+            className="form-group col-md-6"
+          >
+            <h5>
+              <label
+                htmlFor="inputPassword4"
+              >
+                End Date
+              </label>
+            </h5>
+            <input
+              className="form-control form-control-lg"
+              name="endDate"
+              onChange={[Function]}
+              type="date"
+              value="2018-10-23"
+            />
+          </div>
+          <div
+            className="form-group col-md-6"
+          >
+            <h5>
+              <label
+                htmlFor="inputPassword4"
+              >
+                Start Time
+              </label>
+            </h5>
+            <input
+              className="form-control form-control-lg"
+              name="time"
+              onChange={[Function]}
+              type="time"
+              value="10:00"
+            />
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <h5>
+            <label
+              htmlFor="exampleFormControlTextarea1"
+            >
+              purpose
+            </label>
+          </h5>
+          <textarea
+            className="form-control"
+            name="purpose"
+            onChange={[Function]}
+            placeholder="Tell people more about the event"
+            rows="3"
+            value="for test"
+          />
+        </div>
+        <br />
+        <div
+          className="form-inline"
+        >
+          <button
+            className="btn btn-dark btn-mm"
+            data-target=".bd-example-modal-lg"
+            data-toggle="modal"
+            onClick={[Function]}
+            style={
+              Object {
+                "marginRight": "20px",
+              }
+            }
+            type="button"
+          >
+            Add Center
+          </button>
+        </div>
+        <div
+          aria-hidden="true"
+          aria-labelledby="myLargeModalLabel"
+          className="modal fade bd-example-modal-lg"
+          role="dialog"
+          tabIndex="-1"
+        >
+          <div
+            className="modal-dialog modal-lg"
+          >
+            <div
+              className="modal-content"
+            >
+              <div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "paddingTop": "10px",
+                    }
+                  }
+                >
+                  <h1
+                    style={
+                      Object {
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Centers
+                  </h1>
+                  <div>
+                    <div
+                      className="fixModel"
+                    >
+                      <div
+                        className="card"
+                        style={
+                          Object {
+                            "width": "12rem",
+                          }
+                        }
+                      >
+                        <img
+                          alt="Card cap"
+                          className="card-img-top"
+                          src="llal"
+                          style={
+                            Object {
+                              "height": "10",
+                              "width": "20",
+                            }
+                          }
+                        />
+                        <div
+                          className="theHeight"
+                        >
+                          <div
+                            className="card-body text-capitalize"
+                          >
+                            <h6>
+                              <a
+                                href="/centers/29"
+                                onClick={[Function]}
+                                style={
+                                  Object {
+                                    "color": "#2E3A41",
+                                  }
+                                }
+                                target="_blank"
+                              >
+                                <strong>
+                                  farm center
+                                </strong>
+                              </a>
+                            </h6>
+                            <h6>
+                              No 33, yaba road lagos
+                            </h6>
+                            <div
+                              className="scrollbar"
+                            >
+                              <h6>
+                                <strong>
+                                  Facility
+                                </strong>
+                              </h6>
+                              <ul
+                                className="list-group text-capitalize"
+                              >
+                                <li>
+                                  car
+                                </li>
+                                <li>
+                                  fan
+                                </li>
+                                <li>
+                                  video
+                                </li>
+                              </ul>
+                            </div>
+                            <br />
+                          </div>
+                        </div>
+                        <div
+                          className="buttingFix"
+                        >
+                          <button
+                            className="btn btn-primary btn-sm"
+                            data-dismiss="modal"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Select
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        className="card"
+                        style={
+                          Object {
+                            "width": "12rem",
+                          }
+                        }
+                      >
+                        <img
+                          alt="Card cap"
+                          className="card-img-top"
+                          src="llal"
+                          style={
+                            Object {
+                              "height": "10",
+                              "width": "20",
+                            }
+                          }
+                        />
+                        <div
+                          className="theHeight"
+                        >
+                          <div
+                            className="card-body text-capitalize"
+                          >
+                            <h6>
+                              <a
+                                href="/centers/9"
+                                onClick={[Function]}
+                                style={
+                                  Object {
+                                    "color": "#2E3A41",
+                                  }
+                                }
+                                target="_blank"
+                              >
+                                <strong>
+                                  farm center
+                                </strong>
+                              </a>
+                            </h6>
+                            <h6>
+                              No 33, yaba road lagos
+                            </h6>
+                            <div
+                              className="scrollbar"
+                            >
+                              <h6>
+                                <strong>
+                                  Facility
+                                </strong>
+                              </h6>
+                              <ul
+                                className="list-group text-capitalize"
+                              >
+                                <li>
+                                  car
+                                </li>
+                                <li>
+                                  fan
+                                </li>
+                                <li>
+                                  video
+                                </li>
+                              </ul>
+                            </div>
+                            <br />
+                          </div>
+                        </div>
+                        <div
+                          className="buttingFix"
+                        >
+                          <button
+                            className="btn btn-primary btn-sm"
+                            data-dismiss="modal"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Select
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul
+                className="pagination nav justify-content-center"
+              >
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                  >
+                    Previous
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                >
+                  <a
+                    className="page-link"
+                  >
+                    Page 1  of 
+                    2
+                  </a>
+                </li>
+                <li
+                  className="page-item"
+                  onClick={[Function]}
+                >
+                  <a
+                    className="page-link"
+                  >
+                    Next
+                  </a>
+                </li>
+              </ul>
+              <br />
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<EditEvent /> Component should render initial layout of <EditEvent /> 1`] = `
+Array [
+  <div
+    className="container"
+    style={
+      Object {
+        "paddingTop": "100px",
+      }
+    }
+  >
+    <div
+      className="card card w-50 loginCard"
+    >
+      <div
+        className="card-header dark"
+      >
+        <h1
+          className="color"
+        >
+          Edit Event
+        </h1>
+      </div>
+      <eventForm
+        add={[Function]}
+        centerName=""
+        endDate="2018-10-23"
+        formValid={false}
+        getCenter={[Function]}
+        minus={[Function]}
+        name="tom"
+        numberOfPages={
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+            >
+              Page 
+              
+               of 
+              
+            </a>
+          </li>
+        }
+        numberOfPages1={
+          <li
+            className="page-item"
+          >
+            <a
+              className="page-link"
+            >
+              Page 1  of 
+            </a>
+          </li>
+        }
+        onChange={[Function]}
+        onSubmit={[Function]}
+        purpose="for test"
+        selectCenter={[Function]}
+        showCenterNane={
+          <h6
+            className="list-group-item col-md-9"
+          >
+            Center Name : 
+            
+          </h6>
+        }
+        startDate="2018-10-20"
+        time="10:00"
+        totalPage=""
+      />
+    </div>
+  </div>,
+]
+`;

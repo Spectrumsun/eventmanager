@@ -6,10 +6,9 @@
   "scripts": {
     "start": "NODE_ENV=production sequelize db:migrate && npm run build && npm run webpack:build && node build/server",
     "test": "NODE_ENV=test npm run migrations && NODE_ENV=test npm run start:test",
-    "nyc:run": "nyc --reportrer=html --reporter=text",
-    "start:test": "nyc --reportrer=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
+    "start:test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "server:coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
     "dev": "cross-env NODE_ENV=development npm run dev:start",
     "dev:start": "concurrently --kill-others \"npm run webpack:watch\" \"nodemon --ignore lib --exec  babel-node server/server\"",
@@ -19,9 +18,9 @@
     "build": "npm run clean && npm run build:server",
     "webpack:watch": "webpack --watch --config webpack.dev.config.js",
     "webpack:build": "webpack --config webpack.prod.config.js --progress --profile --color",
-    "test:client": "jest && codecov",
+    "test:client": "jest -u && codecov",
     "test:e2e": "nightwatch",
-    "coverages": "npm run coverage && npm run test:client"
+    "coverages": "npm run server:coverage && npm run test:client"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",
@@ -72,6 +71,7 @@
     "sass-loader": "^7.0.3",
     "sequelize": "^4.37.5",
     "sequelize-cli": "^4.0.0",
+    "sinon": "^6.1.2",
     "supertest": "^3.0.0",
     "swagger-jsdoc": "^1.9.7",
     "swagger-ui-express": "^2.0.15",
@@ -111,8 +111,7 @@
     "nightwatch": "^0.9.21",
     "nyc": "^11.3.0",
     "style-loader": "^0.19.1",
-    "webpack-merge": "^4.1.2",
-    "selenium-standalone": "^6.15.1"
+    "webpack-merge": "^4.1.2"
   },
   "engines": {
     "node": "8.9.1"

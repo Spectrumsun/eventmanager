@@ -11,7 +11,7 @@ import Loading from '../UI/Loading';
  *
  * @extends {React.Component}
  */
-class CenterInfo extends Component {
+export class CenterInfo extends Component {
   /**
    * @description run action on component mount to reload data
    *
@@ -158,7 +158,7 @@ class CenterInfo extends Component {
       <div>
         {
           this.props.loadedCenter === undefined ||
-          this.props.error !== false ? Loading : center
+          this.props.error !== false ? <Loading /> : center
         }
       </div>
     );
@@ -168,7 +168,7 @@ class CenterInfo extends Component {
 CenterInfo.propTypes = {
   onDeleteCenter: PropTypes.func.isRequired,
   onFetOneCenters: PropTypes.func.isRequired,
-  error: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
     user: PropTypes.shape({
@@ -203,6 +203,7 @@ CenterInfo.defaultProps = {
     time: '11:00',
     purpose: 'fun'
   }),
+  error: false
 };
 
 

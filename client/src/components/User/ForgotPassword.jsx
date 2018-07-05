@@ -10,7 +10,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class ForgotPassword extends Component {
+export class ForgotPassword extends Component {
   state = {
     email: '',
   }

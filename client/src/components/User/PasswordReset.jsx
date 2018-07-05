@@ -10,7 +10,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class PasswordReset extends Component {
+export class PasswordReset extends Component {
   state = {
     password: '',
     confirmPassword: '',

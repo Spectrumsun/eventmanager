@@ -30,16 +30,22 @@ const reducer = (state = initialState, action) => {
         addEvent: action.addEvent,
         error: false
       };
-    case actionTypes.EDIT_EVENT:
+    case actionTypes.EDIT_EVENT: {
+      const updatedItems = state.events.map((item) => {
+        if (item.id === action.editEvent.id) {
+          return { ...item, ...action.editEvent };
+        }
+        return item;
+      });
       return {
         ...state,
-        editEvent: action.editEvent,
+        editEvent: updatedItems,
         error: false
-      };
+      };}
     case actionTypes.DELETE_EVENT: {
       return {
         ...state,
-        deleteEvent: action.deleteEvent,
+        deleteEvent: state.events.filter(events => events.id !== action.deleteEvent.id),
         error: false,
       };
     }

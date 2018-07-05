@@ -13,7 +13,7 @@ import * as actions from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class Centers extends Component {
+export class Centers extends Component {
   state = {
     totalPage: '',
     next: 1,

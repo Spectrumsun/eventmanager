@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.org/Spectrumsun/eventmanager.svg?branch=develop)](https://travis-ci.org/Spectrumsun/eventmanager)
-[![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f12b2146b1c46953b97a/maintainability)](https://codeclimate.com/github/Spectrumsun/eventmanager/maintainability)
 [![HitCount](http://hits.dwyl.io/Spectrumsun/eventmanager.svg)](http://hits.dwyl.io/Spectrumsun/eventmanager)
 [![codecov](https://codecov.io/gh/Spectrumsun/eventmanager/branch/develop/graph/badge.svg)](https://codecov.io/gh/Spectrumsun/eventmanager)
-
+[![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f12b2146b1c46953b97a/test_coverage)](https://codeclimate.com/github/Spectrumsun/eventmanager/test_coverage)
 
 # Event Manager
 Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​
@@ -44,8 +44,9 @@ or suggest an  available day
 
 # Test
 To run test navigate to app folder in the command line and type
-* npm test - to run server test
-* npm run test:client - to run client test
+* npm test - To run server test
+* npm run test:client -To run client test
+* npm run test:e2e - To run end to end test
 
 
 # FAQs

@@ -74,7 +74,7 @@ describe('Event Manager Event Test', () => {
       .set('Authorization', validToken.token)
       .end((error, res) => {
         expect(400);
-        expect(res.body.myevent).to
+        expect(res.body.myEvent).to
           .include('ou dont have any event Yet');
         if (error) done(error);
         done();

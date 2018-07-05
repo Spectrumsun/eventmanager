@@ -42,16 +42,23 @@ const reducer = (state = initialState, action) => {
         newCenter: action.newCenter,
         error: false
       };
-    case actionTypes.EDIT_CENTER:
+    case actionTypes.EDIT_CENTER: {
+      const updatedItems = state.center.map((item) => {
+        if (item.id === action.editCenter.id) {
+          return { ...item, ...action.editCenter };
+        }
+        return item;
+      });
       return {
         ...state,
-        editCenter: action.editCenter,
+        editCenter: updatedItems,
         error: false
       };
+    }
     case actionTypes.DELETE_CENTER:
       return {
         ...state,
-        deleteCenter: action.deleteCenter,
+        deleteCenter: state.center.filter(centers => centers.id !== action.deleteCenter.id),
         error: false
       };
     case actionTypes.CENTER_ERROR:

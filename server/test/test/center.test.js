@@ -3,9 +3,9 @@ import chai from 'chai';
 import server from '../../server';
 import testData from '../Faker/centerFaker';
 import { validToken, adminToken } from '../../test/test/user.test';
+import deletePicture from '../../handlers/deleteImage';
 
 const { expect } = chai;
-
 
 describe('Event Manager Center Test', () => {
   it('loads the api home page', (done) => {
@@ -294,8 +294,8 @@ describe('Event Manager Center Test', () => {
 
 
   it(
-    'save new center to database if login if' +
-    'admin and and body is filed correctly',
+    'save new center to database if login and' +
+    'admin with correctly filed data',
     (done) => {
       request(server)
         .post('/api/v1/centers')
@@ -321,10 +321,83 @@ describe('Event Manager Center Test', () => {
   );
 
   it(
-    'return error for invalid url invent event when user is signing in',
+    'edit a center if login and' +
+    'admin and body is filed correctly',
     (done) => {
       request(server)
-        .get('/api/v1/centers/1swew')
+        .put('/api/v1/centers/6')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          console.log(">>>>>>" , res.body);
+          expect(201);
+          expect(res.body)
+            .to.include({});
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
+    'catch invailed url',
+    (done) => {
+      request(server)
+        .put('/api/v1/centers/')
+        .send({
+          name: 'center name updated',
+          city: 'lagos island',
+          address: 'No 22 Lagos island',
+          facility: ['car pack', 'free wifi', 'sound system'],
+          about: 'this is a test',
+          availability: 'availability',
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .set('Authorization', adminToken.token)
+        .end((error, res) => {
+          expect(201);
+          expect(res.body.message)
+            .to.include('That url does not exist on this server 🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
+    'return error for invalid url invent center when user is signing in',
+    (done) => {
+      request(server)
+        .get('/api/v1/centers/swew')
+        .send({
+          imageurl: 'pictue.png',
+          publicUrlId: 'picture'
+        })
+        .end((error, res) => {
+          expect(404);
+          expect(res.body.message)
+            .to.include('Invalid Parameter In Url');
+          if (error) done(error);
+          done();
+        });
+    }
+  );
+
+  it(
+    'return error for invalid url invent center when admin enters invalided center id',
+    (done) => {
+      request(server)
+        .delete('/api/v1/centers/swew')
         .set('Authorization', adminToken.token)
         .end((error, res) => {
           expect(404);
@@ -350,11 +423,34 @@ describe('Event Manager Center Test', () => {
 
   it('return search result for search center', (done) => {
     request(server)
-      .post('/api/v1/centers/search?searchString=center')
+      .get('/api/v1/centers/search?searchString=center')
       .send(testData.newCenter)
       .end((error, res) => {
         expect(200);
         expect(res.body.result).to.include([]);
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return search result with pagination for search center', (done) => {
+    request(server)
+      .get('/api/v1/centers/search?searchString=center&limit=1&page=1')
+      .send(testData.newCenter)
+      .end((error, res) => {
+        expect(200);
+        expect(res.body.match).to.include('1 Found that Match Your Search');
+        if (error) done(error);
+        done();
+      });
+  });
+
+  it('return error if limit Page is not a number', (done) => {
+    request(server)
+      .get('/api/v1/centers?limit=abc')
+      .end((error, res) => {
+        expect(400);
+        expect(res.body.message).to.include('Limit or Page must be a number');
         if (error) done(error);
         done();
       });

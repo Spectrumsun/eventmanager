@@ -69,7 +69,8 @@ const userfake = {
     about: 'this is a test',
     availability: 'availability',
     imageurl: 'pictue.png',
-    publicUrlId: 'picture'
+    publicUrlId: 'picture',
+    oldpublicId: 'lolol',
   },
   newCenter33: {
     name: faker.name.findName(),

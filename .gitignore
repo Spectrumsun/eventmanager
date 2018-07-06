@@ -11,3 +11,4 @@
 .DS_Store
 /client/public/bundle.js
 /bin/
+/selenium-debug/.log

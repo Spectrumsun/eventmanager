@@ -130,7 +130,7 @@ class Signup extends Component {
                       required
                     />
                     <small>
-                      <span data-toggle="modal" data-target="#exampleModalLong" style={{ cursor: 'pointer' }}>Have read and accepted the terms and conditions ?</span>
+                      <span data-toggle="modal" id="terms" data-target="#exampleModalLong" style={{ cursor: 'pointer' }}>Have read and accepted the terms and conditions ?</span>
 
                       <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div className="modal-dialog" role="document">
@@ -145,7 +145,13 @@ class Signup extends Component {
                               <Terms />
                             </div>
                             <div className="modal-footer">
-                              <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
+                              <button
+                                type="button"
+                                id="close"
+                                className="btn btn-primary"
+                                data-dismiss="modal"
+                              >Close
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -156,6 +162,7 @@ class Signup extends Component {
                 </div>
                 <div className="text-center">
                   <button
+                    id="signup"
                     className="btn btn-outline-dark"
                     disabled={this.state.formValid}
                   >Submit

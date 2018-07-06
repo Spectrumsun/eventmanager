@@ -104,6 +104,7 @@ class Login extends Component {
 
                   <div className="text-center">
                     <button
+                      id="login"
                       type="submit"
                       className="btn btn-outline-dark"
                       disabled={this.state.formValid}

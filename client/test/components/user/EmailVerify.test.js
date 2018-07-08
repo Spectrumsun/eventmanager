@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import ConnectedEmailVerify,
-{ EmailVerify } from '../../../src/components/User/EmailVerify';
+{ EmailVerify, mapDispatchToProps } from '../../../src/components/User/EmailVerify';
 
 
 const middleware = [thunk];
@@ -60,11 +60,6 @@ describe('<EmailVerify /> Component', () => {
     shallow(<EmailVerify {...props}  />);
   });
 
-  it('should render the <EmailVerify /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('EmailVerify').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(
       <BrowserRouter >
@@ -74,13 +69,18 @@ describe('<EmailVerify /> Component', () => {
   });
 
   it('should render initial layout of EmailVerify', () => {
-    const wrapper = shallow(<EmailVerify {...props} />);
+    const wrapper = shallowWrapper;
     expect(wrapper.getElements()).toMatchSnapshot();
   });
   
-  it('should have three image on layout', () => {
-    const wrapper = shallow(<EmailVerify {...props} />);
+  it('should have image on layout', () => {
+    const wrapper = shallowWrapper;
     expect(wrapper.find('div').length).toEqual(2);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initemailverify).toBeTruthy();
   });
 });
 

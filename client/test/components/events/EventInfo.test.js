@@ -8,7 +8,7 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedEventInfo,
-{ EventInfo } from '../../../src/components/Event/EventInfo';
+{ EventInfo, mapDispatchToProps } from '../../../src/components/Event/EventInfo';
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -79,7 +79,6 @@ const mountedWrapper = mount(<Provider store={store}>
 
 const shallowWrapper = shallow(<EventInfo {...props} />);
 
-
 const event = {
   preventDefault: jest.fn(),
   target: {
@@ -96,8 +95,6 @@ const event = {
     formValid: false,
   }
 };
-
-// let wrapper;
 
 describe('<EventInfo /> Component', () => {
   const wrapper = shallow(<EventInfo {...props} />);
@@ -125,20 +122,28 @@ describe('<EventInfo /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-
-  it('calls deleteEvent event', () => {
+  it('calls deleteEvent event to delete an event when delete button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'deleteEvent');
     shallowWrapper.instance().deleteEvent(event);
     expect(shallowWrapper.instance().deleteEvent.calledOnce).toEqual(true);
   });
 
-  it('should have three div element match snap', () => {
+  it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
-
-  it('should have one div element', () => {
+  it('should have div element', () => {
     expect(wrapper.find('div').length).toEqual(7);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onOneEvent).toBeTruthy();
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onDeleteEvent).toBeTruthy();
   });
 });
 

@@ -21,6 +21,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="name"
             className="form-control form-control-lg"
+            required
           />
         </div>
 
@@ -32,6 +33,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="startDate"
             className="form-control form-control-lg"
+            required
           />
         </div>
 
@@ -43,6 +45,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="endDate"
             className="form-control form-control-lg"
+            required
           />
         </div>
 
@@ -54,7 +57,7 @@ const eventForm = props => (
             onChange={props.onChange}
             name="time"
             className="form-control form-control-lg"
-
+            required
           />
         </div>
       </div>
@@ -74,6 +77,7 @@ const eventForm = props => (
           name="purpose"
           rows="3"
           placeholder="Tell people more about the event"
+          required
         />
       </div>
       <br />
@@ -82,6 +86,7 @@ const eventForm = props => (
         <button
           type="button"
           className="btn btn-dark btn-mm"
+          id="centerSelection"
           style={{ marginRight: '20px' }}
           data-toggle="modal"
           data-target=".bd-example-modal-lg"
@@ -119,6 +124,7 @@ const eventForm = props => (
       <br />
       <button
         type="submit"
+        id="submitEvent"
         className="btn btn-primary btn-lg"
         disabled={props.formValid}
       >Submit

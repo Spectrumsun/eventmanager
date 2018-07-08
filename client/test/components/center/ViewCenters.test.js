@@ -159,11 +159,6 @@ describe('<Centers /> Component', () => {
     shallow(<Centers {...props} />);
   });
 
-  it('should render the <Centers /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Centers').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(
       <Provider store={store}>
@@ -183,11 +178,11 @@ describe('<Centers /> Component', () => {
     expect(wrapper.find('div').length).toEqual(3);
   });
 
-  it('should have three h1 on layout', () => {
+  it('should have h1 on layout', () => {
     expect(wrapper.find('h1').length).toEqual(1);
   });
 
-  it('should have three ul on layout', () => {
+  it('should have ul on layout', () => {
     expect(wrapper.find('ul').length).toEqual(1);
   });
 
@@ -199,14 +194,14 @@ describe('<Centers /> Component', () => {
     expect(wrapper.find(Footer)).toHaveLength(1);
   });
 
-  it('calls add event', () => {
+  it('calls add event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'add');
     shallowWrapper.setState(state);
     shallowWrapper.instance().add();
     expect(shallowWrapper.instance().add.calledOnce).toEqual(true);
   });
 
-  it('calls minus event', () => {
+  it('calls minus event when the next button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'minus');
     shallowWrapper.setState(state);
     shallowWrapper.instance().minus();

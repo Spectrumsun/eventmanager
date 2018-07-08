@@ -8,7 +8,9 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedViewEvent,
-{ ViewEvent } from '../../../src/components/Event/ViewEvents';
+{
+  ViewEvent,
+  mapDispatchToProps } from '../../../src/components/Event/ViewEvents';
 import Display from '../../../src/components/Event/getEvent'
 
 
@@ -59,19 +61,12 @@ const mountedWrapper = mount(
     </BrowserRouter>
   </Provider>);
 
-const shallowWrapper = shallow(<ViewEvent {...props} />);
-
-
 describe('<ViewEvent /> Component', () => {
   const wrapper = shallow(<ViewEvent {...props} />);
   it('should render the <ViewEvent />', () => {
     shallow(<ViewEvent {...props} />);
   });
 
-  it('should render the <ViewEvent /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('ViewEvent').length).toBe(1);
-  });
 
   it('should match component snapshot', () => {
     const tree = render.create(
@@ -83,12 +78,11 @@ describe('<ViewEvent /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-
   it('should render initial layout of <ViewEvent />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-  it('should have three div on layout', () => {
+  it('should have div on layout', () => {
     expect(wrapper.find('div').length).toEqual(2);
   });
 
@@ -96,5 +90,9 @@ describe('<ViewEvent /> Component', () => {
     expect(wrapper.find(Display)).toHaveLength(1);
   });
 
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onInitEvent).toBeTruthy();
+  });
 });
 

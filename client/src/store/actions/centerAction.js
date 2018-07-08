@@ -2,21 +2,7 @@
 import axios from 'axios';
 import toast from 'toastr';
 import * as actionTypes from './actionsTypes';
-
-/**
-   * @description renders component to the DOM
-   *
-   * @memberof errorHandler
-   *
-   * @returns {function} JSX representation of component
-   */
-function errorHandler(error) {
-  const newError = error.response.data.errorMessage;
-  newError ? newError.map(err => 
-  toast.error(err)) : toast.error(
-  error.response.data.message)
-}
-
+import { errorHandler, successHandler } from './responsesHandler';
 
 export const getAllCenters = center => ({
   type: actionTypes.GET_ALL_CENTERS,
@@ -83,11 +69,11 @@ export const getOneCenter = id => (dispatch) => {
 
 
 export const initPostCenters = (inputs, history) => (dispatch) => {
- return axios.post(`/centers?token=${localStorage.jwtToken}`, inputs)
-    .then((response) => {
-      toast.success(response.data.message);
+  return axios.post(`/centers?token=${localStorage.jwtToken}`, inputs)
+    .then((res) => {
+      successHandler(res);
       history.push('/centers');
-      dispatch(addCenters(response.data.message));
+      dispatch(addCenters(res.data.message));
     })
     .catch((error) => {
       errorHandler(error);
@@ -97,11 +83,11 @@ export const initPostCenters = (inputs, history) => (dispatch) => {
 
 
 export const initEditCenter = (id, center, history) => (dispatch) => {
- return axios.put(`/centers/${id}?token=${localStorage.jwtToken}`, center)
-    .then((response) => {
-      toast.success(response.data.message);
+  return axios.put(`/centers/${id}?token=${localStorage.jwtToken}`, center)
+    .then((res) => {
+      successHandler(res)
       history.push('/centers');
-      dispatch(editCenter(response.data.updatedCenter));
+      dispatch(editCenter(res.data.updatedCenter));
     })
     .catch((error) => {
       errorHandler(error);
@@ -111,14 +97,14 @@ export const initEditCenter = (id, center, history) => (dispatch) => {
 
 
 export const initDeleteCenter = (id, history) => (dispatch) => {
- return axios.delete(`/centers/${id}?token=${localStorage.jwtToken}`)
-    .then((response) => {
-      toast.success(response.data.message);
+  return axios.delete(`/centers/${id}?token=${localStorage.jwtToken}`)
+    .then((res) => {
+      successHandler(res);
       history.push('/centers');
-      dispatch(deleteCenter(response.data.deletedCenter));
+      dispatch(deleteCenter(res.data.deletedCenter));
     })
     .catch((error) => {
-      toast.error(error.response.data.message);
+      errorHandler(error);
       dispatch(centerError(error));
     });
 };

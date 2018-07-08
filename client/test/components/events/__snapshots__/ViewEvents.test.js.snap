@@ -24,7 +24,7 @@ exports[`<ViewEvent /> Component should match component snapshot 1`] = `
       }
     >
       <div
-        className="card d-lg-inline-block"
+        className="card d-lg-inline-block d-flex"
         style={
           Object {
             "width": "20rem",
@@ -43,7 +43,7 @@ exports[`<ViewEvent /> Component should match component snapshot 1`] = `
           }
         />
         <div
-          className="card-body"
+          className="card-body .flex-fill"
         >
           <h4
             className="card-title"
@@ -68,6 +68,7 @@ exports[`<ViewEvent /> Component should match component snapshot 1`] = `
           </h6>
           <h6
             className="btn btn-primary"
+            id="viewEvents"
           >
             View more
           </h6>

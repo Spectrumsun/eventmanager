@@ -8,7 +8,7 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedEditEvent,
-{ EditEvent } from '../../../src/components/Event/EditEvent';
+{ EditEvent, mapDispatchToProps } from '../../../src/components/Event/EditEvent';
 import EventForm from '../../../src/components/Event/Form/EventForm'
 
 
@@ -196,11 +196,6 @@ describe('<EditEvent /> Component', () => {
     shallow(<EditEvent {...props} />);
   });
 
-  it('should render the <EditEvent /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('EditEvent').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(
       <Provider store={store}>
@@ -210,7 +205,6 @@ describe('<EditEvent /> Component', () => {
       </Provider>);
     expect(tree).toMatchSnapshot();
   });
-
 
   it('should render initial layout of <EditEvent />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
@@ -224,41 +218,41 @@ describe('<EditEvent /> Component', () => {
     expect(wrapper.find(EventForm)).toHaveLength(1);
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
-  it('calls add event', () => {
+  it('calls add event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'add');
     shallowWrapper.setState(state);
     shallowWrapper.instance().add();
     expect(shallowWrapper.instance().add.calledOnce).toEqual(true);
   });
 
-  it('calls minus event', () => {
+  it('calls minus event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'minus');
     shallowWrapper.setState(state);
     shallowWrapper.instance().minus();
     expect(shallowWrapper.instance().minus.calledOnce).toEqual(true);
   });
 
-  it('calls getCenter event', () => {
+  it('calls getCenter event to load the list of centers', () => {
     sinon.spy(shallowWrapper.instance(), 'getCenter');
     shallowWrapper.setState(state);
     shallowWrapper.instance().getCenter();
     expect(shallowWrapper.instance().getCenter.calledOnce).toEqual(true);
   });
 
-  it('calls selectCenter event', () => {
+  it('calls selectCenter when center id is selected in when adding editing event', () => {
     sinon.spy(shallowWrapper.instance(), 'selectCenter');
     shallowWrapper.setState(state);
     shallowWrapper.instance().selectCenter();
@@ -269,9 +263,28 @@ describe('<EditEvent /> Component', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
-
   it('should have three div element', () => {
     expect(wrapper.find('div').length).toEqual(3);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onOneEvent).toBeTruthy();
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initEditEvent).toBeTruthy();
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
+  });
+
+  it('sets error message when trying to submit empty fields', () => {
+    const events = mountedWrapper.find('form');
+    events.simulate('submit');
   });
 });
 

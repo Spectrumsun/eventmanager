@@ -12,7 +12,6 @@ module.exports = {
     '/node_modules/',
     '/template/',
     '/sever/',
-    '/build/',
     '/.github/',
     '/.nyc_output/',
     '/coverage/',
@@ -20,8 +19,7 @@ module.exports = {
     '<rootDir>/src/index',
     '<rootDir>/src/store/actions/index',
     '<rootDir>/src/static',
-    '<rootDir>/public',
-    '<rootDir>/src/App'
+    '<rootDir>/public'
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/coverage/',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import EventForm from '../../../src/components/Event/Form/EventForm';
 import PickCenter from '../../../src/components/Center/PickCenter'
 
@@ -45,7 +46,6 @@ describe('<EventForm />', () => {
     expect(wrapper.find('input').length).toEqual(4);
   });
 
-
   it('should have h5 on layout', () => {
     expect(wrapper.find('h5').length).toEqual(5);
   });
@@ -62,7 +62,7 @@ describe('<EventForm />', () => {
     expect(wrapper.find(PickCenter)).toHaveLength(1);
   });
 
-  it('should have three image on layout', () => {
+  it('should have two image on layout', () => {
     expect(wrapper.find('button').length).toEqual(2);
   });
 });

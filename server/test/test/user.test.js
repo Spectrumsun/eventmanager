@@ -39,8 +39,9 @@ describe('Event Manager User Test', () => {
     request(server).post('/api/v1/users')
       .send(testData.wronginfo1)
       .end((error, res) => {
+        console.log(res.body)
         expect(400);
-        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Characters!');
         if (error) done(error);
         done();
       });
@@ -51,7 +52,7 @@ describe('Event Manager User Test', () => {
       .send(testData.wronginfo1)
       .end((error, res) => {
         expect(400);
-        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Charaters!');
+        expect(res.body.errorMessage).to.include('Password Cannot be Blank cant be less than six Characters!');
         if (error) done(error);
         done();
       });

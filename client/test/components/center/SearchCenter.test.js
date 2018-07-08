@@ -129,10 +129,6 @@ describe('<Search /> Component', () => {
     shallow(<Search {...props} />);
   });
 
-  it('should render the <Search /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Search').length).toBe(1);
-  });
 
   it('should match component snapshot', () => {
     const tree = render.create(<Provider store={store}>
@@ -156,64 +152,18 @@ describe('<Search /> Component', () => {
     expect(wrapper.find(Display)).toHaveLength(2);
   });
 
-
-  it('calls add event', () => {
+  it('calls add event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'add');
     shallowWrapper.setState(state);
     shallowWrapper.instance().add();
     expect(shallowWrapper.instance().add.calledOnce).toEqual(true);
   });
 
-  it('calls minus event', () => {
+  it('calls minus event when the next button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'minus');
     shallowWrapper.setState(state);
     shallowWrapper.instance().minus();
     expect(shallowWrapper.instance().minus.calledOnce).toEqual(true);
   });
-
-
-//   it('calls onSubmit event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onSubmit');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onSubmit(event);
-//     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
-//   });
-
-//   it('calls onClick event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onClick');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onClick();
-//     expect(shallowWrapper.instance().onClick.calledOnce).toEqual(true);
-//   });
-
-//   it('calls onKeyPress event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onKeyPress');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onKeyPress(event);
-//     expect(shallowWrapper.instance().onKeyPress.calledOnce).toEqual(true);
-//   });
-
-  //   it('calls handleImageChange event', () => {
-  //     sinon.spy(shallowWrapper.instance(), 'handleImageChange');
-  //     shallowWrapper.setState(state);
-  //     shallowWrapper.instance().handleImageChange(event);
-  //     expect(shallowWrapper.instance().handleImageChange.calledOnce).toEqual(true);
-  //   });
-
-//   it('calls removeFacility event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'removeFacility');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().removeFacility(i);
-//     expect(shallowWrapper.instance().removeFacility.calledOnce).toEqual(true);
-//   });
-
-//   it('should have three div element match snap', () => {
-//     expect(wrapper.getElements('div')).toMatchSnapshot();
-//   });
-
-
-//   it('should have div element', () => {
-//     expect(wrapper.find('div').length).toEqual(4);
-//   });
 });
 

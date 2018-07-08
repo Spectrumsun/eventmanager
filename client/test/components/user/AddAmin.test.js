@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
 import sinon from 'sinon';
 import ConnectedAddAmin,
-{ AddAmin } from '../../../src/components/User/addAmin';
+{ AddAmin, mapDispatchToProps } from '../../../src/components/User/addAmin';
 import TextField from '../../../src/components/User/TextField'
 
 const middleware = [thunk];
@@ -74,22 +74,55 @@ describe('<Admin /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have three div on layout', () => {
+  it('should have div on layout', () => {
     const wrapper = shallow(<AddAmin />);
     expect(wrapper.find('button').length).toEqual(1);
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initaddAdmin).toBeTruthy();
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<AddAmin {...props} />);
+    raw.instance().setState({
+      email: '',
+      role: '',
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('email cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<AddAmin {...props} />);
+    raw.instance().setState({
+      email: 'tomato@example.com',
+      role: '',
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('role cannot be blank');
   });
 });
 

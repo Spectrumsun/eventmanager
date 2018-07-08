@@ -8,9 +8,10 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import ConnectedLogin,
-{ Login } from '../../../src/components/User/Login';
+{ Login, mapDispatchToProps } from '../../../src/components/User/Login';
 import TextField from '../../../src/components/User/TextField';
 
+jest.mock('react-router-dom');
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -21,10 +22,8 @@ const initialState = {
 const store = mockStore(initialState);
 
 const props = {
-  initUserLogin: sinon.spy(() => new Promise((cb) => {
-    cb();
-  })),
-  history: createMemoryHistory()
+  initUserLogin:() => Promise.resolve(),
+  history: createMemoryHistory(),
 };
 
 const mountedWrapper = mount(
@@ -40,6 +39,7 @@ const shallowWrapper = shallow(<Login {...props} />);
 const state = {
   email: 'bot@yahoo.com',
   Password: '12345678',
+  error: ''
 };
 
 const event = {
@@ -50,16 +50,9 @@ const event = {
   }
 };
 
-// let wrapper;
-
 describe('<Login /> Component', () => {
   it('should render the <Login />', () => {
     shallow(<Login />);
-  });
-
-  it('should render the <Login /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Login').length).toBe(1);
   });
 
   it('should match component snapshot', () => {
@@ -76,12 +69,12 @@ describe('<Login /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
   
-  it('should have three image on layout', () => {
+  it('should have div on layout', () => {
     const wrapper = shallow(<Login />);
     expect(wrapper.find('div').length).toEqual(7);
   });
 
-  it('should have form ', () => {
+  it('should have a form on the component', () => {
     const wrapper = shallow(<Login />);
     expect(wrapper.find('form').length).toEqual(1);
   });
@@ -91,17 +84,68 @@ describe('<Login /> Component', () => {
     expect(wrapper.find(TextField)).toHaveLength(2);
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initUserLogin).toBeTruthy();
+  });
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<Login {...props} />);
+    raw.instance().setState({
+      email: '',
+      password: '',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Email cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<Login {...props} />);
+    raw.instance().setState({
+      email: 'spwc@lol.com',
+      password: '',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Password cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<Login {...props} />);
+    raw.instance().setState({
+      email: 'spwc@lol.com',
+      password: '12345678',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().formValid).toBe(true);
+  });
+
+  
 });
 

@@ -12,3 +12,5 @@
 /client/public/bundle.js
 /bin/
 /selenium-debug/.log
+/reports/
+/endtoendUplaod/

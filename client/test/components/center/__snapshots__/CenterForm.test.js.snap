@@ -24,6 +24,7 @@ Array [
           </h5>
           <input
             className="form-control form-control-lg"
+            id="centerName"
             name="name"
             onChange={[Function]}
             required={true}
@@ -122,6 +123,7 @@ Array [
           <input
             accept="image/gif, image/png, image/jpeg"
             className="btn btn-light"
+            id="file"
             name="image"
             onChange={[Function]}
             type="file"
@@ -172,6 +174,7 @@ Array [
           car
           <span
             className="badge badge-danger badge-pill point"
+            id="remove"
             onClick={[Function]}
           >
             X
@@ -183,6 +186,7 @@ Array [
           table
           <span
             className="badge badge-danger badge-pill point"
+            id="remove"
             onClick={[Function]}
           >
             X
@@ -194,21 +198,13 @@ Array [
           fan
           <span
             className="badge badge-danger badge-pill point"
+            id="remove"
             onClick={[Function]}
           >
             X
           </span>
         </li>
       </ul>
-      <br />
-      <button
-        className="btn btn-primary btn-lg"
-        disabled={undefined}
-        type="submit"
-      >
-        Submit
-      </button>
-      <br />
       <br />
       <div
         className="progress"
@@ -228,6 +224,16 @@ Array [
           100
         </div>
       </div>
+      <br />
+      <button
+        className="btn btn-primary btn-lg"
+        disabled={undefined}
+        id="centerSubmit"
+        type="submit"
+      >
+        Submit
+      </button>
+      <br />
     </form>
   </div>,
 ]

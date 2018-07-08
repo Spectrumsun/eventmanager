@@ -51,7 +51,7 @@ describe('<Display />', () => {
   });
 
   it('should render the HomePage', () => {
-    shallow(<Display {...props}  />);
+    shallow(<Display {...props} />);
   });
 
   it('should render initial layout of Display', () => {
@@ -62,7 +62,7 @@ describe('<Display />', () => {
     expect(wrapper.find('img').length).toEqual(1);
   });
 
-  it('calls minus event', () => {
+  it('should call clicked method when send the event id to the event state', () => {
     sinon.spy(shallowWrapper.instance(), 'clicked');
     shallowWrapper.instance().clicked();
     expect(shallowWrapper.instance().clicked.calledOnce).toEqual(true);

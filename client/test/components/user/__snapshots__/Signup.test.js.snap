@@ -35,6 +35,17 @@ exports[`<Signup /> Component should match component snapshot 1`] = `
       <div
         className="cont"
       >
+        <h5
+          style={
+            Object {
+              "color": "red",
+              "marginTop": "10px",
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </h5>
         <form
           className="centerform"
           onSubmit={[Function]}

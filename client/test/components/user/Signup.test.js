@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import { createMemoryHistory } from 'history';
 import ConnectedSignup,
-{ Signup } from '../../../src/components/User/Signup';
+{ Signup, mapDispatchToProps } from '../../../src/components/User/Signup';
 import TextField from '../../../src/components/User/TextField'
 import Terms from '../../../src/components/User/termsandcondition';
 
@@ -62,16 +62,9 @@ const event = {
   }
 };
 
-// let wrapper;
-
 describe('<Signup /> Component', () => {
   it('should render the <Signup />', () => {
     shallow(<Signup />);
-  });
-
-  it('should render the <Signup /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Signup').length).toBe(1);
   });
 
   it('should have <TextField /> when the page loads', () => {
@@ -89,11 +82,10 @@ describe('<Signup /> Component', () => {
     expect(wrapper.find('div').length).toEqual(13);
   });
 
-  it('should have div on layout', () => {
+  it('should have button on layout', () => {
     const wrapper = shallow(<Signup />);
     expect(wrapper.find('button').length).toEqual(3);
   });
-
 
   it('should match component snapshot', () => {
     const tree = render.create(
@@ -103,18 +95,129 @@ describe('<Signup /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
-});
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onUserCreate).toBeTruthy();
+  });
 
+  it('sets error message when trying to submit empty field for name fields', () => {
+    const raw = mount(<Signup {...props} />);
+    const signIn = raw.find('form');
+    signIn.simulate('submit')
+    expect(raw.state().errorMessage).toBe('Full Name cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: 'tomato',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Email cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty space for fullname fields', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: '   ',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Full Name cannot be white space');
+  });
+
+
+  it('sets error message when trying to submit password less than 6 ', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: 'ram',
+      email: 'tomato@eacple.com',
+      password: '1234',
+      confirmPassword: '1234',
+      formValid: false,
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Password cannot be less than 6 Characters');
+  });
+
+
+  it('sets error message when trying to submit empty password ', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: 'ram',
+      email: 'tomato@eacple.com',
+      password: '',
+      confirmPassword: '',
+      formValid: false,
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Password cannot be blank');
+  });
+
+  it('sets error message when trying to password does not match confirm password', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: 'ram',
+      email: 'tomato@eacple.com',
+      password: '334343434',
+      confirmPassword: '33434343',
+      formValid: false,
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Confirm Password dont match Password');
+  });
+
+  it('sets error message when trying to password does not match confirm password', () => {
+    const raw = mount(<Signup {...props} />);
+    raw.instance().setState({
+      fullname: 'ram',
+      email: 'tomato@eacple.com',
+      password: '12345678',
+      confirmPassword: '12345678',
+      formValid: false,
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().formValid).toBe(true);
+  });
+});

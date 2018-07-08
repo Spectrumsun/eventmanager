@@ -11,7 +11,7 @@ import uploadImage from './ImageUpload';
  *
  * @extends {React.Component}
  */
-class AddCenter extends Component {
+export class AddCenter extends Component {
     state = {
       name: '',
       city: '',

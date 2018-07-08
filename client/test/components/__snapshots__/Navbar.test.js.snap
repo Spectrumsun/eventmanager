@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<NavBar /> should render initial layout of NavBar 1`] = `
-Array [
-  <Route
-    render={[Function]}
-  />,
-]
-`;

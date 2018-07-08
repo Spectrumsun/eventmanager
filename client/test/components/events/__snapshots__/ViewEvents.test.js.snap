@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ViewEvent /> Component should match component snapshot 1`] = `
+<div>
+  <div
+    className="center thebody"
+  >
+    <h1
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      Events
+    </h1>
+    <a
+      href="/events/10"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "black",
+        }
+      }
+    >
+      <div
+        className="card d-lg-inline-block"
+        style={
+          Object {
+            "width": "20rem",
+          }
+        }
+      >
+        <img
+          alt="Card cap"
+          className="card-img-top"
+          src="https:image.com/gif"
+          style={
+            Object {
+              "height": "15rem",
+              "objectFit": "cover",
+            }
+          }
+        />
+        <div
+          className="card-body"
+        >
+          <h4
+            className="card-title"
+          >
+            tom
+          </h4>
+          <span
+            className="card-text"
+          >
+            2018-10-12
+          </span>
+           To 
+          <span
+            className="card-text"
+          >
+            2018-10-15
+          </span>
+          <h6
+            className="card-text"
+          >
+            test
+          </h6>
+          <h6
+            className="btn btn-primary"
+          >
+            View more
+          </h6>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div
+    className="center"
+  >
+    <footer>
+      <div>
+        <h3
+          className="center"
+        >
+          Event Manager
+        </h3>
+      </div>
+      <div
+        style={
+          Object {
+            "display": "inline-block",
+            "textAlign": "left",
+          }
+        }
+      >
+        <div>
+          <div
+            className="float-left"
+          >
+            <a
+              className="navbar-brand"
+              href="/"
+            >
+              <img
+                alt=""
+                height="30"
+                src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+                width="30"
+              />
+            </a>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Social Media
+              </p>
+              <li
+                className="footerColor"
+              >
+                facebook
+              </li>
+              <li
+                className="footerColor"
+              >
+                twitter
+              </li>
+              <li
+                className="footerColor"
+              >
+                instargram
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Event manager
+              </p>
+              <li
+                className="footerColor"
+              >
+                Questions
+              </li>
+              <li
+                className="footerColor"
+              >
+                Jobs
+              </li>
+              <li
+                className="footerColor"
+              >
+                Help
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                About
+              </p>
+              <li
+                className="footerColor"
+              >
+                desgin by Taiwo Sunday
+              </li>
+              <li
+                className="footerColor"
+              >
+                +2348038512455
+              </li>
+              <li
+                className="footerColor"
+              >
+                https://github.com/Spectrumsun
+              </li>
+              <li
+                className="footerColor"
+              >
+                taiwo.sunday@outlook.com
+              </li>
+            </ul>
+          </div>
+          <div
+            className="float-left"
+          >
+            <ul>
+              <p
+                className="footerTitle"
+              >
+                Site
+              </p>
+              <li
+                className="footerColor"
+              >
+                Home
+              </li>
+              <li
+                className="footerColor"
+              >
+                Centers
+              </li>
+              <li
+                className="footerColor"
+              >
+                Events
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p
+        className="center"
+      >
+        Event Managment © 2017
+      </p>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`<ViewEvent /> Component should render initial layout of <ViewEvent /> 1`] = `
+Array [
+  <div>
+    <div
+      className="center thebody"
+    >
+      <h1
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        Events
+      </h1>
+      <Link
+        replace={false}
+        style={
+          Object {
+            "color": "black",
+          }
+        }
+        to="/events/10"
+      >
+        <display
+          centerImage="https:image.com/gif"
+          endDate="2018-10-15"
+          eventName="tom"
+          purpose="test"
+          startDate="2018-10-12"
+        />
+      </Link>
+    </div>
+    <footer />
+  </div>,
+]
+`;

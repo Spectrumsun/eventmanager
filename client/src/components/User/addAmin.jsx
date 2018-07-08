@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import toast from 'toastr';
@@ -11,7 +10,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class AddAmin extends Component {
+export class AddAmin extends Component {
   state = {
     email: '',
     role: '',
@@ -112,10 +111,6 @@ AddAmin.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
-  error: state.users.error
-});
-
 
 const mapDispatchToProps = dispatch => ({
   initaddAdmin: (state, history) =>
@@ -123,4 +118,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAmin);
+export default connect(mapDispatchToProps)(AddAmin);

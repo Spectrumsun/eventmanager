@@ -3,7 +3,7 @@
 [![HitCount](http://hits.dwyl.io/Spectrumsun/eventmanager.svg)](http://hits.dwyl.io/Spectrumsun/eventmanager)
 [![codecov](https://codecov.io/gh/Spectrumsun/eventmanager/branch/develop/graph/badge.svg)](https://codecov.io/gh/Spectrumsun/eventmanager)
 [![Coverage Status](https://coveralls.io/repos/github/Spectrumsun/eventmanager/badge.svg?branch=develop)](https://coveralls.io/github/Spectrumsun/eventmanager?branch=develop)
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f12b2146b1c46953b97a/test_coverage)](https://codeclimate.com/github/Spectrumsun/eventmanager/test_coverage)
 
 # Event Manager
 Given you manage​ ​an​ ​events​ ​center,​ ​this​ ​app​ ​will​ ​help​ ​you​ ​accept​ ​applications​ ​to​ ​use​ ​your​ ​

@@ -1,0 +1,841 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> Component should have three div element match snap 1`] = `
+Array [
+  <div>
+    <nav
+      className="navbar navbar-expand-md navbar navbar-dark fixed-top bar"
+      style={
+        Object {
+          "backgroundColor": "#35434a",
+        }
+      }
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+      >
+        <img
+          alt=""
+          className="d-inline-block align-top"
+          height="30"
+          src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+          width="30"
+        />
+      </a>
+      <button
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        className="navbar-toggler"
+        data-target="#navbarSupportedContent"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        className="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
+        <ul
+          className="navbar-nav mr-auto"
+        >
+          <li
+            className="nav-item active"
+          >
+            <Link
+              className="nav-link"
+              id="logo"
+              replace={false}
+              to="/"
+            >
+              Event Manager
+              <span
+                className="sr-only"
+              >
+                (current)
+              </span>
+            </Link>
+          </li>
+          <li
+            className="nav-item active"
+          >
+            <Link
+              className="nav-link"
+              id="home"
+              replace={false}
+              to="/"
+            >
+              Home
+              <span
+                className="sr-only"
+              >
+                (current)
+              </span>
+            </Link>
+          </li>
+          <li
+            className="nav-item dropdown"
+          >
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#/"
+              id="navbarDropdown"
+              role="button"
+            >
+              Events
+            </a>
+            <div
+              aria-labelledby="navbarDropdown"
+              className="dropdown-menu"
+            >
+              <Link
+                className="dropdown-item"
+                id="addEvent"
+                replace={false}
+                to="/addevent"
+              >
+                Add Event
+              </Link>
+              <div
+                className="dropdown-divider"
+              />
+              <Link
+                className="dropdown-item"
+                id="viewCenter"
+                replace={false}
+                to="/centers"
+              >
+                View Centers
+              </Link>
+            </div>
+          </li>
+          <li
+            className="nav-item dropdown"
+          >
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#/"
+              id="navbarDropdown"
+              role="button"
+            >
+              Center
+            </a>
+            <div
+              aria-labelledby="navbarDropdown"
+              className="dropdown-menu"
+            >
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/addcenter"
+              >
+                Add Center
+              </Link>
+              <div
+                className="dropdown-menu"
+              />
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/centers"
+              >
+                View Centers
+              </Link>
+              <div
+                className="dropdown-menu"
+              />
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/addAdmin"
+              >
+                Add Admin
+              </Link>
+            </div>
+          </li>
+        </ul>
+        <ul
+          className=" nav navbar-nav navbar-right login"
+        >
+          <li
+            className="nav-item"
+          >
+            <Link
+              className="btn btn-outline-light"
+              id="login"
+              replace={false}
+              to="/login"
+            >
+              Login
+            </Link>
+          </li>
+          <br />
+          <li
+            className="nav-item signup"
+          >
+            <Link
+              className="btn btn-outline-light"
+              id="sigup"
+              replace={false}
+              to="/signup"
+            >
+              Sign up
+            </Link>
+          </li>
+        </ul>
+        <form
+          className="form-inline my-2 my-lg-0"
+          onSubmit={[Function]}
+          style={
+            Object {
+              "marginRight": "15px",
+            }
+          }
+        >
+          <input
+            aria-label="Search"
+            className="form-control mr-sm-2"
+            name="search"
+            onChange={[Function]}
+            placeholder="by name or location"
+            type="search"
+          />
+          <button
+            className="btn btn-outline-light my-2 my-sm-0"
+            id="search"
+            type="submit"
+          >
+            Search Centers
+          </button>
+        </form>
+      </div>
+    </nav>
+    <routers />
+  </div>,
+]
+`;
+
+exports[`<NavBar /> Component should match component snapshot 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-md navbar navbar-dark fixed-top bar"
+    style={
+      Object {
+        "backgroundColor": "#35434a",
+      }
+    }
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      <img
+        alt=""
+        className="d-inline-block align-top"
+        height="30"
+        src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+        width="30"
+      />
+    </a>
+    <button
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      className="navbar-toggler"
+      data-target="#navbarSupportedContent"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      id="navbarSupportedContent"
+    >
+      <ul
+        className="navbar-nav mr-auto"
+      >
+        <li
+          className="nav-item active"
+        >
+          <a
+            className="nav-link"
+            href="/"
+            id="logo"
+            onClick={[Function]}
+          >
+            Event Manager
+            <span
+              className="sr-only"
+            >
+              (current)
+            </span>
+          </a>
+        </li>
+        <li
+          className="nav-item active"
+        >
+          <a
+            className="nav-link"
+            href="/"
+            id="home"
+            onClick={[Function]}
+          >
+            Home
+            <span
+              className="sr-only"
+            >
+              (current)
+            </span>
+          </a>
+        </li>
+        <li
+          className="nav-item dropdown"
+        >
+          <a
+            aria-expanded="false"
+            aria-haspopup="true"
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            href="#/"
+            id="navbarDropdown"
+            role="button"
+          >
+            Events
+          </a>
+          <div
+            aria-labelledby="navbarDropdown"
+            className="dropdown-menu"
+          >
+            <a
+              className="dropdown-item"
+              href="/addevent"
+              id="addEvent"
+              onClick={[Function]}
+            >
+              Add Event
+            </a>
+            <div
+              className="dropdown-divider"
+            />
+            <a
+              className="dropdown-item"
+              href="/centers"
+              id="viewCenter"
+              onClick={[Function]}
+            >
+              View Centers
+            </a>
+          </div>
+        </li>
+        <li
+          className="nav-item dropdown"
+        >
+          <a
+            aria-expanded="false"
+            aria-haspopup="true"
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            href="#/"
+            id="navbarDropdown"
+            role="button"
+          >
+            Center
+          </a>
+          <div
+            aria-labelledby="navbarDropdown"
+            className="dropdown-menu"
+          >
+            <a
+              className="dropdown-item"
+              href="/addcenter"
+              onClick={[Function]}
+            >
+              Add Center
+            </a>
+            <div
+              className="dropdown-menu"
+            />
+            <a
+              className="dropdown-item"
+              href="/centers"
+              onClick={[Function]}
+            >
+              View Centers
+            </a>
+            <div
+              className="dropdown-menu"
+            />
+            <a
+              className="dropdown-item"
+              href="/addAdmin"
+              onClick={[Function]}
+            >
+              Add Admin
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul
+        className=" nav navbar-nav navbar-right login"
+      >
+        <li
+          className="nav-item"
+        >
+          <a
+            className="btn btn-outline-light"
+            href="/login"
+            id="login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+        </li>
+        <br />
+        <li
+          className="nav-item signup"
+        >
+          <a
+            className="btn btn-outline-light"
+            href="/signup"
+            id="sigup"
+            onClick={[Function]}
+          >
+            Sign up
+          </a>
+        </li>
+      </ul>
+      <form
+        className="form-inline my-2 my-lg-0"
+        onSubmit={[Function]}
+        style={
+          Object {
+            "marginRight": "15px",
+          }
+        }
+      >
+        <input
+          aria-label="Search"
+          className="form-control mr-sm-2"
+          name="search"
+          onChange={[Function]}
+          placeholder="by name or location"
+          type="search"
+        />
+        <button
+          className="btn btn-outline-light my-2 my-sm-0"
+          id="search"
+          type="submit"
+        >
+          Search Centers
+        </button>
+      </form>
+    </div>
+  </nav>
+  <div>
+    <div
+      className="cover"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="Second slide"
+          className="d-block w-100"
+          src="https://res.cloudinary.com/skybound/image/upload/v1522578533/404.gif"
+        />
+      </a>
+    </div>
+    <div
+      className="center"
+    >
+      <footer>
+        <div>
+          <h3
+            className="center"
+          >
+            Event Manager
+          </h3>
+        </div>
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+              "textAlign": "left",
+            }
+          }
+        >
+          <div>
+            <div
+              className="float-left"
+            >
+              <a
+                className="navbar-brand"
+                href="/"
+              >
+                <img
+                  alt=""
+                  height="30"
+                  src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+                  width="30"
+                />
+              </a>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Social Media
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  facebook
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  twitter
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  instargram
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Event manager
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Questions
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Jobs
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Help
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  About
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  desgin by Taiwo Sunday
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  +2348038512455
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  https://github.com/Spectrumsun
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  taiwo.sunday@outlook.com
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Site
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Home
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Centers
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Events
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p
+          className="center"
+        >
+          Event Managment © 2017
+        </p>
+      </footer>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<NavBar /> Component should render initial layout of <NavBar /> 1`] = `
+Array [
+  <div>
+    <nav
+      className="navbar navbar-expand-md navbar navbar-dark fixed-top bar"
+      style={
+        Object {
+          "backgroundColor": "#35434a",
+        }
+      }
+    >
+      <a
+        className="navbar-brand"
+        href="/"
+      >
+        <img
+          alt=""
+          className="d-inline-block align-top"
+          height="30"
+          src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+          width="30"
+        />
+      </a>
+      <button
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        className="navbar-toggler"
+        data-target="#navbarSupportedContent"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        className="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
+        <ul
+          className="navbar-nav mr-auto"
+        >
+          <li
+            className="nav-item active"
+          >
+            <Link
+              className="nav-link"
+              id="logo"
+              replace={false}
+              to="/"
+            >
+              Event Manager
+              <span
+                className="sr-only"
+              >
+                (current)
+              </span>
+            </Link>
+          </li>
+          <li
+            className="nav-item active"
+          >
+            <Link
+              className="nav-link"
+              id="home"
+              replace={false}
+              to="/"
+            >
+              Home
+              <span
+                className="sr-only"
+              >
+                (current)
+              </span>
+            </Link>
+          </li>
+          <li
+            className="nav-item dropdown"
+          >
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#/"
+              id="navbarDropdown"
+              role="button"
+            >
+              Events
+            </a>
+            <div
+              aria-labelledby="navbarDropdown"
+              className="dropdown-menu"
+            >
+              <Link
+                className="dropdown-item"
+                id="addEvent"
+                replace={false}
+                to="/addevent"
+              >
+                Add Event
+              </Link>
+              <div
+                className="dropdown-divider"
+              />
+              <Link
+                className="dropdown-item"
+                id="viewCenter"
+                replace={false}
+                to="/centers"
+              >
+                View Centers
+              </Link>
+            </div>
+          </li>
+          <li
+            className="nav-item dropdown"
+          >
+            <a
+              aria-expanded="false"
+              aria-haspopup="true"
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#/"
+              id="navbarDropdown"
+              role="button"
+            >
+              Center
+            </a>
+            <div
+              aria-labelledby="navbarDropdown"
+              className="dropdown-menu"
+            >
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/addcenter"
+              >
+                Add Center
+              </Link>
+              <div
+                className="dropdown-menu"
+              />
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/centers"
+              >
+                View Centers
+              </Link>
+              <div
+                className="dropdown-menu"
+              />
+              <Link
+                className="dropdown-item"
+                replace={false}
+                to="/addAdmin"
+              >
+                Add Admin
+              </Link>
+            </div>
+          </li>
+        </ul>
+        <ul
+          className=" nav navbar-nav navbar-right login"
+        >
+          <li
+            className="nav-item"
+          >
+            <Link
+              className="btn btn-outline-light"
+              id="login"
+              replace={false}
+              to="/login"
+            >
+              Login
+            </Link>
+          </li>
+          <br />
+          <li
+            className="nav-item signup"
+          >
+            <Link
+              className="btn btn-outline-light"
+              id="sigup"
+              replace={false}
+              to="/signup"
+            >
+              Sign up
+            </Link>
+          </li>
+        </ul>
+        <form
+          className="form-inline my-2 my-lg-0"
+          onSubmit={[Function]}
+          style={
+            Object {
+              "marginRight": "15px",
+            }
+          }
+        >
+          <input
+            aria-label="Search"
+            className="form-control mr-sm-2"
+            name="search"
+            onChange={[Function]}
+            placeholder="by name or location"
+            type="search"
+          />
+          <button
+            className="btn btn-outline-light my-2 my-sm-0"
+            id="search"
+            type="submit"
+          >
+            Search Centers
+          </button>
+        </form>
+      </div>
+    </nav>
+    <routers />
+  </div>,
+]
+`;

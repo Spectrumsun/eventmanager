@@ -16,7 +16,7 @@ const styles = {
  *
  * @extends {React.Component}
  */
-class NavBar extends Component {
+export class NavBar extends Component {
   state = {
     search: '',
   }
@@ -45,8 +45,8 @@ class NavBar extends Component {
    *
    * @returns {void}
    */
-  logout = (e) => {
-    e.preventDefault();
+  logout = (event) => {
+    event.preventDefault();
     this.props.onLogOut(this.props.history);
   }
 

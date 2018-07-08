@@ -11,7 +11,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class EventInfo extends Component {
+export class EventInfo extends Component {
   /**
    * @description run action on component mount to reload data
    *

@@ -1,0 +1,525 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CenterInfo /> Component should have three div element match snap 1`] = `
+Array [
+  <div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "white",
+          "paddingTop": "55px",
+        }
+      }
+    >
+      <div
+        className="card-header dark"
+      >
+        <h1
+          className="container color centerTitle"
+        />
+      </div>
+      <img
+        alt="center"
+        className="card-img-top"
+        src={undefined}
+        style={
+          Object {
+            "height": "600px",
+            "width": "100%",
+          }
+        }
+      />
+      <div>
+        <div
+          className="container card-body"
+          style={
+            Object {
+              "width": "45rem",
+            }
+          }
+        >
+          <h1>
+            <strong />
+          </h1>
+          <h6
+            className="list-group-item"
+          />
+          <br />
+          <div
+            className="list-group-item centerlist"
+          >
+            <h3>
+              About
+            </h3>
+            <p
+              className="read"
+              style={
+                Object {
+                  "textAlign": "justify",
+                }
+              }
+            />
+          </div>
+          <br />
+          <h1>
+            <strong>
+              City
+            </strong>
+          </h1>
+          <h6
+            className="list-group-item col-md-4"
+          />
+          <br />
+          <h5>
+            <strong>
+              Availability
+            </strong>
+          </h5>
+          <h6
+            className="list-group-item col-md-4"
+          />
+          <br />
+          <h5>
+            <strong>
+              Avaliable Facilities
+            </strong>
+          </h5>
+          <ul
+            className="list-group col-md-4 text-capitalize"
+          />
+          <br />
+          <h5>
+            <strong>
+              Events
+            </strong>
+          </h5>
+          <br />
+        </div>
+      </div>
+      <footer />
+    </div>
+  </div>,
+]
+`;
+
+exports[`<CenterInfo /> Component should match component snapshot 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "paddingTop": "55px",
+      }
+    }
+  >
+    <div
+      className="card-header dark"
+    >
+      <h1
+        className="container color centerTitle"
+      >
+        farm center
+      </h1>
+    </div>
+    <img
+      alt="center"
+      className="card-img-top"
+      src="https://res.96295052-uueqqqc5ey6gzmjel0ft.jpg.jpg"
+      style={
+        Object {
+          "height": "600px",
+          "width": "100%",
+        }
+      }
+    />
+    <div>
+      <div
+        className="container card-body"
+        style={
+          Object {
+            "width": "45rem",
+          }
+        }
+      >
+        <h1>
+          <strong>
+            farm center
+          </strong>
+        </h1>
+        <h6
+          className="list-group-item"
+        >
+          No 33, yaba road lagos
+        </h6>
+        <br />
+        <div
+          className="list-group-item centerlist"
+        >
+          <h3>
+            About
+          </h3>
+          <p
+            className="read"
+            style={
+              Object {
+                "textAlign": "justify",
+              }
+            }
+          >
+            lalalla
+          </p>
+        </div>
+        <br />
+        <h1>
+          <strong>
+            City
+          </strong>
+        </h1>
+        <h6
+          className="list-group-item col-md-4"
+        >
+          Yaba
+        </h6>
+        <br />
+        <h5>
+          <strong>
+            Availability
+          </strong>
+        </h5>
+        <h6
+          className="list-group-item col-md-4"
+        >
+          yes
+        </h6>
+        <br />
+        <h5>
+          <strong>
+            Avaliable Facilities
+          </strong>
+        </h5>
+        <ul
+          className="list-group col-md-4 text-capitalize"
+        >
+          <li
+            className="list-group-item centerlist"
+          >
+            house
+          </li>
+          <li
+            className="list-group-item centerlist"
+          >
+            horuse
+          </li>
+          <li
+            className="list-group-item centerlist"
+          >
+            car
+          </li>
+        </ul>
+        <br />
+        <h5>
+          <strong>
+            Events
+          </strong>
+        </h5>
+        <div
+          className="card d-lg-inline-block"
+          style={
+            Object {
+              "width": "15rem",
+            }
+          }
+        >
+          <div
+            className="card-body"
+          >
+            <h6
+              className="card-text"
+            >
+              2018-11-09
+               To 
+              2018-10-22
+            </h6>
+          </div>
+        </div>
+        <div
+          className="card d-lg-inline-block"
+          style={
+            Object {
+              "width": "15rem",
+            }
+          }
+        >
+          <div
+            className="card-body"
+          >
+            <h6
+              className="card-text"
+            >
+              2018-11-09
+               To 
+              2018-10-22
+            </h6>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+    <div
+      className="center"
+    >
+      <footer>
+        <div>
+          <h3
+            className="center"
+          >
+            Event Manager
+          </h3>
+        </div>
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+              "textAlign": "left",
+            }
+          }
+        >
+          <div>
+            <div
+              className="float-left"
+            >
+              <a
+                className="navbar-brand"
+                href="/"
+              >
+                <img
+                  alt=""
+                  height="30"
+                  src="https://res.cloudinary.com/skybound/image/upload/v1522444986/eventmanager/static/event.png"
+                  width="30"
+                />
+              </a>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Social Media
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  facebook
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  twitter
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  instargram
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Event manager
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Questions
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Jobs
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Help
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  About
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  desgin by Taiwo Sunday
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  +2348038512455
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  https://github.com/Spectrumsun
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  taiwo.sunday@outlook.com
+                </li>
+              </ul>
+            </div>
+            <div
+              className="float-left"
+            >
+              <ul>
+                <p
+                  className="footerTitle"
+                >
+                  Site
+                </p>
+                <li
+                  className="footerColor"
+                >
+                  Home
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Centers
+                </li>
+                <li
+                  className="footerColor"
+                >
+                  Events
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p
+          className="center"
+        >
+          Event Managment © 2017
+        </p>
+      </footer>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CenterInfo /> Component should render initial layout of <CenterInfo /> 1`] = `
+Array [
+  <div>
+    <div
+      style={
+        Object {
+          "backgroundColor": "white",
+          "paddingTop": "55px",
+        }
+      }
+    >
+      <div
+        className="card-header dark"
+      >
+        <h1
+          className="container color centerTitle"
+        />
+      </div>
+      <img
+        alt="center"
+        className="card-img-top"
+        src={undefined}
+        style={
+          Object {
+            "height": "600px",
+            "width": "100%",
+          }
+        }
+      />
+      <div>
+        <div
+          className="container card-body"
+          style={
+            Object {
+              "width": "45rem",
+            }
+          }
+        >
+          <h1>
+            <strong />
+          </h1>
+          <h6
+            className="list-group-item"
+          />
+          <br />
+          <div
+            className="list-group-item centerlist"
+          >
+            <h3>
+              About
+            </h3>
+            <p
+              className="read"
+              style={
+                Object {
+                  "textAlign": "justify",
+                }
+              }
+            />
+          </div>
+          <br />
+          <h1>
+            <strong>
+              City
+            </strong>
+          </h1>
+          <h6
+            className="list-group-item col-md-4"
+          />
+          <br />
+          <h5>
+            <strong>
+              Availability
+            </strong>
+          </h5>
+          <h6
+            className="list-group-item col-md-4"
+          />
+          <br />
+          <h5>
+            <strong>
+              Avaliable Facilities
+            </strong>
+          </h5>
+          <ul
+            className="list-group col-md-4 text-capitalize"
+          />
+          <br />
+          <h5>
+            <strong>
+              Events
+            </strong>
+          </h5>
+          <br />
+        </div>
+      </div>
+      <footer />
+    </div>
+  </div>,
+]
+`;

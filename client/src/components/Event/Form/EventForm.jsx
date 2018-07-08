@@ -140,7 +140,7 @@ eventForm.propTypes = {
   numberOfPages: PropTypes.object.isRequired,
   numberOfPages1: PropTypes.object.isRequired,
   purpose: PropTypes.string.isRequired,
-  centerName: PropTypes.string.isRequired,
+  centerName: PropTypes.string,
   getCenter: PropTypes.func.isRequired,
   formValid: PropTypes.bool.isRequired
 };

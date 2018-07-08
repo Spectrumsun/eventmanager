@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EventForm /> should render initial layout of HomePage 1`] = `
+Array [
+  <div
+    className="card-body"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="form-row"
+      >
+        <div
+          className="form-group col-md-12"
+        >
+          <h5>
+            <label
+              htmlFor="inputEmail4"
+            >
+              Event Name
+            </label>
+          </h5>
+          <input
+            className="form-control form-control-lg"
+            name="name"
+            onChange={[Function]}
+            type="text"
+            value="tomato"
+          />
+        </div>
+        <div
+          className="form-group col-md-6"
+        >
+          <h5>
+            <label
+              htmlFor="inputPassword4"
+            >
+              Start Date
+            </label>
+          </h5>
+          <input
+            className="form-control form-control-lg"
+            name="startDate"
+            onChange={[Function]}
+            type="date"
+            value="2018-12-09"
+          />
+        </div>
+        <div
+          className="form-group col-md-6"
+        >
+          <h5>
+            <label
+              htmlFor="inputPassword4"
+            >
+              End Date
+            </label>
+          </h5>
+          <input
+            className="form-control form-control-lg"
+            name="endDate"
+            onChange={[Function]}
+            type="date"
+            value="2018-12-10"
+          />
+        </div>
+        <div
+          className="form-group col-md-6"
+        >
+          <h5>
+            <label
+              htmlFor="inputPassword4"
+            >
+              Start Time
+            </label>
+          </h5>
+          <input
+            className="form-control form-control-lg"
+            name="time"
+            onChange={[Function]}
+            type="time"
+            value="uyu"
+          />
+        </div>
+      </div>
+      <div
+        className="form-group"
+      >
+        <h5>
+          <label
+            htmlFor="exampleFormControlTextarea1"
+          >
+            purpose
+          </label>
+        </h5>
+        <textarea
+          className="form-control"
+          name="purpose"
+          onChange={[Function]}
+          placeholder="Tell people more about the event"
+          rows="3"
+          value={undefined}
+        />
+      </div>
+      <br />
+      <div
+        className="form-inline"
+      >
+        <button
+          className="btn btn-dark btn-mm"
+          data-target=".bd-example-modal-lg"
+          data-toggle="modal"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginRight": "20px",
+            }
+          }
+          type="button"
+        >
+          Add Center
+        </button>
+        iiir
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="myLargeModalLabel"
+        className="modal fade bd-example-modal-lg"
+        role="dialog"
+        tabIndex="-1"
+      >
+        <div
+          className="modal-dialog modal-lg"
+        >
+          <div
+            className="modal-content"
+          >
+            <Connect(Centers)
+              selectCenter={[Function]}
+            />
+            <ul
+              className="pagination nav justify-content-center"
+            >
+              <li
+                className="page-item"
+                onClick={undefined}
+              >
+                <a
+                  className="page-link"
+                >
+                  Previous
+                </a>
+              </li>
+              Object {
+                "total": 2,
+              }
+              <li
+                className="page-item"
+                onClick={undefined}
+              >
+                <a
+                  className="page-link"
+                >
+                  Next
+                </a>
+              </li>
+            </ul>
+            <br />
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <button
+        className="btn btn-primary btn-lg"
+        disabled={true}
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>,
+]
+`;

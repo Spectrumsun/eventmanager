@@ -11,7 +11,7 @@ import Terms from './termsandcondition';
  *
  * @extends {React.Component}
  */
-class Signup extends Component {
+export class Signup extends Component {
   state = {
     fullname: '',
     email: '',
@@ -182,10 +182,6 @@ Signup.propTypes = {
   history: PropTypes.shape({}).isRequired
 };
 
-const mapStateToProps = state => ({
-  error: state.users.error
-});
-
 
 const mapDispatchToProps = dispatch => ({
   onUserCreate: (user, history) =>
@@ -193,4 +189,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);

@@ -13,7 +13,7 @@ import * as action from '../../store/actions/index';
  *
  * @extends {React.Component}
  */
-class Search extends Component {
+export class Search extends Component {
   state = {
     totalPage: '',
     next: 1,
@@ -73,6 +73,7 @@ class Search extends Component {
             centerName={center.centerName}
             address={center.address}
             image={center.imageurl}
+            city={center.city}
           />
          </Link>
         ));

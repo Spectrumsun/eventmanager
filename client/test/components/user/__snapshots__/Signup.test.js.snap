@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Signup /> Component should match component snapshot 1`] = `
+<div
+  className="container"
+  style={
+    Object {
+      "paddingTop": "150px",
+    }
+  }
+>
+  <h3
+    className="center"
+  >
+    Event Manager
+  </h3>
+  <div
+    className="card loginCard"
+    style={
+      Object {
+        "width": "40rem",
+      }
+    }
+  >
+    <div
+      className="card-header"
+    >
+      <h3>
+        Sign up
+      </h3>
+    </div>
+    <div
+      className="card-body"
+    >
+      <div
+        className="cont"
+      >
+        <form
+          className="centerform"
+          onSubmit={[Function]}
+        >
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="2"
+            >
+              Full Name
+            </label>
+            <input
+              className="form-control form-control-lg"
+              name="fullname"
+              onChange={[Function]}
+              placeholder="your name"
+              required={true}
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="2"
+            >
+              Email
+            </label>
+            <input
+              className="form-control form-control-lg"
+              name="email"
+              onChange={[Function]}
+              placeholder="Vaild Email"
+              required={true}
+              type="email"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="2"
+            >
+              Password
+            </label>
+            <input
+              className="form-control form-control-lg"
+              name="password"
+              onChange={[Function]}
+              placeholder="Password"
+              required={true}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              htmlFor="2"
+            >
+              Confirm Password
+            </label>
+            <input
+              className="form-control form-control-lg"
+              name="confirmPassword"
+              onChange={[Function]}
+              placeholder="Password"
+              required={true}
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            className="form-check"
+          >
+            <label
+              className="form-check-label"
+            >
+              <input
+                className="form-check-input form-control-lg"
+                required={true}
+                type="checkbox"
+              />
+              <small>
+                <span
+                  data-target="#exampleModalLong"
+                  data-toggle="modal"
+                  id="terms"
+                  style={
+                    Object {
+                      "cursor": "pointer",
+                    }
+                  }
+                >
+                  Have read and accepted the terms and conditions ?
+                </span>
+                <div
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalLongTitle"
+                  className="modal fade"
+                  id="exampleModalLong"
+                  role="dialog"
+                  tabIndex="-1"
+                >
+                  <div
+                    className="modal-dialog"
+                    role="document"
+                  >
+                    <div
+                      className="modal-content"
+                    >
+                      <div
+                        className="modal-header"
+                      >
+                        <h5
+                          className="modal-title"
+                          id="exampleModalLongTitle"
+                        >
+                          Terms and Conditions
+                        </h5>
+                        <button
+                          aria-label="Close"
+                          className="close"
+                          data-dismiss="modal"
+                          type="button"
+                        >
+                          <span
+                            aria-hidden="true"
+                          >
+                            ×
+                          </span>
+                        </button>
+                      </div>
+                      <div
+                        className="modal-body"
+                      >
+                        <div>
+                          Welcome to EventManger website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]'s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website. The term '[business name]' or 'us' or 'we' refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term 'you' refers to the user or viewer of our website. The use of this website is subject to the following terms of use: The content of the pages of this website is for your general information and use only. It is subject to        change without notice. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly       exclude liability for any such inaccuracies or errors to the fullest extent permitted by law. Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements. This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions. All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website. Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence. From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s). Your use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.
+                        </div>
+                      </div>
+                      <div
+                        className="modal-footer"
+                      >
+                        <button
+                          className="btn btn-primary"
+                          data-dismiss="modal"
+                          id="close"
+                          type="button"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </small>
+            </label>
+          </div>
+          <div
+            className="text-center"
+          >
+            <button
+              className="btn btn-outline-dark"
+              disabled={false}
+              id="signup"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

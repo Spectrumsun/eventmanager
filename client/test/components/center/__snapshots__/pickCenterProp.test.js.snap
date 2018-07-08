@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Display /> should render initial layout of Display 1`] = `
+Array [
+  <div
+    className="card"
+    style={
+      Object {
+        "width": "12rem",
+      }
+    }
+  >
+    <img
+      alt="Card cap"
+      className="card-img-top"
+      src="llal"
+      style={
+        Object {
+          "height": "10",
+          "width": "20",
+        }
+      }
+    />
+    <div
+      className="theHeight"
+    >
+      <div
+        className="card-body text-capitalize"
+      >
+        <h6>
+          <Link
+            replace={false}
+            style={
+              Object {
+                "color": "#2E3A41",
+              }
+            }
+            target="_blank"
+            to="/centers/9"
+          >
+            <strong>
+              farm center
+            </strong>
+          </Link>
+        </h6>
+        <h6>
+          No 33, yaba road lagos
+        </h6>
+        <div
+          className="scrollbar"
+        >
+          <h6>
+            <strong>
+              Facility
+            </strong>
+          </h6>
+          <ul
+            className="list-group text-capitalize"
+          >
+            <li>
+              car
+            </li>
+            <li>
+              fan
+            </li>
+            <li>
+              video
+            </li>
+          </ul>
+        </div>
+        <br />
+      </div>
+    </div>
+    <div
+      className="buttingFix"
+    >
+      <button
+        className="btn btn-primary btn-sm"
+        data-dismiss="modal"
+        onClick={[Function]}
+        type="button"
+      >
+        Select
+      </button>
+    </div>
+  </div>,
+]
+`;

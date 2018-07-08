@@ -37,7 +37,7 @@ app.use('/api/v1/', routes);
 
 // base usl for documentation
 app.use(
-  '/api/v1/docs',
+  '/docs/api/v1',
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument)
 );

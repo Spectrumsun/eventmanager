@@ -17,6 +17,7 @@ const centerFrom = props => (
           <h5><label htmlFor="inputEmail4">Center Name</label></h5>
           <input
             type="text"
+            id="centerName"
             value={props.name}
             onChange={props.onChange}
             name="name"
@@ -88,6 +89,7 @@ const centerFrom = props => (
             type="file"
             onChange={props.handleImageChange}
             name="image"
+            id="file"
             accept="image/gif, image/png, image/jpeg"
             className="btn btn-light"
           />
@@ -127,20 +129,13 @@ const centerFrom = props => (
             {list}
             <span
               className="badge badge-danger badge-pill point"
+              id="remove"
               onClick={() =>
             props.removeFacility(remove)}
             >X
             </span>
            </li>))}
       </ul>
-      <br />
-      <button
-        type="submit"
-        className="btn btn-primary btn-lg"
-        disabled={props.formValid}
-      >Submit
-      </button>
-      <br />
       <br />
       <div className="progress">
         <div
@@ -153,6 +148,15 @@ const centerFrom = props => (
         >{props.progress}
         </div>
       </div>
+      <br />
+      <button
+        type="submit"
+        id="centerSubmit"
+        className="btn btn-primary btn-lg"
+        disabled={props.formValid}
+      >Submit
+      </button>
+      <br />
     </form>
   </div>
 );

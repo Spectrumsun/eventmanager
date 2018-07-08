@@ -15,7 +15,8 @@ export class Login extends Component {
   state = {
     email: '',
     password: '',
-    formValid: false
+    formValid: false,
+    errorMessage: ''
   }
 
   /**
@@ -44,9 +45,9 @@ export class Login extends Component {
     event.preventDefault();
     this.setState({ formValid: false });
     if (this.state.email === '') {
-      toast.error('Email cannot be blank');
+      this.setState({ errorMessage: 'Email cannot be blank' });
     } else if (this.state.password === '') {
-      toast.error('Password cannot be blank');
+      this.setState({ errorMessage: 'Password cannot be blank' });
     } else {
       this.setState({ formValid: true });
       this.props.initUserLogin(
@@ -76,9 +77,13 @@ export class Login extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
+                <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                { this.state.errorMessage }
+              </h5>
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="Email"
+                    id="email"
                     value={this.state.email}
                     onChange={this.onChange}
                     name="email"
@@ -96,6 +101,7 @@ export class Login extends Component {
                   />
                   <small ><Link
                     to="/forgotpassword"
+                    id="passwordReset"
                     className="center-item"
                   >Forgot password?
                   </Link>
@@ -126,7 +132,7 @@ Login.propTypes = {
 };
 
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) =>
     dispatch(action.initUserLogin(user, history)),
 });

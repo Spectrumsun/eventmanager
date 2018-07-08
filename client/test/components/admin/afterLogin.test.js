@@ -11,23 +11,12 @@ const { WrappedComponent } = components;
 let props;
 let mountedComponent;
 
-/**
- * @description Initialise the component
- *
- * @returns {object} ManageRecipe - Mounted component
- */
 const getComponent = () => {
   if (!mountedComponent) {
     mountedComponent = shallow(<WrappedComponent {...props} />);
   }
   return mountedComponent;
 };
-
-/**
- * @description Initialise the component
- *
- * @returns {object} ManageRecipe - Mounted component
- */
 
 describe('Component:  isAuthenticated User', () => {
   beforeEach(() => {

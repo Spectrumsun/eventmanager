@@ -64,6 +64,7 @@ export class EventInfo extends Component {
         >
           <button
             type="submit"
+            id="editEvent"
             className="btn btn-dark"
             style={{ float: 'left' }}
           >Edit
@@ -71,6 +72,7 @@ export class EventInfo extends Component {
         </Link>
         <button
           type="button"
+          id="deleteEvent"
           className="btn btn-danger"
           style={{ marginLeft: '20px' }}
           data-toggle="modal"
@@ -121,6 +123,7 @@ export class EventInfo extends Component {
                 </button>
                 <button
                   type="button"
+                  id="removeIt"
                   className="btn btn-danger"
                   data-dismiss="modal"
                   onClick={this.deleteEvent}
@@ -252,7 +255,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
   onDeleteEvent: (id, history) =>
     dispatch(action.initDeleteEvent(id, history))

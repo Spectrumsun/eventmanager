@@ -1,15 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
-import toast from 'toastr';
-
-function errorHandler(error) {
-  const newError = error.response.data.errorMessage
-  newError ? newError.map(err => 
-  toast.error(err)) : toast.error(
-  error.response.data.message)
-}
-
+import { errorHandler, successHandler } from './responsesHandler';
 
 export const getAllEvent = (events) => {
   return {
@@ -85,7 +77,7 @@ export const initPostEvent = (event, history) => {
   return dispatch => {
     return axios.post('/events?token='+localStorage.jwtToken, event)
       .then((res) => {
-        toast.success(res.data.message)
+        successHandler(res)
         history.push('/events')
         dispatch(postEvent(res.data));
       })
@@ -101,10 +93,10 @@ export const initPostEvent = (event, history) => {
 export const initEditEvent = (id, events, history) => {
   return  dispatch => {
   return  axios.put(`/events/${id}?token=`+localStorage.jwtToken, events)
-          .then((response) => {
-            toast.success(response.data.message)
+          .then((res) => {
+            successHandler(res)
             history.push('/events')
-            dispatch(editEvent(response.data.updatedEvent))
+            dispatch(editEvent(res.data.updatedEvent))
           })
           .catch((error) => {
             errorHandler(error)
@@ -118,14 +110,14 @@ export const initEditEvent = (id, events, history) => {
 export const initDeleteEvent = (id, history) => {
   return  dispatch => {
   return   axios.delete(`/events/${id}?token=`+localStorage.jwtToken)
-          .then((response) => {
-            toast.success(response.data.message)
+          .then((res) => {
+            successHandler(res)
             history.push('/events')
-            dispatch(deleteEvent(response.data.deletedEvent))
+            dispatch(deleteEvent(res.data.deletedEvent))
           })
           .catch((error) => {
             dispatch(eventError(error))
-            toast.error(error.response.data.message)
+            errorHandler(error)
         }
     )
   }

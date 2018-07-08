@@ -71,7 +71,7 @@ export class Centers extends Component {
           style={{ color: 'black' }}
         >
           <Display
-            centerName={center.centerName}
+            centerName={center.centerName.split(' ')[0]}
             city={center.city}
             image={center.imageurl}
           />
@@ -79,10 +79,10 @@ export class Centers extends Component {
         ));
     const numberOfPages = (
       <li className="page-item">
-          <a className="page-link">
+        <a className="page-link">
                 Page {this.state.pageNumber} of {this.state.totalPage}
-            </a>
-        </li>);
+          </a>
+      </li>);
     const numberOfPages1 = (
       <li className="page-item">
         <a className="page-link">
@@ -91,9 +91,11 @@ export class Centers extends Component {
       </li>);
     return (
       <div>
-        <div className="center " style={{ paddingTop: '100px' }}>
+        <div className="center" style={{ paddingTop: '100px' }}>
           <h1 style={{ textAlign: 'center' }}>Centers</h1>
-          <div>{centers}</div>
+          <div className="fixModal">
+            {centers}
+          </div>
           <ul className="pagination nav justify-content-center">
             <li className="page-item" onClick={this.minus}>
               <a className="page-link" >Previous</a>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<EditCenter /> Component should have three div element match snap 1`] = `
+exports[`<EditCenter /> Component should have div element match snap 1`] = `
 Array [
   <div
     className="container"
@@ -22,6 +22,17 @@ Array [
           Edit Center
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <centerFrom
         about="lalalla"
         address="No 33, yaba road lagos"
@@ -79,6 +90,17 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
         Edit Center
       </h1>
     </div>
+    <h5
+      style={
+        Object {
+          "color": "red",
+          "marginTop": "10px",
+          "textAlign": "center",
+        }
+      }
+    >
+      
+    </h5>
     <div
       className="card-body"
     >
@@ -101,6 +123,7 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             </h5>
             <input
               className="form-control form-control-lg"
+              id="centerName"
               name="name"
               onChange={[Function]}
               required={true}
@@ -199,6 +222,7 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             <input
               accept="image/gif, image/png, image/jpeg"
               className="btn btn-light"
+              id="file"
               name="image"
               onChange={[Function]}
               type="file"
@@ -253,6 +277,7 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             house
             <span
               className="badge badge-danger badge-pill point"
+              id="remove"
               onClick={[Function]}
             >
               X
@@ -264,6 +289,7 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             horuse
             <span
               className="badge badge-danger badge-pill point"
+              id="remove"
               onClick={[Function]}
             >
               X
@@ -275,21 +301,13 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             car
             <span
               className="badge badge-danger badge-pill point"
+              id="remove"
               onClick={[Function]}
             >
               X
             </span>
           </li>
         </ul>
-        <br />
-        <button
-          className="btn btn-primary btn-lg"
-          disabled={false}
-          type="submit"
-        >
-          Submit
-        </button>
-        <br />
         <br />
         <div
           className="progress"
@@ -309,6 +327,16 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
             0%
           </div>
         </div>
+        <br />
+        <button
+          className="btn btn-primary btn-lg"
+          disabled={false}
+          id="centerSubmit"
+          type="submit"
+        >
+          Submit
+        </button>
+        <br />
       </form>
     </div>
   </div>
@@ -337,6 +365,17 @@ Array [
           Edit Center
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <centerFrom
         about="lalalla"
         address="No 33, yaba road lagos"

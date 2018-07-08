@@ -3,7 +3,7 @@
 exports[`<Display /> should render initial layout of Display 1`] = `
 Array [
   <div
-    className="card d-lg-inline-block"
+    className="card d-lg-inline-block d-flex"
     style={
       Object {
         "width": "20rem",
@@ -22,7 +22,7 @@ Array [
       }
     />
     <div
-      className="card-body"
+      className="card-body .flex-fill"
     >
       <h4
         className="card-title"
@@ -47,6 +47,7 @@ Array [
       </h6>
       <h6
         className="btn btn-primary"
+        id="viewEvents"
       >
         View more
       </h6>

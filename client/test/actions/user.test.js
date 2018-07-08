@@ -5,6 +5,7 @@ import moxios from 'moxios';
 import * as actionTypes from '../../src/store/actions/actionsTypes';
 import * as action from '../../src/store/actions/index';
 import user from '../mocks/users';
+import { errorHandler, successHandler } from '../../src/store/actions/responsesHandler'
 
 
 const middleware = [thunk];
@@ -230,6 +231,37 @@ describe('Test for user action', () => {
     const store = mockStore({});
     store.dispatch(action.userError(user.error));
     expect(store.getActions()).toEqual(expectedActions);
+    done();
+  });
+
+  it('error function', (done) => {
+    const error = {
+      response: {
+        data: {
+          message: 'Signup Errors',
+          errorMessage: [
+            'You must supply a name!',
+            'That Email is not valid!',
+            'Password Cannot be Blank cant be less than six Characters!',
+            'Password Cannot be Blank cant be less than six Characters!',
+            'Oops! Your passwords do not match'
+          ]
+        }
+      }
+    };
+  
+    expect(errorHandler(error)).toEqual(undefined);
+    done();
+  });
+
+  it('success function', (done) => {
+    const res = {
+      data: {
+        message: 'Signup Errors',
+      }
+    };
+  
+    expect(successHandler(res)).toEqual(undefined);
     done();
   });
 });

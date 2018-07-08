@@ -51,7 +51,7 @@ describe('<Display />', () => {
   });
 
   it('should render the HomePage', () => {
-    shallow(<Display {...props}  />);
+    shallow(<Display {...props} />);
   });
 
   it('should render initial layout of Display', () => {

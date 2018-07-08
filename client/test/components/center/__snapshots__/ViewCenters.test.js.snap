@@ -3,7 +3,7 @@
 exports[`<Centers /> Component should match component snapshot 1`] = `
 <div>
   <div
-    className="center "
+    className="center"
     style={
       Object {
         "paddingTop": "100px",
@@ -19,7 +19,9 @@ exports[`<Centers /> Component should match component snapshot 1`] = `
     >
       Centers
     </h1>
-    <div>
+    <div
+      className="fixModal"
+    >
       <a
         href="/centers/29"
         onClick={[Function]}
@@ -55,7 +57,7 @@ exports[`<Centers /> Component should match component snapshot 1`] = `
             <h4
               className="card-title"
             >
-              farm center
+              farm
             </h4>
             <h6
               className="card-subtitle mb-2 text-muted"
@@ -64,6 +66,7 @@ exports[`<Centers /> Component should match component snapshot 1`] = `
             </h6>
             <h5
               className="card-link"
+              id="centerDetails"
             >
               View More
             </h5>
@@ -105,7 +108,7 @@ exports[`<Centers /> Component should match component snapshot 1`] = `
             <h4
               className="card-title"
             >
-              farm center
+              farm
             </h4>
             <h6
               className="card-subtitle mb-2 text-muted"
@@ -114,6 +117,7 @@ exports[`<Centers /> Component should match component snapshot 1`] = `
             </h6>
             <h5
               className="card-link"
+              id="centerDetails"
             >
               View More
             </h5>
@@ -316,7 +320,7 @@ exports[`<Centers /> Component should render initial layout of <Centers /> 1`] =
 Array [
   <div>
     <div
-      className="center "
+      className="center"
       style={
         Object {
           "paddingTop": "100px",
@@ -332,7 +336,9 @@ Array [
       >
         Centers
       </h1>
-      <div>
+      <div
+        className="fixModal"
+      >
         <Link
           replace={false}
           style={
@@ -343,7 +349,7 @@ Array [
           to="/centers/29"
         >
           <getCenter
-            centerName="farm center"
+            centerName="farm"
             city="Yaba"
             image="llal"
           />
@@ -358,7 +364,7 @@ Array [
           to="/centers/9"
         >
           <getCenter
-            centerName="farm center"
+            centerName="farm"
             city="Yaba"
             image="llal"
           />

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<AddEvent /> Component should have three div element match snap 1`] = `
+exports[`<AddEvent /> Component should have div element match snap 1`] = `
 Array [
   <div
     className="container"
@@ -22,6 +22,17 @@ Array [
           Add Event
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <eventForm
         add={[Function]}
         centerName=""
@@ -97,6 +108,17 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
         Add Event
       </h1>
     </div>
+    <h5
+      style={
+        Object {
+          "color": "red",
+          "marginTop": "10px",
+          "textAlign": "center",
+        }
+      }
+    >
+      
+    </h5>
     <div
       className="card-body"
     >
@@ -120,6 +142,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="name"
               onChange={[Function]}
+              required={true}
               type="text"
               value=""
             />
@@ -138,6 +161,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="startDate"
               onChange={[Function]}
+              required={true}
               type="date"
               value=""
             />
@@ -156,6 +180,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="endDate"
               onChange={[Function]}
+              required={true}
               type="date"
               value=""
             />
@@ -174,6 +199,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="time"
               onChange={[Function]}
+              required={true}
               type="time"
               value=""
             />
@@ -194,6 +220,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
             name="purpose"
             onChange={[Function]}
             placeholder="Tell people more about the event"
+            required={true}
             rows="3"
             value=""
           />
@@ -206,6 +233,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
             className="btn btn-dark btn-mm"
             data-target=".bd-example-modal-lg"
             data-toggle="modal"
+            id="centerSelection"
             onClick={[Function]}
             style={
               Object {
@@ -289,7 +317,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
                                 target="_blank"
                               >
                                 <strong>
-                                  farm center
+                                  farm
                                 </strong>
                               </a>
                             </h6>
@@ -327,6 +355,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
                           <button
                             className="btn btn-primary btn-sm"
                             data-dismiss="modal"
+                            id="pickCenter"
                             onClick={[Function]}
                             type="button"
                           >
@@ -371,7 +400,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
                                 target="_blank"
                               >
                                 <strong>
-                                  farm center
+                                  farm
                                 </strong>
                               </a>
                             </h6>
@@ -409,6 +438,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
                           <button
                             className="btn btn-primary btn-sm"
                             data-dismiss="modal"
+                            id="pickCenter"
                             onClick={[Function]}
                             type="button"
                           >
@@ -463,6 +493,7 @@ exports[`<AddEvent /> Component should match component snapshot 1`] = `
         <button
           className="btn btn-primary btn-lg"
           disabled={false}
+          id="submitEvent"
           type="submit"
         >
           Submit
@@ -495,6 +526,17 @@ Array [
           Add Event
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <eventForm
         add={[Function]}
         centerName=""

@@ -34,7 +34,7 @@ class Centers extends Component {
         <Display
           key={center.id}
           id={center.id}
-          centerName={center.centerName}
+          centerName={center.centerName.split(' ')[0]}
           about={center.about}
           address={center.address}
           city={center.city}

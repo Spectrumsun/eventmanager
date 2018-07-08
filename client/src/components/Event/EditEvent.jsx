@@ -23,6 +23,7 @@ export class EditEvent extends Component {
      centerName: '',
      pageNumber: '',
      formValid: false,
+     errorMessage: ''
    }
 
   /**
@@ -64,21 +65,21 @@ export class EditEvent extends Component {
      this.setState({ formValid: false });
      const reWhiteSpace = new RegExp(/^\s+$/);
      if (this.state.name === '') {
-       toast.error('Event Name cannot be blank');
-     } else if (reWhiteSpace.test(this.state.fullname) === true) {
-       toast.error('Event Name cannot white space');
+       this.setState({ errorMessage: 'Event Name cannot be blank'});
+     } else if (reWhiteSpace.test(this.state.name) === true) {
+       this.setState({ errorMessage: 'Event Name cannot white space'});
      } else if (this.state.startDate === '') {
-       toast.error('Event start date cannot be blank');
+       this.setState({ errorMessage: 'Event Name cannot white space'});
      } else if (this.state.endDate === '') {
-       toast.error('Event end date cannot be blank');
+       this.setState({ errorMessage: 'Event end date cannot be blank'});
      } else if (this.state.endDate < this.state.startDate) {
-       toast.error('!Event end date cannot be behind event start date');
+       this.setState({ errorMessage: '!Event end date cannot be behind event start date'});
      } else if (this.state.time === '') {
-       toast.error('Event Time cannot be blank');
+       this.setState({ errorMessage: 'Event Time cannot be blank'});
      } else if (this.state.purpose === '') {
-       toast.error('Event Purpose cannot be blank');
+       this.setState({ errorMessage: 'Event Purpose cannot be blank'});
      } else if (this.state.center === '') {
-       toast.error('You have to choose a Center');
+       this.setState({ errorMessage: 'You have to choose a Center'});
      } else {
        this.setState({ formValid: true });
        this.props.initEditEvent(
@@ -86,6 +87,7 @@ export class EditEvent extends Component {
          this.props.history
        ).then(() =>
          this.setState({ formValid: false }));
+         this.setState({ errorMessage: '' });
      }
    }
 
@@ -137,6 +139,7 @@ export class EditEvent extends Component {
    * @returns {JSX} JSX representation of component
    */
   render() {
+    {toast.error(this.state.errorMessage);}
     const numberOfPages = (
       <li className="page-item">
         <a className="page-link">
@@ -159,6 +162,9 @@ export class EditEvent extends Component {
           <div className="card-header dark">
             <h1 className="color">Edit Event</h1>
           </div>
+          <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+            { this.state.errorMessage }
+          </h5>
           <EventForm
             onChange={this.onChange}
             onSubmit={this.onSubmit}
@@ -212,7 +218,7 @@ const mapStateToProps = state => ({
   error: state.events.error
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
   initEditEvent: (id, events, history) =>
     dispatch(action.initEditEvent(id, events, history)),

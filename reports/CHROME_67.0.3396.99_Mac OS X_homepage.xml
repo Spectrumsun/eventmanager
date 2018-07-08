@@ -5,69 +5,9 @@
 
   <testsuite name="homepage"
     errors="0" failures="0" hostname="" id="" package="homepage" skipped="0"
-    tests="11" time="60.67" timestamp="Fri, 06 Jul 2018 09:52:21 GMT">
+    tests="11" time="57.86" timestamp="Sun, 08 Jul 2018 16:09:18 GMT">
   
-    <testcase name="Display homepage and ensure all elements are available" classname="homepage" time="8.509" assertions="8">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-       
-    
-
-    
-    </testcase>
-  
-    <testcase name="it should not allow a user to add event if they have not login" classname="homepage" time="2.587" assertions="4">
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="it should take user to center page from home page" classname="homepage" time="2.356" assertions="3">
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="it should not login a user who has not registered" classname="homepage" time="2.757" assertions="7">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    </testcase>
-  
-    <testcase name="it should not sign up with missing fields" classname="homepage" time="4.045" assertions="10">
-
-    
-
-    
+    <testcase name="Display homepage and ensure all elements are available" classname="homepage" time="5.796" assertions="8">
 
     
 
@@ -86,7 +26,44 @@
     
     </testcase>
   
-    <testcase name="it should not sign up existing email address" classname="homepage" time="8.316" assertions="10">
+    <testcase name="it should not allow a user to add event if they have not login" classname="homepage" time="2.689" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="it should take user to center page from home page" classname="homepage" time="2.374" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="it should not login a user who has not registered" classname="homepage" time="2.714" assertions="7">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="it should not sign up with missing fields" classname="homepage" time="4.031" assertions="10">
 
     
 
@@ -109,7 +86,7 @@
     
     </testcase>
   
-    <testcase name="it should sign up a with correct informations" classname="homepage" time="7.336" assertions="10">
+    <testcase name="it should not sign up existing email address" classname="homepage" time="8.233" assertions="10">
 
     
 
@@ -132,7 +109,13 @@
     
     </testcase>
   
-    <testcase name="it should not login with wrong password a with correct informations" classname="homepage" time="3.199" assertions="7">
+    <testcase name="it should sign up a with correct informations" classname="homepage" time="7.249" assertions="10">
+
+    
+
+    
+
+    
 
     
 
@@ -149,7 +132,24 @@
     
     </testcase>
   
-    <testcase name="it should not login a user who has not confirm email address" classname="homepage" time="4.459" assertions="7">
+    <testcase name="it should not login with wrong password a with correct informations" classname="homepage" time="3.213" assertions="7">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="it should not login a user who has not confirm email address" classname="homepage" time="4.442" assertions="7">
 
     
 
@@ -183,7 +183,7 @@
     
     </testcase>
   
-    <testcase name="it should logout a user" classname="homepage" time="6.128" assertions="3">
+    <testcase name="it should logout a user" classname="homepage" time="6.133" assertions="3">
 
     
 

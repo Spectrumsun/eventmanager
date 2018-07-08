@@ -113,7 +113,7 @@ export class NavBar extends Component {
         <a
           className="nav-link dropdown-toggle"
           href="#/"
-          id="navbarDropdown"
+          id="navbarDropdownCenter"
           role="button"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -128,6 +128,7 @@ export class NavBar extends Component {
           <Link
             to="/addcenter"
             className="dropdown-item"
+            id="addCenter"
           >Add Center
           </Link>
           <div className="dropdown-menu" />
@@ -276,7 +277,7 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onLogOut: history =>
     dispatch(action.initUserLogout(history)),
 

@@ -8,7 +8,7 @@ import sinon from 'sinon';
 import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
 import ConnectedPasswordReset,
-{ PasswordReset } from '../../../src/components/User/PasswordReset';
+{ PasswordReset, mapDispatchToProps } from '../../../src/components/User/PasswordReset';
 import TextField from '../../../src/components/User/TextField'
 
 
@@ -80,12 +80,12 @@ describe('<PasswordReset /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
   
-  it('should have three image on layout', () => {
+  it('should have div on layout', () => {
     const wrapper = shallow(<PasswordReset />);
     expect(wrapper.find('div').length).toEqual(7);
   });
 
-  it('should have three image on layout', () => {
+  it('should have form on layout', () => {
     const wrapper = shallow(<PasswordReset />);
     expect(wrapper.find('form').length).toEqual(1);
   });
@@ -107,6 +107,11 @@ describe('<PasswordReset /> Component', () => {
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initpasswordreset).toBeTruthy();
   });
 });
 

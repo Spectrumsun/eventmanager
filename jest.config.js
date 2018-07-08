@@ -12,7 +12,6 @@ module.exports = {
     '/node_modules/',
     '/template/',
     '/sever/',
-    '/build/',
     '/.github/',
     '/.nyc_output/',
     '/coverage/',

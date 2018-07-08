@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production sequelize db:migrate && npm run build && npm run webpack:build && node build/server",
     "test": "NODE_ENV=test npm run migrations && NODE_ENV=test npm run start:test",
-    "start:test": "nyc --reporter=html --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
+    "start:test": "nyc --reporter=html --reporter=lcov --reporter=text mocha --timeout 50000 --exit --require babel-core/register server/test/**/*.test.js",
     "migrations": "sequelize db:migrate:undo:all && sequelize db:migrate",
     "server:coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --fix server",
@@ -20,7 +20,8 @@
     "webpack:build": "webpack --config webpack.prod.config.js --progress --profile --color",
     "test:client": "jest -u && codecov",
     "test:e2e": "nightwatch",
-    "coverages": "npm run server:coverage && npm run test:client"
+    "coverages": "npm run server:coverage && npm run test:client",
+    "all:test": "npm test && npm run test:client"
   },
   "author": "Taiwo Sunday",
   "license": "ISC",

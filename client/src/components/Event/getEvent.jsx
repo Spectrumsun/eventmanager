@@ -9,18 +9,18 @@ import PropTypes from 'prop-types';
  * @returns {JSX} JSX component to disply the event
  */
 const display = props => (
-  <div className="card d-lg-inline-block" style={{ width: '20rem' }}>
+  <div className="card d-lg-inline-block d-flex" style={{ width: '20rem' }}>
     <img
       className="card-img-top"
       src={props.centerImage}
       style={{ objectFit: 'cover', height: '15rem' }}
       alt="Card cap"
     />
-    <div className="card-body">
+    <div className="card-body .flex-fill">
       <h4 className="card-title">{props.eventName}</h4>
       <span className="card-text">{props.startDate}</span> To <span className="card-text">{props.endDate}</span>
       <h6 className="card-text">{props.purpose}</h6>
-      <h6 className="btn btn-primary">View more</h6>
+      <h6 className="btn btn-primary" id="viewEvents">View more</h6>
     </div>
   </div>
 );

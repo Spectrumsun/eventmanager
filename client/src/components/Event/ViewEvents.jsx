@@ -92,7 +92,7 @@ const mapStateToProps = state => ({
   error: state.events.error
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onInitEvent: () => dispatch(actions.initEvents())
 });
 

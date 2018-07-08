@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
 import sinon from 'sinon';
 import ConnectedAddAmin,
-{ AddAmin } from '../../../src/components/User/addAmin';
+{ AddAmin, mapDispatchToProps } from '../../../src/components/User/addAmin';
 import TextField from '../../../src/components/User/TextField'
 
 const middleware = [thunk];
@@ -74,7 +74,7 @@ describe('<Admin /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should have three div on layout', () => {
+  it('should have div on layout', () => {
     const wrapper = shallow(<AddAmin />);
     expect(wrapper.find('button').length).toEqual(1);
   });
@@ -91,5 +91,11 @@ describe('<Admin /> Component', () => {
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initaddAdmin).toBeTruthy();
+  });
+
 });
 

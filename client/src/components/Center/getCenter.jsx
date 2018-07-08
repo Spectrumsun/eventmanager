@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 
 
 const getCenter = props => (
-  <div
-    onClick={props.clicked}
-    className="card d-lg-inline-block"
-    style={{ width: '14rem' }}
-  >
-    <img
+    <div
+      onClick={props.clicked}
+      className="card d-lg-inline-block"
+      style={{ width: '14rem' }}
+    >
+      <img
       className="card-img-top"
       src={props.image}
       style={{ objectFit: 'cover', height: '15rem' }}
       alt="Card cap"
     />
-    <div className="card-body">
+      <div className="card-body">
       <h4 className="card-title">{props.centerName}</h4>
       <h6
         className="card-subtitle mb-2 text-muted"
       >
         {props.city}
       </h6>
-      <h5 className="card-link">View More</h5>
+      <h5 className="card-link" id="centerDetails">View More</h5>
     </div>
-  </div>
+    </div>
 );
 
 getCenter.propTypes = {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NavBar /> Component should have three div element match snap 1`] = `
+exports[`<NavBar /> Component should have div element match snap 1`] = `
 Array [
   <div>
     <nav
@@ -125,7 +125,7 @@ Array [
               className="nav-link dropdown-toggle"
               data-toggle="dropdown"
               href="#/"
-              id="navbarDropdown"
+              id="navbarDropdownCenter"
               role="button"
             >
               Center
@@ -136,6 +136,7 @@ Array [
             >
               <Link
                 className="dropdown-item"
+                id="addCenter"
                 replace={false}
                 to="/addcenter"
               >
@@ -349,7 +350,7 @@ exports[`<NavBar /> Component should match component snapshot 1`] = `
             className="nav-link dropdown-toggle"
             data-toggle="dropdown"
             href="#/"
-            id="navbarDropdown"
+            id="navbarDropdownCenter"
             role="button"
           >
             Center
@@ -361,6 +362,7 @@ exports[`<NavBar /> Component should match component snapshot 1`] = `
             <a
               className="dropdown-item"
               href="/addcenter"
+              id="addCenter"
               onClick={[Function]}
             >
               Add Center
@@ -740,7 +742,7 @@ Array [
               className="nav-link dropdown-toggle"
               data-toggle="dropdown"
               href="#/"
-              id="navbarDropdown"
+              id="navbarDropdownCenter"
               role="button"
             >
               Center
@@ -751,6 +753,7 @@ Array [
             >
               <Link
                 className="dropdown-item"
+                id="addCenter"
                 replace={false}
                 to="/addcenter"
               >

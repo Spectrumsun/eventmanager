@@ -183,11 +183,11 @@ describe('<Centers /> Component', () => {
     expect(wrapper.find('div').length).toEqual(3);
   });
 
-  it('should have three h1 on layout', () => {
+  it('should have h1 on layout', () => {
     expect(wrapper.find('h1').length).toEqual(1);
   });
 
-  it('should have three ul on layout', () => {
+  it('should have ul on layout', () => {
     expect(wrapper.find('ul').length).toEqual(1);
   });
 

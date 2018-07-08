@@ -118,7 +118,7 @@ PasswordReset.propTypes = {
   }).isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initpasswordreset: (token, user, history) =>
     dispatch(action.initpasswordreset(token, user, history)),
 });

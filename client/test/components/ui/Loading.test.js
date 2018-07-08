@@ -20,7 +20,7 @@ describe('<Home />', () => {
     expect(wrapper.find('div').length).toEqual(3);
   });
 
-  it('should have three image on layout', () => {
+  it('should have one image on layout', () => {
     expect(wrapper.find('p').length).toEqual(1);
   });
 });

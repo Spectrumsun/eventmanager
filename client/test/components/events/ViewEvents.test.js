@@ -8,7 +8,9 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedViewEvent,
-{ ViewEvent } from '../../../src/components/Event/ViewEvents';
+{
+  ViewEvent,
+  mapDispatchToProps } from '../../../src/components/Event/ViewEvents';
 import Display from '../../../src/components/Event/getEvent'
 
 
@@ -59,9 +61,6 @@ const mountedWrapper = mount(
     </BrowserRouter>
   </Provider>);
 
-const shallowWrapper = shallow(<ViewEvent {...props} />);
-
-
 describe('<ViewEvent /> Component', () => {
   const wrapper = shallow(<ViewEvent {...props} />);
   it('should render the <ViewEvent />', () => {
@@ -88,13 +87,19 @@ describe('<ViewEvent /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-  it('should have three div on layout', () => {
+  it('should have div on layout', () => {
     expect(wrapper.find('div').length).toEqual(2);
   });
 
   it('should have <Event /> when the page loads', () => {
     expect(wrapper.find(Display)).toHaveLength(1);
   });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onInitEvent).toBeTruthy();
+  });
+  
 
 });
 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CenterInfo /> Component should have three div element match snap 1`] = `
+exports[`<CenterInfo /> Component should have div element match snap 1`] = `
 Array [
   <div>
     <div

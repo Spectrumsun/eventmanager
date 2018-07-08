@@ -58,7 +58,7 @@ class Validate {
       });
     req.checkBody(
       'password',
-      'Password Cannot be Blank cant be less than six Charaters!'
+      'Password Cannot be Blank cant be less than six Characters!'
     )
       .notEmpty().isLength({ min: 6 });
     req.checkBody(
@@ -176,7 +176,7 @@ class Validate {
   static passwordReset(req, res, next) {
     req.checkBody(
       'password',
-      'Password Cannot be Blank cant be less than six Charaters!'
+      'Password Cannot be Blank cant be less than six Characters!'
     )
       .notEmpty().isLength({ min: 6 });
     req.checkBody(

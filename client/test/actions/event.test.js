@@ -105,8 +105,8 @@ describe('Test for Event action', () => {
     ];
     const store = mockStore({});
     const history = createMemoryHistory('/events');
-
-    return store.dispatch(action.initEditCenter(2, events.editEvent, history))
+    const id = 1;
+    return store.dispatch(action.initEditCenter(id, events.editEvent, history))
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
         done();

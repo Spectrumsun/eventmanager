@@ -12,11 +12,11 @@ describe('<Footer />', () => {
     shallow(<Footer />);
   });
 
-  it('should render initial layout of footer', () => {
+  it('should find ul in snapshot', () => {
     expect(wrapper.getElements('ul')).toMatchSnapshot();
   });
 
-  it('should render initial layout of footer', () => {
+  it('should find div in snapshot', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 

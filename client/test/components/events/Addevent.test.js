@@ -8,7 +8,7 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedAddEvent,
-{ AddEvent } from '../../../src/components/Event/Addevent';
+{ AddEvent, mapDispatchToProps } from '../../../src/components/Event/Addevent';
 import EventForm from '../../../src/components/Event/Form/EventForm';
 
 
@@ -239,13 +239,18 @@ describe('<AddEvent /> Component', () => {
     expect(shallowWrapper.instance().selectCenter.calledOnce).toEqual(true);
   });
 
-  it('should have three div element match snap', () => {
+  it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
 
   it('should have three div element', () => {
     expect(wrapper.find('div').length).toEqual(3);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
   });
 });
 

@@ -170,50 +170,5 @@ describe('<Search /> Component', () => {
     shallowWrapper.instance().minus();
     expect(shallowWrapper.instance().minus.calledOnce).toEqual(true);
   });
-
-
-//   it('calls onSubmit event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onSubmit');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onSubmit(event);
-//     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
-//   });
-
-//   it('calls onClick event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onClick');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onClick();
-//     expect(shallowWrapper.instance().onClick.calledOnce).toEqual(true);
-//   });
-
-//   it('calls onKeyPress event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'onKeyPress');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().onKeyPress(event);
-//     expect(shallowWrapper.instance().onKeyPress.calledOnce).toEqual(true);
-//   });
-
-  //   it('calls handleImageChange event', () => {
-  //     sinon.spy(shallowWrapper.instance(), 'handleImageChange');
-  //     shallowWrapper.setState(state);
-  //     shallowWrapper.instance().handleImageChange(event);
-  //     expect(shallowWrapper.instance().handleImageChange.calledOnce).toEqual(true);
-  //   });
-
-//   it('calls removeFacility event', () => {
-//     sinon.spy(shallowWrapper.instance(), 'removeFacility');
-//     shallowWrapper.setState(state);
-//     shallowWrapper.instance().removeFacility(i);
-//     expect(shallowWrapper.instance().removeFacility.calledOnce).toEqual(true);
-//   });
-
-//   it('should have three div element match snap', () => {
-//     expect(wrapper.getElements('div')).toMatchSnapshot();
-//   });
-
-
-//   it('should have div element', () => {
-//     expect(wrapper.find('div').length).toEqual(4);
-//   });
 });
 

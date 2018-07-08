@@ -1,109 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Login /> Component should match component snapshot 1`] = `
-<div>
-  <div
-    className="container"
-    style={
-      Object {
-        "paddingTop": "150px",
-      }
-    }
-  >
-    <h3
-      className="center"
-    >
-      Event Manager
-    </h3>
-    <div
-      className="card loginCard"
-      style={
-        Object {
-          "width": "30rem",
-        }
-      }
-    >
-      <div
-        className="card-header"
-      >
-        <h3>
-          Login
-        </h3>
-      </div>
-      <div
-        className="card-body"
-      >
-        <div
-          className="cont card-body"
-        >
-          <form
-            className="centerform"
-            onSubmit={[Function]}
-          >
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="2"
-              >
-                Email
-              </label>
-              <input
-                className="form-control form-control-lg"
-                name="email"
-                onChange={[Function]}
-                placeholder="Vaild Email"
-                required={true}
-                type="email"
-                value=""
-              />
-            </div>
-            <div
-              className="form-group"
-            >
-              <label
-                htmlFor="2"
-              >
-                Password
-              </label>
-              <input
-                className="form-control form-control-lg"
-                name="password"
-                onChange={[Function]}
-                placeholder="Password"
-                required={true}
-                type="password"
-                value=""
-              />
-            </div>
-            <small>
-              <a
-                className="center-item"
-                href="/forgotpassword"
-                onClick={[Function]}
-              >
-                Forgot password?
-              </a>
-            </small>
-            <div
-              className="text-center"
-            >
-              <button
-                className="btn btn-outline-dark"
-                disabled={false}
-                id="login"
-                type="submit"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
+exports[`<Login /> Component should match component snapshot 1`] = `null`;
 
 exports[`<Login /> Component should render initial layout of HomePage 1`] = `
 Array [
@@ -147,6 +44,7 @@ Array [
               onSubmit={[Function]}
             >
               <TextField
+                id="email"
                 label="Email"
                 name="email"
                 onChange={[Function]}
@@ -165,6 +63,7 @@ Array [
               <small>
                 <Link
                   className="center-item"
+                  id="passwordReset"
                   replace={false}
                   to="/forgotpassword"
                 >

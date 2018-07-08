@@ -212,7 +212,7 @@ const mapStateToProps = state => ({
   error: state.events.error
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onOneEvent: id => dispatch(action.initGetOneEvent(id)),
   initEditEvent: (id, events, history) =>
     dispatch(action.initEditEvent(id, events, history)),

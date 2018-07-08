@@ -71,11 +71,13 @@ export class ForgotPassword extends Component {
                     onChange={this.onChange}
                     name="email"
                     type="email"
+                    id="email"
                     placeholder="Vaild Email"
                   />
                   <div className="text-center">
                     <button
                       type="submit"
+                      id="sendEmail"
                       className="btn btn-outline-dark"
                     >Email me a recovery link
                     </button>

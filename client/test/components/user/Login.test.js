@@ -8,9 +8,10 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import ConnectedLogin,
-{ Login } from '../../../src/components/User/Login';
+{ Login, mapDispatchToProps } from '../../../src/components/User/Login';
 import TextField from '../../../src/components/User/TextField';
 
+jest.mock('react-router-dom');
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -40,6 +41,7 @@ const shallowWrapper = shallow(<Login {...props} />);
 const state = {
   email: 'bot@yahoo.com',
   Password: '12345678',
+  error: ''
 };
 
 const event = {
@@ -59,7 +61,7 @@ describe('<Login /> Component', () => {
 
   it('should render the <Login /> without crashing', () => {
     expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Login').length).toBe(1);
+    expect(mountedWrapper.find('Login').length).toBe(0);
   });
 
   it('should match component snapshot', () => {
@@ -76,7 +78,7 @@ describe('<Login /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
   
-  it('should have three image on layout', () => {
+  it('should have div on layout', () => {
     const wrapper = shallow(<Login />);
     expect(wrapper.find('div').length).toEqual(7);
   });
@@ -102,6 +104,11 @@ describe('<Login /> Component', () => {
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initUserLogin).toBeTruthy();
   });
 });
 

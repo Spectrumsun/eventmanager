@@ -1,16 +1,8 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios'; 
-import toast from 'toastr';
 import jwt from 'jsonwebtoken';
-import { EMLINK } from 'constants';
-
-function errorHandler(error) {
-  const newError = error.response.data.errorMessage
-  newError ? newError.map(err => 
-  toast.error(err)) : toast.error(
-  error.response.data.message)
-}
+import { errorHandler, successHandler, logOutMessage } from './responsesHandler'
 
 export const signUpUser = (user) => {
   return {
@@ -73,7 +65,7 @@ export const initUser = (inputs, history) => {
   return dispatch => {
     return axios.post('/users', inputs)
         .then((res) => {
-          toast.success(res.data.message)
+          successHandler(res)
           history.push('/')
           dispatch(signUpUser(res.data))
         })
@@ -89,7 +81,7 @@ export const initUserLogin = (inputs, history) => {
   return dispatch => {
     return axios.post('/users/login', inputs)
         .then((res) => {
-          toast.success(res.data.message)
+          successHandler(res)
           history.push('/')
           const token = res.data.token;
           localStorage.setItem('jwtToken', token);
@@ -106,7 +98,7 @@ export const initUserLogin = (inputs, history) => {
 export const initUserLogout = (history) => {
   return dispatch => {
     localStorage.removeItem('jwtToken');
-    toast.success('Logout Successfully')
+    logOutMessage();
     history.push('/')
     dispatch(setUser({}))
   }
@@ -117,12 +109,12 @@ export const initaddAdmin = ( state, history) => {
   return dispatch => {
     return axios.post('/users/setadmin?token='+localStorage.jwtToken, state)
     .then((res) => {
-      toast.success(res.data.message)
+      successHandler(res)
       history.push('/')
       dispatch(addAdmin(res.data.message))
     })
     .catch((error) => {
-      toast.error(error.response.data.error)
+      errorHandler(error)
       dispatch(userError(error))
     })
   }
@@ -132,14 +124,12 @@ export const initpasswordreset = (token, input, history) => {
   return dispatch => {
     return axios.post(`/users/password/reset/${token}`, input)
       .then((res) => {
-        toast.success(res.data.message)
+        successHandler(res)
         history.push('/login')
         dispatch(passwordReset(res.data.message))
       }).catch((error) => {
-        const newError = error.response.data.errorMessage
-        newError ? newError.map(err => 
-        toast.error(err)) : toast.error(
-        error.response.data.message) &&  history.replace('/')
+        errorHandler(error)
+        history.replace('/')
        dispatch(userError(error))
       })
   }
@@ -150,15 +140,13 @@ export const initconfirmPassword = (user, history) => {
    return dispatch => {
     return axios.post('/users/forgotpassword', user)
         .then((res) => {
-          toast.success(res.data.message)
+          successHandler(res)
           history.push('/')
           dispatch(confirmPassword(res.data.message))
         })
         .catch((error) => {
-          const newError = error.response.data.errorMessage
-          newError ? newError.map(err => 
-          toast.error(err)) : toast.error(
-          error.response.data.message) &&  history.push('/')
+          errorHandler(error)
+          history.replace('/')
           dispatch(userError(error))
         })
   };
@@ -169,11 +157,11 @@ export const initemailverify = (token, history) => {
   return dispatch => {
   return  axios.get(`/users/email/${token}`)
     .then((res) => {
-      toast.success(res.data.message)
+      successHandler(res)
       dispatch(emailVerify(res.data.message))
       history.replace('/login');
     }).catch((error) => {
-      toast.error(error.response.data.message)
+      errorHandler(error)
       history.replace('/login');
       dispatch(userError(error))
     })

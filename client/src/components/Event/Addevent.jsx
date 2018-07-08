@@ -190,7 +190,7 @@ const mapStateToProps = state => ({
 });
 
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initPostEvent: (input, history) =>
     dispatch(action.initPostEvent(input, history)),
   onInitCenters: (limit, page) =>

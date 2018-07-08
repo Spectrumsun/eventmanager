@@ -8,7 +8,7 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedEditEvent,
-{ EditEvent } from '../../../src/components/Event/EditEvent';
+{ EditEvent, mapDispatchToProps } from '../../../src/components/Event/EditEvent';
 import EventForm from '../../../src/components/Event/Form/EventForm'
 
 
@@ -273,5 +273,21 @@ describe('<EditEvent /> Component', () => {
   it('should have three div element', () => {
     expect(wrapper.find('div').length).toEqual(3);
   });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onOneEvent).toBeTruthy();
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initEditEvent).toBeTruthy();
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
+  });
+
 });
 

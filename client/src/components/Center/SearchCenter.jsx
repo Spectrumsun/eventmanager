@@ -70,7 +70,7 @@ export class Search extends Component {
           style={{ color: 'black' }}
         >
           <Display
-            centerName={center.centerName}
+            centerName={center.centerName.split(' ')[0]}
             address={center.address}
             image={center.imageurl}
             city={center.city}

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import { createMemoryHistory } from 'history';
 import ConnectedSignup,
-{ Signup } from '../../../src/components/User/Signup';
+{ Signup, mapDispatchToProps } from '../../../src/components/User/Signup';
 import TextField from '../../../src/components/User/TextField'
 import Terms from '../../../src/components/User/termsandcondition';
 
@@ -89,7 +89,7 @@ describe('<Signup /> Component', () => {
     expect(wrapper.find('div').length).toEqual(13);
   });
 
-  it('should have div on layout', () => {
+  it('should have button on layout', () => {
     const wrapper = shallow(<Signup />);
     expect(wrapper.find('button').length).toEqual(3);
   });
@@ -116,5 +116,9 @@ describe('<Signup /> Component', () => {
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onUserCreate).toBeTruthy();
+  });
 });
 

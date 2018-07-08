@@ -8,7 +8,7 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedNavBar,
-{ NavBar } from '../../../src/components/UI/NavBar';
+{ NavBar, mapDispatchToProps } from '../../../src/components/UI/NavBar';
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -92,7 +92,7 @@ describe('<NavBar /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-  it('should have three div on layout', () => {
+  it('should have div on layout', () => {
     expect(wrapper.find('div').length).toEqual(7);
   });
 
@@ -118,7 +118,7 @@ describe('<NavBar /> Component', () => {
   });
 
 
-  it('should have three div element match snap', () => {
+  it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
@@ -129,6 +129,11 @@ describe('<NavBar /> Component', () => {
 
   it('should have two ul div element', () => {
     expect(wrapper.find('ul').length).toEqual(2);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).onSearch).toBeTruthy();
   });
 });
 

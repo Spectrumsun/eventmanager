@@ -111,6 +111,7 @@ Array [
           className="btn btn-dark btn-mm"
           data-target=".bd-example-modal-lg"
           data-toggle="modal"
+          id="centerSelection"
           onClick={[Function]}
           style={
             Object {
@@ -175,6 +176,7 @@ Array [
       <button
         className="btn btn-primary btn-lg"
         disabled={true}
+        id="submitEvent"
         type="submit"
       >
         Submit

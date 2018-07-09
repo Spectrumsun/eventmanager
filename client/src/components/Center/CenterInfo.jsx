@@ -60,6 +60,7 @@ export class CenterInfo extends Component {
         >
           <button
             type="submit"
+            id="editCenter"
             className="btn btn-dark"
             style={{ float: 'left' }}
           >Edit
@@ -70,6 +71,7 @@ export class CenterInfo extends Component {
           className="btn btn-danger"
           onClick={this.deleteCenter}
           style={{ marginLeft: '20px' }}
+          id="deleteCenter"
         >Delete
         </Link>
       </div>

@@ -57,7 +57,7 @@ EmailVerify.propTypes = {
   }).isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initemailverify: (token, history) =>
     dispatch(action.initemailverify(token, history)),
 });

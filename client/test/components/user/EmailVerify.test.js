@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import sinon from 'sinon';
 import ConnectedEmailVerify,
-{ EmailVerify } from '../../../src/components/User/EmailVerify';
+{ EmailVerify, mapDispatchToProps } from '../../../src/components/User/EmailVerify';
 
 
 const middleware = [thunk];
@@ -78,9 +78,14 @@ describe('<EmailVerify /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
   
-  it('should have three image on layout', () => {
+  it('should have image on layout', () => {
     const wrapper = shallow(<EmailVerify {...props} />);
     expect(wrapper.find('div').length).toEqual(2);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initemailverify).toBeTruthy();
   });
 });
 

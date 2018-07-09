@@ -8,9 +8,14 @@ import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import ConnectedEditCenter,
-{ EditCenter } from '../../../src/components/Center/EditCenter';
-import CenterFrom from '../../../src/components/Center/Form/CenterForm';
+{ EditCenter, mapDispatchToProps  } from '../../../src/components/Center/EditCenter';
+import CenterFrom from
+  '../../../src/components/Center/Form/CenterForm';
 
+
+global.FileReader = () => ({
+  readAsDataURL: () => {}
+});
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -87,6 +92,7 @@ const state = {
   publicUrlId: 'png',
   progress: `${0}%`,
   formValid: false,
+  files: [{ data: 'image1', type: 'image/jpg' }]
 };
 
 const event = {
@@ -180,13 +186,24 @@ describe('<EditCenter /> Component', () => {
     expect(shallowWrapper.instance().removeFacility.calledOnce).toEqual(true);
   });
 
-  it('should have three div element match snap', () => {
+  it('calls handleImageChange event', () => {
+    sinon.spy(shallowWrapper.instance(), 'handleImageChange');
+    shallowWrapper.setState(state);
+    shallowWrapper.instance().handleImageChange(event);
+    expect(shallowWrapper.instance().handleImageChange.calledOnce).toEqual(true);
+  });
+
+  it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
-
   it('should have div element', () => {
     expect(wrapper.find('div').length).toEqual(3);
+  });
+
+  it('ensures that mapDispatchToProps dispatches the specified actions', () => {
+    const dispatch = jest.fn();
+    expect(mapDispatchToProps(dispatch).initEditCenter).toBeTruthy();
   });
 });
 

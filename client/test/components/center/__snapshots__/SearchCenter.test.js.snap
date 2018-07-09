@@ -64,6 +64,7 @@ exports[`<Search /> Component should match component snapshot 1`] = `
             </h6>
             <h5
               className="card-link"
+              id="centerDetails"
             >
               View More
             </h5>
@@ -114,6 +115,7 @@ exports[`<Search /> Component should match component snapshot 1`] = `
             </h6>
             <h5
               className="card-link"
+              id="centerDetails"
             >
               View More
             </h5>

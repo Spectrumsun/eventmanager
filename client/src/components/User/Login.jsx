@@ -79,6 +79,7 @@ export class Login extends Component {
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="Email"
+                    id="email"
                     value={this.state.email}
                     onChange={this.onChange}
                     name="email"
@@ -96,6 +97,7 @@ export class Login extends Component {
                   />
                   <small ><Link
                     to="/forgotpassword"
+                    id="passwordReset"
                     className="center-item"
                   >Forgot password?
                   </Link>
@@ -126,7 +128,7 @@ Login.propTypes = {
 };
 
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initUserLogin: (user, history) =>
     dispatch(action.initUserLogin(user, history)),
 });

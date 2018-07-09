@@ -183,7 +183,7 @@ Signup.propTypes = {
 };
 
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   onUserCreate: (user, history) =>
     dispatch(action.initUser(user, history))
 });

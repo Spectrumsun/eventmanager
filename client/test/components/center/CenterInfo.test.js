@@ -151,12 +151,12 @@ describe('<CenterInfo /> Component', () => {
     expect(shallowWrapper.instance().deleteCenter.calledOnce).toEqual(true);
   });
 
-  it('should have three div element match snap', () => {
+  it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
 
 
-  it('should have one div element', () => {
+  it('should have div element', () => {
     expect(wrapper.find('div').length).toEqual(6);
   });
 });

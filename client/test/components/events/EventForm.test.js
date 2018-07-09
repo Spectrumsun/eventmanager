@@ -62,7 +62,7 @@ describe('<EventForm />', () => {
     expect(wrapper.find(PickCenter)).toHaveLength(1);
   });
 
-  it('should have three image on layout', () => {
+  it('should have two image on layout', () => {
     expect(wrapper.find('button').length).toEqual(2);
   });
 });

@@ -70,6 +70,7 @@ class Display extends Component {
         <div className="buttingFix">
           <button
             type="button"
+            id="pickCenter"
             className="btn btn-primary btn-sm"
             data-dismiss="modal"
             onClick={this.clicked}

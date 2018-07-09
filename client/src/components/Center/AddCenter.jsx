@@ -226,7 +226,7 @@ AddCenter.propTypes = {
   history: PropTypes.shape({}).isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initPostCenters: (input, history) =>
     dispatch(action.initPostCenters(input, history)),
 });

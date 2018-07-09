@@ -37,7 +37,7 @@ describe('<CenterForm />', () => {
     expect(wrapper.find('div').length).toEqual(11);
   });
 
-  it('should have  input on layout', () => {
+  it('should have input on layout', () => {
     expect(wrapper.find('input').length).toEqual(7);
   });
 
@@ -55,7 +55,7 @@ describe('<CenterForm />', () => {
   });
 ;
 
-  it('should have three button on layout', () => {
+  it('should have button on layout', () => {
     expect(wrapper.find('button').length).toEqual(1);
   });
 });

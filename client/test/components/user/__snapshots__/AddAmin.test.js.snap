@@ -53,7 +53,6 @@ exports[`<Admin /> Component should match component snapshot 1`] = `
                 name="email"
                 onChange={[Function]}
                 placeholder="Vaild Email"
-                required={true}
                 type="email"
                 value=""
               />
@@ -71,7 +70,6 @@ exports[`<Admin /> Component should match component snapshot 1`] = `
                 name="role"
                 onChange={[Function]}
                 placeholder="role"
-                required={true}
                 type="text"
                 value=""
               />

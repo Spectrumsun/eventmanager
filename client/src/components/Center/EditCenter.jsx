@@ -263,7 +263,7 @@ const mapStateToProps = state => ({
   loadedCenter: state.centers.loadedCenter,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initEditCenter: (id, input, history) =>
     dispatch(action.initEditCenter(id, input, history)),
 });

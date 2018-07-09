@@ -112,7 +112,7 @@ AddAmin.propTypes = {
 
 
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   initaddAdmin: (state, history) =>
     dispatch(action.initaddAdmin(state, history)),
 });

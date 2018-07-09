@@ -205,5 +205,10 @@ describe('<EditCenter /> Component', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).initEditCenter).toBeTruthy();
   });
+
+  it('sets error message when trying to submit empty fields', () => {
+    const events = mountedWrapper.find('form');
+    events.simulate('submit');
+  });
 });
 

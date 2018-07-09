@@ -22,10 +22,8 @@ const initialState = {
 const store = mockStore(initialState);
 
 const props = {
-  initUserLogin: sinon.spy(() => new Promise((cb) => {
-    cb();
-  })),
-  history: createMemoryHistory()
+  initUserLogin:() => Promise.resolve(),
+  history: createMemoryHistory(),
 };
 
 const mountedWrapper = mount(
@@ -109,6 +107,13 @@ describe('<Login /> Component', () => {
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).initUserLogin).toBeTruthy();
+  });
+
+  it('sets error message when trying to submit empty fields', () => {
+    const raw = mount(<Login {...props} />);
+    const signIn = raw.find('form');
+    signIn.simulate('submit')
+    expect(raw.state().errorMessage).toBe('Email cannot be blank');
   });
 });
 

@@ -22,6 +22,17 @@ Array [
           Edit Center
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <centerFrom
         about="lalalla"
         address="No 33, yaba road lagos"
@@ -79,6 +90,17 @@ exports[`<EditCenter /> Component should match component snapshot 1`] = `
         Edit Center
       </h1>
     </div>
+    <h5
+      style={
+        Object {
+          "color": "red",
+          "marginTop": "10px",
+          "textAlign": "center",
+        }
+      }
+    >
+      
+    </h5>
     <div
       className="card-body"
     >
@@ -343,6 +365,17 @@ Array [
           Edit Center
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <centerFrom
         about="lalalla"
         address="No 33, yaba road lagos"

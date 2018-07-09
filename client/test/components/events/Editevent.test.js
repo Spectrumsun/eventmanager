@@ -289,5 +289,10 @@ describe('<EditEvent /> Component', () => {
     expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
   });
 
+  it('sets error message when trying to submit empty fields', () => {
+    const events = mountedWrapper.find('form');
+    events.simulate('submit');
+  });
+
 });
 

@@ -26,6 +26,7 @@ export class AddCenter extends Component {
       publicUrlId: '',
       progress: `${0}%`,
       formValid: false,
+      errorMessage: ''
     }
 
   /**
@@ -70,19 +71,23 @@ export class AddCenter extends Component {
      event.preventDefault();
      this.setState({ formValid: false });
      if (this.state.name === '') {
-       toast.error('Center Name cannot be blank');
-     } else if (this.state.date === '') {
-       toast.error('Center city cannot be blank');
-     } else if (this.state.time === '') {
-       toast.error('Center Address cannot be blank');
-     } else if (this.state.image === '') {
-       toast.error('Add an image');
+       this.setState({ errorMessage: 'Center Name cannot be blank' });
+     } else if (this.state.city === '') {
+       this.setState({ errorMessage: 'Center city cannot be blank' });
+     } else if (this.state.address === '') {
+       this.setState({ errorMessage: 'Center address cannot be blank' });
      } else if (this.state.about === '') {
-       toast.error('Add about');
+       this.setState({ errorMessage: 'Center about cannot be blank' });
+     } else if (this.state.image === '') {
+       this.setState({ errorMessage: 'Add an image' });
+     } else if (this.state.about === '') {
+       this.setState({ errorMessage: 'AAdd about' });
      } else if (this.state.purpose === '') {
-       toast.error('Center Availability must be set');
+       this.setState({ errorMessage: 'AAdd purpose' });
+     } else if (this.state.Availability === '') {
+       this.setState({ errorMessage: 'Center Availability must be set' });
      } else if (this.state.facility.length < 1) {
-       toast.error('Center facility must be set');
+       this.setState({ errorMessage: 'Center facility must be set' });
      } else {
        const fd = new FormData();
        const id = `${Date.now()}-${this.state.image.name}`;
@@ -94,6 +99,7 @@ export class AddCenter extends Component {
          onUploadProgress: (progressEvent) => {
            const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
            this.setState({ progress: progressMeter });
+           this.setState({ errorMessage: ' ' });
          }
        };
        uploadImage(fd, fileProgress)
@@ -113,6 +119,7 @@ export class AddCenter extends Component {
          .catch(() => {
            toast.error('Unable to upload. Check your internet');
            this.setState({ formValid: false });
+           this.setState({ errorMessage: ' ' });
          });
      }
    }
@@ -195,6 +202,9 @@ export class AddCenter extends Component {
               <div className="card-header dark">
                 <h1 className="color">Add Center</h1>
               </div>
+              <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                { this.state.errorMessage }
+              </h5>
               <CenterFrom
                 onChange={this.onChange}
                 onSubmit={this.onSubmit}

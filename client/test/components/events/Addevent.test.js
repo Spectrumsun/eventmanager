@@ -78,9 +78,7 @@ const initialState = {
 const store = mockStore(initialState);
 
 const props = {
-  onInitCenters: sinon.spy(() => new Promise((cb) => {
-    cb();
-  })),
+  onInitCenters: () => Promise.resolve(),
   page: {
     pagination: {
       message: 'success',
@@ -112,9 +110,7 @@ const props = {
       pages: 2
     }
   },
-  initPostEvent: sinon.spy(() => new Promise((cb) => {
-    cb();
-  })),
+  initPostEvent: () => Promise.resolve(),
   history: createMemoryHistory(),
   centerName: 'yaba center'
 };
@@ -124,6 +120,7 @@ const mountedWrapper = mount(<Provider store={store}>
     <ConnectedAddEvent {...props} />
   </BrowserRouter>
 </Provider>);
+
 
 const shallowWrapper = shallow(<AddEvent {...props} />);
 
@@ -251,6 +248,11 @@ describe('<AddEvent /> Component', () => {
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
+  });
+
+  it('sets error message when trying to submit empty fields', () => {
+    const events = mountedWrapper.find('form');
+    events.simulate('submit');
   });
 });
 

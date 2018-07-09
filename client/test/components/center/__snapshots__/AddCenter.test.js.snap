@@ -23,6 +23,17 @@ Array [
             Add Center
           </h1>
         </div>
+        <h5
+          style={
+            Object {
+              "color": "red",
+              "marginTop": "10px",
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </h5>
         <centerFrom
           about=""
           address=""
@@ -70,6 +81,17 @@ exports[`<AddCenter /> Component should match component snapshot 1`] = `
           Add Center
         </h1>
       </div>
+      <h5
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "10px",
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </h5>
       <div
         className="card-body"
       >
@@ -293,6 +315,17 @@ Array [
             Add Center
           </h1>
         </div>
+        <h5
+          style={
+            Object {
+              "color": "red",
+              "marginTop": "10px",
+              "textAlign": "center",
+            }
+          }
+        >
+          
+        </h5>
         <centerFrom
           about=""
           address=""

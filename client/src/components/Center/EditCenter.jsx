@@ -28,6 +28,7 @@ export class EditCenter extends Component {
       progress: `${0}%`,
       oldpublicId: this.props.loadedCenter.imageId,
       formValid: false,
+      errorMessage: ''
     }
 
   /**
@@ -73,15 +74,23 @@ export class EditCenter extends Component {
     event.preventDefault();
     this.setState({ check: false });
     if (this.state.name === '') {
-      toast.error('Center Name cannot be blank');
-    } else if (this.state.date === '') {
-      toast.error('Center city cannot be blank');
+      this.setState({ errorMessage: 'Center Name cannot be blank' });
+    } else if (this.state.city === '') {
+      this.setState({ errorMessage: 'Center city cannot be blank' });
     } else if (this.state.address === '') {
-      toast.error('Center Address cannot be blank');
-    } else if (this.state.availability === '') {
-      toast.error('Center Availability must be set');
+      this.setState({ errorMessage: 'Center address cannot be blank' });
+    } else if (this.state.about === '') {
+      this.setState({ errorMessage: 'Center about cannot be blank' });
+    } else if (this.state.image === '') {
+      this.setState({ errorMessage: 'Add an image' });
+    } else if (this.state.about === '') {
+      this.setState({ errorMessage: 'AAdd about' });
+    } else if (this.state.purpose === '') {
+      this.setState({ errorMessage: 'AAdd purpose' });
+    } else if (this.state.Availability === '') {
+      this.setState({ errorMessage: 'Center Availability must be set' });
     } else if (this.state.facility.length < 1) {
-      toast.error('Center facility must be set');
+      this.setState({ errorMessage: 'Center facility must be set' });
     } else {
       const fd = new FormData();
       const id = `${Date.now()}-${this.state.image.name}`;
@@ -200,6 +209,9 @@ export class EditCenter extends Component {
             <div className="card-header dark">
               <h1 className="color">Edit Center</h1>
             </div>
+            <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+              { this.state.errorMessage }
+            </h5>
             <CenterFrom
               onChange={this.onChange}
               onSubmit={this.onSubmit}

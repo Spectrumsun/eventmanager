@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toast from 'toastr';
+import {checkAdminHoc} from '../../static/js/validator';
 import {withRouter} from "react-router-dom";
 
 
@@ -22,8 +22,8 @@ export default function (ComposedComponent) {
       componentWillMount(){
           if(!this.props.auth.isAuthenticated || this.props.auth.user.role !== process.env.VALUE){
            this.props.history.push("/")
-            toast.error('Only Admins allowed')
-        }
+           checkAdminHoc();
+          }
       }
     render() {
       return (

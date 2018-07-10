@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -91,15 +91,8 @@ const props = {
     pages: 2
   },
   error: false
-  
 };
 
-const mountedWrapper = mount(
-  <Provider store={store}>
-    <BrowserRouter>
-      <ConnectedSearch {...props} />
-    </BrowserRouter>
-  </Provider>);
 
 const shallowWrapper = shallow(<Search {...props} />);
 
@@ -107,21 +100,8 @@ const state = {
   totalPage: 5,
   next: 1,
   search: 'tomato',
-  pageNmber: 1
+  pageNumber: 1
 };
-
-const event = {
-  preventDefault: jest.fn(),
-  target: {
-    totalPage: 5,
-    next: 1,
-    search: 'tomato',
-    pageNmber: 1
-  }
-};
-
-
-// let wrapper;
 
 describe('<Search /> Component', () => {
   const wrapper = shallow(<Search {...props} />);

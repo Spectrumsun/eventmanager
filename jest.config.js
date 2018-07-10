@@ -29,7 +29,8 @@ module.exports = {
     '<rootDir>/src/store/storeConfig',
     '<rootDir>/test/',
     '<rootDir>/public',
-    '<rootDir>/src/App'
+    '<rootDir>/src/App',
+    '<rootDir>/src/static/js/validator'
   ],
   unmockedModulePathPatterns: [
     './node_modules/react'

@@ -4,7 +4,7 @@ const upload = '/Users/andeladeveloper/CodeBase/js/endtoendUplaod/1526899340008-
 const upload2 = '/Users/andeladeveloper/CodeBase/js/endtoendUplaod/1526900242085-1200px-Backyardpool.jpg.jpg';
 
 module.exports = {
-  'it should login the admin with correct information': (browser) => {
+  'it should login the admin with the correct information': (browser) => {
     browser
       .url('http://localhost:5000')
       .waitForElementVisible('body', 5000)
@@ -22,7 +22,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should not add a new center if image is empty': (browser) => {
+  'it should not add a new center if the image is empty': (browser) => {
     browser
       .waitForElementVisible('body', 5000)
       .assert.elementPresent('#navbarDropdownCenter')
@@ -67,7 +67,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should not add a new center if facility is empty': (browser) => {
+  'it should not add a new center if the facility is empty': (browser) => {
     browser
       .click('#navbarDropdownCenter')
       .pause(1000)
@@ -131,7 +131,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should load the center details page': (browser) => {
+  'it should load the center detail page': (browser) => {
     browser
       .pause(3000)
       .click('#centerDetails')
@@ -141,7 +141,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should update center with new details ': (browser) => {
+  'it should update the center with new details ': (browser) => {
     browser
       .click('#editCenter')
       .pause(1000)
@@ -178,7 +178,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should load the updated center details page': (browser) => {
+  'it should load the updated center detail page': (browser) => {
     browser
       .pause(5000)
       .click('#centerDetails')
@@ -196,7 +196,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should another a new center ': (browser) => {
+  'it should add another new center ': (browser) => {
     browser
       .click('#navbarDropdownCenter')
       .click('#addCenter')

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toast from 'toastr';
 import PropTypes from 'prop-types';
 import EventForm from './Form/EventForm';
 import * as action from '../../store/actions/index';
+import { checkEvent } from '../../static/js/validator';
 
 /**
  * @class AddEvent
@@ -23,7 +23,6 @@ export class AddEvent extends Component {
      centerName: '',
      pageNumber: '',
      formValid: false,
-     errorMessage: ''
    }
 
 
@@ -52,34 +51,17 @@ export class AddEvent extends Component {
    */
   onSubmit = (event) => {
     event.preventDefault();
-    this.setState({ formValid: false });
-    const reWhiteSpace = new RegExp(/^\s+$/);
-    if (this.state.name === '') {
-      this.setState({ errorMessage: 'Event Name cannot be blank' });
-    } else if (reWhiteSpace.test(this.state.name) === true) {
-      this.setState({ errorMessage: 'Event Name cannot white space' });
-    } else if (this.state.startDate === '') {
-      this.setState({ errorMessage: 'Event start date cannot be blank' });
-    } else if (this.state.endDate === '') {
-      this.setState({ errorMessage: 'Event end date cannot be blank' });
-    } else if (this.state.endDate < this.state.startDate) {
-      this.setState({ errorMessage: '!Event end date cannot be behind event start date' });
-    } else if (this.state.time === '') {
-      this.setState({ errorMessage: 'Event Time cannot be blank' });
-    } else if (this.state.purpose === '') {
-      this.setState({ errorMessage: 'Event Purpose cannot be blank' });
-    } else if (this.state.center === '') {
-      this.setState({ errorMessage: 'You have to choose a Center' });
-    } else {
-      this.setState({ formValid: true });
-      this.props.initPostEvent(
-        this.state,
-        this.props.history
-      ).then(() => {
-        this.setState({ formValid: false });
-        this.setState({ errorMessage: '' });
-      });
-    }
+    checkEvent(this.state.name, this.state.startDate, this.state.endDate, this.state.time, this.state.purpose, this.state.center, (err, res) => {
+      if (res) {
+        this.setState({ formValid: true });
+        this.props.initPostEvent(
+          this.state,
+          this.props.history
+        ).then(() => {
+          this.setState({ formValid: false });
+        });
+      }
+    });
   }
 
   getCenter = () => {
@@ -88,24 +70,20 @@ export class AddEvent extends Component {
 
 
   add = () => {
-    this.setState({ totalPage: this.props.page.pages });
     this.state.totalPage = this.props.page.pages;
     if (this.state.next < this.state.totalPage) {
       const nextPage = ++this.state.next;
-      this.state.pageNumber = nextPage;
       this.setState({ pageNumber: nextPage });
       this.setState({ next: nextPage });
       this.props.onInitCenters(3, nextPage);
     }
   }
 
-
   minus = () => {
     const limit = 1;
     if (limit < this.state.next) {
       const nextPage = --this.state.next;
       this.state.pageNumber = nextPage;
-      this.setState({ pageNumber: nextPage });
       this.props.onInitCenters(3, nextPage);
     }
   }
@@ -154,9 +132,6 @@ export class AddEvent extends Component {
           <div className="card-header dark">
             <h1 className="color">Add Event</h1>
           </div>
-          <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-            { this.state.errorMessage }
-          </h5>
           <EventForm
             onChange={this.onChange}
             onSubmit={this.onSubmit}
@@ -204,4 +179,3 @@ export const mapDispatchToProps = dispatch => ({
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddEvent);
-

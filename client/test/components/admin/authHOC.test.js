@@ -45,7 +45,7 @@ describe('Component: Authenticateenticate Admin', () => {
   });
 
   describe('Protected Routes test suite', () => {
-    it('Redirects user to homepage they are not Admin', () => {
+    it('Redirects user to homepage if they are not Admin', () => {
       props.isAuthenticated = false;
       expect(getComponent()).toMatchSnapshot();
     });

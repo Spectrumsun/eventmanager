@@ -1,8 +1,7 @@
 
 import axios from 'axios';
-import toast from 'toastr';
 import * as actionTypes from './actionsTypes';
-import { errorHandler, successHandler } from './responsesHandler';
+import { errorHandler, successHandler } from '../../static/js/responsesHandler';
 
 export const getAllCenters = center => ({
   type: actionTypes.GET_ALL_CENTERS,

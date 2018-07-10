@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component:  isAuthenticated User Protected Login Page after logging in test suite Redirects user to homepage if they access rhe login page after logging in 1`] = `
+exports[`Component:  isAuthenticated User Protected Login Page after logging in test suite Redirects user to homepage if they access the login page after logging in 1`] = `
 <Login
   auth={
     Object {

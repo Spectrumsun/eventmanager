@@ -62,7 +62,7 @@ describe('<Display />', () => {
     expect(wrapper.find('img').length).toEqual(1);
   });
 
-  it('should call clicked method when send the event id to the event state', () => {
+  it('should call clicked method when sending the event id to the event state', () => {
     sinon.spy(shallowWrapper.instance(), 'clicked');
     shallowWrapper.instance().clicked();
     expect(shallowWrapper.instance().clicked.calledOnce).toEqual(true);

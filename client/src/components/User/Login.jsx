@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
+import { checkLogin } from '../../static/js/validator';
 
 /**
  * @class Login
@@ -16,7 +16,6 @@ export class Login extends Component {
     email: '',
     password: '',
     formValid: false,
-    errorMessage: ''
   }
 
   /**
@@ -44,19 +43,17 @@ export class Login extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ formValid: false });
-    if (this.state.email === '') {
-      this.setState({ errorMessage: 'Email cannot be blank' });
-    } else if (this.state.password === '') {
-      this.setState({ errorMessage: 'Password cannot be blank' });
-    } else {
-      this.setState({ formValid: true });
-      this.props.initUserLogin(
-        this.state,
-        this.props.history
-      ).then(() => {
-        this.setState({ formValid: false });
-      });
-    }
+    checkLogin(this.state.email, this.state.password, (err, res) => {
+      if (res) {
+        this.setState({ formValid: true });
+        this.props.initUserLogin(
+          this.state,
+          this.props.history
+        ).then(() => {
+          this.setState({ formValid: false });
+        });
+      }
+    });
   }
 
   /**
@@ -77,9 +74,6 @@ export class Login extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
-                <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-                { this.state.errorMessage }
-              </h5>
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="Email"
@@ -104,7 +98,7 @@ export class Login extends Component {
                     id="passwordReset"
                     className="center-item"
                   >Forgot password?
-                  </Link>
+                          </Link>
                   </small>
 
                   <div className="text-center">

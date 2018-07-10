@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -46,13 +46,6 @@ const props = {
   history: createMemoryHistory()
 };
 
-const mountedWrapper = mount(
-  <Provider store={store}>
-    <BrowserRouter>
-      <ConnectedAddCenter {...props} />
-    </BrowserRouter>
-  </Provider>);
-
 const shallowWrapper = shallow(<AddCenter {...props} />);
 
 const state = {
@@ -94,8 +87,6 @@ const event = {
 };
 
 const i = [1, 2, 3, 4];
-
-// let wrapper;
 
 describe('<AddCenter /> Component', () => {
   const wrapper = shallow(<AddCenter {...props} />);
@@ -146,7 +137,7 @@ describe('<AddCenter /> Component', () => {
     expect(shallowWrapper.instance().onClick.calledOnce).toEqual(true);
   });
 
-  it('calls onKeyPress event to disable add facility when input is empty', () => {
+  it('calls onKeyPress event to disable add facility button when input field is empty', () => {
     sinon.spy(shallowWrapper.instance(), 'onKeyPress');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onKeyPress(event);
@@ -178,11 +169,6 @@ describe('<AddCenter /> Component', () => {
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).initPostCenters).toBeTruthy();
-  });
-
-  it('sets error message when trying to submit empty fields', () => {
-    const events = mountedWrapper.find('form');
-    events.simulate('submit');
   });
 });
 

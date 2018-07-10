@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
+import { createMemoryHistory } from 'history';
 import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -9,8 +10,6 @@ import sinon from 'sinon';
 import ConnectedForgotPassword,
 { ForgotPassword } from '../../../src/components/User/ForgotPassword';
 import TextField from '../../../src/components/User/TextField'
-import { createMemoryHistory } from 'history';
-
 
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
@@ -27,7 +26,7 @@ const props = {
   history: createMemoryHistory(),
   type: 'PropTypes.string.isRequired',
   value:' PropTypes.string.isRequired',
-  onChange: () => { console.log('hi'); },
+  onChange: () => {},
   name: 'PropTypes.string.isRequired',
   label: 'PropTypes.string.isRequired',
   placeholder: 'PropTypes.string.isRequired'
@@ -35,9 +34,9 @@ const props = {
 
 const mountedWrapper = mount(
   <Provider store={store}>
-  <BrowserRouter>
-    <ConnectedForgotPassword {...props} />
-  </BrowserRouter>
+    <BrowserRouter>
+      <ConnectedForgotPassword {...props} />
+    </BrowserRouter>
   </Provider>
 );
 
@@ -53,8 +52,6 @@ const event = {
     email: 'bot@yahoo.com',
   }
 };
-
-// let wrapper;
 
 describe('<ForgotPassword /> Component', () => {
   it('should render the <Login />', () => {

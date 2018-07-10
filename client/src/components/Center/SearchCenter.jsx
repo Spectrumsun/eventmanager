@@ -18,7 +18,7 @@ export class Search extends Component {
     totalPage: '',
     next: 1,
     search: '',
-    pageNmber: ''
+    pageNumber: ''
   }
 
   /**
@@ -30,15 +30,12 @@ export class Search extends Component {
    */
 
   add = () => {
-    this.setState({ totalPage: this.props.searchResult.pages });
-    this.setState({ search: this.props.searchResult.searchString });
     this.state.search = this.props.searchResult.searchString;
     this.state.totalPage = this.props.searchResult.pages;
     if (this.state.next < this.state.totalPage) {
       const me = ++this.state.next;
       this.setState({ next: me });
-      this.state.pageNmber = me;
-      this.setState({ pageNmber: me });
+      this.state.pageNumber = me;
       this.props.onSearch(this.state.search, 6, me);
     }
   }
@@ -48,8 +45,7 @@ export class Search extends Component {
     const limit = 1;
     if (limit < this.state.next) {
       const me = --this.state.next;
-      this.state.pageNmber = me;
-      this.setState({ pageNmber: me });
+      this.state.pageNumber = me;
       this.props.onSearch(this.state.search, 6, me);
     }
   }
@@ -75,19 +71,19 @@ export class Search extends Component {
             image={center.imageurl}
             city={center.city}
           />
-         </Link>
+        </Link>
         ));
     const numberOfPages = (
       <li className="page-item">
         <a className="page-link">
-                      Page {this.state.pageNmber} of {this.props.searchResult.pages }
-            </a>
+                      Page {this.state.pageNumber} of {this.props.searchResult.pages }
+        </a>
       </li>);
     const numberOfPages1 = (
       <li className="page-item">
         <a className="page-link">
                       Page 1  of { this.props.searchResult.pages }
-              </a>
+        </a>
       </li>);
     return (
       <div>

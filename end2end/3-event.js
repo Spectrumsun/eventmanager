@@ -17,7 +17,7 @@ module.exports = {
   },
 
 
-  'it should not save if date is in the past': (browser) => {
+  'it should not save event if date is in the past': (browser) => {
     browser
       .waitForElementVisible('body', 5000)
       .assert.elementPresent('#navbarDropdown')
@@ -46,7 +46,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should not save if end date is behind start date': (browser) => {
+  'it should not save event if end date is behind start date': (browser) => {
     browser
       .pause(1000)
       .assert.elementPresent('input[name=name]')
@@ -71,7 +71,7 @@ module.exports = {
   },
 
 
-  'it should not save if center is not chosen': (browser) => {
+  'it should not save event if center is not chosen': (browser) => {
     browser
       .waitForElementVisible('body', 5000)
       .assert.elementPresent('#navbarDropdown')
@@ -125,7 +125,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should view event details when user clicks on event': (browser) => {
+  'it should open the event detail when user clicks on event card': (browser) => {
     browser
       .pause(1000)
       .click('h6[id=viewEvents]')
@@ -134,7 +134,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should open the edit event page when user click on edit': (browser) => {
+  'it should open the edit event page when user click on edit button': (browser) => {
     browser
       .pause(1000)
       .click('#editEvent')
@@ -164,7 +164,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should delete the event when delete button is pressed': (browser) => {
+  'it should delete the event when the user press the delete button': (browser) => {
     browser
       .pause(1000)
       .click('h6[id=viewEvents]')
@@ -178,7 +178,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it add a new event with correct information': (browser) => {
+  'it should add a new event with correct information': (browser) => {
     browser
       .pause(1000)
       .click('#navbarDropdown')
@@ -206,7 +206,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should logout user': (browser) => {
+  'it should logout the user': (browser) => {
     browser
       .assert.elementPresent('#navbarDropdown')
       .pause(5000)
@@ -217,7 +217,7 @@ module.exports = {
     browser.pause(1000);
   },
 
-  'it should not allow you to search with empty box': (browser) => {
+  'it should not allow you to search with an empty box': (browser) => {
     browser
       .url('http://localhost:5000')
       .waitForElementVisible('body', 5000)

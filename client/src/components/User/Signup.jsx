@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toast from 'toastr';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
 import Terms from './termsandcondition';
+import { checkSingUp } from '../../static/js/validator';
 
 /**
  * @class Signup
@@ -17,8 +17,7 @@ export class Signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    formValid: false,
-    errorMessage: ''
+    formValid: false
   }
 
   /**
@@ -46,28 +45,17 @@ export class Signup extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ formValid: false });
-    const reWhiteSpace = new RegExp(/^\s+$/);
-    if (this.state.fullname === '') {
-      this.setState({ errorMessage: 'Full Name cannot be blank' });
-    } else if (reWhiteSpace.test(this.state.fullname) === true) {
-      this.setState({ errorMessage: 'Full Name cannot be white space'});
-    } else if (this.state.email === '') {
-      this.setState({ errorMessage: 'Email cannot be blank' });
-    } else if (this.state.password === '') {
-      this.setState({ errorMessage: 'Password cannot be blank' });
-    } else if (this.state.password !== this.state.confirmPassword) {
-      this.setState({ errorMessage: 'Confirm Password dont match Password' });
-    } else if (this.state.password.length < 6) {
-      this.setState({ errorMessage: 'Password cannot be less than 6 Characters' });
-    } else {
-      this.setState({ formValid: true });
-      this.props.onUserCreate(
-        this.state,
-        this.props.history
-      ).then(() => {
-        this.setState({ formValid: false });
-      });
-    }
+    checkSingUp(this.state.fullname, this.state.email, this.state.password, this.state.confirmPassword, (err, res) => {
+      if (res) {
+        this.setState({ formValid: true });
+        this.props.onUserCreate(
+          this.state,
+          this.props.history
+        ).then(() => {
+          this.setState({ formValid: false });
+        });
+      }
+    });
   }
 
   /**
@@ -87,9 +75,6 @@ export class Signup extends Component {
           </div>
           <div className="card-body">
             <div className="cont">
-              <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-                { this.state.errorMessage }
-              </h5>
               <form onSubmit={this.onSubmit} className="centerform">
                 <TextField
                   label="Full Name"

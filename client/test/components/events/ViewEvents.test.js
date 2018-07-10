@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -53,13 +53,6 @@ const props = {
     }
   }],
 };
-
-const mountedWrapper = mount(
-  <Provider store={store}>
-    <BrowserRouter>
-      <ConnectedViewEvent {...props} />
-    </BrowserRouter>
-  </Provider>);
 
 describe('<ViewEvent /> Component', () => {
   const wrapper = shallow(<ViewEvent {...props} />);

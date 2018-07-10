@@ -149,11 +149,6 @@ const props = {
   name: 'tom'
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedEditEvent {...props} />
-  </BrowserRouter>
-</Provider>);
 
 const shallowWrapper = shallow(<EditEvent {...props} />);
 
@@ -280,11 +275,6 @@ describe('<EditEvent /> Component', () => {
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
-  });
-
-  it('sets error message when trying to submit empty fields', () => {
-    const events = mountedWrapper.find('form');
-    events.simulate('submit');
   });
 });
 

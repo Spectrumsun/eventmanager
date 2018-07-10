@@ -36,7 +36,7 @@ describe('Component:  isAuthenticated User', () => {
   });
 
   describe('Protected Login Page after logging in test suite', () => {
-    it('Redirects user to homepage if they access rhe login page after logging in', () => {
+    it('Redirects user to homepage if they access the login page after logging in', () => {
       props.isAuthenticated = true;
       expect(getComponent()).toMatchSnapshot();
     });

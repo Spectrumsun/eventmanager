@@ -1,8 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toast from 'toastr';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 
 

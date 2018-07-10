@@ -6,12 +6,7 @@ import Display from './getEvent';
 import Loading from '../UI/Loading';
 import Footer from '../UI/Footer';
 import * as actions from '../../store/actions/index';
-
-const imageUrl = 'https://res.cloudinary.com/skybound/' +
-                'image/upload/s--FNAPSR5p--' +
-                '/v1524387956/eventmanager/' +
-                '1524387954621-99fa41ccf13172' +
-                '4-a-nw-p.jpg.jpg';
+import { imageUrl } from '../../static/js/ImageUpload'
 
 /**
  * @class ViewEvent

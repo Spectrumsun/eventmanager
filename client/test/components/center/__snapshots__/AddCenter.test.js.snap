@@ -31,9 +31,7 @@ Array [
               "textAlign": "center",
             }
           }
-        >
-          
-        </h5>
+        />
         <centerFrom
           about=""
           address=""
@@ -89,9 +87,7 @@ exports[`<AddCenter /> Component should match component snapshot 1`] = `
             "textAlign": "center",
           }
         }
-      >
-        
-      </h5>
+      />
       <div
         className="card-body"
       >
@@ -323,9 +319,7 @@ Array [
               "textAlign": "center",
             }
           }
-        >
-          
-        </h5>
+        />
         <centerFrom
           about=""
           address=""

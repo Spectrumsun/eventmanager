@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
-import toast from 'toastr';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
-import uploadImage from './ImageUpload';
+import uploadImage from '../../static/js/ImageUpload';
+import { checkCenter, uploadError } from '../../static/js/validator';
 
 /**
  * @class EditCenter
@@ -27,8 +27,8 @@ export class EditCenter extends Component {
       publicUrlId: this.props.loadedCenter.imageId,
       progress: `${0}%`,
       oldpublicId: this.props.loadedCenter.imageId,
-      formValid: false,
-      errorMessage: ''
+      formValid: false
+
     }
 
   /**
@@ -73,64 +73,48 @@ export class EditCenter extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({ check: false });
-    if (this.state.name === '') {
-      this.setState({ errorMessage: 'Center Name cannot be blank' });
-    } else if (this.state.city === '') {
-      this.setState({ errorMessage: 'Center city cannot be blank' });
-    } else if (this.state.address === '') {
-      this.setState({ errorMessage: 'Center address cannot be blank' });
-    } else if (this.state.about === '') {
-      this.setState({ errorMessage: 'Center about cannot be blank' });
-    } else if (this.state.image === '') {
-      this.setState({ errorMessage: 'Add an image' });
-    } else if (this.state.about === '') {
-      this.setState({ errorMessage: 'AAdd about' });
-    } else if (this.state.purpose === '') {
-      this.setState({ errorMessage: 'AAdd purpose' });
-    } else if (this.state.Availability === '') {
-      this.setState({ errorMessage: 'Center Availability must be set' });
-    } else if (this.state.facility.length < 1) {
-      this.setState({ errorMessage: 'Center facility must be set' });
-    } else {
-      const fd = new FormData();
-      const id = `${Date.now()}-${this.state.image.name}`;
-      this.setState({ check: true });
-      fd.append('file', this.state.image);
-      fd.append('public_id', id);
-      fd.append('upload_preset', 'eventmanager');
-      if (this.state.image === '') {
-        this.props.initEditCenter(
-          this.props.match.params.id,
-          this.state, this.props.history
-        );
-      } else {
-        const fileProgress = {
-          onUploadProgress: (progressEvent) => {
-            const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
-            this.setState({ progress: progressMeter });
-          }
-        };
-        uploadImage(fd, fileProgress)
-          .then((response) => {
-            this.setState({
-              imageurl: response.data.secure_url,
-              publicUrlId: response.data.public_id,
-              image: null,
-              preview: null,
-              check: true
+    checkCenter(this.state.name, this.state.city, this.state.address, this.state.about, this.state.availability, this.state.facility, this.state.image, (err, res) => {
+      if (res) {
+        const fd = new FormData();
+        const id = `${Date.now()}-${this.state.image.name}`;
+        this.setState({ check: true });
+        fd.append('file', this.state.image);
+        fd.append('public_id', id);
+        fd.append('upload_preset', 'eventmanager');
+        if (this.state.image === '') {
+          this.props.initEditCenter(
+            this.props.match.params.id,
+            this.state, this.props.history
+          );
+        } else {
+          const fileProgress = {
+            onUploadProgress: (progressEvent) => {
+              const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
+              this.setState({ progress: progressMeter });
+            }
+          };
+          uploadImage(fd, fileProgress)
+            .then((response) => {
+              this.setState({
+                imageurl: response.data.secure_url,
+                publicUrlId: response.data.public_id,
+                image: null,
+                preview: null,
+                check: true
+              });
+              this.props.initEditCenter(
+                this.props.match.params.id,
+                this.state,
+                this.props.history
+              );
+            })
+            .catch((err) => {
+              uploadError();
+              this.setState({ check: false });
             });
-            this.props.initEditCenter(
-              this.props.match.params.id,
-              this.state,
-              this.props.history
-            );
-          })
-          .catch((err) => {
-            toast.error('Unable to upload. Check your internet');
-            this.setState({ check: false });
-          });
+        }
       }
-    }
+    });
   }
 
   /**
@@ -209,9 +193,6 @@ export class EditCenter extends Component {
             <div className="card-header dark">
               <h1 className="color">Edit Center</h1>
             </div>
-            <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-              { this.state.errorMessage }
-            </h5>
             <CenterFrom
               onChange={this.onChange}
               onSubmit={this.onSubmit}

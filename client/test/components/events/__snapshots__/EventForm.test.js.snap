@@ -25,7 +25,6 @@ Array [
             className="form-control form-control-lg"
             name="name"
             onChange={[Function]}
-            required={true}
             type="text"
             value="tomato"
           />
@@ -44,7 +43,6 @@ Array [
             className="form-control form-control-lg"
             name="startDate"
             onChange={[Function]}
-            required={true}
             type="date"
             value="2018-12-09"
           />
@@ -63,7 +61,6 @@ Array [
             className="form-control form-control-lg"
             name="endDate"
             onChange={[Function]}
-            required={true}
             type="date"
             value="2018-12-10"
           />
@@ -82,7 +79,6 @@ Array [
             className="form-control form-control-lg"
             name="time"
             onChange={[Function]}
-            required={true}
             type="time"
             value="uyu"
           />
@@ -103,7 +99,6 @@ Array [
           name="purpose"
           onChange={[Function]}
           placeholder="Tell people more about the event"
-          required={true}
           rows="3"
           value={undefined}
         />

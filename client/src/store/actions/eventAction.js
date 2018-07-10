@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
-import { errorHandler, successHandler } from './responsesHandler';
+import { errorHandler, successHandler } from '../../static/js/responsesHandler';
 
 export const getAllEvent = (events) => {
   return {
@@ -15,29 +15,28 @@ export const getOneEvent = (events) => {0
     type: actionTypes.GET_SINGLE_EVENT,
     loadEvent: events
   }
-} 
+};
 
 export const postEvent = (events) => {
   return {
     type: actionTypes.ADD_EVENT,
     addEvent: events
   }
-}
+};
 
 export const editEvent = (events) => {
   return {
     type: actionTypes.EDIT_EVENT,
     editEvent: events
   }
-}
+};
 
 export const deleteEvent = (events) => {
   return {
     type: actionTypes.DELETE_EVENT,
     deleteEvent: events
   }
-}
-
+};
 
 export const eventError = (error) => {
   return {
@@ -58,7 +57,6 @@ export const initEvents = () => {
   };
 };
 
-
 export const initGetOneEvent = (id) => {
   return  dispatch => {
     return axios.get(`/events/${id}`)
@@ -70,8 +68,7 @@ export const initGetOneEvent = (id) => {
         }
     )
   }
-}
-
+};
 
 export const initPostEvent = (event, history) => {
   return dispatch => {
@@ -88,8 +85,6 @@ export const initPostEvent = (event, history) => {
   };
 };
 
-
-
 export const initEditEvent = (id, events, history) => {
   return  dispatch => {
   return  axios.put(`/events/${id}?token=`+localStorage.jwtToken, events)
@@ -104,8 +99,7 @@ export const initEditEvent = (id, events, history) => {
         }
     )
   }
-}
-
+};
 
 export const initDeleteEvent = (id, history) => {
   return  dispatch => {
@@ -121,4 +115,4 @@ export const initDeleteEvent = (id, history) => {
         }
     )
   }
-}
+};

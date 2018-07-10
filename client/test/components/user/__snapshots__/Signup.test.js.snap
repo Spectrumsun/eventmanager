@@ -63,7 +63,6 @@ exports[`<Signup /> Component should match component snapshot 1`] = `
               name="fullname"
               onChange={[Function]}
               placeholder="your name"
-              required={true}
               type="text"
               value=""
             />
@@ -81,7 +80,6 @@ exports[`<Signup /> Component should match component snapshot 1`] = `
               name="email"
               onChange={[Function]}
               placeholder="Vaild Email"
-              required={true}
               type="email"
               value=""
             />
@@ -99,7 +97,6 @@ exports[`<Signup /> Component should match component snapshot 1`] = `
               name="password"
               onChange={[Function]}
               placeholder="Password"
-              required={true}
               type="password"
               value=""
             />
@@ -117,7 +114,6 @@ exports[`<Signup /> Component should match component snapshot 1`] = `
               name="confirmPassword"
               onChange={[Function]}
               placeholder="Password"
-              required={true}
               type="password"
               value=""
             />

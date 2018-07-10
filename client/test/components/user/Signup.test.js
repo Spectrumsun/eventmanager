@@ -46,14 +46,6 @@ const state = {
   formValid: false
 };
 
-const state2 = {
-  fullname: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  formValid: true
-};
-
 const event = {
   preventDefault: jest.fn(),
   target: {

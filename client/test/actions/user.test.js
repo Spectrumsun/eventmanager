@@ -5,7 +5,7 @@ import moxios from 'moxios';
 import * as actionTypes from '../../src/store/actions/actionsTypes';
 import * as action from '../../src/store/actions/index';
 import user from '../mocks/users';
-import { errorHandler, successHandler } from '../../src/store/actions/responsesHandler'
+import { errorHandler, successHandler } from '../../src/static/js/responsesHandler';
 
 
 const middleware = [thunk];

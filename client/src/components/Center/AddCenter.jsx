@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toast from 'toastr';
 import PropTypes from 'prop-types';
 import CenterFrom from './Form/CenterForm';
 import * as action from '../../store/actions/index';
-import uploadImage from './ImageUpload';
+import uploadImage from '../../static/js/ImageUpload';
+import { checkCenter, uploadError } from '../../static/js/validator';
 /**
  * @class AddCenter
  *
@@ -26,7 +26,6 @@ export class AddCenter extends Component {
       publicUrlId: '',
       progress: `${0}%`,
       formValid: false,
-      errorMessage: ''
     }
 
   /**
@@ -70,59 +69,44 @@ export class AddCenter extends Component {
    onSubmit = (event) => {
      event.preventDefault();
      this.setState({ formValid: false });
-     if (this.state.name === '') {
-       this.setState({ errorMessage: 'Center Name cannot be blank' });
-     } else if (this.state.city === '') {
-       this.setState({ errorMessage: 'Center city cannot be blank' });
-     } else if (this.state.address === '') {
-       this.setState({ errorMessage: 'Center address cannot be blank' });
-     } else if (this.state.about === '') {
-       this.setState({ errorMessage: 'Center about cannot be blank' });
-     } else if (this.state.image === '') {
-       this.setState({ errorMessage: 'Add an image' });
-     } else if (this.state.about === '') {
-       this.setState({ errorMessage: 'AAdd about' });
-     } else if (this.state.purpose === '') {
-       this.setState({ errorMessage: 'AAdd purpose' });
-     } else if (this.state.Availability === '') {
-       this.setState({ errorMessage: 'Center Availability must be set' });
-     } else if (this.state.facility.length < 1) {
-       this.setState({ errorMessage: 'Center facility must be set' });
-     } else {
-       const fd = new FormData();
-       const id = `${Date.now()}-${this.state.image.name}`;
-       this.setState({ formValid: true });
-       fd.append('file', this.state.image);
-       fd.append('public_id', id);
-       fd.append('upload_preset', 'eventmanager');
-       const fileProgress = {
-         onUploadProgress: (progressEvent) => {
-           const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
-           this.setState({ progress: progressMeter });
-           this.setState({ errorMessage: ' ' });
-         }
-       };
-       uploadImage(fd, fileProgress)
-         .then((res) => {
-           this.setState({
-             imageurl: res.data.secure_url,
-             publicUrlId: res.data.public_id,
-             image: null,
-             preview: null,
-             formValid: true
+     checkCenter(this.state.name, this.state.city, this.state.address, this.state.about, this.state.availability, this.state.facility, this.state.image, (err, res) => {
+       if (res) {
+         const fd = new FormData();
+         const id = `${Date.now()}-${this.state.image.name}`;
+         this.setState({ formValid: true });
+         fd.append('file', this.state.image);
+         fd.append('public_id', id);
+         fd.append('upload_preset', 'eventmanager');
+         const fileProgress = {
+           onUploadProgress: (progressEvent) => {
+             const progressMeter = `${Math.round(progressEvent.loaded / progressEvent.total * 100)}%`;
+             this.setState({ progress: progressMeter });
+             this.setState({ errorMessage: ' ' });
+           }
+         };
+         uploadImage(fd, fileProgress)
+           .then((res) => {
+             this.setState({
+               imageurl: res.data.secure_url,
+               publicUrlId: res.data.public_id,
+               image: null,
+               preview: null,
+               formValid: true
+             });
+             this.props.initPostCenters(
+               this.state,
+               this.props.history
+             );
+           })
+           .catch(() => {
+             uploadError();
+             this.setState({ formValid: false });
+             this.setState({ errorMessage: ' ' });
            });
-           this.props.initPostCenters(
-             this.state,
-             this.props.history
-           );
-         })
-         .catch(() => {
-           toast.error('Unable to upload. Check your internet');
-           this.setState({ formValid: false });
-           this.setState({ errorMessage: ' ' });
-         });
-     }
+       }
+     });
    }
+
 
    /**
    * @description prefent the enter key from submitting the form

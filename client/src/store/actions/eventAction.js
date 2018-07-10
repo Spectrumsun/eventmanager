@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as actionTypes from './actionsTypes';
 import axios from 'axios';
-import { errorHandler, successHandler } from './responsesHandler';
+import { errorHandler, successHandler } from '../../static/js/responsesHandler';
 
 export const getAllEvent = (events) => {
   return {

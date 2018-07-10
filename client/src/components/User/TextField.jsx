@@ -13,7 +13,7 @@ const TextField = ({
       name={name}
       className="form-control form-control-lg"
       placeholder={placeholder}
-      required
+    
     />
   </div>
 );

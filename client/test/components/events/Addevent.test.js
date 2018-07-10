@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -116,20 +116,6 @@ const props = {
   centerName: 'yaba center'
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedAddEvent {...props} />
-  </BrowserRouter>
-</Provider>);
-
-
-const mountedWrapper2 = mount(<Provider store={store}>
-  <BrowserRouter>
-    <AddEvent {...props} />
-  </BrowserRouter>
-</Provider>);
-
-
 const shallowWrapper = shallow(<AddEvent {...props} />);
 
 const state = {
@@ -163,7 +149,6 @@ const event = {
   }
 };
 
-// let wrapper;
 
 describe('<AddEvent /> Component', () => {
   const wrapper = shallow(<AddEvent {...props} />);
@@ -252,28 +237,5 @@ describe('<AddEvent /> Component', () => {
     expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
   });
 
-  it('sets error message when trying to submit empty fields', () => {
-    const events = mountedWrapper.find('form');
-    events.simulate('submit');
-  });
-
-  it('sets error message when trying to submit empty field for email fields', () => {
-    const raw = wrapper;
-    raw.instance().setState({
-      name: '',
-      startDate: '',
-      endDate: '',
-      time: '',
-      purpose: '',
-      center: '',
-      totalPage: '',
-      next: 1,
-      centerName: '',
-      pageNumber: '',
-      formValid: false,
-      errorMessage: ''
-    });
-    expect(raw.state().errorMessage).toBe("");
-  });
 });
 

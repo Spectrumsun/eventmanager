@@ -97,32 +97,5 @@ describe('<Admin /> Component', () => {
     expect(mapDispatchToProps(dispatch).initaddAdmin).toBeTruthy();
   });
 
-  it('sets error message when trying to submit empty field for email fields', () => {
-    const raw = mount(<AddAmin {...props} />);
-    raw.instance().setState({
-      email: '',
-      role: '',
-      errorMessage: ''
-    });
-    raw.update();
-    raw.find('form').simulate('submit', {
-      preventDefault: jest.fn()
-    });
-    expect(raw.state().errorMessage).toBe('email cannot be blank');
-  });
-
-  it('sets error message when trying to submit empty field for email fields', () => {
-    const raw = mount(<AddAmin {...props} />);
-    raw.instance().setState({
-      email: 'tomato@example.com',
-      role: '',
-      errorMessage: ''
-    });
-    raw.update();
-    raw.find('form').simulate('submit', {
-      preventDefault: jest.fn()
-    });
-    expect(raw.state().errorMessage).toBe('role cannot be blank');
-  });
 });
 

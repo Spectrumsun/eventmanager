@@ -1,9 +1,8 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toast from 'toastr';
 import {withRouter} from "react-router-dom";
-
+import { checkAuthHoc } from '../../static/js/validator';
 
 
 export default function (ComposedComponent) {
@@ -22,7 +21,7 @@ export default function (ComposedComponent) {
    */
       componentWillMount(){
           if(!this.props.isAuthenticated){
-            toast.error('You need to LogIn First!')
+            checkAuthHoc();
             this.props.history.push("/login")
         }
       }

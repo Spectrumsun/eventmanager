@@ -115,9 +115,8 @@ const event = {
   }
 };
 
-const i = [1, 2, 3, 4]
+const i = [1, 2, 3, 4];
 
-// let wrapper;
 
 describe('<EditCenter /> Component', () => {
   const wrapper = shallow(<EditCenter {...props} />);

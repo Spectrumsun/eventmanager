@@ -22,17 +22,6 @@ Array [
           Edit Event
         </h1>
       </div>
-      <h5
-        style={
-          Object {
-            "color": "red",
-            "marginTop": "10px",
-            "textAlign": "center",
-          }
-        }
-      >
-        
-      </h5>
       <eventForm
         add={[Function]}
         centerName=""
@@ -108,17 +97,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
         Edit Event
       </h1>
     </div>
-    <h5
-      style={
-        Object {
-          "color": "red",
-          "marginTop": "10px",
-          "textAlign": "center",
-        }
-      }
-    >
-      
-    </h5>
     <div
       className="card-body"
     >
@@ -142,7 +120,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="name"
               onChange={[Function]}
-              required={true}
               type="text"
               value="tom"
             />
@@ -161,7 +138,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="startDate"
               onChange={[Function]}
-              required={true}
               type="date"
               value="2018-10-20"
             />
@@ -180,7 +156,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="endDate"
               onChange={[Function]}
-              required={true}
               type="date"
               value="2018-10-23"
             />
@@ -199,7 +174,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
               className="form-control form-control-lg"
               name="time"
               onChange={[Function]}
-              required={true}
               type="time"
               value="10:00"
             />
@@ -220,7 +194,6 @@ exports[`<EditEvent /> Component should match component snapshot 1`] = `
             name="purpose"
             onChange={[Function]}
             placeholder="Tell people more about the event"
-            required={true}
             rows="3"
             value="for test"
           />
@@ -526,17 +499,6 @@ Array [
           Edit Event
         </h1>
       </div>
-      <h5
-        style={
-          Object {
-            "color": "red",
-            "marginTop": "10px",
-            "textAlign": "center",
-          }
-        }
-      >
-        
-      </h5>
       <eventForm
         add={[Function]}
         centerName=""

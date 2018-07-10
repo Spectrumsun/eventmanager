@@ -2,7 +2,7 @@
 import * as actionTypes from './actionsTypes';
 import axios from 'axios'; 
 import jwt from 'jsonwebtoken';
-import { errorHandler, successHandler, logOutMessage } from './responsesHandler'
+import { errorHandler, successHandler, logOutMessage } from '../../static/js/responsesHandler'
 
 export const signUpUser = (user) => {
   return {

@@ -125,11 +125,6 @@ describe('<EditCenter /> Component', () => {
     shallow(<EditCenter {...props} />);
   });
 
-  it('should render the <EditCenter /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('EditCenter').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(<Provider store={store}>
       <BrowserRouter>
@@ -152,41 +147,41 @@ describe('<EditCenter /> Component', () => {
     expect(wrapper.find(CenterFrom)).toHaveLength(1);
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
-  it('calls onClick event', () => {
+  it('calls onClick event when adding to facility array', () => {
     sinon.spy(shallowWrapper.instance(), 'onClick');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onClick();
     expect(shallowWrapper.instance().onClick.calledOnce).toEqual(true);
   });
 
-  it('calls onKeyPress event', () => {
+  it('calls onKeyPress event to disable add facility when input is empty', () => {
     sinon.spy(shallowWrapper.instance(), 'onKeyPress');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onKeyPress(event);
     expect(shallowWrapper.instance().onKeyPress.calledOnce).toEqual(true);
   });
 
-  it('calls removeFacility event', () => {
+  it('calls removeFacility event when removing from the array of facility object', () => {
     sinon.spy(shallowWrapper.instance(), 'removeFacility');
     shallowWrapper.setState(state);
     shallowWrapper.instance().removeFacility(i);
     expect(shallowWrapper.instance().removeFacility.calledOnce).toEqual(true);
   });
 
-  it('calls handleImageChange event', () => {
+  it('calls handleImageChange event when image is add to the file input field', () => {
     sinon.spy(shallowWrapper.instance(), 'handleImageChange');
     shallowWrapper.setState(state);
     shallowWrapper.instance().handleImageChange(event);

@@ -14,6 +14,7 @@ export class AddAmin extends Component {
   state = {
     email: '',
     role: '',
+    errorMessage: ''
   }
 
   /**
@@ -41,9 +42,10 @@ export class AddAmin extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.email === '') {
+      this.setState({ errorMessage: 'email cannot be blank' });
       toast.error('Email cannot be blank');
     } else if (this.state.role === '') {
-      toast.error('role cannot be blank');
+      this.setState({ errorMessage: 'role cannot be blank' });
     } else {
       this.props.initaddAdmin(
         this.state,
@@ -70,6 +72,9 @@ export class AddAmin extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
+                <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                  { this.state.errorMessage }
+                </h5>
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="Email"
@@ -109,7 +114,6 @@ AddAmin.propTypes = {
   initaddAdmin: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired
 };
-
 
 
 export const mapDispatchToProps = dispatch => ({

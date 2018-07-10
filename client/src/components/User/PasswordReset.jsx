@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import toast from 'toastr';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextField from './TextField';
@@ -14,6 +13,7 @@ export class PasswordReset extends Component {
   state = {
     password: '',
     confirmPassword: '',
+    errorMessage: ''
   }
 
   /**
@@ -41,16 +41,18 @@ export class PasswordReset extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     if (this.state.password === '') {
-      toast.error('Password cannot be blank');
+      this.setState({ errorMessage: 'Password cannot be blank'});
     } else if (this.state.password !== this.state.confirmPassword) {
-      toast.error('Confirm Password dont match Password');
+      this.setState({ errorMessage: 'Confirm Password dont match Password'});
     } else if (this.state.password.length < 6) {
-      toast.error('Password cannot be less than 6 Charaters');
+      this.setState({ errorMessage: 'Password cannot be less than 6 Characters'});
     } else {
       this.props.initpasswordreset(
         this.props.match.params.token,
         this.state, this.props.history
-      );
+      ).then(() => {
+        this.setState({ errorMessage: '' });
+      })
     }
   }
 
@@ -72,6 +74,9 @@ export class PasswordReset extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
+              <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                { this.state.errorMessage }
+              </h5>
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="New Password"

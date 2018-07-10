@@ -61,11 +61,6 @@ describe('<PasswordReset /> Component', () => {
     shallow(<PasswordReset />);
   });
 
-  it('should render the <PasswordReset /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('PasswordReset').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(
       <BrowserRouter >
@@ -73,7 +68,6 @@ describe('<PasswordReset /> Component', () => {
       </BrowserRouter>);
     expect(tree).toMatchSnapshot();
   });
-
 
   it('should render initial layout of PasswordReset', () => {
     const wrapper = shallow(<PasswordReset />);
@@ -95,14 +89,13 @@ describe('<PasswordReset /> Component', () => {
     expect(wrapper.find(TextField)).toHaveLength(2);
   });
 
-
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
@@ -112,6 +105,59 @@ describe('<PasswordReset /> Component', () => {
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).initpasswordreset).toBeTruthy();
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<PasswordReset {...props} />);
+    raw.instance().setState({
+      password: '',
+      confirmPassword: '',
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Password cannot be blank');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<PasswordReset {...props} />);
+    raw.instance().setState({
+      password: '1234567',
+      confirmPassword: 'w342',
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Confirm Password dont match Password');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<PasswordReset {...props} />);
+    raw.instance().setState({
+      password: '12345',
+      confirmPassword: '12345',
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe('Password cannot be less than 6 Characters');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = mount(<PasswordReset {...props} />);
+    raw.instance().setState({
+      password: '12345678',
+      confirmPassword: '12345678',
+      errorMessage: ''
+    });
+    raw.update();
+    raw.find('form').simulate('submit', {
+      preventDefault: jest.fn()
+    });
+    expect(raw.state().errorMessage).toBe("");
   });
 });
 

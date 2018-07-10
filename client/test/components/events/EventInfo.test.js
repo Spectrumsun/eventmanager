@@ -79,7 +79,6 @@ const mountedWrapper = mount(<Provider store={store}>
 
 const shallowWrapper = shallow(<EventInfo {...props} />);
 
-
 const event = {
   preventDefault: jest.fn(),
   target: {
@@ -96,8 +95,6 @@ const event = {
     formValid: false,
   }
 };
-
-// let wrapper;
 
 describe('<EventInfo /> Component', () => {
   const wrapper = shallow(<EventInfo {...props} />);
@@ -125,8 +122,7 @@ describe('<EventInfo /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-
-  it('calls deleteEvent event', () => {
+  it('calls deleteEvent event to delete an event when delete button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'deleteEvent');
     shallowWrapper.instance().deleteEvent(event);
     expect(shallowWrapper.instance().deleteEvent.calledOnce).toEqual(true);
@@ -139,7 +135,6 @@ describe('<EventInfo /> Component', () => {
   it('should have div element', () => {
     expect(wrapper.find('div').length).toEqual(7);
   });
-
 
   it('ensures that mapDispatchToProps dispatches the specified actions', () => {
     const dispatch = jest.fn();

@@ -17,7 +17,8 @@ export class Signup extends Component {
     email: '',
     password: '',
     confirmPassword: '',
-    formValid: false
+    formValid: false,
+    errorMessage: ''
   }
 
   /**
@@ -47,17 +48,17 @@ export class Signup extends Component {
     this.setState({ formValid: false });
     const reWhiteSpace = new RegExp(/^\s+$/);
     if (this.state.fullname === '') {
-      toast.error('Full Name cannot be blank');
+      this.setState({ errorMessage: 'Full Name cannot be blank' });
     } else if (reWhiteSpace.test(this.state.fullname) === true) {
-      toast.error('Full Name cannot white space');
+      this.setState({ errorMessage: 'Full Name cannot be white space'});
     } else if (this.state.email === '') {
-      toast.error('Email cannot be blank');
+      this.setState({ errorMessage: 'Email cannot be blank' });
     } else if (this.state.password === '') {
-      toast.error('Password cannot be blank');
+      this.setState({ errorMessage: 'Password cannot be blank' });
     } else if (this.state.password !== this.state.confirmPassword) {
-      toast.error('Confirm Password dont match Password');
+      this.setState({ errorMessage: 'Confirm Password dont match Password' });
     } else if (this.state.password.length < 6) {
-      toast.error('Password cannot be less than 6 Charaters');
+      this.setState({ errorMessage: 'Password cannot be less than 6 Characters' });
     } else {
       this.setState({ formValid: true });
       this.props.onUserCreate(
@@ -86,12 +87,16 @@ export class Signup extends Component {
           </div>
           <div className="card-body">
             <div className="cont">
+              <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                { this.state.errorMessage }
+              </h5>
               <form onSubmit={this.onSubmit} className="centerform">
                 <TextField
                   label="Full Name"
                   value={this.state.fullname}
                   onChange={this.onChange}
                   name="fullname"
+                  id="fullname"
                   type="text"
                   placeholder="your name"
                 />
@@ -102,6 +107,7 @@ export class Signup extends Component {
                   onChange={this.onChange}
                   name="email"
                   type="email"
+                  id="email"
                   placeholder="Vaild Email"
                 />
 

@@ -110,6 +110,7 @@ const props = {
       pages: 2
     }
   },
+  name: 'tome',
   initPostEvent: () => Promise.resolve(),
   history: createMemoryHistory(),
   centerName: 'yaba center'
@@ -118,6 +119,13 @@ const props = {
 const mountedWrapper = mount(<Provider store={store}>
   <BrowserRouter>
     <ConnectedAddEvent {...props} />
+  </BrowserRouter>
+</Provider>);
+
+
+const mountedWrapper2 = mount(<Provider store={store}>
+  <BrowserRouter>
+    <AddEvent {...props} />
   </BrowserRouter>
 </Provider>);
 
@@ -163,11 +171,6 @@ describe('<AddEvent /> Component', () => {
     shallow(<AddEvent {...props} />);
   });
 
-  it('should render the <AddEvent /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('AddEvent').length).toBe(1);
-  });
-
   it('should match component snapshot', () => {
     const tree = render.create(
       <Provider store={store}>
@@ -177,7 +180,6 @@ describe('<AddEvent /> Component', () => {
       </Provider>);
     expect(tree).toMatchSnapshot();
   });
-
 
   it('should render initial layout of <AddEvent />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
@@ -191,41 +193,41 @@ describe('<AddEvent /> Component', () => {
     expect(wrapper.find(EventForm)).toHaveLength(1);
   });
 
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
-  it('calls add event', () => {
+  it('calls add event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'add');
     shallowWrapper.setState(state);
     shallowWrapper.instance().add();
     expect(shallowWrapper.instance().add.calledOnce).toEqual(true);
   });
 
-  it('calls minus event', () => {
+  it('calls minus event when the next button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'minus');
     shallowWrapper.setState(state);
     shallowWrapper.instance().minus();
     expect(shallowWrapper.instance().minus.calledOnce).toEqual(true);
   });
 
-  it('calls getCenter event', () => {
+  it('calls getCenter event to load the list of centers', () => {
     sinon.spy(shallowWrapper.instance(), 'getCenter');
     shallowWrapper.setState(state);
     shallowWrapper.instance().getCenter();
     expect(shallowWrapper.instance().getCenter.calledOnce).toEqual(true);
   });
 
-  it('calls selectCenter event', () => {
+  it('calls selectCenter when center id is selected in when adding new event', () => {
     sinon.spy(shallowWrapper.instance(), 'selectCenter');
     const details = {
       centerName: 'yaba',
@@ -253,6 +255,25 @@ describe('<AddEvent /> Component', () => {
   it('sets error message when trying to submit empty fields', () => {
     const events = mountedWrapper.find('form');
     events.simulate('submit');
+  });
+
+  it('sets error message when trying to submit empty field for email fields', () => {
+    const raw = wrapper;
+    raw.instance().setState({
+      name: '',
+      startDate: '',
+      endDate: '',
+      time: '',
+      purpose: '',
+      center: '',
+      totalPage: '',
+      next: 1,
+      centerName: '',
+      pageNumber: '',
+      formValid: false,
+      errorMessage: ''
+    });
+    expect(raw.state().errorMessage).toBe("");
   });
 });
 

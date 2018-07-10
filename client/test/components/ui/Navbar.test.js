@@ -64,17 +64,10 @@ const event = {
   }
 };
 
-// let wrapper;
-
 describe('<NavBar /> Component', () => {
   const wrapper = shallow(<NavBar {...props} />);
   it('should render the <NavBar />', () => {
     shallow(<NavBar {...props} />);
-  });
-
-  it('should render the <NavBar /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('NavBar').length).toBe(1);
   });
 
   it('should match component snapshot', () => {
@@ -87,7 +80,6 @@ describe('<NavBar /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-
   it('should render initial layout of <NavBar />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
@@ -96,32 +88,29 @@ describe('<NavBar /> Component', () => {
     expect(wrapper.find('div').length).toEqual(7);
   });
 
-
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 
-  it('calls logout event', () => {
+  it('calls logout event when the logout button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'logout');
     shallowWrapper.setState(state);
     shallowWrapper.instance().logout(event);
     expect(shallowWrapper.instance().logout.calledOnce).toEqual(true);
   });
 
-
   it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
-
 
   it('should have seven div element', () => {
     expect(wrapper.find('div').length).toEqual(7);

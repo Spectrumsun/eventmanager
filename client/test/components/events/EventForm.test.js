@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 import EventForm from '../../../src/components/Event/Form/EventForm';
 import PickCenter from '../../../src/components/Center/PickCenter'
 
@@ -44,7 +45,6 @@ describe('<EventForm />', () => {
   it('should have  input on layout', () => {
     expect(wrapper.find('input').length).toEqual(4);
   });
-
 
   it('should have h5 on layout', () => {
     expect(wrapper.find('h5').length).toEqual(5);

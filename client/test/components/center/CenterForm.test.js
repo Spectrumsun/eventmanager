@@ -53,7 +53,6 @@ describe('<CenterForm />', () => {
   it('should have li on layout', () => {
     expect(wrapper.find('li').length).toEqual(3);
   });
-;
 
   it('should have button on layout', () => {
     expect(wrapper.find('button').length).toEqual(1);

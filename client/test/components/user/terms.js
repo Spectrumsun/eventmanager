@@ -7,7 +7,7 @@ describe('<Terms />', () => {
     shallow(<Terms />);
   });
 
-  it('should render the Terms and condition', () => {
+  it('should render the Terms and condition component', () => {
     shallow(<Terms />);
   });
 });

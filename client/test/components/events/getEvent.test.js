@@ -20,10 +20,6 @@ describe('<Display />', () => {
     shallow(<Display {...props} />);
   });
 
-  it('should render initial layout of Display', () => {
-    expect(wrapper.getElements()).toMatchSnapshot();
-  });
-  
   it('should have image on layout', () => {
     expect(wrapper.find('img').length).toEqual(1);
   });

@@ -74,7 +74,6 @@ describe('<ForgotPassword /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-
   it('should render initial layout of ForgotPassword', () => {
     const wrapper = shallow(<ForgotPassword />);
     expect(wrapper.getElements()).toMatchSnapshot();
@@ -90,18 +89,16 @@ describe('<ForgotPassword /> Component', () => {
     expect(wrapper.find(TextField)).toHaveLength(1);
   });
 
-
-  it('calls onChange event', () => {
+  it('calls onChange event when input is passed to state', () => {
     sinon.spy(shallowWrapper.instance(), 'onChange');
     shallowWrapper.instance().onChange(event);
     expect(shallowWrapper.instance().onChange.calledOnce).toEqual(true);
   });
 
-  it('calls onSubmit event', () => {
+  it('calls onSubmit event when submit button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'onSubmit');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onSubmit(event);
     expect(shallowWrapper.instance().onSubmit.calledOnce).toEqual(true);
   });
 });
-

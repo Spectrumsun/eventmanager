@@ -125,10 +125,6 @@ describe('<CenterInfo /> Component', () => {
     shallow(<CenterInfo {...props} />);
   });
 
-  it('should render the <CenterInfo /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('CenterInfo').length).toBe(1);
-  });
 
   it('should match component snapshot', () => {
     const tree = render.create(<Provider store={store}>
@@ -139,11 +135,9 @@ describe('<CenterInfo /> Component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-
   it('should render initial layout of <CenterInfo />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
-
 
   it('calls deleteCenter event', () => {
     sinon.spy(shallowWrapper.instance(), 'deleteCenter');
@@ -154,7 +148,6 @@ describe('<CenterInfo /> Component', () => {
   it('should have div element match snap', () => {
     expect(wrapper.getElements('div')).toMatchSnapshot();
   });
-
 
   it('should have div element', () => {
     expect(wrapper.find('div').length).toEqual(6);

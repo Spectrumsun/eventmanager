@@ -129,10 +129,6 @@ describe('<Search /> Component', () => {
     shallow(<Search {...props} />);
   });
 
-  it('should render the <Search /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('Search').length).toBe(1);
-  });
 
   it('should match component snapshot', () => {
     const tree = render.create(<Provider store={store}>
@@ -156,15 +152,14 @@ describe('<Search /> Component', () => {
     expect(wrapper.find(Display)).toHaveLength(2);
   });
 
-
-  it('calls add event', () => {
+  it('calls add event when the previous button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'add');
     shallowWrapper.setState(state);
     shallowWrapper.instance().add();
     expect(shallowWrapper.instance().add.calledOnce).toEqual(true);
   });
 
-  it('calls minus event', () => {
+  it('calls minus event when the next button is clicked for pagination', () => {
     sinon.spy(shallowWrapper.instance(), 'minus');
     shallowWrapper.setState(state);
     shallowWrapper.instance().minus();

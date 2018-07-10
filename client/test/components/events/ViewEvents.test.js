@@ -67,10 +67,6 @@ describe('<ViewEvent /> Component', () => {
     shallow(<ViewEvent {...props} />);
   });
 
-  it('should render the <ViewEvent /> without crashing', () => {
-    expect(mountedWrapper).toBeDefined();
-    expect(mountedWrapper.find('ViewEvent').length).toBe(1);
-  });
 
   it('should match component snapshot', () => {
     const tree = render.create(
@@ -81,7 +77,6 @@ describe('<ViewEvent /> Component', () => {
       </Provider>);
     expect(tree).toMatchSnapshot();
   });
-
 
   it('should render initial layout of <ViewEvent />', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
@@ -99,7 +94,5 @@ describe('<ViewEvent /> Component', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).onInitEvent).toBeTruthy();
   });
-  
-
 });
 

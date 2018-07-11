@@ -137,7 +137,7 @@ describe('<AddCenter /> Component', () => {
     expect(shallowWrapper.instance().onClick.calledOnce).toEqual(true);
   });
 
-  it('calls onKeyPress event to disable add facility when input is empty', () => {
+  it('calls onKeyPress event to disable add facility button when input field is empty', () => {
     sinon.spy(shallowWrapper.instance(), 'onKeyPress');
     shallowWrapper.setState(state);
     shallowWrapper.instance().onKeyPress(event);

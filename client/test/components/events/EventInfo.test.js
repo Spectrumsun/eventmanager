@@ -71,11 +71,12 @@ const props = {
   history: createMemoryHistory()
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedEventInfo {...props} />
-  </BrowserRouter>
-</Provider>);
+const mountedWrapper = mount(
+  <Provider store={store}>
+    <BrowserRouter>
+      <ConnectedEventInfo {...props} />
+    </BrowserRouter>
+  </Provider>);
 
 const shallowWrapper = shallow(<EventInfo {...props} />);
 
@@ -122,7 +123,7 @@ describe('<EventInfo /> Component', () => {
     expect(wrapper.getElements()).toMatchSnapshot();
   });
 
-  it('calls deleteEvent event to delete an event when delete button is clicked', () => {
+  it('calls deleteEvent event to delete an event when the delete button is clicked', () => {
     sinon.spy(shallowWrapper.instance(), 'deleteEvent');
     shallowWrapper.instance().deleteEvent(event);
     expect(shallowWrapper.instance().deleteEvent.calledOnce).toEqual(true);

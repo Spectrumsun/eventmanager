@@ -28,9 +28,9 @@ const props = {
 
 const mountedWrapper = mount(
   <Provider store={store}>
-  <BrowserRouter>
-    <ConnectedAddAmin {...props} />
-  </BrowserRouter>
+    <BrowserRouter>
+      <ConnectedAddAmin {...props} />
+    </BrowserRouter>
   </Provider>
 );
 
@@ -56,7 +56,7 @@ describe('<Admin /> Component', () => {
     shallow(<AddAmin />);
   });
 
-  it('should render the <Admin /> without crashing', () => {
+  it('should render the <Admin /> component without crashing', () => {
     expect(mountedWrapper).toBeDefined();
     expect(mountedWrapper.find('AddAmin').length).toBe(1);
   });
@@ -96,6 +96,4 @@ describe('<Admin /> Component', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).initaddAdmin).toBeTruthy();
   });
-
 });
-

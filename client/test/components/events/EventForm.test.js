@@ -6,9 +6,9 @@ import PickCenter from '../../../src/components/Center/PickCenter'
 
 const props = {
   facility: ['car', 'table', 'fan'],
-  onSubmit: () => { console.log('hi'); },
-  onClick: () => { console.log('hi'); },
-  onChange: () => { console.log('hi'); },
+  onSubmit: () => { },
+  onClick: () => { },
+  onChange: () => { },
   selectCenter: () => {},
   getCenter: () => {},
   formValid: true,

@@ -1,25 +1,13 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
 import render from 'react-test-renderer';
-import thunk from 'redux-thunk';
 import { createMemoryHistory } from 'history';
-import { Provider } from 'react-redux';
 import sinon from 'sinon';
-import 
-{ Login, mapDispatchToProps } from '../../../src/components/User/Login';
+import { Login, mapDispatchToProps } from '../../../src/components/User/Login';
 import TextField from '../../../src/components/User/TextField';
 
 jest.mock('react-router-dom');
-
-const middleware = [thunk];
-const mockStore = configureStore(middleware);
-const initialState = {
-  isAuthenticated: false,
-  user: {},
-};
-const store = mockStore(initialState);
 
 const props = {
   initUserLogin: () => Promise.resolve(),

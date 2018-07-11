@@ -78,7 +78,9 @@ const initialState = {
 const store = mockStore(initialState);
 
 const props = {
-  onInitCenters: () => Promise.resolve(),
+  onInitCenters: sinon.spy(() => new Promise((cb) => {
+    cb();
+  })),
   page: {
     pagination: {
       message: 'success',
@@ -145,7 +147,7 @@ const event = {
     next: 1,
     centerName: 'yaba center',
     pageNumber: '2',
-    formValid: false,
+    formValid: true,
   }
 };
 
@@ -212,7 +214,7 @@ describe('<AddEvent /> Component', () => {
     expect(shallowWrapper.instance().getCenter.calledOnce).toEqual(true);
   });
 
-  it('calls selectCenter when center id is selected in when adding new event', () => {
+  it('calls selectCenter when center id is selected when adding new event', () => {
     sinon.spy(shallowWrapper.instance(), 'selectCenter');
     const details = {
       centerName: 'yaba',
@@ -236,6 +238,5 @@ describe('<AddEvent /> Component', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).onInitCenters).toBeTruthy();
   });
-
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import render from 'react-test-renderer';
 import sinon from 'sinon';
@@ -83,20 +83,4 @@ describe('<Signup /> Component', () => {
     const dispatch = jest.fn();
     expect(mapDispatchToProps(dispatch).onUserCreate).toBeTruthy();
   });
-
-  // it('should populate the form field and update the state', () => {
-  //   const wrapper = mount(<Signup {...props} />);
-  //   wrapper.instance().setState({
-  //     fullname: 'tom',
-  //     email: 'ejame@jame.come',
-  //     password: '1234567',
-  //     confirmPassword: '1234567',
-  //     formValid: false
-  //   });
-  //   wrapper.update();
-  //   wrapper.find('form').simulate('submit', {
-  //     preventDefault: jest.fn()
-  //   });
-  //   expect(wrapper.state().formValid).toEqual(true);
-  // });
 });

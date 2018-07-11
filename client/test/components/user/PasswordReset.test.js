@@ -1,24 +1,12 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
 import render from 'react-test-renderer';
-import thunk from 'redux-thunk';
 import sinon from 'sinon';
-import { Provider } from 'react-redux';
 import { createMemoryHistory } from 'history';
-import ConnectedPasswordReset,
-{ PasswordReset, mapDispatchToProps } from '../../../src/components/User/PasswordReset';
+import
+{ PasswordReset } from '../../../src/components/User/PasswordReset';
 import TextField from '../../../src/components/User/TextField'
-
-
-const middleware = [thunk];
-const mockStore = configureStore(middleware);
-const initialState = {
-  isAuthenticated: false,
-  user: {},
-};
-const store = mockStore(initialState);
 
 const props = {
   initpasswordreset: sinon.spy(() => new Promise((cb) => {
@@ -31,14 +19,6 @@ const props = {
     }
   }
 };
-
-  const mountedWrapper = mount(
-    <Provider store={store}>
-    <BrowserRouter>
-      <ConnectedPasswordReset {...props} />
-    </BrowserRouter>
-    </Provider>
-  );
 
 const shallowWrapper = shallow(<PasswordReset {...props} />);
 

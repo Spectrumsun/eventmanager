@@ -149,11 +149,6 @@ const props = {
   name: 'tom'
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedEditEvent {...props} />
-  </BrowserRouter>
-</Provider>);
 
 const shallowWrapper = shallow(<EditEvent {...props} />);
 

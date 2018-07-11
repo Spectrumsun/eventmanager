@@ -52,7 +52,7 @@ const props = {
       imageurl: 'https:image.com/gif'
     }
   }],
-};;
+};
 
 describe('<ViewEvent /> Component', () => {
   const wrapper = shallow(<ViewEvent {...props} />);

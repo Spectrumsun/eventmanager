@@ -70,24 +70,20 @@ export class AddEvent extends Component {
 
 
   add = () => {
-    this.setState({ totalPage: this.props.page.pages });
     this.state.totalPage = this.props.page.pages;
     if (this.state.next < this.state.totalPage) {
       const nextPage = ++this.state.next;
-      this.state.pageNumber = nextPage;
       this.setState({ pageNumber: nextPage });
       this.setState({ next: nextPage });
       this.props.onInitCenters(3, nextPage);
     }
   }
 
-
   minus = () => {
     const limit = 1;
     if (limit < this.state.next) {
       const nextPage = --this.state.next;
       this.state.pageNumber = nextPage;
-      this.setState({ pageNumber: nextPage });
       this.props.onInitCenters(3, nextPage);
     }
   }

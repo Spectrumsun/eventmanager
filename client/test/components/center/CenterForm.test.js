@@ -41,7 +41,6 @@ describe('<CenterForm />', () => {
     expect(wrapper.find('input').length).toEqual(7);
   });
 
-
   it('should have h5 on layout', () => {
     expect(wrapper.find('h5').length).toEqual(7);
   });

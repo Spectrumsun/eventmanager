@@ -80,14 +80,12 @@ export class EditEvent extends Component {
    }
 
    add = () => {
-     this.setState({ totalPage: this.props.page.pages });
      this.state.totalPage = this.props.page.pages;
      if (this.state.next < this.state.totalPage) {
-       const me = ++this.state.next;
-       this.state.pageNumber = me;
-       this.setState({ pageNumber: me });
-       this.setState({ next: me });
-       this.props.onInitCenters(3, me);
+       const nextPage = ++this.state.next;
+       this.setState({ pageNumber: nextPage });
+       this.setState({ next: nextPage });
+       this.props.onInitCenters(3, nextPage);
      }
    }
 
@@ -95,12 +93,12 @@ export class EditEvent extends Component {
   minus = () => {
     const limit = 1;
     if (limit < this.state.next) {
-      const me = --this.state.next;
-      this.state.pageNumber = me;
-      this.setState({ pageNumber: me });
-      this.props.onInitCenters(3, me);
+      const nextPage = --this.state.next;
+      this.state.pageNumber = nextPage;
+      this.props.onInitCenters(3, nextPage);
     }
   }
+
   /**
    * @description get selectCenter id and state state
    * @param {any} event

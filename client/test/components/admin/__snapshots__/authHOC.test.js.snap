@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component: Authenticateenticate Admin Protected Routes test suite Redirects user to homepage they are not Admin 1`] = `
+exports[`Component: Authenticateenticate Admin Protected Routes test suite Redirects user to homepage if they are not Admin 1`] = `
 <AddEvent
   auth={
     Object {

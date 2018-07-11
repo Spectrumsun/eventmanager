@@ -91,7 +91,6 @@ const props = {
     pages: 2
   },
   error: false
-  
 };
 
 
@@ -101,7 +100,7 @@ const state = {
   totalPage: 5,
   next: 1,
   search: 'tomato',
-  pageNmber: 1
+  pageNumber: 1
 };
 
 describe('<Search /> Component', () => {

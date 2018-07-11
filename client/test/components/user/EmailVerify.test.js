@@ -1,31 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 import render from 'react-test-renderer';
-import thunk from 'redux-thunk';
 import sinon from 'sinon';
 import 
 { EmailVerify, mapDispatchToProps } from '../../../src/components/User/EmailVerify';
 
-
-const middleware = [thunk];
-const mockStore = configureStore(middleware);
-const initialState = {
-  isAuthenticated: false,
-  user: {},
-  match: {
-    params: {
-      token: 'kjfhjrf'
-    }
-  },
-  params: {
-    id: 1,
-    token: 'pokjhbhjkef'
-  }
-};
-const store = mockStore(initialState);
 
 const props = {
   initemailverify: sinon.spy(() => new Promise((cb) => {

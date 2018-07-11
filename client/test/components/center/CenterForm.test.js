@@ -4,12 +4,12 @@ import CenterForm from '../../../src/components/Center/Form/CenterForm';
 
 const props = {
   facility: ['car', 'table', 'fan'],
-  onSubmit: () => { console.log('hi'); },
-  onClick: () => { console.log('hi'); },
-  onChange: () => { console.log('hi'); },
+  onSubmit: () => { },
+  onClick: () => { },
+  onChange: () => { },
   progress: '100',
   about: 'olo',
-  handleImageChange: () => { console.log('hi'); },
+  handleImageChange: () => { },
   name: 'tomato',
   city: 'lagos',
   availability: 'yes',

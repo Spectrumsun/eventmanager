@@ -35,11 +35,6 @@ const props = {
   history: createMemoryHistory()
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedNavBar {...props} />
-  </BrowserRouter>
-</Provider>);
 
 const shallowWrapper = shallow(<NavBar {...props} />);
 

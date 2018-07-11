@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextField from './TextField';
 import * as action from '../../store/actions/index';
+import { checkPasswordRest } from '../../static/js/validator';
 
 /**
  * @class PasswordReset
@@ -13,7 +14,6 @@ export class PasswordReset extends Component {
   state = {
     password: '',
     confirmPassword: '',
-    errorMessage: ''
   }
 
   /**
@@ -40,20 +40,14 @@ export class PasswordReset extends Component {
    */
   onSubmit = (event) => {
     event.preventDefault();
-    if (this.state.password === '') {
-      this.setState({ errorMessage: 'Password cannot be blank'});
-    } else if (this.state.password !== this.state.confirmPassword) {
-      this.setState({ errorMessage: 'Confirm Password dont match Password'});
-    } else if (this.state.password.length < 6) {
-      this.setState({ errorMessage: 'Password cannot be less than 6 Characters'});
-    } else {
-      this.props.initpasswordreset(
-        this.props.match.params.token,
-        this.state, this.props.history
-      ).then(() => {
-        this.setState({ errorMessage: '' });
-      })
-    }
+    checkPasswordRest(this.state.password, this.state.confirmPassword, (err, res) => {
+      if (res) {
+        this.props.initpasswordreset(
+          this.props.match.params.token,
+          this.state, this.props.history
+        );
+      }
+    });
   }
 
   /**
@@ -74,9 +68,6 @@ export class PasswordReset extends Component {
             </div>
             <div className="card-body">
               <div className="cont card-body">
-              <h5 style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-                { this.state.errorMessage }
-              </h5>
                 <form onSubmit={this.onSubmit} className="centerform">
                   <TextField
                     label="New Password"

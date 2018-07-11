@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import toast from 'toastr';
 import TextField from './TextField';
-import * as action from '../../store/actions/index';
+import * as action from '../../store/actions';
+import { checkAddAdmin } from '../../static/js/validator';
 
 /**
  * @class Login
@@ -39,19 +39,16 @@ export class AddAmin extends Component {
    *
    * @returns {void}
    */
-  onSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.email === '') {
-      this.setState({ errorMessage: 'email cannot be blank' });
-      toast.error('Email cannot be blank');
-    } else if (this.state.role === '') {
-      this.setState({ errorMessage: 'role cannot be blank' });
-    } else {
-      this.props.initaddAdmin(
-        this.state,
-        this.props.history
-      );
-    }
+  onSubmit = (event) => {
+    event.preventDefault();
+    checkAddAdmin(this.state.email, this.state.role, (err, res) => {
+      if (res) {
+        this.props.initaddAdmin(
+          this.state,
+          this.props.history
+        );
+      }
+    });
   }
 
   /**

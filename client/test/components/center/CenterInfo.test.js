@@ -91,14 +91,8 @@ const props = {
   error: false
 };
 
-const mountedWrapper = mount(<Provider store={store}>
-  <BrowserRouter>
-    <ConnectedCenterInfo {...props} />
-  </BrowserRouter>
-</Provider>);
 
 const shallowWrapper = shallow(<CenterInfo {...props} />);
-
 
 const event = {
   preventDefault: jest.fn(),

@@ -1,13 +1,12 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 import render from 'react-test-renderer';
 import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
 import sinon from 'sinon';
-import ConnectedEmailVerify,
+import 
 { EmailVerify, mapDispatchToProps } from '../../../src/components/User/EmailVerify';
 
 
@@ -44,14 +43,6 @@ const props = {
     token: 'pokjhbhjkef'
   }
 };
-
-const mountedWrapper = mount(
-  <Provider store={store}>
-  <BrowserRouter>
-    <ConnectedEmailVerify {...props} />
-  </BrowserRouter>
-  </Provider>
-);
 
 const shallowWrapper = shallow(<EmailVerify {...props} />);
 

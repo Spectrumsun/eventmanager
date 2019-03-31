@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "1.15.2",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -115,6 +115,6 @@
   },
   "jest": {},
   "engines": {
-    "yarn": "1.12.3"
+    "yarn": "1.15.2"
   }
 }

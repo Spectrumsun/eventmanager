@@ -1,11 +1,14 @@
 language: node_js
 node_js: 
-    - "8.9.1"
+    - "11.1.0"
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
 install:
-  - npm install -g codecov
-  - npm install nyc coveralls codeclimate-test-reporter -g
+  - yarn global add codecov
+  - yarn global add nyc coveralls codeclimate-test-reporter 
 script: 
-    - npm install && npm run all:test
+    - yarn && yarn all:test
 after_success:
     - codeclimate-test-reporter < ./coverage/lcov.info 
     

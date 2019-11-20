@@ -8,6 +8,7 @@ import '../../node_modules/toastr/build/toastr.min.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './static/css/style.scss';
 
+
 require('bootstrap');
 
 

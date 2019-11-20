@@ -1,5 +1,6 @@
 
 import Sequelize from 'sequelize';
+const { check, validationResult } = require('express-validator');
 import { Event } from '../models';
 
 const { Op } = Sequelize;

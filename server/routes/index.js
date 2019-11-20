@@ -25,34 +25,34 @@ router.get('/', (req, res) => {
 // POST Add a new user
 router.post(
   '/users',
-  validator.validateSigup,
+  // validator.validateSigup,
   userController.signup
 );
 
 // POST Login an existing user
 router.post(
   '/users/login',
-  validator.validatelogin,
+  // validator.validatelogin,
   userController.login
 );
 
 // Post send a email to user account with a link for password reset
 router.post(
   '/users/forgotpassword',
-  validator.forgetPassword,
+  // validator.forgetPassword,
   userController.forgotpassword
 );
 
 router.post(
   '/users/setadmin',
   auth.verifyToken,
-  validator.validateAdmin,
+  // validator.validateAdmin,
   userController.makeAdmin
 );
 // all user to change password
 router.post(
   '/users/password/reset/:token',
-  validator.passwordReset,
+  // validator.passwordReset,
   userController.passwordReset
 );
 
@@ -78,7 +78,7 @@ router.get(
 // POST  Add a new Event
 router.post(
   '/events', auth.verifyToken,
-  validator.validateCreateEvent,
+  // validator.validateCreateEvent,
   validator.checkDate,
   eventController.createEvent
 );
@@ -86,7 +86,7 @@ router.post(
 // PUT Edit event
 router.put(
   '/events/:id', auth.verifyToken,
-  validator.validateCreateEvent,
+  // validator.validateCreateEvent,
   validator.checkDate,
   eventController.editEvent
 );
@@ -120,7 +120,7 @@ router.get(
 router.post(
   '/centers',
   auth.verifyToken,
-  validator.validateCreateCenter,
+  // validator.validateCreateCenter,
   validator.validateAdmin,
   centerController.createCenter
 );
@@ -129,7 +129,7 @@ router.post(
 router.put(
   '/centers/:id',
   auth.verifyToken,
-  validator.validateCreateCenter,
+  // validator.validateCreateCenter,
   validator.validateAdmin,
   centerController.editCenter
 );
